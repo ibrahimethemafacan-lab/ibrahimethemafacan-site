@@ -218,3 +218,7 @@ a:hover { text-decoration-color: var(--accent); }
 .prose dl.cv dd li { margin: 0.2rem 0; }
 .prose dl.cv dd li::marker { color: var(--accent); }
 .prose dl.cv dd span + ul + span { margin-top: 0.5rem; }
+
+/* Çalışma Masası */
+.calc-note { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); max-width: 46rem; margin: 1.5rem 0 3rem; }
+.tool .tool-code { white-space: nowrap; }

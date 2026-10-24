@@ -1,0 +1,724 @@
+<!doctype html><html lang="tr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<div class="iea-bar" style="background:#18212C;color:#C3CBD3;font:500 13px/1.45 Manrope,system-ui,-apple-system,'Segoe UI',sans-serif;padding:10px max(16px,env(safe-area-inset-left,0px));padding-top:max(10px,env(safe-area-inset-top,0px))">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:space-between">
+    <nav style="display:flex;gap:14px;flex-wrap:wrap;align-items:center"><a href="/" style="color:#fff;font-weight:800;text-decoration:none">İbrahim Ethem Afacan</a><a href="/calisma-masasi/" style="color:#5FC4A6;font-weight:700;text-decoration:none">← Çalışma Masası</a></nav>
+    <span>Bu notlar SPL çalışma notlarının yerini tutmaz; resmi kaynaklarla birlikte kullanın.</span>
+  </div>
+</div>
+
+<title>Türev Araçlar 1011</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky tab bar · notes = chapter rail + reading column · fixed bottom audio bar shared by all views */
+:root{
+  --bg:#f2f4f7; --surface:#ffffff; --surface-2:#e8ecf3; --fg:#121a2b; --muted:#5a6478; --line:#d5dbe6;
+  --accent:#2448c4; --accent-soft:#e3e9fb; --gain:#16794a; --gain-soft:#e2f3ea; --loss:#c23a2b; --loss-soft:#fbe7e4;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1320; --surface:#161d2e; --surface-2:#1f2840; --fg:#e7ebf4; --muted:#98a2b8; --line:#2a3550;
+  --accent:#7d9bff; --accent-soft:#222f57; --gain:#4fc98a; --gain-soft:#173426; --loss:#ff8270; --loss-soft:#3e1f1b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1320; --surface:#161d2e; --surface-2:#1f2840; --fg:#e7ebf4; --muted:#98a2b8; --line:#2a3550;
+  --accent:#7d9bff; --accent-soft:#222f57; --gain:#4fc98a; --gain-soft:#173426; --loss:#ff8270; --loss-soft:#3e1f1b; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.65 var(--body);padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.mono,code{font-family:var(--mono);font-size:.92em}
+.num{font-variant-numeric:tabular-nums}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.brand{display:flex;align-items:baseline;gap:10px;margin-right:auto}
+.brand b{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.brand span{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px solid var(--line);padding:1px 7px;border-radius:99px}
+nav.tabs{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:12px;overflow-x:auto;max-width:100%}
+nav.tabs button{border:0;background:transparent;padding:7px 14px;border-radius:9px;font-weight:600;font-size:.92rem;white-space:nowrap;color:var(--muted)}
+nav.tabs button[aria-selected="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+
+/* hero */
+.hero{padding-block:36px 20px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:end}
+.hero h1{font-size:clamp(2rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--muted);max-width:56ch;margin:12px 0 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--display);font-size:1.6rem;font-weight:700}
+.stat span{font-size:.8rem;color:var(--muted)}
+.view{padding-block:8px 40px}
+
+/* notes */
+.notes{display:grid;grid-template-columns:230px minmax(0,1fr);gap:36px;align-items:start}
+.notes>*,.rail{min-width:0}
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);display:flex;flex-direction:column;gap:2px;font-size:.9rem}
+.rail a{display:flex;gap:10px;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:8px}
+.rail a i{font-style:normal;font-family:var(--mono);font-size:.8rem;min-width:1.4em;padding-top:1px}
+.rail a:hover,.rail a.on{background:var(--surface);color:var(--fg)}
+.rail a.on i{color:var(--accent)}
+article.ch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px clamp(18px,3vw,36px);margin-bottom:22px;scroll-margin-top:90px}
+.ch-head{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px}
+.ch-head .eyebrow{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.ch-head h2{font-size:1.65rem;font-weight:700;margin-top:4px}
+.listen{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface-2);border-radius:99px;padding:6px 14px 6px 10px;font-size:.85rem;font-weight:600}
+.listen:hover{border-color:var(--accent);color:var(--accent)}
+.listen svg{width:16px;height:16px;fill:currentColor}
+.lead{font-size:1.06rem;max-width:68ch}
+.ch p,.ch li{max-width:72ch}
+.ch h3{font-size:1.12rem;font-weight:700;margin:26px 0 8px}
+.ch ul,.ch ol{padding-left:1.25em;margin:8px 0}
+.ch li{margin:4px 0}
+.tbl{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);font-weight:600;font-size:.8rem;letter-spacing:.02em;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.up{color:var(--gain);font-weight:600}.dn{color:var(--loss);font-weight:600}
+.formula{font-family:var(--mono);background:var(--surface-2);border-radius:8px;padding:12px 16px;margin:12px 0;overflow-x:auto;white-space:nowrap;font-size:.92rem}
+.trap{display:flex;gap:12px;background:var(--loss-soft);border-radius:var(--r);padding:12px 16px;margin-top:16px;font-size:.94rem}
+.trap b{color:var(--loss);white-space:nowrap}
+.key ol{counter-reset:k;list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:10px}
+.key li{counter-increment:k;background:var(--surface-2);border-radius:var(--r);padding:12px 14px 12px 48px;position:relative;max-width:none;margin:0;font-size:.93rem}
+.key li::before{content:counter(k,decimal-leading-zero);position:absolute;left:14px;top:12px;font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:500}
+
+/* payoff explorer */
+.payoff{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:18px;margin:16px 0;border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--bg)}
+.payoff select{width:100%;font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.payoff svg{width:100%;height:auto;display:block}
+.pinfo{display:flex;flex-direction:column;gap:10px;font-size:.88rem}
+.pinfo dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px}
+.pinfo dt{color:var(--muted)}.pinfo dd{margin:0;font-family:var(--mono);text-align:right}
+.legs{font-family:var(--mono);font-size:.8rem;color:var(--muted);line-height:1.5}
+
+/* podcast */
+.pod{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:26px;align-items:start}
+.pod-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+.hosts{display:flex;gap:10px;margin:14px 0 18px}
+.host{display:flex;align-items:center;gap:8px;font-size:.88rem;background:var(--surface-2);padding:5px 12px 5px 5px;border-radius:99px}
+.host i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem;color:#fff;background:var(--accent)}
+.host:last-child i{background:var(--gain)}
+.big-play{display:flex;align-items:center;gap:14px;border:0;background:var(--accent);color:#fff;border-radius:99px;padding:10px 22px 10px 12px;font-weight:600}
+.big-play span.c{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.big-play svg{width:18px;height:18px;fill:#fff}
+.chapters{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.chapters button{width:100%;display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent;padding:12px 6px}
+.chapters li:last-child button{border-bottom:0}
+.chapters button:hover{background:var(--surface-2)}
+.chapters .t{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.chapters .nm{font-weight:600}
+.chapters .bar{width:60px;height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden}
+.chapters .bar b{display:block;height:100%;width:0;background:var(--accent)}
+.chapters button.now .nm{color:var(--accent)}
+.note{font-size:.85rem;color:var(--muted);margin-top:16px}
+
+/* player bar */
+.player{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.player .wrap{display:flex;align-items:center;gap:14px;min-height:70px;padding-block:8px}
+.pbtn{width:44px;height:44px;border-radius:50%;border:0;background:var(--accent);display:grid;place-items:center;flex:none}
+.pbtn svg{width:18px;height:18px;fill:#fff}
+.skip{border:1px solid var(--line);background:transparent;border-radius:8px;padding:4px 8px;font-family:var(--mono);font-size:.75rem;flex:none}
+.pmid{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.pmid .row{display:flex;justify-content:space-between;gap:10px;font-size:.82rem}
+.pmid .row b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pmid .row span{font-family:var(--mono);color:var(--muted);white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+.speed{border:1px solid var(--line);background:transparent;border-radius:8px;padding:4px 8px;font-family:var(--mono);font-size:.78rem;flex:none}
+
+/* quiz */
+.quiz{max-width:760px;margin:0 auto}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.qprog{flex:1;min-width:160px;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.qprog b{display:block;height:100%;background:var(--accent);transition:width .3s}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+.qcard .tag{font-family:var(--mono);font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.qcard h3{font-family:var(--body);font-weight:600;font-size:1.15rem;line-height:1.45;margin:8px 0 18px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px}
+.opt i{font-style:normal;font-family:var(--mono);font-size:.8rem;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--surface-2);flex:none}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt.ok{border-color:var(--gain);background:var(--gain-soft)}.opt.ok i{background:var(--gain);color:#fff}
+.opt.no{border-color:var(--loss);background:var(--loss-soft)}.opt.no i{background:var(--loss);color:#fff}
+.opt[disabled]{cursor:default}
+.expl{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--surface-2);font-size:.94rem}
+.qnav{display:flex;justify-content:space-between;margin-top:18px;gap:10px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 16px;font-weight:600}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn[disabled]{opacity:.45;cursor:default}
+.score{text-align:center;padding:30px 10px}
+.score b{font-family:var(--display);font-size:3.2rem;display:block}
+
+/* bank */
+.bank-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px;font-size:.85rem;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.bank{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:12px}
+.bq{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.bq .h{display:flex;justify-content:space-between;align-items:center;font-size:.78rem}
+.bq .h b{font-family:var(--mono);color:var(--accent)}
+.bq .h span{color:var(--muted)}
+.bq p{margin:0;font-size:.94rem}
+.bq .o{font-size:.88rem;color:var(--muted)}
+.bq details{border-top:1px dashed var(--line);padding-top:8px}
+.bq summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--accent)}
+.bq .ans{margin-top:8px;font-size:.9rem;background:var(--gain-soft);border-radius:8px;padding:10px 12px}
+.bq .ans b{color:var(--gain)}
+
+@media (max-width:900px){
+  .hero,.pod,.notes{grid-template-columns:1fr}
+  .rail{position:static;flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:4px}
+  .rail a{white-space:nowrap;background:var(--surface);border:1px solid var(--line)}
+  .rail a span{display:none}
+  .payoff{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stat b{font-size:1.25rem}
+  .skip{display:none}
+  .bank{grid-template-columns:1fr}
+  .top .wrap{gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>Türev Araçlar</b><span>SPL 1011</span></div>
+    <nav class="tabs" role="tablist" aria-label="Bölümler">
+      <button role="tab" id="t-notlar" data-v="notlar" aria-selected="true">Notlar</button>
+      <button role="tab" id="t-podcast" data-v="podcast" aria-selected="false">Podcast</button>
+      <button role="tab" id="t-quiz" data-v="quiz" aria-selected="false">Quiz</button>
+      <button role="tab" id="t-sorular" data-v="sorular" aria-selected="false">Soru Bankası</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Forward'dan kelebeğe, <em>dokuz bölümde</em> türev araçlar.</h1>
+      <p>SPL 1011 Türev Araçlar, Piyasalar ve Risk Yönetimi sınavı için hazırlanmış özet notlar. Notları oku, podcast'i dinle, quizle kendini sına, soru bankasıyla pekiştir.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b class="num">9</b><span>bölüm notu</span></div>
+      <div class="stat"><b class="num">26 dk</b><span>podcast</span></div>
+      <div class="stat"><b class="num">42</b><span>çözümlü soru</span></div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="view" id="v-notlar" role="tabpanel" aria-labelledby="t-notlar">
+    <div class="notes">
+      <nav class="rail" id="rail" aria-label="Bölüm listesi"></nav>
+      <div id="chapters">
+
+<article class="ch key" id="c0" data-t="0" data-name="Sınavın çekirdeği">
+  <div class="ch-head"><div><div class="eyebrow">Önce bunu ezberle</div><h2>Sınavın çekirdeği: 15 madde</h2></div></div>
+  <ol>
+    <li><b>Türev</b>, değeri bir dayanak varlığa bağlı sözleşmedir. Spotta ödeme ve teslim hemen, türevde ileri tarihte yapılır.</li>
+    <li>Dünyada türevlerin çoğu <b>tezgâhüstünde (OTC)</b>. En yaygın dayanak <b>faiz</b>, sonra döviz. Türkiye'de en yaygın ürün <b>endeks vadelisi</b>, sonra döviz vadelisi.</li>
+    <li><b>Forward</b>: OTC, kişiye özel, teminatsız, <b>karşı taraf riski</b> var, genelde vadeye kadar tutulur.</li>
+    <li><b>Futures</b>: borsada, standart, teminatlı, <b>günlük piyasaya göre değerleme</b>; ters işlemle kapatılır (%60'tan fazlası vadeden önce).</li>
+    <li>Teminat: <b>başlangıç → sürdürme</b> (genelde %75; VİOP'ta 2017'den beri %100) → çağrıda hesap <b>başlangıç teminatına</b> tamamlanır.</li>
+    <li><b>Kaldıraç = Pozisyon değeri / Başlangıç teminatı</b>.</li>
+    <li><b>Opsiyon</b> hak verir, yükümlülük değil. Alıcının zararı primle, satıcının kârı primle sınırlı.</li>
+    <li>Volatilite ve vade ↑ → call ve put ↑. Faiz ↑ → call ↑, put ↓. Temettü ↑ → call ↓, put ↑.</li>
+    <li><b>Faiz swapı</b>: tek para birimi, anapara değişmez, ödemeler netleşir. <b>Döviz swapı</b>: anapara başta ve sonda değişir.</li>
+    <li>Swap değeri, sabit ödeyen için <b>B(değişken) − B(sabit)</b>. Başlangıçta ≈ 0.</li>
+    <li>Vadeli fiyat = spot + taşıma maliyeti. Vadede <b>baz = 0</b>.</li>
+    <li><b>Put-call paritesi</b> yalnız Avrupa tipi: c + K·e<sup>−rT</sup> = p + S.</li>
+    <li>Delta: call 0…1, put −1…0, ATM ≈ 0,5. Vega call ve put için pozitif. Rho en az etkili.</li>
+    <li>Temettüsüz hissede <b>Amerikan call erken kullanılmaz</b>; Amerikan put derin ITM'de kullanılabilir.</li>
+    <li>Yön → dikey yayılma. Büyük hareket, yön belirsiz → uzun pergel/çanak. Durgunluk → kısa pergel/çanak, uzun kelebek.</li>
+  </ol>
+</article>
+
+<article class="ch" id="c1" data-t="30.3" data-name="Temel kavramlar">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 1</div><h2>Temel kavramlar</h2></div></div>
+  <p class="lead">Türev, spot piyasa ürünü baz alınarak üretilen ve performansı <b>dayanak varlığın</b> sözleşme süresince aldığı değere bağlı olan finansal üründür.</p>
+  <ul>
+    <li><b>Organize piyasa</b>: kurallar belli, ürünler standart (CBOT, CME, VİOP). <b>Tezgâhüstü</b>: bunun dışındaki her şey.</li>
+    <li><b>Tarihçe</b>: Milet'te Thales'in zeytin vadelisi, Japonya'da Dojima pirinç vadelileri.</li>
+    <li><b>Büyüklük (Aralık 2018, BIS)</b>: OTC 544 trilyon $ (faiz %80, döviz %17, CDS ~8 trilyon $); organize ~94,76 trilyon $. En yoğun bölge Kuzey Amerika, sonra Avrupa.</li>
+    <li><b>Türkiye</b>: en çok hisse endeks vadelisi, sonra döviz vadelisi; opsiyonda endeks opsiyonu.</li>
+  </ul>
+  <h3>Türevler ne işe yarar?</h3>
+  <div class="tbl"><table><thead><tr><th>İşlev</th><th>Açıklama</th></tr></thead><tbody>
+    <tr><td>Fiyat keşfi</td><td>Gelecek beklentisi ve volatilite sürekli fiyatlanır</td></tr>
+    <tr><td>Risk yönetimi (hedging)</td><td>Kur, emtia, faiz riskleri sigortalanır; en önemli fayda</td></tr>
+    <tr><td>Spekülasyon</td><td>Kaldıraç: 100 TL ile 1.000–50.000 TL'lik pozisyon</td></tr>
+    <tr><td>Arbitraj</td><td>Risksiz eş zamanlı al-sat; fiyatlamanın temeli</td></tr>
+  </tbody></table></div>
+  <p><b>Arbitraj örneği</b>: hisse İstanbul'da 95 $, New York'ta 100 $ → İstanbul'dan al, New York'ta sat, 5 $ risksiz kâr. Bu fırsatlar hızla kapanır; <b>arbitraj olmaması türev fiyatlamanın temelidir</b>.</p>
+  <p><b>Eleştiriler</b>: 2007–2008 krizinde yüksek kaldıraçlı karmaşık ürünlerin yanlış fiyatlanması, yetersiz teminat, yatırımcının ürünü tanımaması.</p>
+  <div class="trap"><b>Tuzak</b><span>"Nakit gereksinimi" türev kullanma nedeni değildir. Türevin en iyi tanımı: "performansı dayanak varlığa bağlıdır".</span></div>
+</article>
+
+<article class="ch" id="c2" data-t="204.7" data-name="Türev piyasaları">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 2</div><h2>Türev araç piyasaları</h2></div></div>
+  <p class="lead">Üç ana grup var: vadeli işlemler (forward, futures), opsiyonlar ve swaplar. Forward, futures ve swap <b>iki tarafı da bağlar</b>; opsiyon yalnız satıcıyı bağlar.</p>
+  <div class="tbl"><table><thead><tr><th>Özellik</th><th>Forward</th><th>Futures</th><th>Swap</th><th>Opsiyon</th></tr></thead><tbody>
+    <tr><td>Piyasa</td><td>OTC</td><td>Organize</td><td>Çoğunlukla OTC</td><td>İkisi de</td></tr>
+    <tr><td>Standart</td><td>Hayır</td><td>Evet</td><td>Hayır (ISDA)</td><td>Borsada evet</td></tr>
+    <tr><td>Başta ödeme</td><td>Yok</td><td>Teminat</td><td>Yok</td><td>Alıcı prim öder</td></tr>
+    <tr><td>Temerrüt riski</td><td class="dn">Var</td><td class="up">Teminatla yok</td><td class="dn">Var</td><td>OTC'de alıcı taşır</td></tr>
+    <tr><td>Erken çıkış</td><td>Zor</td><td>Ters işlemle kolay</td><td>Devrederek</td><td>Satarak</td></tr>
+    <tr><td>Kimler</td><td>Kurumsal</td><td>Bireysel de</td><td>Kurumlar</td><td>Herkes</td></tr>
+  </tbody></table></div>
+  <ul>
+    <li><b>Forward örneği</b>: spot USD/TL 3, 3 ay forward 3,10. Uzun taraf 1.000 $'ı 3.100 TL'ye alır. Vadede 3,30 olursa kâr <span class="num">200 TL</span>; kur düşse de 3,10'dan almak zorunda.</li>
+    <li><b>Swap</b>: nakit akışlarının değişimi; aynı para birimi = faiz swapı, farklı = döviz swapı. Swap <b>bir dizi forward</b> gibidir; işlem hacmi en büyük türevdir.</li>
+    <li><b>Opsiyon</b>: alma (call) veya satma (put) hakkı, bedeli <b>prim</b>. Dört taraf: call alan, call satan, put alan, put satan.</li>
+    <li><b>Nosyonel esas</b>: sözleşmede belirtilen dayanak varlık miktarı.</li>
+  </ul>
+  <div class="trap"><b>Tuzak</b><span>Forward'da günlük değerleme yoktur ve futures'tan daha az likittir. Endeks futures alanın temel riski piyasanın düşmesidir. Türevlerin yaygınlaşma nedeni düşük işlem maliyetidir.</span></div>
+</article>
+
+<article class="ch" id="c3" data-t="378" data-name="Vadeli işlemler">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 3</div><h2>Vadeli işlem sözleşmeleri</h2></div></div>
+  <p class="lead">Forward ve futures, belirli fiyat ve vadede alma (uzun) ya da satma (kısa) <b>yükümlülüğü</b> verir; vadede bir taraf diğerinin zararını karşılar.</p>
+  <div class="tbl"><table><thead><tr><th>Kim</th><th>Risk</th><th>Forward pozisyonu</th></tr></thead><tbody>
+    <tr><td>İthalatçı, döviz borçlusu</td><td>Kurun yükselmesi</td><td class="up">Uzun (döviz al)</td></tr>
+    <tr><td>İhracatçı, döviz varlığı olan</td><td>TL'nin değerlenmesi</td><td class="dn">Kısa (döviz sat)</td></tr>
+  </tbody></table></div>
+  <ul>
+    <li><b>Uzlaşı</b>: fiziki (varlık teslim) veya nakdi (yalnız fark). Döviz forward'larında genelde nakdi.</li>
+    <li><b>FRA</b>: LIBOR üzerine faiz forward'ı. Uzun FRA faiz yükselince kazanır (%10'dan alındı, %12 oldu → %2 kâr).</li>
+    <li><b>Futures/forward farkı</b>: futures standart, borsada, teminatlı, günlük değerlemeli, vadeden önce el değiştirir.</li>
+  </ul>
+  <h3>Teminat mekanizması</h3>
+  <ul>
+    <li><b>Başlangıç teminatı</b>: iki taraf da yatırır; kabaca günlük σ'nın 3 katı (σ %2 → %6).</li>
+    <li><b>Sürdürme teminatı</b>: genelde başlangıcın %75'i. <b>VİOP'ta Mart 2017'den beri %100.</b></li>
+    <li><b>Teminat tamamlama çağrısı</b>: bakiye sürdürmenin <b>altına</b> inerse, hesap <b>başlangıç teminatına</b> tamamlanır. Tam eşitse çağrı yok.</li>
+    <li><b>Uzlaşma fiyatı</b>: VİOP'ta seansın son 10 dakikasının miktar ağırlıklı ortalaması.</li>
+  </ul>
+  <div class="tbl"><table><thead><tr><th>Gün</th><th>Vadeli kur</th><th>Günlük K/Z</th><th>Bakiye</th><th>Durum</th></tr></thead><tbody class="num">
+    <tr><td>0</td><td>3,20</td><td>—</td><td>32.000</td><td>Başlangıç (100.000 $, %10)</td></tr>
+    <tr><td>1</td><td>3,25</td><td class="up">+5.000</td><td>37.000</td><td></td></tr>
+    <tr><td>2</td><td>3,23</td><td class="dn">−2.000</td><td>35.000</td><td></td></tr>
+    <tr><td>3</td><td>3,15</td><td class="dn">−8.000</td><td>27.000</td><td></td></tr>
+    <tr><td>4</td><td>3,12</td><td class="dn">−3.000</td><td>24.000</td><td>Sürdürmeye eşit, çağrı yok</td></tr>
+    <tr><td>5</td><td>3,11</td><td class="dn">−1.000</td><td>23.000</td><td class="dn">Çağrı: 9.000 TL yatır</td></tr>
+  </tbody></table></div>
+  <p><b>Çağrı fiyatı kısayolu</b>: Fark = (Başlangıç − Sürdürme) / birim. Uzun: giriş − fark; kısa: giriş + fark. Altın, 100 ons, 3.000/2.500 TL → fark 5 TL; 500'den uzun → <b>495</b> altı, 505'ten kısa → <b>510</b> üstü.</p>
+  <p><b>Kaldıraç</b>: 2.220 TL'lik kontrat, 115 TL teminat → kaldıraç <b>19,3</b>. Uzun futures'ta kayıp sınırlı (fiyat sıfıra iner), kısa futures'ta teorik <b>sınırsız</b>.</p>
+  <h3>VİOP ve kriz sonrası</h3>
+  <ul>
+    <li>VOB 4 Şubat 2005, VİOP 21 Aralık 2012, birleşme 2013.</li>
+    <li>G20 (2009): standart OTC türevler borsaya. Dodd-Frank (2010): swaplar CFTC'ye. CCP kuruldu, swaplardan da teminat. DTCC (2011): raporlama zorunluluğu.</li>
+  </ul>
+</article>
+
+<article class="ch" id="c4" data-t="604.4" data-name="Opsiyonlar">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 4</div><h2>Opsiyonlar</h2></div></div>
+  <p class="lead">Opsiyon, dayanak varlığı <b>kullanım fiyatından</b> alma (call) ya da satma (put) hakkı verir; alıcı prim öder, teminat satıcıdan istenir.</p>
+  <ul>
+    <li><b>Avrupa tipi</b> yalnız vadede, <b>Amerikan tipi</b> vadeye kadar her an kullanılır.</li>
+    <li>Opsiyon fiyatı = <b>içsel değer + zaman değeri</b>. Yatırımcı türleri: hedger, spekülatör, arbitrajör.</li>
+  </ul>
+  <div class="tbl"><table><thead><tr><th>Durum</th><th>Call</th><th>Put</th></tr></thead><tbody>
+    <tr><td>Primde (ITM)</td><td>S &gt; X</td><td>S &lt; X</td></tr>
+    <tr><td>Başabaş (ATM)</td><td>S = X</td><td>S = X</td></tr>
+    <tr><td>Primden uzak (OTM)</td><td>S &lt; X</td><td>S &gt; X</td></tr>
+  </tbody></table></div>
+  <h3>Primi etkileyen 6 faktör</h3>
+  <div class="tbl"><table><thead><tr><th>Faktör artarsa</th><th>Call</th><th>Put</th><th>Neden</th></tr></thead><tbody>
+    <tr><td>Dayanak fiyatı</td><td class="up">↑</td><td class="dn">↓</td><td>Call'un içsel değeri artar</td></tr>
+    <tr><td>Kullanım fiyatı</td><td class="dn">↓</td><td class="up">↑</td><td>Pahalıya alma hakkı daha az değerli</td></tr>
+    <tr><td>Vade</td><td class="up">↑</td><td class="up">↑</td><td>Daha çok belirsizlik</td></tr>
+    <tr><td>Volatilite</td><td class="up">↑</td><td class="up">↑</td><td>Kullanılma olasılığı artar</td></tr>
+    <tr><td>Risksiz faiz</td><td class="up">↑</td><td class="dn">↓</td><td>X'in bugünkü değeri düşer</td></tr>
+    <tr><td>Temettü</td><td class="dn">↓</td><td class="up">↑</td><td>Temettü hisse fiyatını düşürür</td></tr>
+  </tbody></table></div>
+  <h3>Vadede kâr/zarar (X = 40, call primi 4, put primi 3)</h3>
+  <div class="tbl"><table><thead><tr><th>Pozisyon</th><th>Formül</th><th>Max kâr</th><th>Max zarar</th><th>Başa baş</th></tr></thead><tbody>
+    <tr><td>Uzun call</td><td class="mono">max(S−X,0) − c</td><td>Sınırsız</td><td>4</td><td>44</td></tr>
+    <tr><td>Kısa call</td><td class="mono">c − max(S−X,0)</td><td>4</td><td>Sınırsız</td><td>44</td></tr>
+    <tr><td>Uzun put</td><td class="mono">max(X−S,0) − p</td><td>37</td><td>3</td><td>37</td></tr>
+    <tr><td>Kısa put</td><td class="mono">p − max(X−S,0)</td><td>3</td><td>37</td><td>37</td></tr>
+  </tbody></table></div>
+  <p>Opsiyon grafiği kullanım fiyatında <b>kırılır</b>; forward ve futures'ta bu kırılma yoktur. Çıplak call satmak en riskli pozisyondur. Döviz opsiyonu başa başı: X 3,6432 + dolar başı prim 0,036 ≈ <b>3,680</b>.</p>
+  <div class="trap"><b>Tuzak</b><span>Opsiyon fiyatı, dayanak varlığın fiyatından daha fazla oynaklık gösterir.</span></div>
+</article>
+
+<article class="ch" id="c5" data-t="764.6" data-name="Swaplar">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 5</div><h2>Swap anlaşmaları</h2></div></div>
+  <p class="lead">Swap, iki tarafın gelecekteki nakit akışlarını değiştirmesidir; global piyasada en çok işlem gören türevdir ve karşı taraf riski taşır.</p>
+  <div class="tbl"><table><thead><tr><th>Özellik</th><th>Faiz swapı</th><th>Döviz swapı</th></tr></thead><tbody>
+    <tr><td>Para birimi</td><td>Tek</td><td>İki</td></tr>
+    <tr><td>Anapara değişimi</td><td>Yok</td><td>Başta ve vadede, aynı kurdan</td></tr>
+    <tr><td>Netleşme</td><td>Var</td><td>Yok</td></tr>
+    <tr><td>Gerekçe</td><td>Faiz riskini yönetmek</td><td>Göreli maliyet avantajı</td></tr>
+  </tbody></table></div>
+  <ul>
+    <li><b>Örnek</b>: 100 milyon, A %10 sabit öder, LIBOR alır; LIBOR %8 → A net 2 milyon öder. Sabit ödeyen faiz artışı bekler.</li>
+    <li><b>Kullanım</b>: LIBOR+%2 ile borçlanan şirket, sabit öde/LIBOR al swapıyla borcunu sabite çevirir.</li>
+    <li><b>Döviz swapı</b>: 25 milyon € ↔ 31,25 milyon $; her taraf aldığı döviz üzerinden faiz öder (3.125.000 $ ve 2.000.000 €), vadede anaparalar iade edilir.</li>
+  </ul>
+  <h3>Değerleme</h3>
+  <div class="formula">Sabit ödeyen: V = B<sub>değişken</sub> − B<sub>sabit</sub> &nbsp;&nbsp;|&nbsp;&nbsp; Sabit alan: V = B<sub>sabit</sub> − B<sub>değişken</sub></div>
+  <ul>
+    <li>Değişken tahvil, ödemeden hemen sonra nominale (L) eşit; tek nakit akışı olarak (L + k)·e<sup>−rt</sup>.</li>
+    <li>Örnek: B(sabit) ≈ 1.031.838, B(değişken) ≈ 1.028.952 → sabit alan A için <b>+2.886 TL</b>.</li>
+    <li>Döviz swapı (TL alıp € ödeyen): V = B(TL) − S × B(€).</li>
+  </ul>
+</article>
+
+<article class="ch" id="c6" data-t="878.9" data-name="Diğer türevler">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 6</div><h2>Egzotik opsiyonlar ve CDS</h2></div></div>
+  <p class="lead">Egzotik opsiyonun getirisi yalnız vadedeki fiyata değil, bir eşiğe, bariyere ya da fiyat patikasına da bağlıdır.</p>
+  <div class="tbl"><table><thead><tr><th>Tür</th><th>Nasıl çalışır</th><th>Maliyet</th><th>Örnek</th></tr></thead><tbody>
+    <tr><td>Dijital</td><td>Eşik aşılırsa sabit tutar, yoksa 0</td><td>—</td><td>Ödeme 100.000, prim 20.000 → kâr 80.000</td></tr>
+    <tr><td>Bariyerli</td><td>Knock-out bariyerde ölür, knock-in doğar</td><td class="up">Daha ucuz</td><td>KO call satıcısı, vade 3,59 → kâr 6.000</td></tr>
+    <tr><td>Asya</td><td>Ortalama fiyata göre ödeme</td><td class="up">Daha ucuz</td><td>Ortalama 102, X 100, 1.000 varil, prim 800 → 1.200 $</td></tr>
+    <tr><td>Seçim</td><td>Call mı put mu, sonra seçilir</td><td class="dn">Daha pahalı</td><td>Altın, X 90, 2 ayda seçim</td></tr>
+  </tbody></table></div>
+  <h3>Kredi temerrüt takası (CDS)</h3>
+  <ul>
+    <li>Temerrüde karşı sigorta. Korumayı alan periyodik prim öder, korumayı satan kredi olayında öder.</li>
+    <li>Uzlaşı fiziki veya nakdi; tahvile sahip olmak gerekmez. Prim baz puanla ifade edilir, vade uzadıkça artar (TR 2017: 1 yıl 23, 5 yıl 161, 10 yıl 249 bp).</li>
+    <li>Belirleyiciler: <b>temerrüt olasılığı</b> ve <b>tazmin oranı</b>.</li>
+    <li>10 milyon, 500 bp, 5 yıl, tazmin %100: temerrüt yoksa prim 2,5 milyon; 1. yıl temerrüdünde kayıp 10 milyon yerine 500.000 TL.</li>
+  </ul>
+  <div class="trap"><b>Tuzak</b><span>"Az maliyetli olmak" bir opsiyonu egzotik yapmaz: seçim opsiyonu egzotiktir ama pahalıdır.</span></div>
+</article>
+
+<article class="ch" id="c7" data-t="984.6" data-name="Risk yönetimi">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 7</div><h2>Türevlerle risk yönetimi</h2></div></div>
+  <p class="lead">Finansal risk bilanço uyumsuzluğundan doğar; korunmak için bilançodaki pozisyonun tam tersi türev pozisyonu alınır.</p>
+  <div class="tbl"><table><thead><tr><th>Kim</th><th>Risk</th><th>Hedge</th></tr></thead><tbody>
+    <tr><td>Döviz borçlusu, ithalatçı</td><td>Kur ↑</td><td>USD/TL vadeli <b>uzun</b></td></tr>
+    <tr><td>İhracatçı, döviz yatırımcısı</td><td>Kur ↓</td><td>USD/TL vadeli <b>kısa</b></td></tr>
+    <tr><td>Hisse fonu yöneticisi</td><td>Endeks ↓</td><td>Endeks vadeli <b>kısa</b> veya endeks <b>put al</b></td></tr>
+  </tbody></table></div>
+  <div class="tbl"><table><thead><tr><th>Endeks vadede</th><th>Fon (100 milyon)</th><th>Futures hedge</th><th>Koruyucu put (prim 2,5 milyon)</th></tr></thead><tbody class="num">
+    <tr><td>60.000</td><td class="dn">−25 milyon</td><td>0</td><td class="dn">−2,5 milyon</td></tr>
+    <tr><td>70.000</td><td class="dn">−12,5 milyon</td><td>0</td><td class="dn">−2,5 milyon</td></tr>
+    <tr><td>80.000</td><td>0</td><td>0</td><td class="dn">−2,5 milyon</td></tr>
+    <tr><td>90.000</td><td class="up">+12,5 milyon</td><td>0</td><td class="up">+10 milyon</td></tr>
+  </tbody></table></div>
+  <p>Futures fiyatı iki yönde kilitler, yukarı potansiyel feda edilir. Put bir <b>taban</b> koyar ve yükselişi açık bırakır; bedeli primdir.</p>
+</article>
+
+<article class="ch" id="c8" data-t="1057.8" data-name="Fiyatlama">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 8</div><h2>Türevlerin fiyatlaması</h2></div></div>
+  <p class="lead">Vadeli fiyat taşıma maliyeti modeliyle, opsiyon fiyatı Black-Scholes ve binom modelleriyle bulunur; teorik fiyattan sapma arbitrajı doğurur.</p>
+  <ul>
+    <li><b>Baz = Spot − Vadeli</b>; vadede 0. Baz daralırsa kısa hedger kazanır. Baz riski fiyat riskinden düşüktür.</li>
+    <li><b>Contango</b>: vadeli &gt; beklenen spot, uzak vade pahalı. <b>Backwardation</b>: tersi.</li>
+    <li><b>Arbitraj</b>: vadeli pahalıysa vadeliyi sat, spotu al; ucuzsa vadeliyi al, spotu açığa sat.</li>
+  </ul>
+  <div class="tbl"><table><thead><tr><th>Dayanak</th><th>Teorik vadeli fiyat</th><th>Not</th></tr></thead><tbody>
+    <tr><td>Döviz</td><td class="mono">S·e<sup>(rd−rf)T</sup></td><td>Basit: S(1+rd·T)/(1+rf·T)</td></tr>
+    <tr><td>Hisse</td><td class="mono">(S−I)·e<sup>rT</sup></td><td>I = temettülerin BD'si</td></tr>
+    <tr><td>Endeks</td><td class="mono">S·e<sup>(r−q)T</sup></td><td>q = temettü verimi</td></tr>
+    <tr><td>Kıymetli maden</td><td class="mono">(S+U)·e<sup>(r−L)T</sup></td><td>L = kiralama getirisi</td></tr>
+    <tr><td>Tüketim malı</td><td class="mono">S·e<sup>(r+u−y)T</sup></td><td>y = elde tutma faydası</td></tr>
+  </tbody></table></div>
+  <p><b>CTD</b>: Tahvil fiyatı − (Uzlaşma × Çevrim faktörü) en düşük olan tahvil teslim edilir. Örnek: 4,22 / 5,04 / <b>4,03</b> → 3. tahvil.</p>
+  <h3>Black-Scholes</h3>
+  <div class="formula">c = S·e<sup>−qT</sup>·N(d₁) − X·e<sup>−rT</sup>·N(d₂) &nbsp;&nbsp; p = X·e<sup>−rT</sup>·N(−d₂) − S·e<sup>−qT</sup>·N(−d₁)<br>d₁ = [ln(S/X) + (r − q + σ²/2)T] / σ√T &nbsp;&nbsp; d₂ = d₁ − σ√T</div>
+  <p>Gözlenemeyen tek girdi <b>volatilite</b>. Örnek: S = X = 14, r %10, σ %20, 6 ay → c ≈ 1,12, p ≈ 0,48.</p>
+  <div class="tbl"><table><thead><tr><th>Greek</th><th>Ölçtüğü</th><th>Akılda tut</th></tr></thead><tbody>
+    <tr><td>Delta</td><td>Spot → prim</td><td>Call 0…1, put −1…0, ATM ≈ 0,5</td></tr>
+    <tr><td>Gamma</td><td>Spot → delta</td><td>Deltanın değişim hızı</td></tr>
+    <tr><td>Teta</td><td>Zaman → prim</td><td>Vade azaldıkça prim erir</td></tr>
+    <tr><td>Vega</td><td>Volatilite → prim</td><td>Call ve put için pozitif</td></tr>
+    <tr><td>Rho</td><td>Faiz → prim</td><td>En az etkili</td></tr>
+  </tbody></table></div>
+  <p><b>Delta-nötr</b>: 13 hisse / 0,52 = 25 call sat. Sürekli ayarlama = dinamik korunma.</p>
+  <h3>Put-call paritesi, sınırlar, binom</h3>
+  <div class="formula">c + K·e<sup>−rT</sup> = p + S &nbsp;&nbsp;(yalnız Avrupa tipi)</div>
+  <ul>
+    <li>S 10, K 11, p 2, r %12, 6 ay → c ≈ 1,64. Piyasada 2 ise arbitraj kârı 0,38 TL.</li>
+    <li>max(S − K·e<sup>−rT</sup>, 0) ≤ c ≤ S; max(K·e<sup>−rT</sup> − S, 0) ≤ p ≤ K·e<sup>−rT</sup>.</li>
+    <li>İflas riski yüksek şirkette Amerikan put &gt; Avrupa put.</li>
+    <li>Binom: p = (e<sup>rΔt</sup> − d)/(u − d), c = e<sup>−rΔt</sup>[p·c<sub>u</sub> + (1−p)·c<sub>d</sub>]. Tek dönem örneği c ≈ 0,9, iki dönem c ≈ 2,1.</li>
+  </ul>
+</article>
+
+<article class="ch" id="c9" data-t="1311.9" data-name="Stratejiler">
+  <div class="ch-head"><div><div class="eyebrow">Bölüm 9</div><h2>Opsiyon stratejileri</h2></div></div>
+  <p class="lead">Önce beklentiyi belirle, sonra stratejiyi seç. Aşağıdaki gezginde örnek rakamlarla her stratejinin vade sonu kâr/zarar grafiğini görebilirsin.</p>
+  <div class="payoff">
+    <div style="min-width:0">
+      <label for="strat" class="sr" style="font-size:.8rem;color:var(--muted)">Strateji</label>
+      <select id="strat"></select>
+      <svg id="chart" viewBox="0 0 600 300" role="img" aria-label="Vade sonu kâr/zarar grafiği"></svg>
+    </div>
+    <div class="pinfo">
+      <div id="sdesc"></div>
+      <dl id="smetrics"></dl>
+      <div class="legs" id="slegs"></div>
+    </div>
+  </div>
+  <div class="tbl"><table><thead><tr><th>Strateji</th><th>Kurulum</th><th>Beklenti</th><th>Max kâr</th><th>Max zarar</th></tr></thead><tbody>
+    <tr><td>Bull call spread</td><td>Uzun call X1 + kısa call X2</td><td>Sınırlı yükseliş</td><td>(X2−X1) − net prim</td><td>Net prim</td></tr>
+    <tr><td>Bull put spread</td><td>Uzun put X1 + kısa put X2</td><td>Yükseliş</td><td>Net prim</td><td>(X2−X1) − net prim</td></tr>
+    <tr><td>Bear call spread</td><td>Kısa call X1 + uzun call X2</td><td>Düşüş</td><td>Net prim</td><td>(X2−X1) − net prim</td></tr>
+    <tr><td>Bear put spread</td><td>Kısa put X1 + uzun put X2</td><td>Düşüş</td><td>(X2−X1) − net prim</td><td>Net prim</td></tr>
+    <tr><td>Uzun pergel</td><td>Uzun call + put, aynı X</td><td>Büyük hareket</td><td>Sınırsız</td><td>Toplam prim</td></tr>
+    <tr><td>Uzun çanak</td><td>Uzun put X1 + call X2</td><td>Büyük hareket, daha ucuz</td><td>Sınırsız</td><td>Toplam prim</td></tr>
+    <tr><td>Kısa pergel/çanak</td><td>Kısa call + put</td><td>Durgunluk</td><td>Toplam prim</td><td>Sınırsız</td></tr>
+    <tr><td>Uzun kelebek</td><td>Uzun X1 + 2 kısa X2 + uzun X3</td><td>X2 civarı</td><td>X2 − X1 − net prim</td><td>Net prim</td></tr>
+    <tr><td>Strip / Strap</td><td>1C+2P / 2C+1P, aynı X</td><td>Hareket, düşüş / yükseliş ağırlıklı</td><td>Sınırsız</td><td>Toplam prim</td></tr>
+    <tr><td>Koruyucu put</td><td>Hisse + uzun put</td><td>Sigorta (sentetik uzun call)</td><td>Sınırsız</td><td>Prim</td></tr>
+    <tr><td>Covered call</td><td>Hisse + kısa call</td><td>Ek getiri (sentetik kısa put)</td><td>Prim + X − S₀</td><td>S₀ − prim</td></tr>
+  </tbody></table></div>
+</article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PODCAST -->
+  <section class="view" id="v-podcast" role="tabpanel" aria-labelledby="t-podcast" hidden>
+    <div class="pod">
+      <div class="pod-card">
+        <div class="ch-head"><div><div class="eyebrow">Sesli anlatım · 25:39</div><h2>Türev Araçlar, iki sunucuyla</h2></div></div>
+        <p>Kerem ve Deniz dersin dokuz bölümünü notlarla aynı sırayla anlatıyor, sonda sınav için beş altın kural var. Oynatıcı sayfanın altında sabit kalır; notları okurken dinlemeye devam edebilirsin.</p>
+        <div class="hosts"><span class="host"><i>K</i>Kerem</span><span class="host"><i>D</i>Deniz</span></div>
+        <button class="big-play" id="bigplay"><span class="c"><svg viewBox="0 0 24 24"><path id="bigicon" d="M8 5v14l11-7z"/></svg></span><span id="bigtxt">Baştan dinle</span></button>
+        <p class="note">Ses yapay seslendirmedir; rakam ve formüllerde notları esas al.</p>
+      </div>
+      <div class="pod-card">
+        <div class="eyebrow" style="font-family:var(--mono);font-size:.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Bölümler</div>
+        <ul class="chapters" id="chapterlist"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="v-quiz" role="tabpanel" aria-labelledby="t-quiz" hidden>
+    <div class="quiz">
+      <div class="qtop"><b id="qcount" class="num">Soru 1 / 24</b><div class="qprog"><b id="qbar"></b></div><span id="qscore" class="num" style="color:var(--muted);font-size:.9rem"></span></div>
+      <div class="qcard" id="qcard"></div>
+    </div>
+  </section>
+
+  <!-- BANK -->
+  <section class="view" id="v-sorular" role="tabpanel" aria-labelledby="t-sorular" hidden>
+    <div class="bank-tools" id="filters"></div>
+    <div class="bank" id="bank"></div>
+  </section>
+</main>
+
+<div class="player" role="region" aria-label="Podcast oynatıcı">
+  <div class="wrap">
+    <button class="skip" id="back15" aria-label="15 saniye geri">−15</button>
+    <button class="pbtn" id="play" aria-label="Oynat"><svg viewBox="0 0 24 24"><path id="picon" d="M8 5v14l11-7z"/></svg></button>
+    <button class="skip" id="fwd15" aria-label="15 saniye ileri">+15</button>
+    <div class="pmid">
+      <div class="row"><b id="pnow">Giriş</b><span id="ptime">0:00 / 25:39</span></div>
+      <input type="range" id="seek" min="0" max="1539" step="1" value="0" aria-label="Konum">
+    </div>
+    <button class="speed" id="speed" aria-label="Oynatma hızı">1×</button>
+  </div>
+</div>
+<audio id="audio" src="podcast.mp3" preload="metadata"></audio>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const PLAY="M8 5v14l11-7z", PAUSE="M6 5h4v14H6zM14 5h4v14h-4z";
+
+/* ---------- tabs ---------- */
+const views=["notlar","podcast","quiz","sorular"];
+function show(v){ if(!views.includes(v)) v="notlar";
+  views.forEach(x=>{$("#v-"+x).hidden=x!==v; $("#t-"+x).setAttribute("aria-selected",x===v)});
+  try{history.replaceState(null,"","#"+v)}catch(e){}
+}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>{show(b.dataset.v);window.scrollTo({top:0})});
+show((location.hash||"").slice(1));
+
+/* ---------- audio ---------- */
+const CH=[["Giriş",0],["Temel kavramlar",30.3],["Türev piyasaları",204.7],["Vadeli işlemler",378],["Opsiyonlar",604.4],["Swaplar",764.6],["Diğer türevler",878.9],["Risk yönetimi",984.6],["Fiyatlama",1057.8],["Stratejiler",1311.9],["Beş altın kural",1487.2]];
+const A=$("#audio"); let DUR=1538.7;
+const fmt=t=>{t=Math.max(0,Math.floor(t));return Math.floor(t/60)+":"+String(t%60).padStart(2,"0")};
+function chIdx(t){let i=0;CH.forEach((c,j)=>{if(t>=c[1]-.2)i=j});return i}
+function setIcons(p){$("#picon").setAttribute("d",p?PAUSE:PLAY);$("#bigicon").setAttribute("d",p?PAUSE:PLAY);$("#play").setAttribute("aria-label",p?"Duraklat":"Oynat");$("#bigtxt").textContent=p?"Duraklat":(A.currentTime>1?"Devam et":"Baştan dinle")}
+function playAt(t){ if(t!=null) A.currentTime=t; A.play().catch(()=>{}); }
+$("#play").onclick=()=>A.paused?playAt():A.pause();
+$("#bigplay").onclick=()=>A.paused?playAt():A.pause();
+$("#back15").onclick=()=>A.currentTime=Math.max(0,A.currentTime-15);
+$("#fwd15").onclick=()=>A.currentTime=Math.min(DUR,A.currentTime+15);
+const speeds=[1,1.25,1.5,1.75,.75]; let si=0;
+$("#speed").onclick=()=>{si=(si+1)%speeds.length;A.playbackRate=speeds[si];$("#speed").textContent=speeds[si]+"×"};
+const seek=$("#seek"); let drag=false;
+seek.oninput=()=>{drag=true;$("#ptime").textContent=fmt(seek.value)+" / "+fmt(DUR)};
+seek.onchange=()=>{A.currentTime=+seek.value;drag=false};
+A.onplay=()=>setIcons(true); A.onpause=()=>{setIcons(false);store.set("pod-t",A.currentTime)};
+A.onloadedmetadata=()=>{if(isFinite(A.duration)){DUR=A.duration;seek.max=Math.floor(DUR)} const t=store.get("pod-t",0); if(t>1&&t<DUR-5){A.currentTime=t}};
+const cl=$("#chapterlist");
+CH.forEach((c,i)=>{const end=(CH[i+1]||[0,DUR])[1];const li=document.createElement("li");
+  li.innerHTML=`<button data-i="${i}"><span class="t">${fmt(c[1])}</span><span class="nm">${c[0]}</span><span class="bar"><b></b></span></button>`;
+  li.firstChild.onclick=()=>playAt(c[1]); cl.appendChild(li)});
+let last=0;
+A.ontimeupdate=()=>{const t=A.currentTime, i=chIdx(t);
+  if(!drag){seek.value=t;$("#ptime").textContent=fmt(t)+" / "+fmt(DUR)}
+  $("#pnow").textContent=CH[i][0];
+  cl.querySelectorAll("button").forEach((b,j)=>{const s=CH[j][1],e=(CH[j+1]||[0,DUR])[1];b.classList.toggle("now",j===i);b.querySelector(".bar b").style.width=Math.min(100,Math.max(0,(t-s)/(e-s)*100))+"%"});
+  if(Math.abs(t-last)>5){last=t;store.set("pod-t",t)}
+};
+
+/* ---------- notes rail + listen buttons ---------- */
+const rail=$("#rail"); const arts=[...document.querySelectorAll("article.ch")];
+arts.forEach((a,i)=>{const r=document.createElement("a");r.href="#"+a.id;r.innerHTML=`<i>${i===0?"★":i}</i><span>${a.dataset.name}</span>`;
+  r.onclick=e=>{e.preventDefault();a.scrollIntoView({behavior:"smooth"})};rail.appendChild(r);
+  if(i>0){const b=document.createElement("button");b.className="listen";b.innerHTML=`<svg viewBox="0 0 24 24"><path d="${PLAY}"/></svg>Bu bölümü dinle · ${fmt(+a.dataset.t)}`;
+    b.onclick=()=>playAt(+a.dataset.t);a.querySelector(".ch-head").appendChild(b)}});
+if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=arts.indexOf(e.target);rail.querySelectorAll("a").forEach((x,j)=>x.classList.toggle("on",j===i))}})},{rootMargin:"-40% 0px -55% 0px"});arts.forEach(a=>io.observe(a))}
+
+/* ---------- payoff explorer ---------- */
+const S=[
+ ["Uzun call","Yükseliş beklentisi; zarar primle sınırlı.",[["c",1,40,4]]],
+ ["Uzun put","Düşüş beklentisi; zarar primle sınırlı.",[["p",1,40,3]]],
+ ["Kısa call","Fiyat yükselmez beklentisi; zarar sınırsız.",[["c",-1,40,4]]],
+ ["Kısa put","Fiyat düşmez beklentisi; kâr primle sınırlı.",[["p",-1,40,3]]],
+ ["Bull call spread","Sınırlı yükseliş; başta net prim ödenir.",[["c",1,35,7],["c",-1,45,2]]],
+ ["Bull put spread","Yükseliş; başta net prim tahsil edilir.",[["p",1,35,2],["p",-1,45,7]]],
+ ["Bear call spread","Düşüş; net prim tahsil edilir.",[["c",-1,35,7],["c",1,45,2]]],
+ ["Bear put spread","Düşüş; net prim ödenir.",[["p",-1,35,2],["p",1,45,7]]],
+ ["Uzun pergel (straddle)","Büyük hareket, yön belirsiz.",[["c",1,35,7],["p",1,35,2]]],
+ ["Kısa pergel","Durgunluk; zarar iki yönde sınırsız.",[["c",-1,35,3],["p",-1,35,2]]],
+ ["Uzun çanak (strangle)","Büyük hareket; pergelden ucuz.",[["p",1,35,3],["c",1,45,4]]],
+ ["Kısa çanak","Durgunluk, geniş bant.",[["p",-1,35,3],["c",-1,45,4]]],
+ ["Uzun kelebek (call)","Fiyat orta kullanım fiyatı civarında kalır.",[["c",1,35,4],["c",-2,40,2],["c",1,45,1]]],
+ ["Kısa kelebek (put)","Fiyat sert hareket eder.",[["p",-1,35,1],["p",2,40,2],["p",-1,45,4]]],
+ ["Strip","Hareket beklentisi, düşüş daha olası.",[["c",1,35,2],["p",2,35,2]]],
+ ["Strap","Hareket beklentisi, yükseliş daha olası.",[["c",2,35,2],["p",1,35,2]]],
+ ["Sentetik uzun hisse","Uzun call + kısa put: hisse almak gibi.",[["c",1,35,3],["p",-1,35,2]]],
+ ["Koruyucu put","Hisse + uzun put: portföy sigortası.",[["s",1,35,0],["p",1,35,2]]],
+ ["Korunmalı alım (covered call)","Hisse + kısa call: ek getiri, sınırlı yukarı.",[["s",1,35,0],["c",-1,37,2]]]
+];
+const sel=$("#strat"); S.forEach((s,i)=>{const o=document.createElement("option");o.value=i;o.textContent=s[0];sel.appendChild(o)});
+function pl(legs,x){return legs.reduce((a,[t,q,k,pr])=>a+q*((t==="c"?Math.max(x-k,0):t==="p"?Math.max(k-x,0):x-k)-pr),0)}
+const nf=v=>(Math.round(v*100)/100).toLocaleString("tr-TR");
+function draw(i){const [name,desc,legs]=S[i]; const lo=15,hi=65, pts=[];
+  for(let x=lo;x<=hi;x+=.25)pts.push([x,pl(legs,x)]);
+  const ys=pts.map(p=>p[1]); let ymin=Math.min(...ys,-1), ymax=Math.max(...ys,1); const pad=(ymax-ymin)*.12; ymin-=pad; ymax+=pad;
+  const W=600,H=300,L=44,R=12,T=14,B=34, X=x=>L+(x-lo)/(hi-lo)*(W-L-R), Y=y=>T+(ymax-y)/(ymax-ymin)*(H-T-B);
+  let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="none"/>`;
+  // grid
+  const step=[1,2,5,10,20][[1,2,5,10,20].findIndex(v=>(ymax-ymin)/v<=8)]||20;
+  for(let g=Math.ceil(ymin/step)*step; g<=ymax; g+=step){s+=`<line x1="${L}" x2="${W-R}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--line)" stroke-width="1"/><text x="${L-6}" y="${Y(g)+4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="IBM Plex Mono, monospace">${g}</text>`}
+  for(let g=20; g<=60; g+=10){s+=`<text x="${X(g)}" y="${H-12}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="IBM Plex Mono, monospace">${g}</text>`}
+  // areas
+  const y0=Y(0); let gain=`M${X(lo)} ${y0}`, loss=`M${X(lo)} ${y0}`;
+  pts.forEach(([x,y])=>{gain+=` L${X(x)} ${Y(Math.max(y,0))}`; loss+=` L${X(x)} ${Y(Math.min(y,0))}`});
+  gain+=` L${X(hi)} ${y0}Z`; loss+=` L${X(hi)} ${y0}Z`;
+  s+=`<path d="${gain}" fill="var(--gain-soft)"/><path d="${loss}" fill="var(--loss-soft)"/>`;
+  s+=`<line x1="${L}" x2="${W-R}" y1="${y0}" y2="${y0}" stroke="var(--muted)" stroke-width="1"/>`;
+  s+=`<path d="M${pts.map(p=>X(p[0])+" "+Y(p[1])).join(" L")}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>`;
+  // breakevens
+  const be=[]; for(let j=1;j<pts.length;j++){const [x1,y1]=pts[j-1],[x2,y2]=pts[j]; if(y1===0&&j===1)be.push(x1); if((y1<0&&y2>=0)||(y1>0&&y2<=0)){const x=y1===y2?x1:x1+(0-y1)*(x2-x1)/(y2-y1); if(!be.some(b=>Math.abs(b-x)<.3))be.push(x)}}
+  be.forEach(b=>{s+=`<circle cx="${X(b)}" cy="${y0}" r="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>`});
+  s+=`<text x="${W-R}" y="${T+10}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="IBM Plex Sans, sans-serif">x: vade sonu fiyat · y: kâr/zarar</text>`;
+  $("#chart").innerHTML=s;
+  const slopeHi=pl(legs,1000)-pl(legs,999), slopeLo=pl(legs,0)-pl(legs,1);
+  const inner=[];for(let x=0;x<=200;x+=.25)inner.push(pl(legs,x));
+  const mx=slopeHi>1e-9?"Sınırsız":nf(Math.max(0,Math.max(...inner))), mn=slopeHi<-1e-9?"Sınırsız":nf(-Math.min(0,Math.min(...inner)));
+  const net=legs.reduce((a,[t,q,k,pr])=>a+(t==="s"?0:-q*pr),0);
+  $("#sdesc").innerHTML=`<b>${name}</b><br><span style="color:var(--muted)">${desc}</span>`;
+  $("#smetrics").innerHTML=`<dt>Max kâr</dt><dd class="up">${mx}</dd><dt>Max zarar</dt><dd class="dn">${mn}</dd><dt>Başa baş</dt><dd>${be.length?be.map(nf).join(" · "):"—"}</dd><dt>Net prim</dt><dd>${net>=0?"+":""}${nf(net)}</dd>`;
+  const nm={c:"call",p:"put",s:"hisse"};
+  $("#slegs").innerHTML=legs.map(([t,q,k,pr])=>`${q>0?"Uzun":"Kısa"} ${Math.abs(q)>1?Math.abs(q)+"× ":""}${nm[t]} ${t==="s"?"@ "+k:"X="+k+" · prim "+pr}`).join("<br>");
+}
+sel.onchange=()=>{draw(+sel.value);store.set("strat",+sel.value)};
+sel.value=store.get("strat",4); draw(+sel.value||0);
+
+/* ---------- question data ---------- */
+// [no, chapter, question, options[], correct index or null, answer/solution]
+const Q=[
+[1,"1–2","Spot piyasa ile türev piyasa arasındaki temel fark hangisidir?",["Türevde dayanak varlık yoktur","Türevde ödeme ve teslim ileri bir tarihte yapılır","Spotta teminat zorunludur","Türevde alıcı-satıcı yoktur"],1,"Türevde ödeme ve teslim vadede yapılır."],
+[2,"1–2","Aralık 2018 BIS verilerine göre tezgâhüstü türevlerde en büyük pay hangi dayanağa aittir?",["Döviz","Hisse","Faiz","Emtia"],2,"Faiz, yaklaşık %80."],
+[3,"1–2","Arbitrajı en iyi tanımlayan ifade hangisidir?",["Kısa vadede yüksek getiri","Varlığı ucuza alma","Risksiz kesin getiri","Kaldıraçlı pozisyon"],2,"Risk almadan, eş zamanlı al-satla kesin getiri."],
+[4,"1–2","Türkiye'de en yaygın işlem gören türev ürün hangisidir?",["Döviz opsiyonu","Hisse endeks vadeli işlem sözleşmesi","Faiz swapı","Emtia vadelisi"],1,"Endeks vadelisi, ardından döviz vadelisi."],
+[5,"1–2","Hangisi sözleşmenin her iki tarafı için de bağlayıcı değildir?",["Forward","Futures","Swap","Alım opsiyonu"],3,"Opsiyon yalnız satıcıyı bağlar; alıcının hakkı vardır."],
+[6,"1–2","Hangisi yanlıştır?",["Futures, forward'a göre daha kolay netleştirilir","Forward, futures'a göre daha likittir","Forward firmaya özel ihtiyaçlara daha iyi uyarlanır","Futures standarttır"],1,"Forward kişiye özel olduğu için daha az likittir."],
+[7,"1–2","Başlangıçta prim ödemesi hangisinde vardır?",["Forward","Futures","Faiz swapı","Opsiyon"],3,"Prim, opsiyonun cayma hakkının bedelidir."],
+[8,"1–2","Türev piyasaların yaygınlaşmasının en olası nedeni hangisidir?",["Fiyatlamanın kolay olması","Göreceli düşük işlem maliyeti","Riskin olmaması","Vadenin belirsiz olması"],1,"Örneğin endeksi taklit etmek, 100 hisseyi tek tek almaktan ucuzdur."],
+[9,"3","100 onsluk altın vadelisi: başlangıç 4.000 TL, sürdürme 3.000 TL. Ons başı 600 TL'den uzun pozisyon hangi fiyatın altında çağrı alır?",["595","590","580","570"],1,"Fark (4.000 − 3.000) / 100 = 10 → 600 − 10 = 590 TL."],
+[10,"3","Aynı kontratta 610 TL'den kısa pozisyon hangi fiyatın üzerinde çağrı alır?",null,null,"610 + 10 = 620 TL."],
+[11,"3","200.000 TL'lik pozisyon için 16.000 TL başlangıç teminatı yatırılıyor. Kaldıraç kaçtır?",null,null,"200.000 / 16.000 = 12,5."],
+[12,"3","Fiyatı 50 TL olan vadelide 10 adet kısa (her kontrat 1 birim). Başlangıç 6 TL, sürdürme 4,5 TL/kontrat. Gün sonu fiyat 52 TL olursa ne kadar yatırılır?",["0 TL","15 TL","20 TL","40 TL"],2,"Başlangıç 60, sürdürme 45. Zarar (52−50)×10 = 20 → bakiye 40 < 45 → 60'a tamamlamak için 20 TL."],
+[13,"3","VİOP'ta günlük uzlaşma fiyatı nasıl belirlenir?",["Kapanış fiyatı","Günün ortalama fiyatı","Seansın son 10 dakikasındaki işlemlerin miktar ağırlıklı ortalaması","Spot fiyat"],2,"Son 10 dakika, miktar ağırlıklı ortalama."],
+[14,"3","Uzun FRA pozisyonu hangi durumda kâr eder?",["Faizler düşerse","Faizler yükselirse","Kur yükselirse","Volatilite düşerse"],1,"Uzun FRA faiz artışından kazanır."],
+[15,"4","Hisse fiyatı 50 TL. Hangisi primdedir (ITM)?",["X = 55 call","X = 45 put","X = 55 put","X = 50 call"],2,"Put'ta X > S ise opsiyon primdedir."],
+[16,"4","Faiz oranları artarsa ne beklenir?",["Call ve put artar","Call artar, put azalır","Call azalır, put artar","İkisi de azalır"],1,"Faiz artışı X'in bugünkü değerini düşürür."],
+[17,"4","X = 60 put 4 TL'ye alındı. Vadede hisse 52 TL ise kâr/zarar ve başa baş nedir?",null,null,"(60 − 52) − 4 = +4 TL kâr. Başa baş 60 − 4 = 56 TL."],
+[18,"4","X = 100 call 6 TL'ye satıldı. Vadede hisse 115 TL ise satıcının sonucu nedir?",["+6 TL","−9 TL","−15 TL","−21 TL"],1,"6 − (115 − 100) = −9 TL."],
+[19,"4","Hangisi satım opsiyonunun değerini artırır?",["Faiz artışı","Volatilite artışı","Kullanım fiyatının azalması","Vadenin kısalması"],1,"Vega call ve put için pozitiftir."],
+[20,"5","20 milyon TL faiz swapında şirket %12 sabit öder, TRLIBOR alır; 6 aylık, 30/360. TRLIBOR %11 ise ilk ödemede ne olur?",null,null,"Sabit 20M × %12 × 180/360 = 1.200.000; değişken 1.100.000. Şirket net 100.000 TL öder."],
+[21,"5","Döviz swapı için hangisi doğrudur?",["Anapara hiç değişmez","Ödemeler netleştirilir","Anapara başta ve vadede değiştirilir","Tek para birimi kullanılır"],2,"Anapara başta ve vadede aynı kurdan değişir, netleşme yoktur."],
+[22,"5","Sabit bacak 10.200.000 TL, değişken bacak 10.050.000 TL. Sabit ödeyen için swap değeri nedir?",["+150.000","−150.000","+10.050.000","0"],1,"B(değişken) − B(sabit) = −150.000 TL."],
+[23,"5","Değişken faizli borcu olan ve faiz artışından korkan şirket hangi swapı yapar?",null,null,"Sabit öde, değişken (LIBOR) al. Borç sabite döner."],
+[24,"6","Eşik 30 TL, ödeme 50.000 TL olan dijital call için 12.000 TL prim ödendi. Vadede 31 TL ve 29 TL ise sonuç?",null,null,"31 TL: 50.000 − 12.000 = +38.000 TL. 29 TL: −12.000 TL (prim)."],
+[25,"6","X = 20 TL Asya call 1,5 TL'ye alındı. Ortalama fiyat 23 TL, vadedeki spot 19 TL ise sonuç?",["−1,5 TL","+1,5 TL","+3 TL","−2,5 TL"],1,"(23 − 20) − 1,5 = +1,5 TL; vadedeki spot önemsizdir."],
+[26,"6","8 milyon TL, 300 bp, 5 yıl CDS (yıllık ödeme), tazmin %60. 2. yıl sonunda temerrüt olursa toplam kayıp?",null,null,"Prim 2 × 240.000 = 480.000; tahsilat 8M × %60 = 4,8M. Kayıp 8M − 4,8M + 0,48M = 3.680.000 TL."],
+[27,"6","Hangisi genellikle vanilla opsiyondan daha pahalıdır?",["Bariyerli","Asya","Seçim (chooser)","Knock-out"],2,"Seçim esnekliğinin bedeli vardır."],
+[28,"7","3 ay sonra 2 milyon € tahsil edecek ihracatçı nasıl korunur?",["EUR/TL vadelide uzun","EUR/TL vadelide kısa","Endeks futures almak","EUR/TL call satmak"],1,"Dövizde uzun pozisyonu vadelide satarak dengeler."],
+[29,"7","50 milyon TL fon, endeks 100.000. X = 100.000 put, kontrat başı 2.500 TL, 500 adet. Vadede endeks 85.000 ise net sonuç?",["0","−1.250.000 TL","−7.500.000 TL","+6.250.000 TL"],1,"Fon −7,5M; put +7,5M; prim −1,25M."],
+[30,"7","Endeks futures ile korunmanın put ile korunmaya göre dezavantajı nedir?",null,null,"Yukarı potansiyel feda edilir; futures fiyatı iki yönde kilitler."],
+[31,"8","Spot USD/TL 40, TL faizi %30, $ faizi %5. 6 aylık teorik forward kur?",["42,06","45,33","46,47","40,00"],1,"40 × e^((0,30 − 0,05) × 0,5) ≈ 45,33."],
+[32,"8","Endeks 10.000, faiz %40, temettü verimi %4. 3 aylık teorik endeks vadelisi?",null,null,"10.000 × e^((0,40 − 0,04) × 0,25) ≈ 10.941,7."],
+[33,"8","Spot 102, vadeli 105 ise baz kaçtır? Vadede ne olur?",null,null,"Baz = 102 − 105 = −3. Vadede 0."],
+[34,"8","S = 50, K = 50, r = %10, T = 1 yıl, call 8 TL. Put primi?",["2,76","3,24","4,76","8,00"],1,"p = 8 + 50e^(−0,1) − 50 ≈ 3,24."],
+[35,"8","1.000 hisseyi delta 0,40 call'larla delta-nötr yapmak için kaç call satılır?",null,null,"1.000 / 0,40 = 2.500 call."],
+[36,"8","Tek dönem binom: S = 100, u = 1,2, d = 0,8, X = 100, r = %10, T = 1. Call primi?",["10,00","12,40","13,81","15,26"],2,"p = (e^0,1 − 0,8)/0,4 ≈ 0,763; c = e^(−0,1) × 0,763 × 20 ≈ 13,81."],
+[37,"8","Temettüsüz hisse S = 60, K = 55, %20 (kesikli), 6 ay. Avrupa call alt sınırı?",null,null,"60 − 55/1,2^0,5 ≈ 9,79."],
+[38,"8","Uzak vadeli kontrat yakın vadeliden pahalıysa piyasa nasıl adlandırılır?",["Backwardation","Contango","Baz riski","Ters piyasa"],1,"Contango (normal piyasa)."],
+[39,"9","X = 50 call 6'ya alınıp X = 60 call 2'ye satılıyor. Başa baş noktası?",["52","54","56","60"],1,"Net prim 4 → 50 + 4 = 54. Max kâr 6, max zarar 4; S = 57'de +3."],
+[40,"9","X = 80 uzun pergel: call 5, put 4. Başa baş noktaları ve S = 95'te sonuç?",null,null,"Prim 9 → 71 ve 89. S = 95: (95 − 80) − 9 = +6 TL."],
+[41,"9","X = 40 put 2 TL + X = 50 call 3 TL ile uzun çanak. Başa baş noktaları?",["38 ve 52","35 ve 55","40 ve 50","37 ve 53"],1,"Toplam prim 5 → 40 − 5 = 35, 50 + 5 = 55."],
+[42,"9","Hisse 100'den alınıp X = 110 call 4'e satılıyor. Max kâr, başa baş ve S = 120'de sonuç?",null,null,"Max kâr 4 + 10 = 14; başa baş 96; S = 120'de +14 (hisse 110'dan gider)."]
+];
+const EXTRA=[
+["3","Teminat tamamlama çağrısında hesap hangi seviyeye tamamlanır?",["Sürdürme teminatına","Başlangıç teminatına","Sürdürmenin %75'ine","Sıfıra"],1,"Hesap başlangıç teminatına tamamlanır, sürdürmeye değil."],
+["8","Put-call paritesi hangi opsiyonlar için geçerlidir?",["Yalnız Amerikan","Yalnız Avrupa","İkisi de","Yalnız egzotik"],1,"Erken kullanım hakkı pariteyi bozar; yalnız Avrupa tipi."],
+["9","Büyük hareket bekleyen ama yönünden emin olmayan yatırımcı hangi stratejiyi seçer?",["Uzun pergel","Uzun kelebek","Covered call","Kısa çanak"],0,"Aynı X'li call + put; sert harekette kazanır."]
+];
+
+/* ---------- quiz ---------- */
+const QZ=Q.filter(q=>q[3]).map(q=>({tag:"Bölüm "+q[1],q:q[2],o:q[3],c:q[4],e:q[5]})).concat(EXTRA.map(x=>({tag:"Bölüm "+x[0],q:x[1],o:x[2],c:x[3],e:x[4]})));
+let qi=0, ans=store.get("quiz",{});
+const L="ABCD";
+function renderQ(){
+  const n=QZ.length, done=Object.keys(ans).length, right=Object.entries(ans).filter(([k,v])=>QZ[k]&&v===QZ[k].c).length;
+  $("#qbar").style.width=(done/n*100)+"%"; $("#qscore").textContent=`${right} doğru · ${done}/${n} cevaplandı`;
+  if(qi>=n){$("#qcount").textContent="Sonuç";
+    $("#qcard").innerHTML=`<div class="score"><b class="num">${right} / ${n}</b><p>${right/n>=.8?"Sınava hazırsın.":right/n>=.6?"İyi gidiyor; yanlış yaptığın bölümlerin notlarına dön.":"Notları bir tur daha oku, sonra tekrar dene."}</p><button class="btn pri" id="qreset">Baştan başla</button></div>`;
+    $("#qreset").onclick=()=>{ans={};store.set("quiz",ans);qi=0;renderQ()};return}
+  const q=QZ[qi], a=ans[qi]; $("#qcount").textContent=`Soru ${qi+1} / ${n}`;
+  $("#qcard").innerHTML=`<div class="tag">${q.tag}</div><h3>${q.q}</h3><div class="opts">${q.o.map((o,j)=>`<button class="opt${a!=null?(j===q.c?" ok":j===a?" no":""):""}" data-j="${j}" ${a!=null?"disabled":""}><i>${L[j]}</i><span>${o}</span></button>`).join("")}</div>${a!=null?`<div class="expl"><b>${a===q.c?"Doğru.":"Yanlış."}</b> ${q.e}</div>`:""}<div class="qnav"><button class="btn" id="qprev" ${qi===0?"disabled":""}>Önceki</button><button class="btn pri" id="qnext">${qi===n-1?"Sonucu gör":"Sonraki"}</button></div>`;
+  $("#qcard").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[qi]=+b.dataset.j;store.set("quiz",ans);renderQ()});
+  $("#qprev").onclick=()=>{qi--;renderQ()}; $("#qnext").onclick=()=>{qi++;renderQ()};
+}
+renderQ();
+
+/* ---------- bank ---------- */
+const groups=["Tümü","1–2","3","4","5","6","7","8","9"]; let g="Tümü";
+const names={"1–2":"Temel","3":"Vadeli","4":"Opsiyon","5":"Swap","6":"Egzotik/CDS","7":"Risk","8":"Fiyatlama","9":"Strateji"};
+const f=$("#filters");
+function renderBank(){
+  f.innerHTML=groups.map(x=>`<button class="chip" aria-pressed="${x===g}" data-g="${x}">${x==="Tümü"?"Tümü (42)":"Bölüm "+x+" · "+names[x]}</button>`).join("");
+  f.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{g=b.dataset.g;renderBank()});
+  $("#bank").innerHTML=Q.filter(q=>g==="Tümü"||q[1]===g).map(q=>`<div class="bq"><div class="h"><b>#${q[0]}</b><span>Bölüm ${q[1]} · ${q[3]?"Çoktan seçmeli":"Hesaplama"}</span></div><p>${q[2]}</p>${q[3]?`<div class="o">${q[3].map((o,j)=>L[j].toLowerCase()+") "+o).join(" · ")}</div>`:""}<details><summary>Cevabı göster</summary><div class="ans">${q[3]?`<b>${L[q[4]].toLowerCase()})</b> `:""}${q[5]}</div></details></div>`).join("");
+}
+renderBank();
+})();
+</script>
+
+</body></html>
