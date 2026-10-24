@@ -240,3 +240,15 @@ a:hover { text-decoration-color: var(--accent); }
 /* Kart başlıkları kaldırıldı: başlık kartın üstünde */
 .tool h3 { margin-top: 0; }
 .tool { min-height: 0; }
+
+/* Açılış: açık renk, sayfaya yumuşak geçiş */
+.dark { background: linear-gradient(180deg, #DCE8E2 0%, #E6EFEA 55%, var(--paper) 100%); color: var(--ink); }
+.dark .brand { color: var(--ink); }
+.dark .nav a { color: var(--muted); }
+.dark .nav a:hover { color: var(--ink); }
+.hero .lede { color: var(--muted); }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.primary:hover { background: #0B5847; }
+.btn.ghost { border: 1px solid #B9C7BF; color: var(--ink); background: rgba(255,255,255,.5); }
+.btn.ghost:hover { border-color: var(--ink); background: #fff; }
+.hero { padding-bottom: 5rem; }
