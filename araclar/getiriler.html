@@ -105,12 +105,22 @@
         var neg = r[1] < 0;
         var col = neg ? 'var(--down)' : 'var(--accent)';
         return '<tr><th scope="row">' + r[0] + '</th>' +
-          '<td><div class="rt-bar"><i style="width:' + w + '%;background:' + col + '"></i><span>' + pct(r[1], true) + '</span></div></td>' +
+          '<td><div class="rt-bar"><i style="width:' + w + '%;background:' + col + '"></i>' + '<span class="in">' + pct(r[1], true) + '</span>' + '</div></td>' +
           '<td class="r rt-cum">' + pct(r[2], true) + '</td></tr>';
       }).join('');
+      fitLabels();
       document.getElementById('foot').textContent = '* 23 Ekim 2026 kapanışı itibarıyla. ' + d.foot;
     }
 
+    // Oran çubuğa sığmıyorsa çubuğun hemen sağına yazılır
+    function fitLabels() {
+      document.querySelectorAll('.rt-bar').forEach(function (bar) {
+        var i = bar.querySelector('i'), sp = bar.querySelector('span');
+        sp.className = 'in'; sp.style.left = '';
+        if (sp.offsetWidth + 20 > i.offsetWidth) { sp.className = 'out'; sp.style.left = (i.offsetWidth + 8) + 'px'; }
+      });
+    }
+    window.addEventListener('resize', fitLabels);
     tabs.addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (b) show(+b.dataset.i);
     });

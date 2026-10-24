@@ -183,7 +183,9 @@ a:hover { text-decoration-color: var(--accent); }
 .rt-table .r { text-align: right; }
 .rt-bar { position: relative; height: 1.9rem; background: #EEF0EC; border-radius: 4px; overflow: hidden; margin-right: 1rem; }
 .rt-bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; }
-.rt-bar span { position: relative; z-index: 1; display: inline-block; padding: 0.3rem 0.6rem; font-weight: 700; font-size: 0.875rem; color: var(--ink); background: rgba(255,255,255,0.85); border-radius: 3px; margin: 0.15rem; line-height: 1.2; }
+.rt-bar span { position: absolute; top: 50%; transform: translateY(-50%); z-index: 1; font-weight: 700; font-size: 0.875rem; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rt-bar span.in { left: 0.65rem; color: #fff; }
+.rt-bar span.out { color: var(--ink); }
 .rt-cum { font-weight: 800; width: 6rem; }
 .rt-foot { font-size: 0.8125rem; color: var(--muted); margin: 0.75rem 0 0; }
 
