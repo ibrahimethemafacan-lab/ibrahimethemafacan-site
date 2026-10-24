@@ -75,8 +75,8 @@
     var nf1 = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
     var nf0 = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 });
     function pct(v, signed) {
-      var s = Math.abs(v) >= 1000 ? nf0.format(v) : nf1.format(v);
-      return (signed && v > 0 ? '+' : '') + '%' + s;
+      var a = Math.abs(v), s = a >= 1000 ? nf0.format(a) : nf1.format(a);
+      return (v < 0 ? '−' : (signed && v > 0 ? '+' : '')) + '%' + s;
     }
 
     // Toplam getiri yarışı
@@ -84,7 +84,7 @@
     document.getElementById('race').innerHTML = DATA.map(function (d) {
       var c = d.rows[d.rows.length - 1][2];
       return '<div class="race-row"><span class="race-name">' + d.name + '</span>' +
-        '<span class="race-track"><i style="width:' + (c / maxCum * 100) + '%;background:' + d.color + '"></i></span>' +
+        '<span class="race-track"><i style="width:' + (c / maxCum * 100) + '%;background:' + (c < 0 ? 'var(--down)' : 'var(--accent)') + '"></i></span>' +
         '<span class="race-val">' + pct(c, true) + '</span></div>';
     }).join('');
 
@@ -103,7 +103,7 @@
       document.getElementById('rows').innerHTML = d.rows.map(function (r) {
         var w = Math.abs(r[1]) / maxAbs * 100;
         var neg = r[1] < 0;
-        var col = neg ? 'var(--down)' : (r[1] === best ? 'var(--ink)' : d.color);
+        var col = neg ? 'var(--down)' : 'var(--accent)';
         return '<tr><th scope="row">' + r[0] + '</th>' +
           '<td><div class="rt-bar"><i style="width:' + w + '%;background:' + col + '"></i><span>' + pct(r[1], true) + '</span></div></td>' +
           '<td class="r rt-cum">' + pct(r[2], true) + '</td></tr>';
