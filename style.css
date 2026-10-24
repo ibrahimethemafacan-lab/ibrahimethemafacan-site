@@ -102,7 +102,7 @@ a:hover { text-decoration-color: var(--accent); }
 .tool .go:hover { text-decoration: underline; }
 .tool.is-live { background: var(--accent-soft); }
 .status { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap; }
-.status.soon { background: #EEF0EC; color: var(--muted); }
+.status.soon { background: #E9EFF7; color: var(--muted); }
 .status.live { background: var(--accent); color: #fff; }
 
 /* Notlar */
@@ -167,7 +167,7 @@ a:hover { text-decoration-color: var(--accent); }
 .race { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 1.25rem 1.5rem; font-family: var(--sans); margin-bottom: 2rem; }
 .race-head { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.9rem; }
 .race-row { display: grid; grid-template-columns: 11.5rem 1fr 5.5rem; gap: 0.9rem; align-items: center; padding: 0.4rem 0; font-size: 0.9375rem; }
-.race-track { height: 0.75rem; background: #EEF0EC; border-radius: 3px; overflow: hidden; }
+.race-track { height: 0.75rem; background: #E9EFF7; border-radius: 3px; overflow: hidden; }
 .race-track i { display: block; height: 100%; border-radius: 3px; }
 .race-val { font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -181,7 +181,7 @@ a:hover { text-decoration-color: var(--accent); }
 .rt-table thead th { font-size: 0.8125rem; color: var(--muted); font-weight: 600; padding-top: 1rem; }
 .rt-table tbody th { font-weight: 800; width: 4.5rem; }
 .rt-table .r { text-align: right; }
-.rt-bar { position: relative; height: 1.9rem; background: #EEF0EC; border-radius: 4px; overflow: hidden; margin-right: 1rem; }
+.rt-bar { position: relative; height: 1.9rem; background: #E9EFF7; border-radius: 4px; overflow: hidden; margin-right: 1rem; }
 .rt-bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; }
 .rt-bar span { position: absolute; top: 50%; transform: translateY(-50%); z-index: 1; font-weight: 700; font-size: 0.875rem; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rt-bar span.in { left: 0.65rem; color: #fff; }
@@ -244,14 +244,14 @@ a:hover { text-decoration-color: var(--accent); }
 .tool { min-height: 0; }
 
 /* Açılış: açık renk, sayfaya yumuşak geçiş */
-.dark { background: linear-gradient(180deg, #DCE8E2 0%, #E6EFEA 55%, var(--paper) 100%); color: var(--ink); }
+.dark { background: linear-gradient(180deg, #DCEEFC 0%, #E8F3FD 55%, var(--paper) 100%); color: var(--ink); }
 .dark .brand { color: var(--ink); }
 .dark .nav a { color: var(--muted); }
 .dark .nav a:hover { color: var(--ink); }
 .hero .lede { color: var(--muted); }
 .btn.primary { background: var(--accent); color: #fff; }
-.btn.primary:hover { background: #0B5847; }
-.btn.ghost { border: 1px solid #B9C7BF; color: var(--ink); background: rgba(255,255,255,.5); }
+.btn.primary:hover { background: var(--navy); }
+.btn.ghost { border: 1px solid #B7CBE3; color: var(--ink); background: rgba(255,255,255,.5); }
 .btn.ghost:hover { border-color: var(--ink); background: #fff; }
 .hero { padding-bottom: 5rem; }
 
@@ -259,3 +259,24 @@ a:hover { text-decoration-color: var(--accent); }
 .brand { display: inline-flex; align-items: center; }
 .brand img { height: 40px; width: auto; display: block; }
 @media (max-width: 560px) { .brand img { height: 34px; } }
+
+/* Logo renkleriyle uyumlu palet */
+:root {
+  --paper: #F5F8FC;
+  --ink: #0E1C36;
+  --muted: #56657E;
+  --rule: #D7E0EC;
+  --navy: #003894;
+  --accent: #1A5FFF;
+  --accent-bright: #40C0FF;
+  --accent-soft: #E6F0FE;
+  --sky: #05A0F5;
+  --up: #12805C;
+  --down: #C0392B;
+}
+.tool.is-live { background: var(--panel); border-top: 3px solid var(--sky); }
+.tool h3 { color: var(--navy); }
+.tools { border-color: var(--rule); }
+.prose h1, .section h2, .hero h1 { color: var(--navy); }
+.rt-tabs { border-bottom-color: var(--navy); }
+.tool.is-live:only-child, .tools .tool:not(.is-live) { border-top: 3px solid var(--rule); }

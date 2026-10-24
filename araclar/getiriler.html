@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css?v=20261024c">
+  <link rel="stylesheet" href="/style.css?v=20261024d">
 </head>
 <body>
   <header class="site-head">
@@ -88,7 +88,7 @@
     document.getElementById('race').innerHTML = DATA.map(function (d) {
       var c = d.rows[d.rows.length - 1][2];
       return '<div class="race-row"><span class="race-name">' + d.name + '</span>' +
-        '<span class="race-track"><i style="width:' + (c / maxCum * 100) + '%;background:' + (c < 0 ? 'var(--down)' : 'var(--accent)') + '"></i></span>' +
+        '<span class="race-track"><i style="width:' + (c / maxCum * 100) + '%;background:' + (c < 0 ? 'var(--down)' : 'var(--up)') + '"></i></span>' +
         '<span class="race-val">' + pct(c, true) + '</span></div>';
     }).join('');
 
@@ -107,7 +107,7 @@
       document.getElementById('rows').innerHTML = d.rows.map(function (r) {
         var w = Math.abs(r[1]) / maxAbs * 100;
         var neg = r[1] < 0;
-        var col = neg ? 'var(--down)' : 'var(--accent)';
+        var col = neg ? 'var(--down)' : 'var(--up)';
         return '<tr><th scope="row">' + r[0] + '</th>' +
           '<td><div class="rt-bar"><i style="width:' + w + '%;background:' + col + '"></i>' + '<span class="in" style="color:#fff">' + pct(r[1], true) + '</span>' + '</div></td>' +
           '<td class="r rt-cum">' + pct(r[2], true) + '</td></tr>';
