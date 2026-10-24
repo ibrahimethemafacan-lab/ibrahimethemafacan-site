@@ -201,3 +201,15 @@ a:hover { text-decoration-color: var(--accent); }
 .idcard-links a { color: var(--accent-bright); font-weight: 700; text-decoration: none; }
 .idcard-links a:hover { color: #fff; }
 .dd-links a { color: var(--accent); }
+
+/* Hakkında: kariyer listesi */
+.prose dl.cv { grid-template-columns: 10rem 1fr; gap: 0; }
+.prose dl.cv dt, .prose dl.cv dd { padding: 0.85rem 0; border-bottom: 1px solid var(--rule); }
+.prose dl.cv dt { font-variant-numeric: tabular-nums; }
+.prose dl.cv dd strong { display: block; font-weight: 500; }
+.prose dl.cv dd span { display: block; font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin-top: 0.15rem; }
+@media (max-width: 560px) {
+  .prose dl.cv { grid-template-columns: 1fr; }
+  .prose dl.cv dt { border-bottom: 0; padding-bottom: 0; }
+  .prose dl.cv dd { margin-bottom: 0; }
+}
