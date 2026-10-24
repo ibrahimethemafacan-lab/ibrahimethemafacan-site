@@ -161,3 +161,34 @@ a:hover { text-decoration-color: var(--accent); }
   .timeline li { grid-template-columns: 4.5rem 1fr; }
 }
 .series-about h2 { margin-bottom: 1.25rem; }
+
+/* Getiriler aracı */
+.prose.wide { padding-bottom: 1rem; }
+.race { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 1.25rem 1.5rem; font-family: var(--sans); margin-bottom: 2rem; }
+.race-head { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.9rem; }
+.race-row { display: grid; grid-template-columns: 11.5rem 1fr 5.5rem; gap: 0.9rem; align-items: center; padding: 0.4rem 0; font-size: 0.9375rem; }
+.race-track { height: 0.75rem; background: #EEF0EC; border-radius: 3px; overflow: hidden; }
+.race-track i { display: block; height: 100%; border-radius: 3px; }
+.race-val { font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+
+.rt { font-family: var(--sans); margin-bottom: 2rem; }
+.rt-tabs { display: flex; gap: 0.25rem; flex-wrap: wrap; border-bottom: 1px solid var(--ink); }
+.rt-tabs button { font: inherit; font-weight: 700; font-size: 0.9375rem; background: none; border: 0; padding: 0.7rem 0.9rem; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.rt-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.rt-tabs button:hover { color: var(--ink); }
+.rt-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.rt-table th, .rt-table td { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); text-align: left; }
+.rt-table thead th { font-size: 0.8125rem; color: var(--muted); font-weight: 600; padding-top: 1rem; }
+.rt-table tbody th { font-weight: 800; width: 4.5rem; }
+.rt-table .r { text-align: right; }
+.rt-bar { position: relative; height: 1.9rem; background: #EEF0EC; border-radius: 4px; overflow: hidden; margin-right: 1rem; }
+.rt-bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; }
+.rt-bar span { position: relative; z-index: 1; display: inline-block; padding: 0.3rem 0.6rem; font-weight: 700; font-size: 0.875rem; color: var(--ink); background: rgba(255,255,255,0.85); border-radius: 3px; margin: 0.15rem; line-height: 1.2; }
+.rt-cum { font-weight: 800; width: 6rem; }
+.rt-foot { font-size: 0.8125rem; color: var(--muted); margin: 0.75rem 0 0; }
+
+@media (max-width: 560px) {
+  .race-row { grid-template-columns: 1fr auto; }
+  .race-track { grid-column: 1 / -1; grid-row: 2; }
+  .rt-tabs button { padding: 0.6rem 0.5rem; font-size: 0.875rem; }
+}
