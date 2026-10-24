@@ -1,13 +1,13 @@
 :root {
-  --paper: #F4F6F3;
+  --paper: #F5F8FC;
   --panel: #FFFFFF;
-  --ink: #18212C;
+  --ink: #0E1C36;
   --ink-2: #222D3A;
-  --muted: #5A6472;
-  --rule: #D6DBD4;
-  --accent: #0F6B57;
-  --accent-bright: #5FC4A6;
-  --accent-soft: #E1EDE8;
+  --muted: #56657E;
+  --rule: #D7E0EC;
+  --accent: #1A5FFF;
+  --accent-bright: #40C0FF;
+  --accent-soft: #E6F0FE;
   --down: #A33A2E;
   --serif: "Literata", Georgia, serif;
   --sans: "Manrope", system-ui, sans-serif;
@@ -280,3 +280,7 @@ a:hover { text-decoration-color: var(--accent); }
 .prose h1, .section h2, .hero h1 { color: var(--navy); }
 .rt-tabs { border-bottom-color: var(--navy); }
 .tool.is-live:only-child, .tools .tool:not(.is-live) { border-top: 3px solid var(--rule); }
+
+/* Tüm sayfalarda ana sayfadaki açık mavi geçiş */
+body { background: linear-gradient(180deg, #DCEEFC 0, #E8F3FD 220px, var(--paper) 520px) no-repeat, var(--paper); }
+.dark { background: transparent; }
