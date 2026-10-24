@@ -192,3 +192,12 @@ a:hover { text-decoration-color: var(--accent); }
   .race-track { grid-column: 1 / -1; grid-row: 2; }
   .rt-tabs button { padding: 0.6rem 0.5rem; font-size: 0.875rem; }
 }
+
+/* Sosyal medya */
+.social, .idcard-links, .dd-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+.social a { font-weight: 700; color: var(--ink); text-decoration: none; }
+.social a:hover { color: var(--accent); }
+.idcard-links { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid #334050; font-size: 0.875rem; }
+.idcard-links a { color: var(--accent-bright); font-weight: 700; text-decoration: none; }
+.idcard-links a:hover { color: #fff; }
+.dd-links a { color: var(--accent); }
