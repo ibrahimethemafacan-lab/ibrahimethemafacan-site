@@ -254,3 +254,8 @@ a:hover { text-decoration-color: var(--accent); }
 .btn.ghost { border: 1px solid #B9C7BF; color: var(--ink); background: rgba(255,255,255,.5); }
 .btn.ghost:hover { border-color: var(--ink); background: #fff; }
 .hero { padding-bottom: 5rem; }
+
+/* Logo */
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 40px; width: auto; display: block; }
+@media (max-width: 560px) { .brand img { height: 34px; } }
