@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/style.css?v=20261024b">
 </head>
 <body>
   <header class="site-head">
@@ -105,7 +105,7 @@
         var neg = r[1] < 0;
         var col = neg ? 'var(--down)' : 'var(--accent)';
         return '<tr><th scope="row">' + r[0] + '</th>' +
-          '<td><div class="rt-bar"><i style="width:' + w + '%;background:' + col + '"></i>' + '<span class="in">' + pct(r[1], true) + '</span>' + '</div></td>' +
+          '<td><div class="rt-bar"><i style="width:' + w + '%;background:' + col + '"></i>' + '<span class="in" style="color:#fff">' + pct(r[1], true) + '</span>' + '</div></td>' +
           '<td class="r rt-cum">' + pct(r[2], true) + '</td></tr>';
       }).join('');
       fitLabels();
