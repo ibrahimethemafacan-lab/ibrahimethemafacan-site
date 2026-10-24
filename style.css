@@ -284,3 +284,27 @@ a:hover { text-decoration-color: var(--accent); }
 /* Tüm sayfalarda ana sayfadaki açık mavi geçiş */
 body { background: linear-gradient(180deg, #DCEEFC 0, #E8F3FD 220px, var(--paper) 520px) no-repeat, var(--paper); }
 .dark { background: transparent; }
+
+/* Piyasa notları */
+.notes .note-summary { margin: .35rem 0 0; color: var(--muted); font-size: 1rem; max-width: 36rem; }
+.note-meta { font-family: var(--sans); font-size: .875rem; color: var(--muted); margin: 2.5rem 0 -0.75rem; }
+.note-question { font-size: 1.25rem; line-height: 1.55; color: var(--navy); border-left: 3px solid var(--sky); padding-left: 1rem; margin: 0 0 1.5rem; }
+.note-figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin: 1.75rem 0 .5rem; font-family: var(--sans); }
+.note-figures div { background: var(--panel); padding: 1rem 1.1rem; }
+.note-figures span { display: block; font-size: .8125rem; color: var(--muted); }
+.note-figures b { display: block; font-size: 1.5rem; font-weight: 800; color: var(--navy); font-variant-numeric: tabular-nums; margin-top: .2rem; }
+.note-caption { font-family: var(--sans); font-size: .8125rem; color: var(--muted); margin-top: .25rem; }
+.note-table-wrap { overflow-x: auto; margin: 1rem 0 .25rem; }
+.note-table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: .9375rem; font-variant-numeric: tabular-nums; }
+.note-table th, .note-table td { padding: .55rem .75rem .55rem 0; border-bottom: 1px solid var(--rule); text-align: left; }
+.note-table thead th { font-size: .8125rem; color: var(--muted); font-weight: 600; border-bottom-color: var(--navy); }
+.note-table tbody th { font-weight: 800; }
+.note-table td.dn { color: var(--down); font-weight: 700; }
+.note ul { padding-left: 1.2rem; }
+.note li { margin: .6rem 0; }
+.note-disclaimer { font-family: var(--sans); font-size: .8125rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 2rem; }
+@media (max-width: 560px) {
+  .note-figures { grid-template-columns: 1fr; }
+  .note-figures b { font-size: 1.3rem; }
+}
+.prose a { color: var(--accent); text-decoration-color: currentColor; }
