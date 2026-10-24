@@ -26,7 +26,7 @@
   <main class="wrap narrow">
     <article class="prose wide">
       <h1>Yatırım araçlarının getirileri</h1>
-      <p>2018 başından bu yana, Türk lirası bazında. Bir aracı seçin; her yılın getirisini ve dönem başından itibaren biriken toplam getiriyi görün.</p>
+      <p>2018 başından 23 Ekim 2026'ya kadar, Türk lirası bazında. Bir aracı seçin; her yılın getirisini ve dönem başından itibaren biriken toplam getiriyi görün.</p>
     </article>
 
     <section class="race" aria-label="2018'den bu yana toplam getiri">
@@ -47,7 +47,7 @@
 
     <article class="prose">
       <h2>Notlar</h2>
-      <p>2026 satırı 13 Ekim 2026'ya kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
+      <p>2026 satırı yıl başından 23 Ekim 2026 kapanışına kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
     </article>
   </main>
 
@@ -59,17 +59,17 @@
   </footer>
 
   <script>
-    // Yıllık değişim (%) ve kümülatif (%) — 2026: 13 Ekim 2026'ya kadar
+    // Yıllık değişim (%) ve kümülatif (%) — 2026: 23 Ekim 2026 kapanışına kadar
     var DATA = [
       { id: 'altin', name: 'Gram altın', color: '#B8862B',
-        foot: '158,80 TL → 6.599,55 TL',
-        rows: [[2018,37.4,37.4],[2019,33.1,82.8],[2020,56.4,186.0],[2021,72.0,392.0],[2022,40.5,591.1],[2023,78.3,1132],[2024,52.5,1779],[2025,99.5,3648],['2026*',10.9,4056]] },
+        foot: '158,80 TL → 6.384,13 TL',
+        rows: [[2018,37.4,37.4],[2019,33.1,82.8],[2020,56.4,186.0],[2021,72.0,392.0],[2022,40.5,591.1],[2023,78.3,1132],[2024,52.5,1779],[2025,99.5,3648],['2026*',7.3,3920]] },
       { id: 'bist', name: 'BIST 100 (temettü dahil)', color: '#0F6B57',
         foot: 'Temettüler yeniden yatırılmış kabul edilir.',
-        rows: [[2018,-18.1,-18.1],[2019,29.7,6.2],[2020,30.9,39.0],[2021,30.0,80.8],[2022,206.5,454.0],[2023,39.3,671.8],[2024,34.9,941.1],[2025,17.0,1118],['2026*',10.3,1245]] },
+        rows: [[2018,-18.1,-18.1],[2019,29.7,6.2],[2020,30.9,39.0],[2021,30.0,80.8],[2022,206.5,454.0],[2023,39.3,671.8],[2024,34.9,941.1],[2025,17.0,1119],['2026*',0.1,1121]] },
       { id: 'usd', name: 'Dolar/TL', color: '#3B5B8C',
-        foot: '3,79 TL → 49,37 TL',
-        rows: [[2018,39.7,39.7],[2019,12.4,57.0],[2020,25.0,96.2],[2021,80.3,253.6],[2022,39.6,393.6],[2023,57.5,677.6],[2024,20.0,833.4],[2025,21.4,1033],['2026*',14.9,1202]] }
+        foot: '3,79 TL → 49,69 TL',
+        rows: [[2018,39.7,39.7],[2019,12.4,57.0],[2020,25.0,96.2],[2021,80.3,253.6],[2022,39.6,393.6],[2023,57.5,677.6],[2024,20.0,833.4],[2025,21.4,1033],['2026*',15.7,1211]] }
     ];
 
     var nf1 = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -108,7 +108,7 @@
           '<td><div class="rt-bar"><i style="width:' + w + '%;background:' + col + '"></i><span>' + pct(r[1], true) + '</span></div></td>' +
           '<td class="r rt-cum">' + pct(r[2], true) + '</td></tr>';
       }).join('');
-      document.getElementById('foot').textContent = '* 13 Ekim 2026\'ya kadar. ' + d.foot;
+      document.getElementById('foot').textContent = '* 23 Ekim 2026 kapanışı itibarıyla. ' + d.foot;
     }
 
     tabs.addEventListener('click', function (e) {
