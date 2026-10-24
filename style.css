@@ -213,3 +213,8 @@ a:hover { text-decoration-color: var(--accent); }
   .prose dl.cv dt { border-bottom: 0; padding-bottom: 0; }
   .prose dl.cv dd { margin-bottom: 0; }
 }
+.prose dl.cv dd ul { margin: 0.4rem 0 0.6rem; padding-left: 1.1rem; font-size: 0.95rem; line-height: 1.55; }
+.prose dl.cv dd ul:last-child { margin-bottom: 0; }
+.prose dl.cv dd li { margin: 0.2rem 0; }
+.prose dl.cv dd li::marker { color: var(--accent); }
+.prose dl.cv dd span + ul + span { margin-top: 0.5rem; }
