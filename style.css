@@ -222,3 +222,17 @@ a:hover { text-decoration-color: var(--accent); }
 /* Çalışma Masası */
 .calc-note { font-family: var(--sans); font-size: 0.875rem; color: var(--muted); max-width: 46rem; margin: 1.5rem 0 3rem; }
 .tool .tool-code { white-space: nowrap; }
+
+/* Açılış: tek sütun */
+.hero-text { max-width: 46rem; }
+.hero-text h1 { max-width: 20ch; }
+.hero-text .lede { max-width: 40rem; }
+
+/* Hakkında: portre */
+.about-head { display: grid; grid-template-columns: minmax(0, 1fr) 11rem; gap: 2.5rem; align-items: center; margin: 2.5rem 0 1.5rem; }
+.about-head h1 { margin: 0; }
+.about-photo { width: 11rem; height: 11rem; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 0 0 6px var(--paper), 0 0 0 7px var(--rule); }
+@media (max-width: 560px) {
+  .about-head { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.75rem; }
+  .about-photo { width: 8rem; height: 8rem; order: -1; }
+}
