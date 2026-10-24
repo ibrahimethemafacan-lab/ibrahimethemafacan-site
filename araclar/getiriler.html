@@ -112,12 +112,11 @@
       document.getElementById('foot').textContent = '* 23 Ekim 2026 kapanışı itibarıyla. ' + d.foot;
     }
 
-    // Oran çubuğa sığmıyorsa çubuğun hemen sağına yazılır
+    // Oran her zaman çubuğun içinde; kısa çubuklar oranın sığacağı kadar uzatılır
     function fitLabels() {
       document.querySelectorAll('.rt-bar').forEach(function (bar) {
         var i = bar.querySelector('i'), sp = bar.querySelector('span');
-        sp.className = 'in'; sp.style.left = '';
-        if (sp.offsetWidth + 20 > i.offsetWidth) { sp.className = 'out'; sp.style.left = (i.offsetWidth + 8) + 'px'; }
+        i.style.minWidth = (sp.offsetWidth + 22) + 'px';
       });
     }
     window.addEventListener('resize', fitLabels);
