@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yatırım Araçlarının Getirileri — İbrahim Ethem Afacan</title>
-  <meta name="description" content="2018'den bu yana TL bazında gram altın, BIST 100 (temettü dahil) ve dolar/TL'nin yıllık ve kümülatif getirileri.">
+  <meta name="description" content="2018'den bu yana TL bazında gram altın, gram gümüş, BIST 100 (temettü dahil), dolar/TL ve bitcoinin yıllık ve kümülatif getirileri.">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
@@ -50,7 +50,7 @@
 
     <article class="prose">
       <h2>Notlar</h2>
-      <p>2026 satırı yıl başından 23 Ekim 2026 kapanışına kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
+      <p>2026 satırı yıl başından 23 Ekim 2026 kapanışına kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Gram gümüş, ons gümüşün TL fiyatından hesaplanmıştır. Bitcoin'in yıl sonu değeri, yılın son günündeki BTC/USDT kapanışının dolar/TL kuruyla çarpılmasıyla bulunmuştur. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
     </article>
   </main>
 
@@ -68,12 +68,18 @@
       { id: 'altin', name: 'Gram altın', color: '#B8862B',
         foot: '158,80 TL → 6.384,13 TL',
         rows: [[2018,37.4,37.4],[2019,33.1,82.8],[2020,56.4,186.0],[2021,72.0,392.0],[2022,40.5,591.1],[2023,78.3,1132],[2024,52.5,1779],[2025,99.5,3648],['2026*',7.3,3920]] },
+      { id: 'gumus', name: 'Gram gümüş', color: '#8A9BA8',
+        foot: '2,07 TL → 86,18 TL',
+        rows: [[2018,27.4,27.4],[2019,29.8,65.5],[2020,84.6,205.5],[2021,57.4,380.8],[2022,45.0,597.0],[2023,56.7,992.2],[2024,45.7,1491],[2025,198.4,4648],['2026*',-12.1,4072]] },
       { id: 'bist', name: 'BIST 100 (temettü dahil)', color: '#0F6B57',
         foot: 'Temettüler yeniden yatırılmış kabul edilir.',
         rows: [[2018,-18.1,-18.1],[2019,29.7,6.2],[2020,30.9,39.0],[2021,30.0,80.8],[2022,206.5,454.0],[2023,39.3,671.8],[2024,34.9,941.1],[2025,17.0,1119],['2026*',0.1,1121]] },
       { id: 'usd', name: 'Dolar/TL', color: '#3B5B8C',
         foot: '3,79 TL → 49,69 TL',
-        rows: [[2018,39.7,39.7],[2019,12.4,57.0],[2020,25.0,96.2],[2021,80.3,253.6],[2022,39.6,393.6],[2023,57.5,677.6],[2024,20.0,833.4],[2025,21.4,1033],['2026*',15.7,1211]] }
+        rows: [[2018,39.7,39.7],[2019,12.4,57.0],[2020,25.0,96.2],[2021,80.3,253.6],[2022,39.6,393.6],[2023,57.5,677.6],[2024,20.0,833.4],[2025,21.4,1033],['2026*',15.7,1211]] },
+      { id: 'btc', name: 'Bitcoin', color: '#E8891C',
+        foot: '52.961 TL → 4.044.824 TL. TL fiyatı, BTC/USDT kapanışı ile dolar/TL kurunun çarpımıdır.',
+        rows: [[2018,-63.3,-63.3],[2019,119.7,-19.4],[2020,407.3,308.9],[2021,181.3,1050],[2022,-49.1,485.3],[2023,306.2,2278],[2024,162.9,6151],[2025,13.7,7005],['2026*',7.5,7537]] }
     ];
 
     var nf1 = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -85,7 +91,9 @@
 
     // Toplam getiri yarışı
     var maxCum = Math.max.apply(null, DATA.map(function (d) { return d.rows[d.rows.length - 1][2]; }));
-    document.getElementById('race').innerHTML = DATA.map(function (d) {
+    document.getElementById('race').innerHTML = DATA.slice().sort(function (a, b) {
+      return b.rows[b.rows.length - 1][2] - a.rows[a.rows.length - 1][2];
+    }).map(function (d) {
       var c = d.rows[d.rows.length - 1][2];
       return '<div class="race-row"><span class="race-name">' + d.name + '</span>' +
         '<span class="race-track"><i style="width:' + (c / maxCum * 100) + '%;background:' + (c < 0 ? 'var(--down)' : 'var(--up)') + '"></i></span>' +
