@@ -51,7 +51,7 @@
 
     <article class="prose">
       <h2>Notlar</h2>
-      <p>2026 satırı yıl başından 23 Ekim 2026 kapanışına kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Gram altın GLDGR kapanışlarından, gram gümüş ise XAGTRY (ons gümüş/TL) kapanışlarının 31,1035'e bölünerek grama çevrilmesiyle hesaplanmıştır. Bitcoin'in yıl sonu değeri, yılın son günündeki BTC/USDT kapanışının dolar/TL kuruyla çarpılmasıyla bulunmuştur. Konut getirisi iki parçadan oluşur: TCMB İstanbul Konut Fiyat Endeksi'nin Aralıktan Aralığa değişimi ile yıl başındaki brüt kira getirisi (yıllık kira / konut fiyatı). Kira getirisi, Betam–sahibindex'in İstanbul ortalama satılık ve kiralık ilan metrekare fiyatlarından hesaplanmıştır; 2018 ve 2019 için veri bulunamadığından Aralık 2019 oranı kullanılmıştır. Aidat, vergi ve boş kalma süresi gibi masraflar hariçtir. Enflasyon, TÜİK'in açıkladığı tüketici fiyat endeksinin (TÜFE) Aralıktan Aralığa değişimidir; 2026 satırı Eylül 2026'ya kadarki değişimi gösterir. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
+      <p>2026 satırı yıl başından 23 Ekim 2026 kapanışına kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Gram altın GLDGR kapanışlarından, gram gümüş ise XAGTRY (ons gümüş/TL) kapanışlarının 31,1035'e bölünerek grama çevrilmesiyle hesaplanmıştır. Bitcoin'in yıl sonu değeri, yılın son günündeki BTC/USDT kapanışının dolar/TL kuruyla çarpılmasıyla bulunmuştur. Konut getirisi iki parçadan oluşur: TCMB EVDS'deki İstanbul Konut Fiyat Endeksi'nin (TP_KFE_TR10) Aralıktan Aralığa değişimi (2018 için TCMB'nin Aralık 2018 bülteni) ile yıl başındaki brüt kira getirisi (yıllık kira / konut fiyatı). Kira getirisi, Betam–sahibindex'in İstanbul ortalama satılık ve kiralık ilan metrekare fiyatlarından hesaplanmıştır; 2018 ve 2019 başı için Betam verisine ulaşılamadığından kira getirisinde Aralık 2019 oranı kullanılmıştır; fiyat verisi tüm yıllar için TCMB'dendir. Aidat, vergi ve boş kalma süresi gibi masraflar hariçtir. Enflasyon, TÜİK'in açıkladığı tüketici fiyat endeksinin (TÜFE) Aralıktan Aralığa değişimidir; 2026 satırı Eylül 2026'ya kadarki değişimi gösterir. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
     </article>
   </main>
 
@@ -83,8 +83,8 @@
         rows: [[2018,-63.3,-63.3],[2019,119.7,-19.4],[2020,407.3,308.9],[2021,181.3,1050],[2022,-49.1,485.3],[2023,306.2,2278],[2024,162.9,6151],[2025,13.7,7005],['2026*',7.5,7537]] },
       { id: 'konut', name: 'Konut (İstanbul/kira dahil)', tab: 'Konut', color: '#6B4E9B',
         star: '* Eylül 2026 itibarıyla (TCMB\'nin açıkladığı son veri; kira dokuz aylık). ',
-        foot: 'Fiyat değişimi TCMB İstanbul Konut Fiyat Endeksi\'nden, brüt kira getirisi Betam–sahibindex İstanbul ilan verilerinden alınmıştır. Vergi ve masraflar hariçtir.',
-        rows: [[2018,7.0,7.0],[2019,9.4,17.0],[2020,33.6,56.4],[2021,68.5,163.5],[2022,179.2,635.8],[2023,67.0,1128],[2024,32.0,1522],[2025,35.2,2093],['2026*',26.3,2669]] },
+        foot: 'Fiyat değişimi TCMB EVDS İstanbul Konut Fiyat Endeksi (TP_KFE_TR10) serisinden, brüt kira getirisi Betam–sahibindex İstanbul ilan verilerinden alınmıştır. Vergi ve masraflar hariçtir.',
+        rows: [[2018,7.0,7.0],[2019,10.6,18.3],[2020,33.5,58.0],[2021,73.8,174.6],[2022,170.0,641.6],[2023,70.9,1168],[2024,32.2,1576],[2025,35.2,2165],['2026*',26.2,2760]] },
       { id: 'tufe', name: 'Enflasyon (TÜFE)', tab: 'Enflasyon', color: '#8A94A6', bench: true,
         star: '* Eylül 2026 itibarıyla (TÜİK\'in açıkladığı son veri). ',
         foot: 'Bir aracın kümülatif getirisi buradaki kümülatif enflasyondan yüksekse, o araç dönem boyunca enflasyonu yenmiştir.',
