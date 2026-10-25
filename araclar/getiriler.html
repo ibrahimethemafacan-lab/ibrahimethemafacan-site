@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yatırım Araçlarının Getirileri — İbrahim Ethem Afacan</title>
-  <meta name="description" content="2018'den bu yana TL bazında gram altın, gram gümüş, BIST 100 (temettü dahil), dolar/TL ve bitcoinin enflasyonla karşılaştırmalı yıllık ve kümülatif getirileri.">
+  <meta name="description" content="2018'den bu yana TL bazında gram altın, gram gümüş, BIST 100 (temettü dahil), dolar/TL, bitcoin ve İstanbul konut fiyatlarının enflasyonla karşılaştırmalı yıllık ve kümülatif getirileri.">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css?v=20261024f">
+  <style>.rt-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0}.rt-tabs::-webkit-scrollbar{display:none}.rt-tabs button{white-space:nowrap;flex:0 0 auto;padding-left:.7rem;padding-right:.7rem}</style>
 </head>
 <body>
   <header class="site-head">
@@ -50,7 +51,7 @@
 
     <article class="prose">
       <h2>Notlar</h2>
-      <p>2026 satırı yıl başından 23 Ekim 2026 kapanışına kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Gram gümüş, ons gümüşün TL fiyatından hesaplanmıştır. Bitcoin'in yıl sonu değeri, yılın son günündeki BTC/USDT kapanışının dolar/TL kuruyla çarpılmasıyla bulunmuştur. Enflasyon, TÜİK'in açıkladığı tüketici fiyat endeksinin (TÜFE) Aralıktan Aralığa değişimidir; 2026 satırı Eylül 2026'ya kadarki değişimi gösterir. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
+      <p>2026 satırı yıl başından 23 Ekim 2026 kapanışına kadarki dönemi kapsar. Kümülatif getiri, yıllık getirilerin bileşik olarak çarpılmasıyla bulunur; bu yüzden yıllık oranların basit toplamından farklıdır. BIST 100 getirisi temettüler dahil hesaplanmıştır. Gram gümüş, ons gümüşün TL fiyatından hesaplanmıştır. Bitcoin'in yıl sonu değeri, yılın son günündeki BTC/USDT kapanışının dolar/TL kuruyla çarpılmasıyla bulunmuştur. İstanbul konut getirisi, TCMB'nin İstanbul Konut Fiyat Endeksi'nin Aralıktan Aralığa değişimidir; kira geliri dahil değildir ve 2026 satırı Eylül 2026'ya kadarki değişimi gösterir. Enflasyon, TÜİK'in açıkladığı tüketici fiyat endeksinin (TÜFE) Aralıktan Aralığa değişimidir; 2026 satırı Eylül 2026'ya kadarki değişimi gösterir. Geçmiş getiriler gelecekteki getirilerin göstergesi değildir.</p>
     </article>
   </main>
 
@@ -71,7 +72,7 @@
       { id: 'gumus', name: 'Gram gümüş', color: '#8A9BA8',
         foot: '2,07 TL → 86,18 TL',
         rows: [[2018,27.4,27.4],[2019,29.8,65.5],[2020,84.6,205.5],[2021,57.4,380.8],[2022,45.0,597.0],[2023,56.7,992.2],[2024,45.7,1491],[2025,198.4,4648],['2026*',-12.1,4072]] },
-      { id: 'bist', name: 'BIST 100 (temettü dahil)', color: '#0F6B57',
+      { id: 'bist', name: 'BIST 100 (temettü dahil)', tab: 'BIST 100', color: '#0F6B57',
         foot: 'Temettüler yeniden yatırılmış kabul edilir.',
         rows: [[2018,-18.1,-18.1],[2019,29.7,6.2],[2020,30.9,39.0],[2021,30.0,80.8],[2022,206.5,454.0],[2023,39.3,671.8],[2024,34.9,941.1],[2025,17.0,1119],['2026*',0.1,1121]] },
       { id: 'usd', name: 'Dolar/TL', color: '#3B5B8C',
@@ -80,7 +81,11 @@
       { id: 'btc', name: 'Bitcoin', color: '#E8891C',
         foot: '52.961 TL → 4.044.824 TL. TL fiyatı, BTC/USDT kapanışı ile dolar/TL kurunun çarpımıdır.',
         rows: [[2018,-63.3,-63.3],[2019,119.7,-19.4],[2020,407.3,308.9],[2021,181.3,1050],[2022,-49.1,485.3],[2023,306.2,2278],[2024,162.9,6151],[2025,13.7,7005],['2026*',7.5,7537]] },
-      { id: 'tufe', name: 'Enflasyon (TÜFE)', color: '#8A94A6', bench: true,
+      { id: 'konut', name: 'İstanbul konut', color: '#6B4E9B',
+        star: '* Eylül 2026 itibarıyla (TCMB\'nin açıkladığı son veri). ',
+        foot: 'TCMB Konut Fiyat Endeksi, İstanbul. Kira geliri dahil değildir.',
+        rows: [[2018,1.3,1.3],[2019,3.7,5.0],[2020,27.9,34.3],[2021,63.0,119.0],[2022,174.2,500.4],[2023,61.8,871.4],[2024,26.3,1127],[2025,28.5,1477],['2026*',21.0,1807]] },
+      { id: 'tufe', name: 'Enflasyon (TÜFE)', tab: 'Enflasyon', color: '#8A94A6', bench: true,
         star: '* Eylül 2026 itibarıyla (TÜİK\'in açıkladığı son veri). ',
         foot: 'Bir aracın kümülatif getirisi buradaki kümülatif enflasyondan yüksekse, o araç dönem boyunca enflasyonu yenmiştir.',
         rows: [[2018,20.3,20.3],[2019,11.8,34.5],[2020,14.6,54.2],[2021,36.1,109.8],[2022,64.3,244.7],[2023,64.8,467.9],[2024,44.4,719.9],[2025,30.9,973.2],['2026*',24.3,1234]] }
@@ -108,7 +113,7 @@
     // Sekmeler
     var tabs = document.getElementById('tabs');
     tabs.innerHTML = DATA.map(function (d, i) {
-      return '<button role="tab" id="tab-' + d.id + '" aria-controls="panel" aria-selected="' + (i === 0) + '" data-i="' + i + '">' + d.name + '</button>';
+      return '<button role="tab" id="tab-' + d.id + '" aria-controls="panel" aria-selected="' + (i === 0) + '" data-i="' + i + '">' + (d.tab || d.name) + '</button>';
     }).join('');
 
     function show(i) {
