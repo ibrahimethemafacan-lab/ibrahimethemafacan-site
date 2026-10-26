@@ -36,6 +36,11 @@
     .kt .reg{display:block;font-size:.78rem;color:var(--muted);font-weight:400}
     .kt .pos{color:var(--up)} .kt .neg{color:var(--down)}
     .twrap{overflow-x:auto}
+    .sortbar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-family:var(--sans);font-size:.85rem;margin:.25rem 0 .25rem}
+    .sortbar span{color:var(--muted)}
+    .sortbar button{font:inherit;font-weight:700;border:1.5px solid var(--accent);background:#fff;color:var(--accent);border-radius:999px;padding:.35rem .9rem;cursor:pointer}
+    .sortbar button[aria-pressed="true"]{background:var(--accent);color:#fff}
+    @media (max-width:600px){.kt{font-size:.8rem}.kt th,.kt td{padding:.5rem .35rem}#t-kfe th:nth-child(2),#t-kfe td:nth-child(2){display:none}.kt .reg{font-size:.72rem}}
     .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;margin:1rem 0 2rem}
     .kpi div{background:#fff;border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
     .kpi b{display:block;font-family:var(--sans);font-size:1.5rem;color:var(--navy)}
@@ -65,8 +70,9 @@
 
     <article class="prose wide">
       <h2>Konut Fiyat Endeksi: Türkiye ve 19 bölge</h2>
-      <p>Endeks, satılan konutların özelliklerindeki farkları arındırarak fiyat değişimini ölçer (2023 = 100). Yalnızca fiyat değişimini gösterir, kira geliri dahil değildir. Sütun başlıklarına tıklayarak sıralayabilirsiniz.</p>
+      <p>Endeks, satılan konutların özelliklerindeki farkları arındırarak fiyat değişimini ölçer (2023 = 100). Yalnızca fiyat değişimini gösterir, kira geliri dahil değildir. Tabloyu bu yılki ya da 2018'den bu yana değişime göre büyükten küçüğe sıralayabilirsiniz.</p>
     </article>
+    <div class="sortbar" role="group" aria-label="Sıralama"><span>Sırala:</span><button type="button" data-k="y" aria-pressed="true">Bu yıl</button><button type="button" data-k="c" aria-pressed="false">2018'den bu yana</button></div>
     <div class="twrap"><table class="kt" id="t-kfe"><thead><tr><th data-k="n">Bölge</th><th data-k="v">Endeks</th><th data-k="y">Yıllık değişim</th><th data-k="c">2018'den bu yana</th></tr></thead><tbody></tbody></table></div>
 
     <article class="prose wide">
@@ -112,6 +118,7 @@
     function render(id,key,asc){var c=cfg[id];var first=c.rows.filter(function(r){return r.n===c.first;});var rest=c.rows.filter(function(r){return r.n!==c.first;});
       if(key){rest.sort(function(a,b){var x=a[key],y=b[key];if(typeof x==='string')return asc?x.localeCompare(y,'tr'):y.localeCompare(x,'tr');return asc?x-y:y-x;});}
       document.querySelector('#t-'+id+' tbody').innerHTML=first.concat(rest).map(function(r){return '<tr>'+c.row(r)+'</tr>';}).join('');}
+    document.querySelectorAll('.sortbar button').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.sortbar button').forEach(function(b){b.setAttribute('aria-pressed',b===btn);});render('kfe',btn.dataset.k,false);});});
     ['kfe','il'].forEach(function(id){var st={};render(id,id==='kfe'?'y':'g',false);
       document.querySelectorAll('#t-'+id+' th').forEach(function(th){th.addEventListener('click',function(){var k=th.dataset.k;st[k]=!st[k];render(id,k,k==='n'?st[k]:!st[k]);});});});
     document.querySelector('#t-sat tbody').innerHTML=D.sat.map(function(r){return '<tr><td>'+r.y+'</td><td>'+n0.format(r.t)+'</td><td>'+n0.format(r.ip)+'</td><td>%'+n1.format(r.ipp)+'</td><td>'+n0.format(r.il)+'</td><td>'+n0.format(r.ik)+'</td><td>%'+n1.format(r.ikp)+'</td><td>%'+n1.format(r.ist)+'</td></tr>';}).join('');
