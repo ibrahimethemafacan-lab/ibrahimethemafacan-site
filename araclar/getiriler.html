@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css?v=20261024f">
-  <style>.rt-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0}.rt-tabs::-webkit-scrollbar{display:none}.rt-tabs button{white-space:nowrap;flex:0 0 auto;padding-left:.55rem;padding-right:.55rem;font-size:.875rem}</style>
+  <style>.rt-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0}.rt-tabs::-webkit-scrollbar{display:none}.konut-go{align-self:center;margin-left:.4rem;white-space:nowrap;font-family:var(--sans);font-size:.75rem;font-weight:700;color:#fff;background:var(--accent);border-radius:999px;padding:.3rem .7rem;text-decoration:none}.konut-go:hover{background:var(--navy)}.konut-go[hidden]{display:none}.konut-btn{display:inline-block;font-family:var(--sans);font-weight:700;font-size:.95rem;color:#fff;background:var(--accent);border-radius:.6rem;padding:.75rem 1.1rem;text-decoration:none}.konut-btn:hover{background:var(--navy)}.rt-tabs button{white-space:nowrap;flex:0 0 auto;padding-left:.55rem;padding-right:.55rem;font-size:.875rem}</style>
 </head>
 <body>
   <header class="site-head">
@@ -55,12 +55,12 @@
     <section class="rt">
       <div class="rt-tabs" role="tablist" aria-label="Yatırım aracı" id="tabs"></div>
       <div class="rt-panel" role="tabpanel" id="panel">
+        <p id="more-top" hidden style="margin:1rem 0 .25rem"><a class="konut-btn" href="/araclar/konut.html">İl ve bölge bazında konut fiyatları ve kiraları →</a></p>
         <table class="rt-table">
           <thead><tr><th scope="col">Yıl</th><th scope="col">Yıllık değişim</th><th scope="col" class="r">Kümülatif</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
         <p class="rt-foot" id="foot"></p>
-        <p class="rt-foot" id="more" hidden><a href="/araclar/konut.html" style="color:var(--accent);font-weight:700;text-decoration:none">İl ve bölge bazında konut fiyatları ve kiraları →</a></p>
       </div>
     </section>
 
@@ -140,9 +140,9 @@
 
     function show(i) {
       var d = DATA[i];
-      Array.prototype.forEach.call(tabs.children, function (b, j) { b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; });
+      Array.prototype.forEach.call(tabs.querySelectorAll('button'), function (b, j) { b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; });
       document.getElementById('panel').setAttribute('aria-labelledby', 'tab-' + d.id);
-      document.getElementById('more').hidden = d.id !== 'konut';
+      document.getElementById('more-top').hidden = d.id !== 'konut';
       var maxAbs = Math.max.apply(null, d.rows.map(function (r) { return Math.abs(r[1]); }));
       var best = d.rows.reduce(function (a, r) { return r[1] > a ? r[1] : a; }, -Infinity);
       document.getElementById('rows').innerHTML = d.rows.map(function (r) {
@@ -173,7 +173,7 @@
       if (isNaN(cur)) return;
       var n = e.key === 'ArrowRight' ? cur + 1 : e.key === 'ArrowLeft' ? cur - 1 : null;
       if (n === null) return;
-      n = (n + DATA.length) % DATA.length; show(n); tabs.children[n].focus(); e.preventDefault();
+      n = (n + DATA.length) % DATA.length; show(n); tabs.querySelectorAll('button')[n].focus(); e.preventDefault();
     });
     show(0);
   </script>
