@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Konut Fiyatları ve Kiraları — İbrahim Ethem Afacan</title>
+  <meta name="description" content="TCMB verileriyle Türkiye'de konut fiyat endeksi, bölge bazında değişim, yeni ve ikinci el konut fiyatları, il bazında metrekare fiyatları, kiraları ve brüt kira getirisi.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="İbrahim Ethem Afacan">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Konut Fiyatları ve Kiraları">
+  <meta property="og:description" content="TCMB verileriyle Türkiye'de konut fiyat endeksi, bölge bazında değişim, yeni ve ikinci el konut fiyatları, il bazında metrekare fiyatları, kiraları ve brüt kira getirisi.">
+  <meta property="og:url" content="https://ibrahimethemafacan.com/araclar/konut.html">
+  <meta property="og:image" content="https://ibrahimethemafacan.com/img/og-getiriler.png?v=3">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ibrahim___ethem">
+  <meta name="twitter:title" content="Konut Fiyatları ve Kiraları">
+  <meta name="twitter:description" content="TCMB verileriyle Türkiye'de konut fiyat endeksi, bölge bazında değişim, yeni ve ikinci el konut fiyatları, il bazında metrekare fiyatları, kiraları ve brüt kira getirisi.">
+  <meta name="twitter:image" content="https://ibrahimethemafacan.com/img/og-getiriler.png?v=3">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css?v=20261024f">
+    <style>
+    .kt{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.9rem;font-variant-numeric:tabular-nums;margin:.5rem 0 1rem}
+    .kt th,.kt td{padding:.55rem .6rem;border-bottom:1px solid var(--rule);text-align:right;vertical-align:top}
+    .kt th:first-child,.kt td:first-child{text-align:left}
+    .kt thead th{font-weight:600;color:var(--muted);font-size:.8rem;cursor:pointer;white-space:nowrap}
+    #t-kfe tbody tr:first-child td,#t-il tbody tr:first-child td{font-weight:700}
+    .kt .reg{display:block;font-size:.78rem;color:var(--muted);font-weight:400}
+    .kt .pos{color:var(--up)} .kt .neg{color:var(--down)}
+    .twrap{overflow-x:auto}
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;margin:1rem 0 2rem}
+    .kpi div{background:#fff;border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
+    .kpi b{display:block;font-family:var(--sans);font-size:1.5rem;color:var(--navy)}
+    .kpi div>span{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap narrow">
+      <a class="brand" href="/"><img src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
+      <nav class="nav" aria-label="Ana menü">
+        <a href="/#notlar">Notlar</a>
+        <a href="/#araclar" aria-current="page">Araçlar</a>
+        <a href="/hakkinda.html">Hakkımda</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap narrow">
+    <article class="prose wide">
+      <p class="calc-note"><a href="/araclar/getiriler.html">← Yatırım araçlarının getirileri</a></p>
+      <h1>Konut fiyatları ve kiraları</h1>
+      <p>Türkiye'de konut fiyatları ve kiralar, TCMB verileriyle. Fiyat endeksleri Eylül 2026, metrekare fiyatları ve kiralar 2026'nın üçüncü çeyreği itibarıyla.</p>
+    </article>
+
+    <div class="kpi" id="kpi"></div>
+
+    <article class="prose wide">
+      <h2>Konut Fiyat Endeksi: Türkiye ve 19 bölge</h2>
+      <p>Endeks, satılan konutların özelliklerindeki farkları arındırarak fiyat değişimini ölçer (2023 = 100). Sütun başlıklarına tıklayarak sıralayabilirsiniz.</p>
+    </article>
+    <div class="twrap"><table class="kt" id="t-kfe"><thead><tr><th data-k="n">Bölge</th><th data-k="v">Endeks</th><th data-k="y">Yıllık değişim</th><th data-k="c">2018'den bu yana</th></tr></thead><tbody></tbody></table></div>
+
+    <article class="prose wide">
+      <h2>Yeni ve yeni olmayan konutlar</h2>
+      <p>Türkiye genelinde yeni konutlar ile ikinci el (yeni olmayan) konutların fiyat endekslerinin Aralıktan Aralığa değişimi.</p>
+    </article>
+    <div class="twrap"><table class="kt" id="t-yk"><thead><tr><th>Yıl</th><th>Yeni konutlar</th><th>Yeni olmayan konutlar</th></tr></thead><tbody></tbody></table></div>
+
+    <article class="prose wide">
+      <h2>İllere göre metrekare fiyatı ve kira</h2>
+      <p>Değerlemesi yapılan konutların ortalama metrekare fiyatı ve aylık metrekare kirası. Brüt kira getirisi, yıllık kiranın konut fiyatına oranıdır; amortisman süresi, konutun kendini kirayla kaç yılda ödediğini gösterir.</p>
+    </article>
+    <div class="twrap"><table class="kt" id="t-il"><thead><tr><th data-k="n">İl</th><th data-k="f">Fiyat (TL/m²)</th><th data-k="fy">Yıllık</th><th data-k="k">Kira (TL/m²)</th><th data-k="ky">Yıllık</th><th data-k="g">Brüt kira getirisi</th><th data-k="a">Amortisman (yıl)</th></tr></thead><tbody></tbody></table></div>
+
+    <article class="prose">
+      <h2>Notlar</h2>
+      <p>Kaynak: TCMB EVDS (Konut Fiyat Endeksi, Yeni Konutlar ve Yeni Olmayan Konutlar Fiyat Endeksleri, Konut Birim Fiyatları, Değerlemesi Yapılan Konutların Birim Kiraları). Yıllık değişimler bir önceki yılın aynı dönemine göredir; 2026 satırı Eylül 2026'ya kadarki değişimi gösterir. Brüt kira getirisi vergi, aidat ve boş kalma süresi gibi masrafları içermez. Tabloda nüfusu büyük 20 il yer almaktadır.</p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap narrow">
+      <p>Bu sitedeki içerikler yatırım tavsiyesi değildir. Yatırım danışmanlığı hizmeti, aracı kurumlar, portföy yönetim şirketleri ve mevduat kabul etmeyen bankalar ile müşteri arasında imzalanacak yatırım danışmanlığı sözleşmesi çerçevesinde sunulmaktadır.</p>
+      <nav class="social" aria-label="Sosyal medya"><a href="https://www.linkedin.com/in/ibrahim-ethem-afacan-563142a1/" rel="me noopener" target="_blank">LinkedIn</a><a href="https://x.com/ibrahim___ethem" rel="me noopener" target="_blank">X</a><a href="https://www.instagram.com/ibrahimethemafacan" rel="me noopener" target="_blank">Instagram</a></nav>
+      <p>© 2026 İbrahim Ethem Afacan</p>
+    </div>
+  </footer>
+
+  <script>
+    var D = {"kfe": [{"n": "Türkiye", "v": 239.38, "y": 22.3, "c": 2156}, {"n": "İstanbul", "v": 230.85, "y": 26.8, "c": 1880}, {"n": "Ankara", "v": 265.17, "y": 22.0, "c": 2573}, {"n": "İzmir", "v": 231.42, "y": 21.0, "c": 2142}, {"n": "Edirne, Kırklareli, Tekirdağ", "v": 218.57, "y": 15.3, "c": 2081}, {"n": "Balıkesir, Çanakkale", "v": 237.85, "y": 17.9, "c": 2404}, {"n": "Aydın, Denizli, Muğla", "v": 225.17, "y": 19.3, "c": 2447}, {"n": "Afyonkarahisar, Kütahya, Manisa, Uşak", "v": 257.86, "y": 17.9, "c": 2211}, {"n": "Bursa, Eskişehir, Bilecik", "v": 237.34, "y": 22.1, "c": 2062}, {"n": "Bolu, Kocaeli, Sakarya, Yalova, Düzce", "v": 247.85, "y": 22.6, "c": 2306}, {"n": "Konya, Karaman", "v": 238.79, "y": 19.7, "c": 2246}, {"n": "Antalya, Burdur, Isparta", "v": 201.11, "y": 20.0, "c": 2522}, {"n": "Adana, Mersin", "v": 220.39, "y": 21.5, "c": 2071}, {"n": "Hatay, Kahramanmaraş, Osmaniye", "v": 246.37, "y": 24.0, "c": 2359}, {"n": "Kayseri, Sivas, Nevşehir, Niğde, Kırıkkale, Kırşehir, Aksaray, Yozgat", "v": 257.53, "y": 21.9, "c": 2185}, {"n": "Samsun, Zonguldak, Kastamonu, Çorum, Tokat, Amasya, Karabük, Bartın, Çankırı, Sinop", "v": 249.68, "y": 20.2, "c": 2357}, {"n": "Trabzon, Ordu, Giresun, Rize, Artvin, Gümüşhane", "v": 262.41, "y": 26.2, "c": 2364}, {"n": "Erzurum, Erzincan, Bayburt, Ağrı, Kars, Iğdır, Ardahan", "v": 285.61, "y": 20.1, "c": 2232}, {"n": "Malatya, Elazığ, Van, Bingöl, Tunceli, Muş, Bitlis, Hakkari", "v": 282.9, "y": 22.7, "c": 2527}, {"n": "Gaziantep, Şanlıurfa, Diyarbakır, Mardin, Batman, Adıyaman, Kilis, Şırnak, Siirt", "v": 241.22, "y": 19.8, "c": 2256}], "yk": [{"y": "2018", "n": 8.4, "o": 4.6}, {"y": "2019", "n": 10.9, "o": 9.6}, {"y": "2020", "n": 33.1, "o": 31.6}, {"y": "2021", "n": 70.5, "o": 59.8}, {"y": "2022", "n": 140.8, "o": 154.2}, {"y": "2023", "n": 91.3, "o": 81.6}, {"y": "2024", "n": 28.6, "o": 29.2}, {"y": "2025", "n": 32.0, "o": 28.8}, {"y": "2026*", "n": 17.3, "o": 16.8}], "il": [{"n": "Türkiye", "f": 53887, "fy": 26.6, "k": 275.4, "ky": 32.0, "g": 6.1, "a": 16.3}, {"n": "İstanbul", "f": 90844, "fy": 32.2, "k": 475.2, "ky": 42.0, "g": 6.3, "a": 15.9}, {"n": "Ankara", "f": 49244, "fy": 27.7, "k": 254.6, "ky": 28.8, "g": 6.2, "a": 16.1}, {"n": "İzmir", "f": 57589, "fy": 22.4, "k": 296.5, "ky": 23.9, "g": 6.2, "a": 16.2}, {"n": "Antalya", "f": 59438, "fy": 23.3, "k": 282.6, "ky": 29.9, "g": 5.7, "a": 17.5}, {"n": "Bursa", "f": 42675, "fy": 23.8, "k": 220.8, "ky": 27.7, "g": 6.2, "a": 16.1}, {"n": "Adana", "f": 42894, "fy": 26.6, "k": 215.2, "ky": 29.1, "g": 6.0, "a": 16.6}, {"n": "Gaziantep", "f": 34586, "fy": 23.5, "k": 180.9, "ky": 24.7, "g": 6.3, "a": 15.9}, {"n": "Mersin", "f": 40860, "fy": 24.5, "k": 202.9, "ky": 24.2, "g": 6.0, "a": 16.8}, {"n": "Kocaeli", "f": 46799, "fy": 28.5, "k": 252.4, "ky": 30.6, "g": 6.5, "a": 15.4}, {"n": "Konya", "f": 36896, "fy": 22.1, "k": 190.2, "ky": 22.3, "g": 6.2, "a": 16.2}, {"n": "Eskişehir", "f": 42519, "fy": 27.2, "k": 220.1, "ky": 24.2, "g": 6.2, "a": 16.1}, {"n": "Kayseri", "f": 30846, "fy": 26.5, "k": 150.8, "ky": 28.3, "g": 5.9, "a": 17.0}, {"n": "Muğla", "f": 85830, "fy": 15.4, "k": 383.0, "ky": 28.5, "g": 5.4, "a": 18.7}, {"n": "Samsun", "f": 38076, "fy": 24.4, "k": 198.7, "ky": 27.3, "g": 6.3, "a": 16.0}, {"n": "Tekirdağ", "f": 43446, "fy": 20.9, "k": 235.8, "ky": 24.8, "g": 6.5, "a": 15.4}, {"n": "Balıkesir", "f": 49916, "fy": 21.8, "k": 243.3, "ky": 19.9, "g": 5.8, "a": 17.1}, {"n": "Denizli", "f": 45367, "fy": 26.8, "k": 219.6, "ky": 30.9, "g": 5.8, "a": 17.2}, {"n": "Diyarbakır", "f": 37864, "fy": 25.0, "k": 196.3, "ky": 28.5, "g": 6.2, "a": 16.1}, {"n": "Sakarya", "f": 42670, "fy": 23.3, "k": 221.0, "ky": 29.3, "g": 6.2, "a": 16.1}, {"n": "Trabzon", "f": 37500, "fy": 24.7, "k": 176.5, "ky": 31.7, "g": 5.6, "a": 17.7}]};
+    var n1=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:1,maximumFractionDigits:1}), n0=new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}), n2=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    function pc(v,dec){var s=(dec===0?n0:n1).format(Math.abs(v));return '<span class="'+(v<0?'neg':'pos')+'">'+(v<0?'−':'+')+'%'+s+'</span>';}
+    var cfg={
+      'kfe':{rows:D.kfe,first:'Türkiye',row:function(r){var p=r.n.indexOf(',')>0;return '<td>'+(p?'<span class="reg">'+r.n+'</span>':r.n)+'</td><td>'+n2.format(r.v)+'</td><td>'+pc(r.y)+'</td><td>'+pc(r.c,0)+'</td>';}},
+      'il':{rows:D.il,first:'Türkiye',row:function(r){return '<td>'+r.n+'</td><td>'+n0.format(r.f)+'</td><td>'+pc(r.fy)+'</td><td>'+n1.format(r.k)+'</td><td>'+pc(r.ky)+'</td><td>%'+n1.format(r.g)+'</td><td>'+n1.format(r.a)+'</td>';}}
+    };
+    function render(id,key,asc){var c=cfg[id];var first=c.rows.filter(function(r){return r.n===c.first;});var rest=c.rows.filter(function(r){return r.n!==c.first;});
+      if(key){rest.sort(function(a,b){var x=a[key],y=b[key];if(typeof x==='string')return asc?x.localeCompare(y,'tr'):y.localeCompare(x,'tr');return asc?x-y:y-x;});}
+      document.querySelector('#t-'+id+' tbody').innerHTML=first.concat(rest).map(function(r){return '<tr>'+c.row(r)+'</tr>';}).join('');}
+    ['kfe','il'].forEach(function(id){var st={};render(id,id==='kfe'?'y':'g',false);
+      document.querySelectorAll('#t-'+id+' th').forEach(function(th){th.addEventListener('click',function(){var k=th.dataset.k;st[k]=!st[k];render(id,k,k==='n'?st[k]:!st[k]);});});});
+    document.querySelector('#t-yk tbody').innerHTML=D.yk.map(function(r){return '<tr><td>'+r.y+'</td><td>'+pc(r.n)+'</td><td>'+pc(r.o)+'</td></tr>';}).join('');
+    var tr=D.kfe[0], ist=D.il[1], tri=D.il[0];
+    document.getElementById('kpi').innerHTML=[['Türkiye konut fiyatları, yıllık',pc(tr.y)],['Türkiye ortalama m² fiyatı',n0.format(tri.f)+' TL'],['İstanbul ortalama m² fiyatı',n0.format(ist.f)+' TL'],['Türkiye brüt kira getirisi','%'+n1.format(tri.g)]].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
+  </script>
+<script data-goatcounter="https://ibrahimethemafacan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

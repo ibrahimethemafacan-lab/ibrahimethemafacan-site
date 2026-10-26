@@ -60,6 +60,7 @@
           <tbody id="rows"></tbody>
         </table>
         <p class="rt-foot" id="foot"></p>
+        <p class="rt-foot" id="more" hidden><a href="/araclar/konut.html" style="color:var(--accent);font-weight:700;text-decoration:none">İl ve bölge bazında konut fiyatları ve kiraları →</a></p>
       </div>
     </section>
 
@@ -141,6 +142,7 @@
       var d = DATA[i];
       Array.prototype.forEach.call(tabs.children, function (b, j) { b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; });
       document.getElementById('panel').setAttribute('aria-labelledby', 'tab-' + d.id);
+      document.getElementById('more').hidden = d.id !== 'konut';
       var maxAbs = Math.max.apply(null, d.rows.map(function (r) { return Math.abs(r[1]); }));
       var best = d.rows.reduce(function (a, r) { return r[1] > a ? r[1] : a; }, -Infinity);
       document.getElementById('rows').innerHTML = d.rows.map(function (r) {
