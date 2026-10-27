@@ -10,11 +10,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-<title>Sermaye Piyasası Mevzuatı Sınav Defteri</title>
+<title>Geniş Kapsamlı Sermaye Piyasası Mevzuatı Sınav Defteri</title>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="İbrahim Ethem Afacan">
   <meta property="og:locale" content="tr_TR">
-  <meta property="og:title" content="Sermaye Piyasası Mevzuatı Sınav Defteri">
+  <meta property="og:title" content="Geniş Kapsamlı Sermaye Piyasası Mevzuatı Sınav Defteri">
   <meta property="og:description" content="SPL Geniş Kapsamlı Sermaye Piyasası Mevzuatı ve Meslek Kuralları için bölüm notları, özgün sorular ve podcast anlatımı.">
   <meta property="og:url" content="https://ibrahimethemafacan.com/calisma-masasi/sermaye-piyasasi-mevzuati/">
   <meta property="og:image" content="https://ibrahimethemafacan.com/img/og-calisma-masasi.png">
@@ -22,7 +22,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ibrahim___ethem">
-  <meta name="twitter:title" content="Sermaye Piyasası Mevzuatı Sınav Defteri">
+  <meta name="twitter:title" content="Geniş Kapsamlı Sermaye Piyasası Mevzuatı Sınav Defteri">
   <meta name="twitter:description" content="SPL Geniş Kapsamlı Sermaye Piyasası Mevzuatı ve Meslek Kuralları için bölüm notları, özgün sorular ve podcast anlatımı.">
   <meta name="twitter:image" content="https://ibrahimethemafacan.com/img/og-calisma-masasi.png">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -360,7 +360,7 @@ function renderKarma(){
 
 function renderHome(){
   let tA=0,tC=0;S.forEach((s,i)=>{const x=secStats(i);tA+=x.a;tC+=x.c});
-  let h=`<section class="hero"><div><span class="pill">SPL · Sermaye Piyasası Mevzuatı ve Meslek Kuralları</span><h1>Sermaye Piyasası Mevzuatı Sınav Defteri</h1>
+  let h=`<section class="hero"><div><span class="pill">SPL · Geniş Kapsamlı Sermaye Piyasası Mevzuatı</span><h1>Geniş Kapsamlı Sermaye Piyasası Mevzuatı Sınav Defteri</h1>
   <p>Sermaye Piyasası Kanunu, Kurul tebliğleri ve meslek kuralları için bölüm notları ve notlardan hazırlanmış özgün sorular.</p>
   <div class="row" style="margin-top:18px"><a class="btn pri" href="#b1">Bölüm 1'den başla</a><a class="btn" href="#karma">Karma deneme</a></div></div>${ring(tC,TOTAL,"#0E8F7E","toplam doğru")}</section>
   <div class="tiles"><div class="tile"><span>Yanıtlanan</span><b>${tA}<small style="font-size:14px;color:var(--muted)"> / ${TOTAL}</small></b></div><div class="tile"><span>Doğru</span><b style="color:var(--ok)">${tC}</b></div><div class="tile"><span>Başarı oranı</span><b>${tA?"%"+Math.round(tC/tA*100):"–"}</b></div></div>
