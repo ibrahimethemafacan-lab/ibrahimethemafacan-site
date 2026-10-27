@@ -42,6 +42,8 @@
     .gh{font-family:var(--serif,inherit);font-size:1.6rem;color:var(--navy);margin:0 0 .5rem}
     .grp h3{font-family:var(--sans);font-size:1.05rem;margin:1.75rem 0 .5rem}
     .unit{font-family:var(--sans);font-size:.75rem;font-weight:600;color:var(--muted);text-align:right;margin:.75rem 0 -.25rem;padding-right:.6rem;letter-spacing:.02em}
+    .gh-row{display:flex;align-items:center;gap:.9rem;margin:0 0 .5rem}.gh-row .gh{margin:0}
+    .gh-art{width:56px;height:56px;flex:none}
     .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;margin:1rem 0 2rem}
     .kpi div{background:#fff;border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
     .kpi b{display:block;font-family:var(--sans);font-size:1.5rem;color:var(--navy)}
@@ -75,7 +77,9 @@
     <nav class="jump" aria-label="Bölümler"><a href="#yabanci">Yabancı yatırımcılar</a><a href="#para">Faiz, para ve kredi</a><a href="#beklenti">Beklentiler</a><a href="#guven">Güven</a><a href="#dis">Cari denge</a></nav>
 
     <section class="grp" id="yabanci">
-      <h2 class="gh">Yabancı yatırımcılar</h2>
+      <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="26" r="16" fill="#E6F0FE" stroke="#0E3A8C" stroke-width="2.5"/><ellipse cx="22" cy="26" rx="7" ry="16" stroke="#0E3A8C" stroke-width="1.8"/><line x1="6" y1="26" x2="38" y2="26" stroke="#0E3A8C" stroke-width="1.8"/>
+<rect x="40" y="44" width="6" height="14" rx="1.5" fill="#A9C6FF"/><rect x="49" y="36" width="6" height="22" rx="1.5" fill="#1A5FFF"/><rect x="58" y="40" width="5" height="18" rx="1.5" fill="#40C0FF"/>
+<path d="M30 44 Q32 54 40 52" stroke="#1A5FFF" stroke-width="2.5"/><polyline points="36,48 40,52 36,56" stroke="#1A5FFF" stroke-width="2.5"/></svg><h2 class="gh">Yabancı yatırımcılar</h2></div>
       <article class="prose wide">
         <p>Yurt dışında yerleşik yatırımcıların Türkiye'deki hisse senedi ve devlet tahvili (DİBS) alım-satımları. TCMB her perşembe bir önceki haftanın verisini yayımlar. Artı değer net alımı, eksi değer net satışı gösterir; rakamlar milyon dolardır ve fiyat ile kur değişimlerinden arındırılmıştır. “Yabancı borsaya geri döndü mü?” sorusunun en doğrudan cevabı burada.</p>
         <h3>Son 12 hafta</h3>
@@ -90,7 +94,8 @@
     </section>
 
     <section class="grp" id="para">
-      <h2 class="gh">Faiz, para ve kredi</h2>
+      <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="22" cy="50" rx="14" ry="5" fill="#A9C6FF" stroke="#0E3A8C" stroke-width="2"/><path d="M8 50 V44" stroke="#0E3A8C" stroke-width="2"/><path d="M36 50 V44" stroke="#0E3A8C" stroke-width="2"/><ellipse cx="22" cy="44" rx="14" ry="5" fill="#E6F0FE" stroke="#0E3A8C" stroke-width="2"/><path d="M8 44 V38 M36 44 V38" stroke="#0E3A8C" stroke-width="2"/><ellipse cx="22" cy="38" rx="14" ry="5" fill="#fff" stroke="#0E3A8C" stroke-width="2"/>
+<circle cx="46" cy="20" r="14" fill="#1A5FFF"/><line x1="40" y1="27" x2="52" y2="13" stroke="#fff" stroke-width="2.5"/><circle cx="41" cy="15" r="2.5" stroke="#fff" stroke-width="2"/><circle cx="51" cy="25" r="2.5" stroke="#fff" stroke-width="2"/></svg><h2 class="gh">Faiz, para ve kredi</h2></div>
       <article class="prose wide">
         <p>Politika faizi yıl sonu düzeyindedir. Para arzı (M3) ve banka kredileri, bir önceki yıl sonuna göre değişimi gösterir; kredilere döviz krediler de dahildir, bu yüzden kurdaki artış da büyümeye yansır. TCMB rezervi, altın ve döviz dahil brüt rezervdir.</p>
       </article>
@@ -99,7 +104,9 @@
     </section>
 
     <section class="grp" id="beklenti">
-      <h2 class="gh">Piyasa beklentileri</h2>
+      <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="34" height="46" rx="5" fill="#fff" stroke="#0E3A8C" stroke-width="2.5"/><rect x="17" y="6" width="16" height="8" rx="2" fill="#A9C6FF" stroke="#0E3A8C" stroke-width="2"/>
+<line x1="15" y1="24" x2="35" y2="24" stroke="#A9C6FF" stroke-width="2.5"/><line x1="15" y1="32" x2="30" y2="32" stroke="#A9C6FF" stroke-width="2.5"/><line x1="15" y1="40" x2="33" y2="40" stroke="#A9C6FF" stroke-width="2.5"/>
+<polyline points="30,52 40,44 48,46 58,30" stroke="#1A5FFF" stroke-width="2.5" stroke-dasharray="4 4"/><circle cx="58" cy="30" r="4" fill="#40C0FF" stroke="#0E3A8C" stroke-width="2"/></svg><h2 class="gh">Piyasa beklentileri</h2></div>
       <article class="prose wide">
         <p>TCMB'nin her ay ekonomistler ve piyasa profesyonellerine yaptığı Piyasa Katılımcıları Anketi. Enflasyon, politika faizi ve dolar kuru için yıl sonu ve 12 ay sonrası beklentiler; en yeni anket en üstte.</p>
       </article>
@@ -108,7 +115,8 @@
     </section>
 
     <section class="grp" id="guven">
-      <h2 class="gh">Güven endeksleri</h2>
+      <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 46 A24 24 0 0 1 56 46" stroke="#E6F0FE" stroke-width="9"/><path d="M8 46 A24 24 0 0 1 20 25" stroke="#E3A29A" stroke-width="9"/><path d="M44 25 A24 24 0 0 1 56 46" stroke="#1A5FFF" stroke-width="9"/><path d="M20 25 A24 24 0 0 1 44 25" stroke="#A9C6FF" stroke-width="9"/>
+<line x1="32" y1="46" x2="44" y2="30" stroke="#0E3A8C" stroke-width="3"/><circle cx="32" cy="46" r="5" fill="#0E3A8C"/><line x1="8" y1="56" x2="56" y2="56" stroke="#A9C6FF" stroke-width="2"/></svg><h2 class="gh">Güven endeksleri</h2></div>
       <article class="prose wide">
         <p>Tüketici güven endeksi hanelerin, reel kesim güven endeksi imalat sanayi firmalarının ekonomiye bakışını ölçer. Her iki endekste de 100'ün üstü iyimserliği, altı kötümserliği gösterir. Reel kesim güveni mevsimsellikten arındırılmıştır.</p>
         <h3>Son 13 ay</h3>
@@ -119,7 +127,9 @@
     </section>
 
     <section class="grp" id="dis">
-      <h2 class="gh">Cari denge</h2>
+      <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="32" y1="10" x2="32" y2="54" stroke="#0E3A8C" stroke-width="2.5"/><line x1="22" y1="56" x2="42" y2="56" stroke="#0E3A8C" stroke-width="3"/><line x1="10" y1="18" x2="54" y2="14" stroke="#0E3A8C" stroke-width="2.5"/><circle cx="32" cy="16" r="3" fill="#0E3A8C"/>
+<path d="M4 36 L10 18 L16 36 Z" fill="#E6F0FE" stroke="#0E3A8C" stroke-width="1.8"/><path d="M3 36 Q10 42 17 36" fill="#40C0FF" stroke="#0E3A8C" stroke-width="1.8"/>
+<path d="M48 32 L54 14 L60 32 Z" fill="#E6F0FE" stroke="#0E3A8C" stroke-width="1.8"/><path d="M47 32 Q54 38 61 32" fill="#1A5FFF" stroke="#0E3A8C" stroke-width="1.8"/></svg><h2 class="gh">Cari denge</h2></div>
       <article class="prose wide">
         <p>Cari işlemler dengesi; mal ve hizmet ticareti, faiz ve kâr payı ödemeleri ile işçi gelirleri dahil Türkiye'nin dünyayla olan döviz akımlarının net sonucudur. Eksi değer cari açığı, artı değer cari fazlayı gösterir; rakamlar milyar dolardır. Turizm gelirleri nedeniyle yaz aylarında genellikle fazla verilir.</p>
       </article>
