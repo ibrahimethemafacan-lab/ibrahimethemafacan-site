@@ -41,6 +41,7 @@
     .grp{margin-top:2.5rem;padding-top:1.5rem;border-top:2px solid var(--navy);scroll-margin-top:1rem}
     .gh{font-family:var(--serif,inherit);font-size:1.6rem;color:var(--navy);margin:0 0 .5rem}
     .grp h3{font-family:var(--sans);font-size:1.05rem;margin:1.75rem 0 .5rem}
+    .unit{font-family:var(--sans);font-size:.75rem;font-weight:600;color:var(--muted);text-align:right;margin:.75rem 0 -.25rem;padding-right:.6rem;letter-spacing:.02em}
     .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;margin:1rem 0 2rem}
     .kpi div{background:#fff;border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
     .kpi b{display:block;font-family:var(--sans);font-size:1.5rem;color:var(--navy)}
@@ -79,9 +80,11 @@
         <p>Yurt dışında yerleşik yatırımcıların Türkiye'deki hisse senedi ve devlet tahvili (DİBS) alım-satımları. TCMB her perşembe bir önceki haftanın verisini yayımlar. Artı değer net alımı, eksi değer net satışı gösterir; rakamlar milyon dolardır ve fiyat ile kur değişimlerinden arındırılmıştır. “Yabancı borsaya geri döndü mü?” sorusunun en doğrudan cevabı burada.</p>
         <h3>Son 12 hafta</h3>
       </article>
+      <p class="unit">Milyon dolar</p>
       <div class="twrap"><table class="kt" id="t-wk"><thead><tr><th>Hafta</th><th>Hisse senedi</th><th>Devlet tahvili</th><th>Toplam*</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
       <p class="calc-note">* Toplam; hisse ve devlet tahviline ek olarak Hazine'nin yurt dışında ihraç ettiği eurobondları ve özel sektör borçlanma araçlarını da kapsar.</p>
       <article class="prose wide"><h3>Yıllara göre</h3></article>
+      <p class="unit">Milyon dolar</p>
       <div class="twrap"><table class="kt" id="t-yf"><thead><tr><th>Yıl</th><th>Hisse senedi</th><th>Devlet tahvili</th><th>Toplam*</th></tr></thead><tbody></tbody></table></div>
       <p class="calc-note" id="stok-not"></p>
     </section>
@@ -91,7 +94,7 @@
       <article class="prose wide">
         <p>Politika faizi yıl sonu düzeyindedir. Para arzı (M3) ve banka kredileri, bir önceki yıl sonuna göre değişimi gösterir; kredilere döviz krediler de dahildir, bu yüzden kurdaki artış da büyümeye yansır. TCMB rezervi, altın ve döviz dahil brüt rezervdir.</p>
       </article>
-      <div class="twrap"><table class="kt" id="t-para"><thead><tr><th>Yıl</th><th>Politika faizi</th><th>Para arzı (M3)</th><th>Banka kredileri</th><th>TCMB brüt rezervi</th></tr></thead><tbody></tbody></table></div>
+      <div class="twrap"><table class="kt" id="t-para"><thead><tr><th>Yıl</th><th>Politika faizi</th><th>Para arzı (M3)</th><th>Banka kredileri</th><th>TCMB brüt rezervi (milyar $)</th></tr></thead><tbody></tbody></table></div>
       <p class="calc-note" id="para-not"></p>
     </section>
 
@@ -120,8 +123,10 @@
       <article class="prose wide">
         <p>Cari işlemler dengesi; mal ve hizmet ticareti, faiz ve kâr payı ödemeleri ile işçi gelirleri dahil Türkiye'nin dünyayla olan döviz akımlarının net sonucudur. Eksi değer cari açığı, artı değer cari fazlayı gösterir; rakamlar milyar dolardır. Turizm gelirleri nedeniyle yaz aylarında genellikle fazla verilir.</p>
       </article>
+      <p class="unit">Milyar dolar</p>
       <div class="twrap"><table class="kt" id="t-cy"><thead><tr><th>Yıl</th><th>Cari denge</th></tr></thead><tbody></tbody></table></div>
       <article class="prose wide"><h3>Son 12 ay</h3></article>
+      <p class="unit">Milyar dolar</p>
       <div class="twrap"><table class="kt" id="t-cm"><thead><tr><th>Ay</th><th>Cari denge</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
     </section>
 
@@ -156,7 +161,7 @@
     fill('t-yf',D.yf.map(function(r){return '<tr><td>'+r.y+'</td><td>'+sg(r.h)+'</td><td>'+sg(r.b)+'</td><td>'+sg(r.t)+'</td></tr>';}).join(''));
     document.getElementById('stok-not').innerHTML='2026 satırı 16 Ekim\'e kadardır. 16 Ekim itibarıyla yabancıların elindeki hisse senetlerinin piyasa değeri '+n1.format(D.stok.h/1000)+' milyar dolar, devlet tahvillerinin değeri '+n1.format(D.stok.b/1000)+' milyar dolar.';
 
-    fill('t-para',D.para.map(function(r){return '<tr><td>'+r.y+'</td><td>'+pct(r.pf)+'</td><td>'+pc(r.m3)+'</td><td>'+pc(r.kr)+'</td><td>'+n1.format(r.res)+' milyar $</td></tr>';}).join(''));
+    fill('t-para',D.para.map(function(r){return '<tr><td>'+r.y+'</td><td>'+pct(r.pf)+'</td><td>'+pc(r.m3)+'</td><td>'+pc(r.kr)+'</td><td>'+n1.format(r.res)+'</td></tr>';}).join(''));
     document.getElementById('para-not').innerHTML='2026 satırında para arzı ve rezerv 16 Ekim, krediler Ağustos sonu itibarıyladır ve 2025 sonuna göre değişimi gösterir. Yıllık bazda para arzı '+pc(D.m3yoy)+', banka kredileri '+pc(D.kryoy)+' büyüdü. 16 Ekim\'de brüt rezervin '+n1.format(D.res.g/1000)+' milyar doları altın, '+n1.format(D.res.d/1000)+' milyar doları dövizdir.';
 
     fill('t-pka',D.pka.slice().reverse().map(function(r){return '<tr><td>'+ay(r.m)+'</td><td>'+pct(r.ye)+'</td><td>'+pct(r.t12)+'</td><td>'+pct(r.pfye)+'</td><td>'+pct(r.pf12)+'</td><td>'+n2.format(r.usdye)+'</td><td>'+n2.format(r.usd12)+'</td></tr>';}).join(''));
@@ -166,9 +171,9 @@
     fill('t-gm',D.guven.m.slice().reverse().map(function(r){return '<tr><td>'+ay(r.m)+'</td><td>'+n1.format(r.t)+'</td><td>'+n1.format(r.r)+'</td></tr>';}).join(''));
     fill('t-gy',D.guven.y.map(function(r){return '<tr><td>'+r.y+'</td><td>'+n1.format(r.t)+'</td><td>'+n1.format(r.r)+'</td></tr>';}).join(''));
 
-    fill('t-cy',D.cari.y.map(function(r){return '<tr><td>'+r.y+'</td><td>'+sg(r.v,n1)+' milyar $</td></tr>';}).join(''));
-    fill('t-cm',D.cari.m.slice().reverse().map(function(r){return '<tr><td>'+ay(r.m)+'</td><td>'+sg(r.v,n2)+' milyar $</td></tr>';}).join(''));
-    document.querySelector('#t-cm tfoot').innerHTML='<tr><td><b>12 aylık toplam</b></td><td><b>'+sg(D.cari.r12,n1)+' milyar $</b></td></tr>';
+    fill('t-cy',D.cari.y.map(function(r){return '<tr><td>'+r.y+'</td><td>'+sg(r.v,n1)+'</td></tr>';}).join(''));
+    fill('t-cm',D.cari.m.slice().reverse().map(function(r){return '<tr><td>'+ay(r.m)+'</td><td>'+sg(r.v,n2)+'</td></tr>';}).join(''));
+    document.querySelector('#t-cm tfoot').innerHTML='<tr><td><b>12 aylık toplam</b></td><td><b>'+sg(D.cari.r12,n1)+'</b></td></tr>';
     document.querySelector('#t-cy tbody tr:last-child td').innerHTML='2026* <span style="color:var(--muted);font-size:.8em">(Ocak–Ağustos)</span>';
 
     var yf26=D.yf[D.yf.length-1], gl=D.guven.m[D.guven.m.length-1];
