@@ -312,3 +312,4 @@ body { background: linear-gradient(180deg, #DCEEFC 0, #E8F3FD 220px, var(--paper
 .tools.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 860px) { .tools.two { grid-template-columns: 1fr; } }
 .tool-art { width: 120px; height: 72px; display: block; margin-bottom: .25rem; }
+.notes .note-text { margin: .35rem 0 0; font-size: 1.15rem; line-height: 1.5; color: var(--ink); max-width: 36rem; }
