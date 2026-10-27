@@ -15,7 +15,7 @@
   <meta property="og:site_name" content="İbrahim Ethem Afacan">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:title" content="Yatırım Kuruluşları Sınav Defteri">
-  <meta property="og:description" content="SPL 1005 Yatırım Kuruluşları için bölüm notları, özgün sorular ve podcast anlatımı.">
+  <meta property="og:description" content="SPL Yatırım Kuruluşları için bölüm notları, özgün sorular ve podcast anlatımı.">
   <meta property="og:url" content="https://ibrahimethemafacan.com/calisma-masasi/yatirim-kuruluslari/">
   <meta property="og:image" content="https://ibrahimethemafacan.com/img/og-calisma-masasi.png">
   <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ibrahim___ethem">
   <meta name="twitter:title" content="Yatırım Kuruluşları Sınav Defteri">
-  <meta name="twitter:description" content="SPL 1005 Yatırım Kuruluşları için bölüm notları, özgün sorular ve podcast anlatımı.">
+  <meta name="twitter:description" content="SPL Yatırım Kuruluşları için bölüm notları, özgün sorular ve podcast anlatımı.">
   <meta name="twitter:image" content="https://ibrahimethemafacan.com/img/og-calisma-masasi.png">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -241,7 +241,7 @@ h2{letter-spacing:-.015em}
 
 <div class="app">
   <aside class="rail">
-    <div class="brand"><div class="logo" style="font-size:12px">1005</div><div><b>Sınav Defteri</b><span>SPL · Yatırım Kuruluşları</span></div></div>
+    <div class="brand"><div class="logo">YK</div><div><b>Sınav Defteri</b><span>SPL · Yatırım Kuruluşları</span></div></div>
     <div><div class="navlbl">Menü</div><nav class="nav" id="nav"></nav></div>
     <div class="foot">9 bölüm · 212 soru<br>Cevapların bu tarayıcıda saklanır.</div>
   </aside>
@@ -360,7 +360,7 @@ function renderKarma(){
 
 function renderHome(){
   let tA=0,tC=0;S.forEach((s,i)=>{const x=secStats(i);tA+=x.a;tC+=x.c});
-  let h=`<section class="hero"><div><span class="pill">SPL 1005 · Yatırım Kuruluşları</span><h1>Yatırım Kuruluşları Sınav Defteri</h1>
+  let h=`<section class="hero"><div><span class="pill">SPL · Yatırım Kuruluşları</span><h1>Yatırım Kuruluşları Sınav Defteri</h1>
   <p>Yatırım hizmet ve faaliyetleri, yatırım kuruluşları ve ilgili tebliğler için bölüm notları ve notlardan hazırlanmış özgün sorular.</p>
   <div class="row" style="margin-top:18px"><a class="btn pri" href="#b1">Bölüm 1'den başla</a><a class="btn" href="#karma">Karma deneme</a></div></div>${ring(tC,TOTAL,"#0E8F7E","toplam doğru")}</section>
   <div class="tiles"><div class="tile"><span>Yanıtlanan</span><b>${tA}<small style="font-size:14px;color:var(--muted)"> / ${TOTAL}</small></b></div><div class="tile"><span>Doğru</span><b style="color:var(--ok)">${tC}</b></div><div class="tile"><span>Başarı oranı</span><b>${tA?"%"+Math.round(tC/tA*100):"–"}</b></div></div>
