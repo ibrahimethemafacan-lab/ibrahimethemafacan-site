@@ -26,34 +26,35 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css?v=20261028b">
+  <script src="/tema.js?v=1"></script>
+  <link rel="stylesheet" href="/style.css?v=20261028c">
   <style>
     .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;margin:1rem 0 1.5rem}
-    .kpi div{background:#fff;border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
+    .kpi div{background:var(--panel);border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
     .kpi b{display:block;font-family:var(--sans);font-size:1.5rem;color:var(--navy)}
     .kpi div>span{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
     .pos{color:var(--up)} .neg{color:var(--down)}
     .cur{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:.5rem;padding:.6rem 0;background:var(--paper);font-family:var(--sans);font-size:.85rem}
     .cur span{color:var(--muted)}
-    .cur button{font:inherit;font-weight:700;border:1.5px solid var(--accent);background:#fff;color:var(--accent);border-radius:999px;padding:.4rem .95rem;cursor:pointer}
-    .cur button[aria-pressed="true"]{background:var(--accent);color:#fff}
-    .box{background:#fff;border:1px solid var(--rule);border-radius:.8rem;padding:1rem 1.1rem;margin:1rem 0 1.5rem}
+    .cur button{font:inherit;font-weight:700;border:1.5px solid var(--accent);background:var(--panel);color:var(--accent);border-radius:999px;padding:.4rem .95rem;cursor:pointer}
+    .cur button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+    .box{background:var(--panel);border:1px solid var(--rule);border-radius:.8rem;padding:1rem 1.1rem;margin:1rem 0 1.5rem}
     .box h2{font-family:var(--sans);font-size:1rem;font-weight:800;margin:0 0 .2rem;color:var(--ink)}
     .box .sub{font-family:var(--sans);font-size:.8rem;color:var(--muted);margin:0 0 .8rem}
     .rr{display:grid;grid-template-columns:11rem 1fr 6.5rem;align-items:center;gap:.6rem;font-family:var(--sans);font-size:.88rem;padding:.28rem 0}
     .rr .nm{font-weight:600;color:var(--ink)} .rr .nm small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
-    .rr .tr{position:relative;height:16px;background:#EEF3FB;border-radius:4px}
+    .rr .tr{position:relative;height:16px;background:var(--soft);border-radius:4px}
     .rr .tr i{position:absolute;top:0;bottom:0;border-radius:4px}
-    .rr .tr .mid{position:absolute;top:-3px;bottom:-3px;width:1px;background:#9AA8BD}
+    .rr .tr .mid{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--axis)}
     .rr .v{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
     .rr.hl .nm{color:var(--accent)}
     .rr.ix{border-top:1px dashed var(--rule);margin-top:.2rem;padding-top:.45rem}
     .kt{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.85rem;font-variant-numeric:tabular-nums}
     .kt th,.kt td{padding:.5rem .55rem;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
-    .kt th:first-child,.kt td:first-child{text-align:left;position:sticky;left:0;background:#fff;z-index:1}
+    .kt th:first-child,.kt td:first-child{text-align:left;position:sticky;left:0;background:var(--panel);z-index:1}
     .kt thead th{font-weight:600;color:var(--muted);font-size:.78rem}
     .kt td.c{font-weight:800;border-left:2px solid var(--ink)}
-    .kt tr.ix td{font-weight:700;background:#F5F8FC} .kt tr.ix td:first-child{background:#F5F8FC}
+    .kt tr.ix td{font-weight:700;background:var(--soft)} .kt tr.ix td:first-child{background:var(--soft)}
     .twrap{overflow-x:auto}
     @media (max-width:600px){.rr{grid-template-columns:7.2rem 1fr 5.4rem;font-size:.8rem}}
   </style>
@@ -61,12 +62,15 @@
 <body>
   <header class="site-head">
     <div class="wrap narrow">
-      <a class="brand" href="/"><img src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
-      <nav class="nav" aria-label="Ana menü">
-        <a href="/#gundem">Gündem</a>
-        <a href="/#araclar" aria-current="page">Araçlar</a>
-        <a href="/hakkinda.html">Hakkımda</a>
-      </nav>
+      <a class="brand" href="/"><img class="logo-light" src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"><img class="logo-dark" src="/img/logo-dark.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
+      <div class="head-end">
+        <nav class="nav" aria-label="Ana menü">
+          <a href="/#gundem">Gündem</a>
+          <a href="/#araclar" aria-current="page">Araçlar</a>
+          <a href="/hakkinda.html">Hakkımda</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Karanlık moda geç" title="Karanlık moda geç"></button>
+      </div>
     </div>
   </header>
 
@@ -118,7 +122,7 @@
     var D = {"y": ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026*"], "s": [{"n": "Nvidia", "t": "NVDA", "usd": [-30.8, 76.9, 122.3, 125.5, -50.3, 239.0, 171.2, 38.9, 17.1], "tl": [-3.3, 98.8, 177.9, 306.6, -30.6, 433.9, 225.4, 68.6, 35.8], "cu": [-30.8, 22.4, 172.1, 513.6, 205.0, 933.9, 2703.9, 3794.6, 4460.6], "ct": [-3.3, 92.2, 434.2, 2072.2, 1407.5, 7948.6, 26090.0, 44056.4, 59864.3]}, {"n": "Apple", "t": "AAPL", "usd": [-5.4, 89.0, 82.3, 34.6, -26.4, 49.0, 30.7, 9.1, 28.0], "tl": [32.2, 112.4, 127.9, 142.7, 2.7, 134.7, 56.8, 32.4, 48.4], "cu": [-5.4, 78.8, 225.9, 338.7, 222.9, 381.1, 528.8, 586.0, 778.1], "ct": [32.2, 180.8, 539.9, 1453.1, 1495.0, 3643.5, 5769.9, 7671.7, 11433.2]}, {"n": "Microsoft", "t": "MSFT", "usd": [20.8, 57.6, 42.5, 52.5, -28.0, 58.2, 12.9, 15.6, 10.6], "tl": [68.8, 77.1, 78.1, 175.0, 0.5, 149.2, 35.5, 40.3, 28.2], "cu": [20.8, 90.4, 171.3, 313.7, 197.9, 371.2, 432.0, 515.0, 580.2], "ct": [68.8, 198.9, 432.4, 1364.2, 1371.5, 3566.9, 4868.7, 6871.1, 8836.9]}, {"n": "Alphabet", "t": "GOOGL", "usd": [-0.8, 28.2, 30.9, 65.3, -39.1, 58.3, 36.0, 66.0, 2.6], "tl": [38.6, 44.1, 63.6, 198.0, -15.0, 149.3, 63.2, 101.5, 19.0], "cu": [-0.8, 27.2, 66.5, 175.2, 67.6, 165.3, 260.8, 498.9, 514.5], "ct": [38.6, 99.7, 226.7, 873.7, 727.6, 1963.3, 3267.3, 6685.2, 7974.4]}, {"n": "Amazon", "t": "AMZN", "usd": [28.4, 23.0, 76.3, 2.4, -49.6, 80.9, 44.4, 5.2, 9.7], "tl": [79.4, 38.3, 120.4, 84.6, -29.6, 184.9, 73.3, 27.7, 27.2], "cu": [28.4, 57.9, 178.4, 185.1, 43.7, 160.0, 275.4, 294.9, 333.2], "ct": [79.4, 148.1, 446.8, 909.5, 610.7, 1924.7, 3408.7, 4380.7, 5599.4]}, {"n": "Meta", "t": "META", "usd": [-25.7, 56.6, 33.1, 23.1, -64.2, 194.1, 66.0, 13.1, -5.8], "tl": [3.8, 76.0, 66.4, 121.9, -50.0, 363.2, 99.2, 37.3, 9.2], "cu": [-25.7, 16.4, 54.9, 90.6, -31.8, 100.7, 233.2, 276.8, 255.0], "ct": [3.8, 82.7, 204.0, 574.6, 237.3, 1462.3, 3012.1, 4172.9, 4566.0]}, {"n": "Tesla", "t": "TSLA", "usd": [6.9, 25.7, 743.4, 49.8, -65.0, 101.7, 62.5, 11.4, -9.4], "tl": [49.3, 41.3, 954.2, 170.1, -51.1, 217.7, 95.0, 35.2, 5.0], "cu": [6.9, 34.4, 1033.3, 1597.7, 494.2, 1098.5, 1847.5, 2069.6, 1865.6], "ct": [49.3, 111.0, 2123.9, 5906.9, 2837.4, 9232.0, 18097.4, 24502.9, 25733.1]}, {"n": "NASDAQ-100", "t": "QQQ", "usd": [-0.1, 39.0, 48.6, 27.4, -32.6, 54.9, 25.6, 20.8, 17.8], "tl": [39.6, 56.2, 85.8, 129.7, -5.9, 144.0, 50.7, 46.7, 36.6], "cu": [-0.1, 38.9, 106.3, 162.9, 77.2, 174.5, 244.7, 316.4, 390.5], "ct": [39.6, 118.1, 305.1, 830.6, 775.7, 2036.7, 3120.1, 4623.8, 6352.8]}, {"n": "Muhteşem Yedili (eşit ağırlık)", "t": "", "usd": [-0.9, 51.0, 161.5, 50.5, -46.1, 111.6, 60.5, 22.8, 7.5], "tl": [38.4, 69.7, 226.9, 171.4, -24.8, 233.3, 92.6, 49.1, 24.6], "cu": [-0.9, 49.6, 291.3, 488.9, 217.4, 571.7, 978.0, 1223.8, 1323.1], "ct": [38.4, 134.9, 667.8, 1983.7, 1467.0, 5122.7, 9958.9, 14897.9, 18587.4]}]};
     var n1=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:1,maximumFractionDigits:1}),n0=new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0});
     function pc(v){var a=Math.abs(v),s=a>=1000?n0.format(a):n1.format(a);return '<span class="'+(v<0?'neg':'pos')+'">'+(v<0?'−':'+')+'%'+s+'</span>';}
-    var UP='#12805C',DN='#A33A2E',IX='#56657E';
+    var UP='var(--up)',DN='var(--down)',IX='var(--muted)';
     var cur='usd';
     function isIx(s){return s.t==='QQQ';}
     function isMag(s){return s.t==='';}

@@ -26,7 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css?v=20261028b">
+  <script src="/tema.js?v=1"></script>
+  <link rel="stylesheet" href="/style.css?v=20261028c">
     <style>
     .kt{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.9rem;font-variant-numeric:tabular-nums;margin:.5rem 0 1rem}
     .kt th,.kt td{padding:.55rem .6rem;border-bottom:1px solid var(--rule);text-align:right;vertical-align:top}
@@ -37,21 +38,21 @@
     .kt .pos{color:var(--up)} .kt .neg{color:var(--down)}
     .twrap{overflow-x:auto}
     .jump{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem;font-family:var(--sans)}
-    .jump a{font-size:.85rem;font-weight:700;color:var(--accent);text-decoration:none;border:1.5px solid var(--accent);border-radius:999px;padding:.35rem .9rem;background:#fff}
-    .jump a:hover{background:var(--accent);color:#fff}
+    .jump a{font-size:.85rem;font-weight:700;color:var(--accent);text-decoration:none;border:1.5px solid var(--accent);border-radius:999px;padding:.35rem .9rem;background:var(--panel)}
+    .jump a:hover{background:var(--accent);color:var(--on-accent)}
     .grp{margin-top:2.5rem;padding-top:1.5rem;border-top:2px solid var(--navy);scroll-margin-top:1rem}
     .gh{font-family:var(--serif,inherit);font-size:1.6rem;color:var(--navy);margin:0 0 .5rem}
     .grp h3{font-family:var(--sans);font-size:1.05rem;margin:1.75rem 0 .5rem}
     .kt tfoot tr:first-child td{border-top:2px solid var(--ink)}
     .sortbar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-family:var(--sans);font-size:.85rem;margin:.25rem 0 .25rem}
     .sortbar span{color:var(--muted)}
-    .sortbar button{font:inherit;font-weight:700;border:1.5px solid var(--accent);background:#fff;color:var(--accent);border-radius:999px;padding:.35rem .9rem;cursor:pointer}
-    .sortbar button[aria-pressed="true"]{background:var(--accent);color:#fff}
+    .sortbar button{font:inherit;font-weight:700;border:1.5px solid var(--accent);background:var(--panel);color:var(--accent);border-radius:999px;padding:.35rem .9rem;cursor:pointer}
+    .sortbar button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
     @media (max-width:600px){.kt{font-size:.8rem}.kt th,.kt td{padding:.5rem .35rem}#t-kfe th:nth-child(2),#t-kfe td:nth-child(2){display:none}.kt .reg{font-size:.72rem}}
     .gh-row{display:flex;align-items:center;gap:.9rem;margin:0 0 .5rem}.gh-row .gh{margin:0}
     .gh-art{width:56px;height:56px;flex:none}
     .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;margin:1rem 0 2rem}
-    .kpi div{background:#fff;border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
+    .kpi div{background:var(--panel);border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
     .kpi b{display:block;font-family:var(--sans);font-size:1.5rem;color:var(--navy)}
     .kpi div>span{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
   </style>
@@ -59,12 +60,15 @@
 <body>
   <header class="site-head">
     <div class="wrap narrow">
-      <a class="brand" href="/"><img src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
-      <nav class="nav" aria-label="Ana menü">
-        <a href="/#gundem">Gündem</a>
-        <a href="/#araclar" aria-current="page">Araçlar</a>
-        <a href="/hakkinda.html">Hakkımda</a>
-      </nav>
+      <a class="brand" href="/"><img class="logo-light" src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"><img class="logo-dark" src="/img/logo-dark.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
+      <div class="head-end">
+        <nav class="nav" aria-label="Ana menü">
+          <a href="/#gundem">Gündem</a>
+          <a href="/#araclar" aria-current="page">Araçlar</a>
+          <a href="/hakkinda.html">Hakkımda</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Karanlık moda geç" title="Karanlık moda geç"></button>
+      </div>
     </div>
   </header>
 
@@ -75,7 +79,7 @@
       <p>Türkiye'de konut fiyatları ve kiralar, TCMB verileriyle. Fiyat endeksleri Eylül 2026, metrekare fiyatları ve kiralar 2026'nın üçüncü çeyreği itibarıyla.</p>
     </article>
 
-    <p class="calc-note" style="border-left:3px solid var(--accent);padding:.6rem .9rem;background:#fff;border-radius:.4rem">Bu sayfadaki veriler TCMB EVDS'den, yapay zekâ destekli bir araçla (EVDS MCP) derlenmiştir. TCMB yalnızca veri sağlayıcısıdır; tablolar, hesaplamalar ve yorumlar TCMB'ye ait değildir ve yapay zekâ ile hazırlanmıştır. Yanlış seri seçimi gibi hatalar olabilir; verileri kullanmadan önce <a href="https://evds3.tcmb.gov.tr/" rel="noopener" target="_blank">EVDS</a> üzerinden teyit etmeniz kullanıcının sorumluluğundadır.</p>
+    <p class="calc-note" style="border-left:3px solid var(--accent);padding:.6rem .9rem;background:var(--panel);border-radius:.4rem">Bu sayfadaki veriler TCMB EVDS'den, yapay zekâ destekli bir araçla (EVDS MCP) derlenmiştir. TCMB yalnızca veri sağlayıcısıdır; tablolar, hesaplamalar ve yorumlar TCMB'ye ait değildir ve yapay zekâ ile hazırlanmıştır. Yanlış seri seçimi gibi hatalar olabilir; verileri kullanmadan önce <a href="https://evds3.tcmb.gov.tr/" rel="noopener" target="_blank">EVDS</a> üzerinden teyit etmeniz kullanıcının sorumluluğundadır.</p>
 
     <div class="kpi" id="kpi"></div>
 
