@@ -200,7 +200,7 @@
       <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="26" cy="30" r="20" fill="#E6F0FE" stroke="#0E3A8C" stroke-width="2.5"/><ellipse cx="26" cy="30" rx="9" ry="20" stroke="#0E3A8C" stroke-width="1.8"/><line x1="6" y1="30" x2="46" y2="30" stroke="#0E3A8C" stroke-width="1.8"/><path d="M9 20 H43 M9 40 H43" stroke="#A9C6FF" stroke-width="1.8"/>
 <polyline points="30,54 40,44 47,48 60,30" stroke="#1A5FFF" stroke-width="3"/><polyline points="53,30 60,30 60,37" stroke="#1A5FFF" stroke-width="3"/><circle cx="14" cy="56" r="5" fill="#E8B43A" stroke="#0E3A8C" stroke-width="1.8"/></svg><h2 class="gh">Dünya piyasaları</h2></div>
       <article class="prose wide">
-        <p>Dünyanın başlıca borsaları, emtiaları ve dolar endeksi Ekim ayında ve yılbaşından bu yana ne kadar değişti? Borsa endeksleri kendi para birimindedir (S&amp;P 500 dolar, DAX euro, Nikkei yen, BIST 100 TL gibi) ve temettü dahil değildir. Altın, gümüş ve petrol dolar fiyatıdır.</p>
+        <p>Dünyanın başlıca borsaları, emtiaları ve dolar endeksi Ekim ayında ve yılbaşından bu yana ne kadar değişti? Karşılaştırma dolar bazındadır: euro, sterlin, yen, won, yuan ve TL ile hesaplanan endeksler, aynı dönemdeki kur değişimiyle dolara çevrilmiştir. Endeksler fiyat endeksidir, temettü dahil değildir. Dolar endeksi (DXY), doların diğer büyük para birimleri karşısındaki değerini gösterir.</p>
       </article>
       <figure class="chart" id="c-rk"><figcaption id="rk-cap"></figcaption>
         <div class="seg" role="group" aria-label="Dönem"><button type="button" data-p="y" aria-pressed="true">2026</button><button type="button" data-p="m" aria-pressed="false">Ekim ayı</button></div>
@@ -210,12 +210,12 @@
       <figure class="chart" id="c-etf"><figcaption>Altın ETF'lerine net para girişi, 2026, milyar dolar</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <article class="prose wide"><p>Dünya genelinde fiziki altına dayalı borsa yatırım fonlarına (ETF) giren ve çıkan para. Artı değer net girişi, eksi değer net çıkışı gösterir. Bu fonların toplam altın varlığı Eylül sonunda 4.256 ton ile rekor kırdı.</p></article>
       <details class="tbl"><summary>Tablo olarak göster</summary>
-      <div class="twrap"><table class="kt" id="t-dn"><thead><tr><th>Varlık</th><th>Son değer</th><th>Ekim</th><th>2026</th></tr></thead><tbody></tbody></table></div>
+      <div class="twrap"><table class="kt" id="t-dn"><thead><tr><th>Varlık</th><th>Son değer*</th><th>Ekim ($)</th><th>2026 ($)</th></tr></thead><tbody></tbody></table></div>
       <article class="prose wide"><h3>Altın ETF akımları</h3></article>
       <p class="unit">Milyar dolar</p>
       <div class="twrap"><table class="kt" id="t-etf"><thead><tr><th>Ay</th><th>Net akım</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
       </details>
-      <p class="calc-note">Değerler 28 Ekim 2026 itibarıyladır; ABD endeksleri, emtialar ve dolar endeksi o günün akşam fiyatlarıdır ve gün sonu kapanışından farklı olabilir. BIST 100, 28 Ekim yarım gün kapanışıdır. Ekim değişimi Eylül sonu kapanışına, 2026 değişimi 2025 son kapanışına göredir.</p>
+      <p class="calc-note">Değerler 28 Ekim 2026 itibarıyladır; ABD endeksleri, emtialar ve dolar endeksi o günün akşam fiyatlarıdır ve gün sonu kapanışından farklı olabilir. BIST 100, 28 Ekim yarım gün kapanışıdır. Ekim değişimi Eylül sonu kapanışına, 2026 değişimi 2025 son kapanışına göredir. Dolara çevirmede EUR/USD, GBP/USD, USD/JPY, USD/KRW, USD/CNY ve USD/TRY kurlarının aynı tarihlerdeki değerleri kullanılmıştır. * Son değer, endeksin kendi para birimindeki puanıdır.</p>
     </section>
 
     <article class="prose">
@@ -334,7 +334,7 @@
     chart('c-cy',{type:'bar',sign:true,labels:D.cari.y.map(function(r){return r.y;}),fmt:function(v){return fB(v)+' milyar $';},fmtAxis:function(v){return (v<0?'−':'')+n0.format(Math.abs(v));},series:[{name:'Cari denge',color:UP,values:D.cari.y.map(function(r){return r.v;})}]});
 
     /* ---- dünya piyasaları ---- */
-    var DN_=[["S&P 500|ABD","b",0.9,12.0,7735.42],["Dow Jones|ABD","b",2.9,9.0,52377.57],["Nasdaq-100|ABD","b",-2.3,17.7,29723.97],["DAX|Almanya","b",2.0,5.0,25704.02],["FTSE 100|İngiltere","b",0.8,7.7,10694.5],["CAC 40|Fransa","b",-1.0,-3.2,7886.96],["Nikkei 225|Japonya","b",-4.2,27.0,63954.19],["KOSPI|Güney Kore","b",-12.1,42.7,6012.44],["Şanghay|Çin","b",-4.2,-7.2,3681.47],["BIST 100|Türkiye","b",-6.5,-0.9,11165.44],["Altın|ons, $","e",-2.8,-6.4,4039.43],["Gümüş|ons, $","e",-11.4,-24.6,53.62],["Brent petrol|varil, $","e",14.7,83.7,111.82],["Dolar endeksi|DXY","d",0.7,4.0,102.25]];
+    var DN_=[["S&P 500|ABD","b",0.9,12.0,7735.42],["Dow Jones|ABD","b",2.9,9.0,52377.57],["Nasdaq-100|ABD","b",-2.3,17.7,29723.97],["DAX|Almanya","b",0.3,-0.5,25704.02],["FTSE 100|İngiltere","b",1.2,6.6,10694.5],["CAC 40|Fransa","b",-2.6,-8.3,7886.96],["Nikkei 225|Japonya","b",-4.7,25.9,63954.19],["KOSPI|Güney Kore","b",-11.2,53.4,6012.44],["Şanghay|Çin","b",-3.6,-2.6,3681.47],["BIST 100|Türkiye","b",-8.1,-14.5,11165.44],["Altın|ons","e",-2.8,-6.4,4039.43],["Gümüş|ons","e",-11.4,-24.6,53.62],["Brent petrol|varil","e",14.7,83.7,111.82],["Dolar endeksi|DXY","d",0.7,4.0,102.25]];
     var KAT={b:['Borsa',C1],e:['Emtia',C2],d:['Döviz',C3]};
     var US10={v:[1.088,1.426,1.739,1.625,1.584,1.472,1.23,1.308,1.487,1.562,1.443,1.514,1.793,1.834,2.339,2.931,2.853,3.017,2.651,3.195,3.827,4.05,3.687,3.88,3.506,3.914,3.476,3.424,3.642,3.839,3.959,4.106,4.579,4.931,4.362,3.881,3.978,4.25,4.205,4.694,4.51,4.387,4.075,3.913,3.786,4.275,4.175,4.576,4.585,4.219,4.23,4.156,4.401,4.242,4.367,4.233,4.153,4.098,4.018,4.172,4.238,3.952,4.318,4.375,4.44,4.47,4.74,4.76,5.29,5.02]};
     var ETF=[19,5.3,-12,6.6,-2,-8.9,3,18,10];
@@ -344,7 +344,7 @@
     document.querySelector('#t-etf tfoot').innerHTML='<tr><td><b>Ocak–Eylül toplamı</b></td><td><b>'+sg(ETF.reduce(function(a,b){return a+b;},0),n0)+'</b></td></tr>';
     var rkP='y';
     function rank(){var k=rkP==='y'?3:2,rows=DN_.slice().sort(function(a,b){return b[k]-a[k];});
-      document.getElementById('rk-cap').textContent=rkP==='y'?'2026 değişimi, % (her varlık kendi para biriminde)':'Ekim değişimi, % (her varlık kendi para biriminde)';
+      document.getElementById('rk-cap').textContent=rkP==='y'?'2026 değişimi, dolar bazında, %':'Ekim değişimi, dolar bazında, %';
       var vs=rows.map(function(r){return r[k];}),lo=Math.min(0,Math.min.apply(null,vs)),hi=Math.max(0,Math.max.apply(null,vs)),span=hi-lo||1,z=(0-lo)/span*100;
       var box=document.querySelector('#c-rk .rk');
       if(!box.children.length){DN_.forEach(function(r){var d=document.createElement('div');d.className='rk-row';d.dataset.n=r[0];d.innerHTML='<span class="nm"></span><span class="tr"><i class="z"></i><i class="b"></i></span><span class="vl"></span>';box.appendChild(d);});}
