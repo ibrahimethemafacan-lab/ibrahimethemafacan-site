@@ -44,7 +44,7 @@
     .unit{font-family:var(--sans);font-size:.75rem;font-weight:600;color:var(--muted);text-align:right;margin:.75rem 0 -.25rem;padding-right:.6rem;letter-spacing:.02em}
     .gh-row{display:flex;align-items:center;gap:.9rem;margin:0 0 .5rem}.gh-row .gh{margin:0}
     .gh-art{width:56px;height:56px;flex:none}
-    .tabs{position:sticky;top:0;z-index:5;display:flex;gap:.5rem;overflow-x:auto;padding:.6rem 0;margin:0 0 1rem;background:var(--paper);font-family:var(--sans);scrollbar-width:none}
+    .tabs{position:sticky;top:0;z-index:5;display:flex;gap:.5rem;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;padding:.6rem 0;margin:0 0 1rem;background:var(--paper);font-family:var(--sans);scrollbar-width:none}
     .tabs::-webkit-scrollbar{display:none}
     .tabs button{flex:none;font:inherit;font-size:.85rem;font-weight:700;color:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:.4rem .95rem;background:#fff;cursor:pointer}
     .tabs button[aria-selected="true"]{background:var(--accent);color:#fff}
