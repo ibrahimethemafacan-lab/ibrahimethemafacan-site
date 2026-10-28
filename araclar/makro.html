@@ -203,7 +203,7 @@
         <p>Dünyanın başlıca borsaları, emtiaları ve dolar endeksi Ekim ayında ve yılbaşından bu yana ne kadar değişti? Borsa endeksleri kendi para birimindedir (S&amp;P 500 dolar, DAX euro, Nikkei yen, BIST 100 TL gibi) ve temettü dahil değildir. Altın, gümüş ve petrol dolar fiyatıdır.</p>
       </article>
       <figure class="chart" id="c-rk"><figcaption id="rk-cap"></figcaption>
-        <div class="seg" role="group" aria-label="Dönem"><button type="button" data-p="y" aria-pressed="true">2026 başından beri</button><button type="button" data-p="m" aria-pressed="false">Ekim ayı</button></div>
+        <div class="seg" role="group" aria-label="Dönem"><button type="button" data-p="y" aria-pressed="true">2026</button><button type="button" data-p="m" aria-pressed="false">Ekim ayı</button></div>
         <div class="lg"></div><div class="rk"></div></figure>
       <figure class="chart" id="c-us10"><figcaption>ABD 10 yıllık tahvil faizi, ay sonu, %</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <article class="prose wide"><p>ABD 10 yıllık tahvil faizi, dünyadaki varlıkların fiyatlamasında temel alınan “risksiz” getiridir; yükseldiğinde hisse senetleri, altın ve gelişmekte olan ülke varlıkları genellikle baskı altına girer.</p></article>
@@ -344,7 +344,7 @@
     document.querySelector('#t-etf tfoot').innerHTML='<tr><td><b>Ocak–Eylül toplamı</b></td><td><b>'+sg(ETF.reduce(function(a,b){return a+b;},0),n0)+'</b></td></tr>';
     var rkP='y';
     function rank(){var k=rkP==='y'?3:2,rows=DN_.slice().sort(function(a,b){return b[k]-a[k];});
-      document.getElementById('rk-cap').textContent=rkP==='y'?'2026 başından bu yana değişim, %':'Ekim ayındaki değişim, %';
+      document.getElementById('rk-cap').textContent=rkP==='y'?'2026 değişimi, % (her varlık kendi para biriminde)':'Ekim değişimi, % (her varlık kendi para biriminde)';
       var vs=rows.map(function(r){return r[k];}),lo=Math.min(0,Math.min.apply(null,vs)),hi=Math.max(0,Math.max.apply(null,vs)),span=hi-lo||1,z=(0-lo)/span*100;
       var box=document.querySelector('#c-rk .rk');
       if(!box.children.length){DN_.forEach(function(r){var d=document.createElement('div');d.className='rk-row';d.dataset.n=r[0];d.innerHTML='<span class="nm"></span><span class="tr"><i class="z"></i><i class="b"></i></span><span class="vl"></span>';box.appendChild(d);});}
