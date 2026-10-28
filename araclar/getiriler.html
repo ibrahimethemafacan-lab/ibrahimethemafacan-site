@@ -147,7 +147,7 @@
       var d = DATA[i];
       Array.prototype.forEach.call(tabs.querySelectorAll('button'), function (b, j) { b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; });
       document.getElementById('panel').setAttribute('aria-labelledby', 'tab-' + d.id);
-      var MORE = { konut: ['/araclar/konut.html', 'İl ve bölge bazında konut fiyatları ve kiraları →'], ndx: ['/araclar/nasdaq.html', 'Muhteşem 7 hisseleri ve NASDAQ-100 karşılaştırması →'] };
+      var MORE = { konut: ['/araclar/konut.html', 'İl ve bölge bazında konut fiyatları ve kiraları →'], ndx: ['/araclar/nasdaq.html', 'Muhteşem Yedili hisseleri ve NASDAQ-100 karşılaştırması →'] };
       document.getElementById('more-top').hidden = !MORE[d.id];
       if (MORE[d.id]) { var ml = document.getElementById('more-link'); ml.href = MORE[d.id][0]; ml.textContent = MORE[d.id][1]; }
       var maxAbs = Math.max.apply(null, d.rows.map(function (r) { return Math.abs(r[1]); }));
