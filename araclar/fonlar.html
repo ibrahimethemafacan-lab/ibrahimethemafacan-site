@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="/tema.js?v=1"></script>
-  <link rel="stylesheet" href="/style.css?v=20261029a">
+  <link rel="stylesheet" href="/style.css?v=20261029b">
     <style>
     .kt{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.9rem;font-variant-numeric:tabular-nums;margin:.5rem 0 1rem}
     .kt th,.kt td{padding:.55rem .6rem;border-bottom:1px solid var(--rule);text-align:right;vertical-align:top}
@@ -119,7 +119,9 @@
       <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="34" r="20" fill="#E6F0FE" stroke="#0E3A8C" stroke-width="2.5"/><path d="M24 34 L24 14 A20 20 0 0 1 43 40 Z" fill="#1A5FFF"/><path d="M24 34 L43 40 A20 20 0 0 1 30 53 Z" fill="#40C0FF"/><rect x="46" y="44" width="6" height="14" rx="1.5" fill="#A9C6FF"/><rect x="55" y="36" width="6" height="22" rx="1.5" fill="#1A5FFF"/></svg><h2 class="gh">Yatırım fonları</h2></div>
       <article class="prose wide"><p>Portföy yönetim şirketlerinin kurduğu yatırım fonlarının toplam büyüklüğü (serbest fonlar dahil, borsa yatırım fonları ve gayrimenkul/girişim sermayesi fonları hariç). Ay sonu değerleri, milyar TL.</p></article>
       <figure class="chart" id="c-yb"><figcaption>Yatırım fonlarının toplam büyüklüğü, ay sonu, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
-      <figure class="chart" id="c-yt"><figcaption>Fon türüne göre büyüklük, 28 Ekim 2026, milyar TL</figcaption><div class="lg"></div><div class="rk"></div></figure>
+      <figure class="chart" id="c-yt"><figcaption id="yt-cap"></figcaption>
+        <div class="seg" role="group" aria-label="Görünüm"><button type="button" data-p="b" aria-pressed="true">Büyüklük</button><button type="button" data-p="d" aria-pressed="false">2026 değişimi</button></div>
+        <div class="lg"></div><div class="rk"></div></figure>
       <figure class="chart" id="c-ya"><figcaption>Aylık net para girişi ve çıkışı, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <article class="prose wide"><p>Net akım, yatırımcıların fona yatırdığı paradan çektikleri paranın düşülmesiyle bulunur; fiyat değişimini içermez. Eylül 2026'da yatırım fonlarından yaklaşık 1,4 trilyon TL net çıkış oldu; bunun büyük bölümü serbest fonlar ve para piyasası fonlarındandı.</p></article>
       <figure class="chart" id="c-yy"><figcaption>Yatırımcı sayısı, ay sonu, milyon</figcaption><div class="lg"></div><div class="plot"></div></figure>
@@ -162,7 +164,6 @@
     function pc(v){return '<span class="'+(v<0?'neg':'pos')+'">'+(v<0?'−':'+')+'%'+n1.format(Math.abs(v))+'</span>';}
     function pct(v){return '%'+n1.format(v);}
     function fill(id,html){document.querySelector('#'+id+' tbody').innerHTML=html;}
-    function sum(a,k){return a.reduce(function(s,r){return s+r[k];},0);}
     /* ---- grafikler ---- */
     var C1='#1A5FFF',C2='#E8862A',C3='#14A38B',UP='#12805C',DN='#A33A2E';
     var SVGNS='http://www.w3.org/2000/svg';
@@ -222,9 +223,20 @@
       ['Gönüllü BES katılımcısı, milyon','10,39'],['Gönüllü BES fon tutarı, trilyon TL','2,36'],
       ['OKS katılımcısı, milyon','7,94'],['OKS fon tutarı, trilyon TL','0,16']
     ].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
-    fill('t-sem',D.sem.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+n0.format(r[1])+'</td><td>'+n1.format(r[2])+'</td><td>'+n0.format(r[3])+'</td><td>'+(r[4]>5?pc((r[2]/r[4]-1)*100):'–')+'</td></tr>';}).join(''));
-    /* tür sıralaması */
-    (function(){var box=document.querySelector('#c-yt .rk'),mx=D.sem[0][2];box.innerHTML=D.sem.map(function(r){return '<div class="rk-row"><span class="nm">'+r[0]+'</span><span class="tr"><i class="b" style="left:0;width:'+Math.max(.6,r[2]/mx*100)+'%;background:'+C1+'"></i></span><span class="vl">'+n0.format(r[2])+'</span></div>';}).join('');})();
+    fill('t-sem',D.sem.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+n0.format(r[1])+'</td><td>'+n1.format(r[2])+'</td><td>'+n0.format(r[3])+'</td><td>'+(r[4]>2?pc((r[2]/r[4]-1)*100):'–')+'</td></tr>';}).join(''));
+    /* tür sıralaması: büyüklük / 2026 değişimi */
+    var ytP='b';
+    function ytDraw(){
+      var rows=D.sem.map(function(r){return {n:r[0],b:r[2],d:r[4]>2?(r[2]/r[4]-1)*100:null};});
+      if(ytP==='d')rows=rows.filter(function(r){return r.d!=null;});
+      var k=ytP==='b'?'b':'d';rows.sort(function(a,b){return b[k]-a[k];});
+      document.getElementById('yt-cap').textContent=ytP==='b'?'Fon türüne göre büyüklük, 28 Ekim 2026, milyar TL':'Fon türüne göre büyüklüğün 2026 başından bu yana değişimi, %';
+      var vs=rows.map(function(r){return r[k];}),lo=Math.min(0,Math.min.apply(null,vs)),hi=Math.max(0,Math.max.apply(null,vs)),span=hi-lo||1,z=(0-lo)/span*100;
+      document.querySelector('#c-yt .rk').innerHTML=rows.map(function(r){var v=r[k],p=(v-lo)/span*100,cl=ytP==='d'?(v<0?'neg':'pos'):'';
+        return '<div class="rk-row"><span class="nm">'+r.n+'</span><span class="tr">'+(ytP==='d'?'<i class="z" style="left:'+z+'%"></i>':'')+'<i class="b" style="left:'+Math.min(p,z)+'%;width:'+Math.max(.6,Math.abs(p-z))+'%;background:'+(ytP==='d'?(v<0?DN:UP):C1)+'"></i></span><span class="vl '+cl+'">'+(ytP==='b'?n0.format(v):(v<0?'−':'+')+'%'+n1.format(Math.abs(v)))+'</span></div>';}).join('');
+    }
+    document.querySelectorAll('#c-yt .seg button').forEach(function(b){b.addEventListener('click',function(){ytP=b.dataset.p;document.querySelectorAll('#c-yt .seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});ytDraw();});});
+    ytDraw();
     var ms=D.m.map(function(r){return r[0];});
     var fT=function(v){return n0.format(v)+' milyar TL';},fTa=function(v){return n0.format(v);};
     chart('c-yb',{type:'line',labels:ms,short:ayk,tipLabel:ay,fmt:fT,fmtAxis:fTa,lw:46,min:0,series:[{name:'Yatırım fonları',color:C1,values:D.m.map(function(r){return r[1];})}]});
@@ -242,3 +254,5 @@
     var h=location.hash.slice(1);sel(document.getElementById(h)&&document.getElementById(h).classList.contains('grp')?h:'yf',false);
   </script>
 <script data-goatcounter="https://ibrahimethemafacan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

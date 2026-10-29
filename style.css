@@ -445,3 +445,7 @@ body { background: linear-gradient(180deg, var(--hero-a) 0, var(--hero-b) 220px,
 .notes li.brief .note-text { font-family: var(--sans); font-size: 1rem; font-weight: 500; line-height: 1.55; margin-top: .5rem; }
 
 @media (max-width: 560px) { .nav { gap: .7rem; font-size: .85rem; } .nav a { gap: .25rem; } .nav a::before { width: .9rem; height: .9rem; } }
+
+/* Metin seçimini kapat (form alanları hariç) */
+body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+input, textarea, select, [contenteditable] { -webkit-user-select: text; user-select: text; }
