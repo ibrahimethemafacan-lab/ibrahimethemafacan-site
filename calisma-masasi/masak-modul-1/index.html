@@ -137,6 +137,11 @@ td.r{font-family:var(--f-mono);font-size:13px;white-space:nowrap}
 .pod-ctl button{all:unset;cursor:pointer;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:600 12px var(--f-mono);color:var(--ink)}
 .pod-ctl button[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent)}
 .pod-ctl button:focus-visible{outline:2px solid var(--accent)}
+.pod-skip{display:flex;gap:10px;justify-content:center;align-items:center}
+.pod-skip button{all:unset;cursor:pointer;display:grid;place-items:center;min-width:64px;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:700 14px var(--f-mono);color:var(--ink);-webkit-tap-highlight-color:transparent}
+.pod-skip button.pp{min-width:52px;width:52px;height:52px;padding:0;border-radius:50%;background:var(--accent);border-color:var(--accent);color:var(--surface);font-size:18px}
+.pod-skip button:active{transform:scale(.96)}
+.pod-skip button:focus-visible{outline:2px solid var(--accent)}
 .pod details summary{cursor:pointer;font-size:13px;color:var(--accent);font-weight:500}
 .pod details div{display:grid;gap:8px;margin-top:8px;max-height:340px;overflow:auto;padding-right:6px;font-size:14px;line-height:1.65}
 .pod details p{margin:0;max-width:72ch}
@@ -1940,12 +1945,16 @@ const PODS={"sib": {"dur": "8 dk 07 sn", "p": ["Merhaba, MASAK Modül Bir podcas
 function readerBar(){const p=PODS[cur];if(!p)return "";const r=pref("rate","1");
   return `<div class="pod"><div class="pod-top"><span class="pod-ic" aria-hidden="true">🎧</span><span class="pod-t"><b>Bölüm podcasti</b><span>Sınav odaklı anlatım · erkek sesi · ${p.dur}</span></span></div>
   <audio id="pod-audio" controls preload="metadata" src="audio/${cur}.mp3"></audio>
+  <div class="pod-skip" role="group" aria-label="Sarma"><button data-skip="-15" aria-label="15 saniye geri">−15 sn</button><button class="pp" id="pod-pp" aria-label="Oynat">▶</button><button data-skip="15" aria-label="15 saniye ileri">+15 sn</button></div>
   <div class="pod-ctl" role="group" aria-label="Oynatma hızı">Hız ${["0.9","1","1.15","1.3","1.5"].map(v=>`<button data-rate="${v}" aria-pressed="${v===r}">${v.replace(".",",")}×</button>`).join("")}</div>
   <details><summary>Anlatım metnini göster</summary><div>${p.p.map(x=>`<p>${x}</p>`).join("")}</div></details></div>`}
 function ttsSetup(){const a=document.getElementById("pod-audio");if(!a)return;const r=+pref("rate","1");a.playbackRate=r;
   a.addEventListener("loadedmetadata",()=>{a.playbackRate=+pref("rate","1");try{const t=+localStorage.getItem("masak-pod-"+cur);if(t>5&&t<a.duration-5)a.currentTime=t}catch(e){}});
   let last=0;a.addEventListener("timeupdate",()=>{if(Math.abs(a.currentTime-last)>4){last=a.currentTime;try{localStorage.setItem("masak-pod-"+cur,String(Math.floor(a.currentTime)))}catch(e){}}});
   a.addEventListener("ended",()=>{try{localStorage.removeItem("masak-pod-"+cur)}catch(e){}});
+  document.querySelectorAll(".pod-skip [data-skip]").forEach(b=>b.onclick=()=>{const d=+b.dataset.skip,m=isFinite(a.duration)?a.duration:1e9;a.currentTime=Math.min(Math.max(0,a.currentTime+d),m-0.2)});
+  const pp=document.getElementById("pod-pp"),ppu=()=>{pp.textContent=a.paused?"▶":"❚❚";pp.setAttribute("aria-label",a.paused?"Oynat":"Duraklat")};
+  pp.onclick=()=>{a.paused?a.play():a.pause()};a.addEventListener("play",ppu);a.addEventListener("pause",ppu);a.addEventListener("ended",ppu);
   document.querySelectorAll(".pod-ctl [data-rate]").forEach(b=>b.onclick=()=>{setPref("rate",b.dataset.rate);a.playbackRate=+b.dataset.rate;
     document.querySelectorAll(".pod-ctl [data-rate]").forEach(x=>x.setAttribute("aria-pressed",x===b))})}
 function ttsStop(){const a=document.getElementById("pod-audio");if(a){try{a.pause()}catch(e){}}}
