@@ -142,6 +142,10 @@
       <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 54 H54" stroke="#A9C6FF" stroke-width="2"/><rect x="14" y="22" width="36" height="32" rx="4" fill="#fff" stroke="#0E3A8C" stroke-width="2.5"/><path d="M22 22 V16 a10 10 0 0 1 20 0 V22" stroke="#0E3A8C" stroke-width="2.5"/><circle cx="32" cy="38" r="7" fill="#1A5FFF"/><path d="M32 34 v8 M29 36.5 h6" stroke="#fff" stroke-width="2"/><polyline points="44,12 52,6 58,10" stroke="#40C0FF" stroke-width="2.5"/></svg><h2 class="gh">Emeklilik fonları ve BES</h2></div>
       <article class="prose wide"><p>Bireysel emeklilik sisteminde katılımcıların birikimleri emeklilik yatırım fonlarında değerlendirilir. Gönüllü BES'te katılımcı sözleşmeyi kendisi açar; otomatik katılımda (OKS) işveren çalışanı sisteme dahil eder ve çalışan iki ay içinde cayabilir. Devlet, gönüllü BES'te ödenen katkı payının yüzde 20'si oranında devlet katkısı verir.</p></article>
       <div class="kpi" id="kpi-bes"></div>
+      <h3 class="bd-h">Gönüllü BES özet verileri, 26 Ekim 2026</h3>
+      <div class="kpi" id="kpi-oz"></div>
+      <div class="twrap"><table class="kt" id="t-oz"><thead><tr><th>Kalem</th><th>Milyar TL</th><th>Pay</th></tr></thead><tbody></tbody></table></div>
+      <p class="calc-note">Kaynak: EGM, BES Özet Verileri, 26.10.2026. Bir katılımcının birden fazla sözleşmesi olabildiği için sözleşme sayısı katılımcı sayısından yüksektir. Faizsiz fon tutarı, katılım esaslı (faizsiz) emeklilik fonlarındaki birikimi gösterir. Devlet katkısı, katılımcının kendi birikiminden ayrı hesapta tutulur.</p>
       <h3 class="bd-h">Birikim büyüklüğüne göre katılımcılar</h3>
       <article class="prose wide"><p>Gönüllü BES'te katılımcıların çoğunun birikimi küçük; fonların büyük kısmı ise az sayıda katılımcıda toplanıyor. EGM'nin 30 Eylül 2026 verileri.</p></article>
       <div class="kpi" id="kpi-bd"></div>
@@ -260,6 +264,10 @@
     }
     document.querySelectorAll('#c-yt .seg button').forEach(function(b){b.addEventListener('click',function(){ytP=b.dataset.p;document.querySelectorAll('#c-yt .seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});ytDraw();});});
     ytDraw();
+    (function(){var OZ=[['Katılımcıların fon tutarı',2089.6943,1],['Faizli',1345.7005,2],['Faizsiz (katılım)',743.9938,2],['Devlet katkısı fon tutarı',273.4677,1],['Faizli',239.9327,2],['Faizsiz (katılım)',33.5350,2]],T=2089.6943+273.4677;
+      document.getElementById('kpi-oz').innerHTML=[['Toplam birikim (devlet katkısı dahil), trilyon TL',n2.format(T/1000)],['Devlet katkısı birikimi, milyar TL',n1.format(273.4677)],['Katılımcı sayısı','10.392.080'],['Sözleşme sayısı','13.041.312']].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
+      var base=0;fill('t-oz',OZ.map(function(r){if(r[2]===1)base=r[1];var sh=r[2]===1?r[1]/T*100:r[1]/base*100;return '<tr><td'+(r[2]===2?' style="padding-left:1.6rem;color:var(--muted)"':'')+'>'+(r[2]===1?'<b>'+r[0]+'</b>':r[0])+'</td><td>'+n1.format(r[1])+'</td><td>%'+n1.format(sh)+'</td></tr>';}).join(''));
+    })();
     (function(){var tc=D.bd.reduce(function(a,r){return a+r[1];},0),tt=D.bd.reduce(function(a,r){return a+r[2];},0);
       var small=D.bd[0][1]/tc*100,big=D.bd.slice(5),bc=big.reduce(function(a,r){return a+r[1];},0),bt=big.reduce(function(a,r){return a+r[2];},0);
       document.getElementById('kpi-bd').innerHTML=[['Birikimi 50 bin TL altında olan katılımcı payı','%'+n0.format(small)],['Birikimi 1 milyon TL üstü katılımcı, bin kişi',n0.format(bc/1000)],['Bu katılımcıların fonlardaki payı (yaklaşık)','%'+n0.format(bt/tt*100)],['Katılımcı başına ortalama birikim, TL','204.451']].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
