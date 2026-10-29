@@ -440,6 +440,7 @@ body { background: linear-gradient(180deg, var(--hero-a) 0, var(--hero-b) 220px,
 /* Gündem: yazı / kısa haber ayrımı */
 .notes li.post .more { display: inline-block; margin-top: .6rem; font-family: var(--sans); font-size: .85rem; font-weight: 700; color: var(--accent); }
 .notes li.brief { padding-left: 1.1rem; border-left: 3px solid var(--rule); }
+.notes li.brief .brief-ic { width: 1.05rem; height: 1.05rem; vertical-align: -3px; margin-right: .45rem; }
 .notes li.brief .note-text { font-family: var(--sans); font-size: .95rem; line-height: 1.55; margin-top: .4rem; max-width: 34rem; }
 
 @media (max-width: 560px) { .nav { gap: .7rem; font-size: .85rem; } .nav a { gap: .25rem; } .nav a::before { width: .9rem; height: .9rem; } }
