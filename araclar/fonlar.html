@@ -146,6 +146,10 @@
       <div class="kpi" id="kpi-oz"></div>
       <div class="twrap"><table class="kt" id="t-oz"><thead><tr><th>Kalem</th><th>Milyar TL</th><th>Pay</th></tr></thead><tbody></tbody></table></div>
       <p class="calc-note">Kaynak: EGM, BES Özet Verileri, 26.10.2026. Bir katılımcının birden fazla sözleşmesi olabildiği için sözleşme sayısı katılımcı sayısından yüksektir. Faizsiz fon tutarı, katılım esaslı (faizsiz) emeklilik fonlarındaki birikimi gösterir. Devlet katkısı, katılımcının kendi birikiminden ayrı hesapta tutulur.</p>
+      <h3 class="bd-h">Otomatik katılım (OKS) özet verileri, 26 Ekim 2026</h3>
+      <div class="kpi" id="kpi-oks"></div>
+      <div class="twrap"><table class="kt" id="t-oks"><thead><tr><th>Kalem</th><th>Milyar TL</th><th>Pay</th></tr></thead><tbody></tbody></table></div>
+      <p class="calc-note">Kaynak: EGM, OKS Özet Verileri, 26.10.2026. Bir çalışan birden fazla işveren üzerinden sisteme dahil olabildiği için sertifika sayısı çalışan sayısından yüksektir. OKS'de birikimin çoğu faizsiz (katılım) fonlardadır.</p>
       <h3 class="bd-h">Birikim büyüklüğüne göre katılımcılar</h3>
       <article class="prose wide"><p>Gönüllü BES'te katılımcıların çoğunun birikimi küçük; fonların büyük kısmı ise az sayıda katılımcıda toplanıyor. EGM'nin 30 Eylül 2026 verileri.</p></article>
       <div class="kpi" id="kpi-bd"></div>
@@ -267,6 +271,10 @@
     (function(){var OZ=[['Katılımcıların fon tutarı',2089.6943,1],['Faizli',1345.7005,2],['Faizsiz (katılım)',743.9938,2],['Devlet katkısı fon tutarı',273.4677,1],['Faizli',239.9327,2],['Faizsiz (katılım)',33.5350,2]],T=2089.6943+273.4677;
       document.getElementById('kpi-oz').innerHTML=[['Toplam birikim (devlet katkısı dahil), trilyon TL',n2.format(T/1000)],['Devlet katkısı birikimi, milyar TL',n1.format(273.4677)],['Katılımcı sayısı','10.392.080'],['Sözleşme sayısı','13.041.312']].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
       var base=0;fill('t-oz',OZ.map(function(r){if(r[2]===1)base=r[1];var sh=r[2]===1?r[1]/T*100:r[1]/base*100;return '<tr><td'+(r[2]===2?' style="padding-left:1.6rem;color:var(--muted)"':'')+'>'+(r[2]===1?'<b>'+r[0]+'</b>':r[0])+'</td><td>'+n1.format(r[1])+'</td><td>%'+n1.format(sh)+'</td></tr>';}).join(''));
+    })();
+    (function(){var OZ=[['Çalışanların fon tutarı',151.0791,1],['Faizli',60.1580,2],['Faizsiz (katılım)',90.9211,2],['Devlet katkısı fon tutarı',10.0603,1],['Faizli',3.9179,2],['Faizsiz (katılım)',6.1424,2]],T=151.0791+10.0603;
+      document.getElementById('kpi-oks').innerHTML=[['Toplam birikim (devlet katkısı dahil), milyar TL',n1.format(T)],['Devlet katkısı birikimi, milyar TL',n1.format(10.0603)],['Çalışan sayısı','7.938.628'],['Sertifika sayısı','12.217.134']].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
+      var base=0;fill('t-oks',OZ.map(function(r){if(r[2]===1)base=r[1];var sh=r[2]===1?r[1]/T*100:r[1]/base*100;return '<tr><td'+(r[2]===2?' style="padding-left:1.6rem;color:var(--muted)"':'')+'>'+(r[2]===1?'<b>'+r[0]+'</b>':r[0])+'</td><td>'+n1.format(r[1])+'</td><td>%'+n1.format(sh)+'</td></tr>';}).join(''));
     })();
     (function(){var tc=D.bd.reduce(function(a,r){return a+r[1];},0),tt=D.bd.reduce(function(a,r){return a+r[2];},0);
       var small=D.bd[0][1]/tc*100,big=D.bd.slice(5),bc=big.reduce(function(a,r){return a+r[1];},0),bt=big.reduce(function(a,r){return a+r[2];},0);
