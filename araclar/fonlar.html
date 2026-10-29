@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yatırım ve Emeklilik Fonları — İbrahim Ethem Afacan</title>
+  <meta name="description" content="TEFAS ve EGM verileriyle Türkiye'de yatırım fonları ve bireysel emeklilik: fon büyüklükleri, yatırımcı ve katılımcı sayıları, fon türlerine göre dağılım ve aylık para girişleri.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="İbrahim Ethem Afacan">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Yatırım ve Emeklilik Fonları">
+  <meta property="og:description" content="TEFAS ve EGM verileriyle Türkiye'de yatırım fonları ve bireysel emeklilik: fon büyüklükleri, yatırımcı ve katılımcı sayıları, fon türlerine göre dağılım ve aylık para girişleri.">
+  <meta property="og:url" content="https://ibrahimethemafacan.com/araclar/fonlar.html">
+  <meta property="og:image" content="https://ibrahimethemafacan.com/img/og-fonlar.png?v=1">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ibrahim___ethem">
+  <meta name="twitter:title" content="Yatırım ve Emeklilik Fonları">
+  <meta name="twitter:description" content="TEFAS ve EGM verileriyle Türkiye'de yatırım fonları ve bireysel emeklilik: fon büyüklükleri, yatırımcı ve katılımcı sayıları, fon türlerine göre dağılım ve aylık para girişleri.">
+  <meta name="twitter:image" content="https://ibrahimethemafacan.com/img/og-fonlar.png?v=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="/tema.js?v=1"></script>
+  <link rel="stylesheet" href="/style.css?v=20261029a">
+    <style>
+    .kt{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.9rem;font-variant-numeric:tabular-nums;margin:.5rem 0 1rem}
+    .kt th,.kt td{padding:.55rem .6rem;border-bottom:1px solid var(--rule);text-align:right;vertical-align:top}
+    .kt th:first-child,.kt td:first-child{text-align:left}
+    .kt thead th{font-weight:600;color:var(--muted);font-size:.8rem}
+    .kt .pos{color:var(--up)} .kt .neg{color:var(--down)}
+    .kt tfoot tr:first-child td{border-top:2px solid var(--ink)}
+    .twrap{overflow-x:auto}
+    .jump{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem;font-family:var(--sans)}
+    .jump a{font-size:.85rem;font-weight:700;color:var(--accent);text-decoration:none;border:1.5px solid var(--accent);border-radius:999px;padding:.35rem .9rem;background:var(--panel)}
+    .jump a:hover{background:var(--accent);color:var(--on-accent)}
+    .grp{margin-top:2.5rem;padding-top:1.5rem;border-top:2px solid var(--navy);scroll-margin-top:1rem}
+    .gh{font-family:var(--serif,inherit);font-size:1.6rem;color:var(--navy);margin:0 0 .5rem}
+    .grp h3{font-family:var(--sans);font-size:1.05rem;margin:1.75rem 0 .5rem}
+    .unit{font-family:var(--sans);font-size:.75rem;font-weight:600;color:var(--muted);text-align:right;margin:.75rem 0 -.25rem;padding-right:.6rem;letter-spacing:.02em}
+    .gh-row{display:flex;align-items:center;gap:.9rem;margin:0 0 .5rem}.gh-row .gh{margin:0}
+    .gh-art{width:56px;height:56px;flex:none}
+    .tabs{position:sticky;top:0;z-index:5;display:flex;gap:.5rem;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;padding:.6rem 0;margin:0 0 1rem;background:var(--paper);font-family:var(--sans);scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tabs button{display:inline-flex;align-items:center;gap:.4rem;flex:none;font:inherit;font-size:.85rem;font-weight:700;color:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:.4rem .95rem;background:var(--panel);cursor:pointer}
+    .tabs .ti{width:16px;height:16px;flex:none}
+    @media (min-width:700px){.tabs{flex-wrap:wrap}}
+    .tabs button[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
+    .grp[hidden]{display:none}
+    .chart{position:relative;margin:1.25rem 0;background:var(--panel);border:1px solid var(--rule);border-radius:.8rem;padding:1rem 1rem .5rem}
+    .chart figcaption{font-family:var(--sans);font-weight:700;font-size:.95rem;color:var(--ink)}
+    .chart .lg{display:flex;flex-wrap:wrap;gap:.35rem 1rem;font-family:var(--sans);font-size:.8rem;color:var(--muted);margin:.35rem 0 .25rem}
+    .chart .lg span{display:inline-flex;align-items:center;gap:.4rem}
+    .chart .lg i{display:inline-block;width:12px;height:12px;border-radius:3px}
+    .chart .lg i.ln{height:3px;width:16px;border-radius:2px}
+    .chart svg{display:block;width:100%;overflow:visible}
+    .chart svg text{font-family:var(--sans);font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums}
+    .chart .tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--rule);border-radius:.5rem;box-shadow:0 4px 14px rgba(14,28,54,.12);padding:.45rem .6rem;font-family:var(--sans);font-size:.78rem;color:var(--ink);white-space:nowrap;display:none;z-index:3}
+    .chart .tip b{display:block;font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+    .chart .tip div{display:flex;align-items:center;gap:.45rem}
+    .chart .tip i{display:inline-block;width:12px;height:3px;border-radius:2px}
+    .chart .tip strong{font-variant-numeric:tabular-nums}
+    details.tbl{margin:.5rem 0 1rem;font-family:var(--sans)}
+    details.tbl summary{cursor:pointer;font-weight:700;font-size:.9rem;color:var(--accent);padding:.4rem 0}
+    .grp{border-top:none;margin-top:1rem;padding-top:0;scroll-margin-top:4rem}
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;margin:1rem 0 2rem}
+    .kpi div{background:var(--panel);border:1px solid var(--rule);border-radius:.8rem;padding:1rem}
+    .kpi b{display:block;font-family:var(--sans);font-size:1.5rem;color:var(--navy)}
+    .kpi div>span{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
+    .kpi .pos{color:var(--up)} .kpi .neg{color:var(--down)}
+    .seg{display:inline-flex;border:1.5px solid var(--accent);border-radius:999px;overflow:hidden;font-family:var(--sans);margin:.5rem 0 .25rem}
+    .seg button{font:inherit;font-size:.8rem;font-weight:700;color:var(--accent);background:var(--panel);border:0;padding:.35rem .9rem;cursor:pointer}
+    .seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+    .rk{margin:.5rem 0 .25rem;font-family:var(--sans)}
+    .rk-row{display:grid;grid-template-columns:11rem 1fr 4.2rem;align-items:center;gap:.6rem;padding:.28rem 0;font-size:.85rem}
+    .rk-row .nm{color:var(--ink);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .rk-row .nm small{font-size:.75rem;font-weight:500;color:var(--muted)}
+    .rk-row .tr{position:relative;height:16px}
+    .rk-row .tr .z{position:absolute;top:-3px;bottom:-3px;width:1px;background:#9AA8BD}
+    .rk-row .tr .b{position:absolute;top:0;height:100%;border-radius:3px;transition:left .45s ease,width .45s ease}
+    .rk-row .vl{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .rk-row .vl.pos{color:var(--up)} .rk-row .vl.neg{color:var(--down)}
+    @media (max-width:600px){.rk-row{grid-template-columns:6.6rem 1fr 3.7rem;font-size:.78rem;gap:.4rem}.rk-row .nm small{display:none}}
+    @media (max-width:600px){.kt{font-size:.8rem}.kt th,.kt td{padding:.5rem .35rem}}
+  </style>
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap narrow">
+      <a class="brand" href="/"><img class="logo-light" src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"><img class="logo-dark" src="/img/logo-dark.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
+      <div class="head-end">
+        <nav class="nav" aria-label="Ana menü">
+          <a href="/#gundem">Gündem</a>
+          <a href="/#veriler" aria-current="page">Veriler</a>
+          <a href="/#araclar">Araçlar</a>
+          <a href="/hakkinda.html">Hakkımda</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Karanlık moda geç" title="Karanlık moda geç"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap narrow">
+    <article class="prose wide">
+      <h1>Yatırım ve emeklilik fonları</h1>
+      <p>Türkiye'de yatırım fonlarına ve bireysel emeklilik sistemine (BES) ne kadar para girdi, kaç kişi yatırım yapıyor, para hangi tür fonlarda? TEFAS'ta işlem gören fonların büyüklükleri, yatırımcı sayıları ve aylık para girişleri ile Emeklilik Gözetim Merkezi'nin (EGM) katılımcı verileri. Veriler 28 Ekim 2026 itibarıyladır.</p>
+    </article>
+
+    <div class="kpi" id="kpi"></div>
+
+    <nav class="tabs" role="tablist" aria-label="Bölümler"><button type="button" role="tab" data-t="yf" aria-selected="false">Yatırım fonları</button><button type="button" role="tab" data-t="bes" aria-selected="false">Emeklilik fonları ve BES</button></nav>
+
+    <section class="grp" id="yf">
+      <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="34" r="20" fill="#E6F0FE" stroke="#0E3A8C" stroke-width="2.5"/><path d="M24 34 L24 14 A20 20 0 0 1 43 40 Z" fill="#1A5FFF"/><path d="M24 34 L43 40 A20 20 0 0 1 30 53 Z" fill="#40C0FF"/><rect x="46" y="44" width="6" height="14" rx="1.5" fill="#A9C6FF"/><rect x="55" y="36" width="6" height="22" rx="1.5" fill="#1A5FFF"/></svg><h2 class="gh">Yatırım fonları</h2></div>
+      <article class="prose wide"><p>Portföy yönetim şirketlerinin kurduğu yatırım fonlarının toplam büyüklüğü (serbest fonlar dahil, borsa yatırım fonları ve gayrimenkul/girişim sermayesi fonları hariç). Ay sonu değerleri, milyar TL.</p></article>
+      <figure class="chart" id="c-yb"><figcaption>Yatırım fonlarının toplam büyüklüğü, ay sonu, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
+      <figure class="chart" id="c-yt"><figcaption>Fon türüne göre büyüklük, 28 Ekim 2026, milyar TL</figcaption><div class="lg"></div><div class="rk"></div></figure>
+      <figure class="chart" id="c-ya"><figcaption>Aylık net para girişi ve çıkışı, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
+      <article class="prose wide"><p>Net akım, yatırımcıların fona yatırdığı paradan çektikleri paranın düşülmesiyle bulunur; fiyat değişimini içermez. Eylül 2026'da yatırım fonlarından yaklaşık 1,4 trilyon TL net çıkış oldu; bunun büyük bölümü serbest fonlar ve para piyasası fonlarındandı.</p></article>
+      <figure class="chart" id="c-yy"><figcaption>Yatırımcı sayısı, ay sonu, milyon</figcaption><div class="lg"></div><div class="plot"></div></figure>
+      <details class="tbl"><summary>Tablo olarak göster</summary>
+      <div class="twrap"><table class="kt" id="t-sem"><thead><tr><th>Fon türü</th><th>Fon sayısı</th><th>Büyüklük (milyar TL)</th><th>Yatırımcı</th><th>2026'da değişim</th></tr></thead><tbody></tbody></table></div>
+      </details>
+      <p class="calc-note">Yatırımcı sayısı, fonların açıkladığı yatırımcı sayılarının toplamıdır; birden fazla fonda yatırımı olan kişi her fonda ayrı sayılır, bu yüzden tekil yatırımcı sayısından yüksektir. Fon türleri SPK'nın şemsiye fon sınıflandırmasına göredir.</p>
+    </section>
+
+    <section class="grp" id="bes">
+      <div class="gh-row"><svg class="gh-art" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 54 H54" stroke="#A9C6FF" stroke-width="2"/><rect x="14" y="22" width="36" height="32" rx="4" fill="#fff" stroke="#0E3A8C" stroke-width="2.5"/><path d="M22 22 V16 a10 10 0 0 1 20 0 V22" stroke="#0E3A8C" stroke-width="2.5"/><circle cx="32" cy="38" r="7" fill="#1A5FFF"/><path d="M32 34 v8 M29 36.5 h6" stroke="#fff" stroke-width="2"/><polyline points="44,12 52,6 58,10" stroke="#40C0FF" stroke-width="2.5"/></svg><h2 class="gh">Emeklilik fonları ve BES</h2></div>
+      <article class="prose wide"><p>Bireysel emeklilik sisteminde katılımcıların birikimleri emeklilik yatırım fonlarında değerlendirilir. Gönüllü BES'te katılımcı sözleşmeyi kendisi açar; otomatik katılımda (OKS) işveren çalışanı sisteme dahil eder ve çalışan iki ay içinde cayabilir. Devlet, gönüllü BES'te ödenen katkı payının yüzde 20'si oranında devlet katkısı verir.</p></article>
+      <div class="kpi" id="kpi-bes"></div>
+      <figure class="chart" id="c-pb"><figcaption>Emeklilik fonlarının toplam büyüklüğü, ay sonu, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
+      <figure class="chart" id="c-pa"><figcaption>Emeklilik fonlarına aylık net para girişi, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
+      <p class="calc-note">Katılımcı sayıları ve fon tutarları EGM'nin 26 Ekim 2026 tarihli özet verileridir. Emeklilik fonlarının büyüklüğü ve para girişleri TEFAS fon verilerinden hesaplanmıştır; devlet katkısı fonları dahildir.</p>
+    </section>
+
+    <article class="prose">
+      <h2>Notlar</h2>
+      <p>Kaynak: Yatırım ve emeklilik fonlarının günlük büyüklük, yatırımcı sayısı ve para akımı verileri TEFAS'tan, Fintables üzerinden alınmıştır; BES katılımcı ve fon tutarları Emeklilik Gözetim Merkezi'nin (egm.org.tr) özet verileridir. Ay sonu değeri, ayın son işlem günündeki değerdir. 2024 Temmuz sonunda emeklilik fonu verisinde eksik gün olduğu için o ay 29 Temmuz değeri kullanılmıştır. Aylık net akım, günlük net akımların toplamıdır. Tablolar ve hesaplamalar yapay zekâ destekli araçlarla hazırlanmıştır; yatırım kararı vermeden önce verileri kaynağından teyit edin.</p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap narrow">
+      <p>Bu sitedeki içerikler yatırım tavsiyesi değildir. Yatırım danışmanlığı hizmeti, aracı kurumlar, portföy yönetim şirketleri ve mevduat kabul etmeyen bankalar ile müşteri arasında imzalanacak yatırım danışmanlığı sözleşmesi çerçevesinde sunulmaktadır.</p>
+      <nav class="social" aria-label="Sosyal medya"><a href="https://www.linkedin.com/in/ibrahim-ethem-afacan-563142a1/" rel="me noopener" target="_blank">LinkedIn</a><a href="https://x.com/ibrahim___ethem" rel="me noopener" target="_blank">X</a><a href="https://www.instagram.com/ibrahimethemafacan" rel="me noopener" target="_blank">Instagram</a></nav>
+      <p>© 2026 İbrahim Ethem Afacan</p>
+    </div>
+  </footer>
+
+  <script>
+    var D={"m": [["2021-12", 260.3, 4278979, 239.3], ["2022-01", 267.4, 4316722, 251.2], ["2022-02", 280.1, 4342662, 260.5], ["2022-03", 307.7, 4403982, 276.1], ["2022-04", 322.8, 4482973, 283.2], ["2022-05", 344.3, 4448665, 299.9], ["2022-06", 352.2, 4441436, 300.3], ["2022-07", 377.7, 4475383, 315.2], ["2022-08", 425.1, 4560711, 340.8], ["2022-09", 455.9, 4620358, 345.1], ["2022-10", 508.9, 4768283, 367.0], ["2022-11", 595.8, 5010107, 402.7], ["2022-12", 670.5, 5245614, 428.8], ["2023-01", 716.6, 5435906, 436.3], ["2023-02", 756.1, 5440605, 437.0], ["2023-03", 813.0, 5504767, 455.0], ["2023-04", 846.8, 5637480, 465.1], ["2023-05", 808.3, 5643224, 472.0], ["2023-06", 967.0, 5754521, 561.7], ["2023-07", 1163.2, 6027460, 628.5], ["2023-08", 1268.3, 6400282, 649.4], ["2023-09", 1300.1, 6689080, 666.1], ["2023-10", 1377.6, 6844167, 683.6], ["2023-11", 1459.6, 6984472, 721.7], ["2023-12", 1498.6, 7065517, 743.2], ["2024-01", 1745.7, 7332959, 798.9], ["2024-02", 2013.5, 7859765, 835.2], ["2024-03", 2241.9, 8313422, 898.0], ["2024-04", 2415.8, 8714673, 963.3], ["2024-05", 2534.6, 9145688, 991.9], ["2024-06", 2707.3, 9318860, 1026.4], ["2024-07", 2947.6, 9704767, 1056.5], ["2024-08", 3230.8, 9809727, 1078.1], ["2024-09", 3551.1, 9917716, 1136.7], ["2024-10", 3713.5, 9955117, 1147.5], ["2024-11", 3951.5, 10008508, 1185.7], ["2024-12", 4131.1, 10059766, 1222.2], ["2025-01", 4600.1, 10219101, 1283.9], ["2025-02", 4757.4, 10289023, 1335.2], ["2025-03", 4492.4, 10106423, 1380.0], ["2025-04", 4745.0, 10062684, 1442.6], ["2025-05", 5125.3, 9999211, 1481.9], ["2025-06", 5462.7, 10022320, 1535.3], ["2025-07", 5934.5, 10108059, 1629.4], ["2025-08", 6314.8, 10207423, 1703.8], ["2025-09", 6712.5, 10247777, 1825.0], ["2025-10", 7054.9, 10281001, 1931.2], ["2025-11", 7331.6, 10278945, 1994.3], ["2025-12", 7570.8, 10312675, 2148.2], ["2026-01", 8182.8, 10558718, 2556.9], ["2026-02", 8245.8, 10711676, 2498.8], ["2026-03", 7799.2, 10629167, 2335.7], ["2026-04", 8407.4, 10714673, 2424.7], ["2026-05", 8403.5, 10824194, 2462.6], ["2026-06", 8958.4, 10839489, 2402.6], ["2026-07", 9351.2, 10941505, 2418.6], ["2026-08", 9949.5, 11132752, 2659.0], ["2026-09", 8183.6, 10167753, 2558.5], ["2026-10", 7904.8, 10096539, 2519.6]], "fm": [334.0, 32.8, -416.3, 139.9, 187.3, 138.2, 244.1, 173.8, 170.0, 153.6, 177.5, -39.8, 158.5, -7.1, -484.6, 265.0, -148.6, 214.0, 126.5, 223.7, -1423.8, -252.5], "fp": [12.7, 13.7, 16.4, 12.3, 7.9, 11.6, 13.7, 15.7, 31.2, 24.3, 31.8, 37.4, 25.8, 23.6, 19.0, 15.5, 11.9, 11.2, 8.9, 14.3, 16.2, 3.7], "fmm": ["2025-1", "2025-2", "2025-3", "2025-4", "2025-5", "2025-6", "2025-7", "2025-8", "2025-9", "2025-10", "2025-11", "2025-12", "2026-1", "2026-2", "2026-3", "2026-4", "2026-5", "2026-6", "2026-7", "2026-8", "2026-9", "2026-10"], "sem": [["Serbest", 1224, 5231.9, 912101, 5047.5], ["Para piyasası", 82, 1490.2, 3782361, 1466.5], ["Katılım", 110, 389.6, 985954, 331.4], ["Borçlanma araçları", 85, 221.8, 1217528, 174.1], ["Kıymetli madenler", 28, 177.1, 598496, 180.6], ["Hisse senedi", 190, 138.7, 1274033, 169.3], ["Fon sepeti", 95, 103.3, 625558, 111.0], ["Değişken", 173, 89.3, 515835, 84.6], ["Karma", 8, 5.1, 168650, 4.6], ["Diğer", 14, 57.7, 16023, 1.3]]};
+    var n0=new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}), n1=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:1,maximumFractionDigits:1}), n2=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    var AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+    function ay(m){var p=m.split('-');return AY[+p[1]-1]+' '+p[0];}
+    function tarih(d){var p=d.split('-');return (+p[0])+' '+AY[+p[1]-1];}
+    function sg(v,f){f=f||n0;return '<span class="'+(v<0?'neg':'pos')+'">'+(v<0?'−':'+')+f.format(Math.abs(v))+'</span>';}
+    function pc(v){return '<span class="'+(v<0?'neg':'pos')+'">'+(v<0?'−':'+')+'%'+n1.format(Math.abs(v))+'</span>';}
+    function pct(v){return '%'+n1.format(v);}
+    function fill(id,html){document.querySelector('#'+id+' tbody').innerHTML=html;}
+    function sum(a,k){return a.reduce(function(s,r){return s+r[k];},0);}
+    /* ---- grafikler ---- */
+    var C1='#1A5FFF',C2='#E8862A',C3='#14A38B',UP='#12805C',DN='#A33A2E';
+    var SVGNS='http://www.w3.org/2000/svg';
+    function el(t,a,p){var e=document.createElementNS(SVGNS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+    function nice(lo,hi,n){var r=hi-lo||1,st=Math.pow(10,Math.floor(Math.log10(r/n))),m=r/n/st;st*=m>5?10:m>2?5:m>1?2:1;var a=Math.floor(lo/st)*st,b=Math.ceil(hi/st)*st,t=[];for(var v=a;v<=b+st/2;v+=st)t.push(+v.toFixed(6));return t;}
+    var CH=[];
+    function chart(id,o){CH.push([id,o]);draw(id,o);}
+    function draw(id,o){
+      var fig=document.getElementById(id),plot=fig.querySelector('.plot');plot.innerHTML='';
+      var lg=fig.querySelector('.lg');lg.innerHTML='';
+      if(o.series.length>1||o.legend){o.series.forEach(function(s){var sp=document.createElement('span'),i=document.createElement('i');i.className=o.type==='line'?'ln':'';i.style.background=s.color;sp.appendChild(i);sp.appendChild(document.createTextNode(s.name));lg.appendChild(sp);});}
+      var W=Math.max(280,plot.clientWidth),H=o.h||(W<500?210:250),ml=44,mr=10,mt=10,mb=26,iw=W-ml-mr,ih=H-mt-mb,n=o.labels.length;
+      var all=[];o.series.forEach(function(s){s.values.forEach(function(v){if(v!=null)all.push(v);});});
+      var lo=Math.min.apply(null,all),hi=Math.max.apply(null,all);
+      if(o.type==='bar'){lo=Math.min(0,lo);hi=Math.max(0,hi);} else {var pad=(hi-lo)*.1||1;lo=o.min!=null?Math.min(o.min,lo):lo-pad;hi=hi+pad;}
+      if(o.ref!=null){lo=Math.min(lo,o.ref);hi=Math.max(hi,o.ref);}
+      var ticks=nice(lo,hi,4);lo=ticks[0];hi=ticks[ticks.length-1];
+      var y=function(v){return mt+ih-(v-lo)/(hi-lo)*ih;},bw=iw/n,x=function(i){return ml+bw*i+bw/2;};
+      var svg=el('svg',{width:W,height:H,viewBox:'0 0 '+W+' '+H,role:'img','aria-label':fig.querySelector('figcaption').textContent},plot);
+      ticks.forEach(function(t){el('line',{x1:ml,x2:W-mr,y1:y(t),y2:y(t),stroke:t===0?'#9AA8BD':'#E6ECF4','stroke-width':1},svg);var tx=el('text',{x:ml-6,y:y(t)+4,'text-anchor':'end'},svg);tx.textContent=(o.fmtAxis||o.fmt)(t);});
+      if(o.ref!=null){el('line',{x1:ml,x2:W-mr,y1:y(o.ref),y2:y(o.ref),stroke:'#56657E','stroke-width':1,'stroke-dasharray':'4 4'},svg);}
+      var step=Math.ceil(n/Math.floor(iw/(o.lw||54)));
+      o.labels.forEach(function(l,i){if((n-1-i)%step)return;var tx=el('text',{x:x(i),y:H-8,'text-anchor':'middle'},svg);tx.textContent=o.short?o.short(l):l;});
+      var hl=el('rect',{x:0,y:mt,width:bw,height:ih,fill:'#EEF3FB',opacity:0},svg);svg.insertBefore(hl,svg.firstChild.nextSibling);
+      if(o.type==='bar'){var ns=o.series.length,gw=Math.min(bw*.72,ns*34),w=gw/ns;
+        o.series.forEach(function(s,k){s.values.forEach(function(v,i){if(v==null)return;var x0=x(i)-gw/2+k*w+1,y0=Math.min(y(v),y(0)),h=Math.max(1,Math.abs(y(v)-y(0)));
+          el('rect',{x:x0,y:y0,width:Math.max(1,w-2),height:h,rx:Math.min(3,(w-2)/2),fill:o.sign?(v<0?DN:UP):s.color},svg);});});}
+      else{o.series.forEach(function(s){var d=s.values.map(function(v,i){return (i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1);}).join(' ');
+          el('path',{d:d,fill:'none',stroke:s.color,'stroke-width':2.2,'stroke-linejoin':'round','stroke-linecap':'round'},svg);
+          var li=s.values.length-1;el('circle',{cx:x(li),cy:y(s.values[li]),r:4,fill:s.color,stroke:'#fff','stroke-width':2},svg);});}
+      var tip=fig.querySelector('.tip')||fig.appendChild(document.createElement('div'));tip.className='tip';tip.style.display='none';
+      var hit=el('rect',{x:ml,y:mt,width:iw,height:ih,fill:'transparent',tabindex:0},svg);
+      function show(i){hl.setAttribute('x',ml+bw*i);hl.setAttribute('opacity',1);tip.innerHTML='';var b=document.createElement('b');b.textContent=o.tipLabel?o.tipLabel(o.labels[i]):o.labels[i];tip.appendChild(b);
+        o.series.forEach(function(s){var v=s.values[i];if(v==null)return;var r=document.createElement('div'),k=document.createElement('i');k.style.background=o.sign?(v<0?DN:UP):s.color;r.appendChild(k);var st=document.createElement('strong');st.textContent=o.fmt(v);r.appendChild(st);if(o.series.length>1)r.appendChild(document.createTextNode(' '+s.name));tip.appendChild(r);});
+        tip.style.display='block';var px=x(i)+12,tw=tip.offsetWidth;if(px+tw>W)px=x(i)-12-tw;tip.style.left=(px+16)+'px';tip.style.top=(fig.querySelector('.plot').offsetTop+mt)+'px';}
+      function at(e){var r=svg.getBoundingClientRect();return Math.max(0,Math.min(n-1,Math.floor((e.clientX-r.left-ml)/bw)));}
+      hit.addEventListener('pointermove',function(e){show(at(e));});
+      hit.addEventListener('pointerdown',function(e){show(at(e));});
+      hit.addEventListener('pointerleave',function(){tip.style.display='none';hl.setAttribute('opacity',0);});
+      var fi=n-1;hit.addEventListener('focus',function(){show(fi);});hit.addEventListener('blur',function(){tip.style.display='none';hl.setAttribute('opacity',0);});
+      hit.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){fi=Math.max(0,fi-1);show(fi);}if(e.key==='ArrowRight'){fi=Math.min(n-1,fi+1);show(fi);}});
+    }
+    var fM=function(v){return (v<0?'−':v>0?'+':'')+n0.format(Math.abs(v));}, fB=function(v){return (v<0?'−':v>0?'+':'')+n1.format(Math.abs(v));}, fP=function(v){return '%'+n1.format(v);}, fPa=function(v){return '%'+n0.format(v);};
+    var AYK=['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+    function ayk(m){var p=m.split('-');return AYK[+p[1]-1]+' '+p[0].slice(2);}
+    function tk(d){var p=d.split('-');return (+p[0])+' '+AYK[+p[1]-1];}
+    var last=D.m[D.m.length-1],dec=D.m.filter(function(r){return r[0]==='2025-12';})[0],peak=D.m.reduce(function(a,r){return r[1]>a[1]?r:a;});
+    document.getElementById('kpi').innerHTML=[
+      ['Yatırım fonlarının büyüklüğü, trilyon TL',n2.format(last[1]/1000)],
+      ['Emeklilik fonlarının büyüklüğü, trilyon TL',n2.format(last[3]/1000)],
+      ['BES ve OKS katılımcı sayısı, milyon (EGM, 26 Ekim)','18,33'],
+      ['Yatırım fonlarına 2026\'da net akım, milyar TL',sg(-1328.9,n0)],
+      ['Yatırım fonu büyüklüğü, Ağustos zirvesinden değişim',pc((last[1]/peak[1]-1)*100)],
+      ['Emeklilik fonlarına 2026\'da net akım, milyar TL',sg(150.1,n0)]
+    ].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
+    document.getElementById('kpi-bes').innerHTML=[
+      ['Gönüllü BES katılımcısı, milyon','10,39'],['Gönüllü BES fon tutarı, trilyon TL','2,36'],
+      ['OKS katılımcısı, milyon','7,94'],['OKS fon tutarı, trilyon TL','0,16']
+    ].map(function(x){return '<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>';}).join('');
+    fill('t-sem',D.sem.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+n0.format(r[1])+'</td><td>'+n1.format(r[2])+'</td><td>'+n0.format(r[3])+'</td><td>'+(r[4]>5?pc((r[2]/r[4]-1)*100):'–')+'</td></tr>';}).join(''));
+    /* tür sıralaması */
+    (function(){var box=document.querySelector('#c-yt .rk'),mx=D.sem[0][2];box.innerHTML=D.sem.map(function(r){return '<div class="rk-row"><span class="nm">'+r[0]+'</span><span class="tr"><i class="b" style="left:0;width:'+Math.max(.6,r[2]/mx*100)+'%;background:'+C1+'"></i></span><span class="vl">'+n0.format(r[2])+'</span></div>';}).join('');})();
+    var ms=D.m.map(function(r){return r[0];});
+    var fT=function(v){return n0.format(v)+' milyar TL';},fTa=function(v){return n0.format(v);};
+    chart('c-yb',{type:'line',labels:ms,short:ayk,tipLabel:ay,fmt:fT,fmtAxis:fTa,lw:46,min:0,series:[{name:'Yatırım fonları',color:C1,values:D.m.map(function(r){return r[1];})}]});
+    chart('c-ya',{type:'bar',sign:true,labels:D.fmm,short:ayk,tipLabel:ay,fmt:function(v){return fB(v)+' milyar TL';},fmtAxis:fTa,lw:46,series:[{name:'Net akım',color:UP,values:D.fm}]});
+    chart('c-yy',{type:'line',labels:ms,short:ayk,tipLabel:ay,fmt:function(v){return n2.format(v)+' milyon';},fmtAxis:function(v){return n0.format(v);},lw:46,series:[{name:'Yatırımcı sayısı',color:C3,values:D.m.map(function(r){return r[2]/1e6;})}]});
+    chart('c-pb',{type:'line',labels:ms,short:ayk,tipLabel:ay,fmt:fT,fmtAxis:fTa,lw:46,min:0,series:[{name:'Emeklilik fonları',color:C2,values:D.m.map(function(r){return r[3];})}]});
+    chart('c-pa',{type:'bar',sign:true,labels:D.fmm,short:ayk,tipLabel:ay,fmt:function(v){return fB(v)+' milyar TL';},fmtAxis:fTa,lw:46,series:[{name:'Net akım',color:UP,values:D.fp}]});
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){CH.forEach(function(c){var f=document.getElementById(c[0]);if(f.offsetParent)draw(c[0],c[1]);});},150);});
+    /* ---- sekmeler ---- */
+    var TB=document.querySelectorAll('.tabs button');
+    function sel(t,push){TB.forEach(function(b){b.setAttribute('aria-selected',b.dataset.t===t);});document.querySelectorAll('section.grp').forEach(function(s){s.hidden=s.id!==t;});
+      CH.forEach(function(c){if(document.getElementById(t).contains(document.getElementById(c[0])))draw(c[0],c[1]);});
+      if(push)history.replaceState(null,'','#'+t);}
+    TB.forEach(function(b){b.addEventListener('click',function(){sel(b.dataset.t,true);var tb=document.querySelector('.tabs');if(tb.getBoundingClientRect().top<0||window.scrollY>tb.offsetTop)window.scrollTo({top:tb.offsetTop,behavior:'smooth'});});});
+    var h=location.hash.slice(1);sel(document.getElementById(h)&&document.getElementById(h).classList.contains('grp')?h:'yf',false);
+  </script>
+<script data-goatcounter="https://ibrahimethemafacan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
