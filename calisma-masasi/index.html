@@ -40,6 +40,9 @@
     @media (max-width:820px){.desk-head{flex-direction:column;align-items:stretch;gap:0}.bubbles{flex:none;padding-bottom:2rem}.bubble.alt{margin-left:1.5rem}}
     .tools.solo{grid-template-columns:1fr;width:calc((100% + 2px)/3)}
     @media (max-width:860px){.tools.solo{width:auto}}
+    main .tools{background:none;border:none;border-radius:0;overflow:visible;gap:1rem}
+    main .tools .tool{border:1px solid var(--rule);border-top:3px solid var(--sky);border-radius:10px}
+    .desk-lede{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin:-.4rem 0 .9rem;max-width:46rem;line-height:1.55}
     .desk-h{font-family:var(--sans);font-size:1.05rem;font-weight:800;color:var(--ink);margin:2rem 0 .75rem}
   </style>
 </head>
@@ -70,52 +73,68 @@
       </div>
     </div>
 
-    <h2 class="desk-h">SPL</h2>
+    <h2 class="desk-h" id="spl-1">SPL Düzey 1</h2>
+    <p class="desk-lede">Düzey 1 lisansı dört dersten oluşur: Dar Kapsamlı Sermaye Piyasası Mevzuatı ve Meslek Kuralları, Sermaye Piyasası Araçları 1, Yatırım Kuruluşları ile Takas, Saklama ve Operasyon İşlemleri.</p>
     <div class="tools">
       <article class="tool is-live">
-        <h3>SPL - Geniş Kapsamlı Sermaye Piyasası Mevzuatı</h3>
-        <p>SPKn, özel durumlar, kurumsal yönetim, yatırım ortaklıkları ve fonlar, meslek kuralları. On beş bölümde özet notlar, 304 çalışma sorusu, karma deneme ve sesli anlatım.</p>
-        <a class="go" href="/calisma-masasi/sermaye-piyasasi-mevzuati/">Çalışmaya başla</a>
-      </article>
-      <article class="tool is-live">
-        <h3>SPL - Sermaye Piyasası Araçları 1</h3>
+        <h3>Sermaye Piyasası Araçları 1</h3>
         <p>Pay, halka arz ve kurumsal eylemler, borsa işleyişi, tahvil fiyatlama ve getiri, yatırım fonları, türev araçlar, GVK geçici 67. On üç bölümde özet notlar, 312 çalışma sorusu, karma deneme ve sesli anlatım.</p>
         <a class="go" href="/calisma-masasi/sermaye-piyasasi-araclari-1/">Çalışmaya başla</a>
       </article>
       <article class="tool is-live">
-        <h3>SPL - Sermaye Piyasası Araçları 2</h3>
+        <h3>Yatırım Kuruluşları</h3>
+        <p>Yatırım hizmetleri, müşteri sınıfları, kredili ve açığa satış, kitle fonlaması. Dokuz bölümde özet notlar, 212 çalışma sorusu, karma deneme ve sesli anlatım.</p>
+        <a class="go" href="/calisma-masasi/yatirim-kuruluslari/">Çalışmaya başla</a>
+      </article>
+    </div>
+
+    <h2 class="desk-h" id="spl-2">SPL Düzey 2</h2>
+    <p class="desk-lede">Düzey 2 dokuz dersten oluşur: Düzey 1'in üç ortak dersine ek olarak aşağıdakiler. Mevzuat dersi Düzey 2 ve 3'te geniş kapsamlıdır.</p>
+    <div class="tools">
+      <article class="tool is-live">
+        <h3>Geniş Kapsamlı Sermaye Piyasası Mevzuatı</h3>
+        <p>SPKn, özel durumlar, kurumsal yönetim, yatırım ortaklıkları ve fonlar, meslek kuralları. On beş bölümde özet notlar, 304 çalışma sorusu, karma deneme ve sesli anlatım.</p>
+        <a class="go" href="/calisma-masasi/sermaye-piyasasi-mevzuati/">Çalışmaya başla</a>
+      </article>
+      <article class="tool is-live">
+        <h3>Sermaye Piyasası Araçları 2</h3>
         <p>İzahname, satış, VDMK, kira sertifikası, varant, depo sertifikası, PDMK. On bölümde özet notlar, 240 çalışma sorusu, karma deneme ve sesli anlatım.</p>
         <a class="go" href="/calisma-masasi/sermaye-piyasasi-araclari-2/">Çalışmaya başla</a>
       </article>
       <article class="tool is-live">
-        <h3>SPL - Yatırım Kuruluşları</h3>
-        <p>Yatırım hizmetleri, müşteri sınıfları, kredili ve açığa satış, kitle fonlaması. Dokuz bölümde özet notlar, 212 çalışma sorusu, karma deneme ve sesli anlatım.</p>
-        <a class="go" href="/calisma-masasi/yatirim-kuruluslari/">Çalışmaya başla</a>
-      </article>
-      <article class="tool is-live">
-        <h3>SPL - Genel Ekonomi</h3>
-        <p>Arz-talep, para ve maliye politikası, makro göstergeler, dış ticaret. Altı bölümde özet notlar, 139 çalışma sorusu, karma deneme ve sesli anlatım.</p>
-        <a class="go" href="/calisma-masasi/genel-ekonomi/">Çalışmaya başla</a>
-      </article>
-      <article class="tool is-live">
-        <h3>SPL - Kurumsal Yönetim</h3>
-        <p>Yedi bölümde özet notlar, 141 çalışma sorusu, karma deneme ve sesli anlatım.</p>
-        <a class="go" href="/calisma-masasi/kurumsal-yonetim/">Çalışmaya başla</a>
-      </article>
-      <article class="tool is-live">
-        <h3>SPL - Türev Araçlar</h3>
-        <p>Dokuz bölümde özet notlar, opsiyon stratejisi grafikleri, 42 soru ve 26 dakikalık podcast.</p>
-        <a class="go" href="/calisma-masasi/turev-araclar/">Çalışmaya başla</a>
-      </article>
-      <article class="tool is-live">
-        <h3>SPL - Finansal Piyasalar</h3>
+        <h3>Finansal Piyasalar</h3>
         <p>Borsa İstanbul pay, borçlanma araçları, para ve swap piyasaları, VİOP, kıymetli madenler, tezgahüstü, TCMB ve bankalararası piyasalar, Takasbank, TEFAS ve BEFAS. On üç bölümde özet notlar, 306 çalışma sorusu, karma deneme ve sesli anlatım.</p>
         <a class="go" href="/calisma-masasi/finansal-piyasalar/">Çalışmaya başla</a>
       </article>
       <article class="tool is-live">
-        <h3>SPL - Finansal Yönetim ve Mali Analiz</h3>
+        <h3>Finansal Yönetim ve Mali Analiz</h3>
         <p>Finansal planlama, sermaye maliyeti ve yapısı, işletme sermayesi, yatırım projeleri, birleşmeler, oran analizi, leasing ve faktoring. On bir bölümde özet notlar, 240 çalışma sorusu, karma deneme ve sesli anlatım.</p>
         <a class="go" href="/calisma-masasi/finansal-yonetim-ve-mali-analiz/">Çalışmaya başla</a>
+      </article>
+    </div>
+
+    <h2 class="desk-h" id="spl-3">SPL Düzey 3</h2>
+    <p class="desk-lede">Düzey 3 on iki dersten oluşur: Düzey 2'nin dokuz dersine ek olarak aşağıdaki üç ders.</p>
+    <div class="tools">
+      <article class="tool is-live">
+        <h3>Genel Ekonomi</h3>
+        <p>Arz-talep, para ve maliye politikası, makro göstergeler, dış ticaret. Altı bölümde özet notlar, 139 çalışma sorusu, karma deneme ve sesli anlatım.</p>
+        <a class="go" href="/calisma-masasi/genel-ekonomi/">Çalışmaya başla</a>
+      </article>
+    </div>
+
+    <h2 class="desk-h" id="spl-diger">Diğer SPL lisansları</h2>
+    <p class="desk-lede">Türev Araçlar Lisansı için Düzey 3 derslerinin çoğuna ek olarak Türev Araçlar dersi; Kurumsal Yönetim Derecelendirme Lisansı için Kurumsal Yönetim dersi.</p>
+    <div class="tools">
+      <article class="tool is-live">
+        <h3>Türev Araçlar</h3>
+        <p>Dokuz bölümde özet notlar, opsiyon stratejisi grafikleri, 42 soru ve 26 dakikalık podcast.</p>
+        <a class="go" href="/calisma-masasi/turev-araclar/">Çalışmaya başla</a>
+      </article>
+      <article class="tool is-live">
+        <h3>Kurumsal Yönetim</h3>
+        <p>Yedi bölümde özet notlar, 141 çalışma sorusu, karma deneme ve sesli anlatım.</p>
+        <a class="go" href="/calisma-masasi/kurumsal-yonetim/">Çalışmaya başla</a>
       </article>
     </div>
 
