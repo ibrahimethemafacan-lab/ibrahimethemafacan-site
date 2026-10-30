@@ -53,8 +53,7 @@
     </article>
 
     <section class="race" aria-label="Toplam getiri sıralaması">
-      <div class="race-head"><span id="race-cap">2018'den bu yana</span>
-        <span class="seg" role="group" aria-label="Dönem"><button type="button" data-p="all" aria-pressed="true">2018'den bu yana</button><button type="button" data-p="ytd" aria-pressed="false">2026</button></span></div>
+      <div class="race-head"><span class="seg" role="group" aria-label="Dönem"><button type="button" data-p="all" aria-pressed="true">2018'den bu yana</button><button type="button" data-p="ytd" aria-pressed="false">2026</button></span></div>
       <div id="race"></div>
     </section>
 
@@ -139,7 +138,6 @@
       var k = raceP === 'all' ? 2 : 1;
       var val = function (d) { return d.rows[d.rows.length - 1][k]; };
       var maxAbs = Math.max.apply(null, DATA.map(function (d) { return Math.abs(val(d)); }));
-      document.getElementById('race-cap').textContent = raceP === 'all' ? "2018'den bu yana" : '2026, yılbaşından bu yana';
       document.getElementById('race').innerHTML = DATA.slice().sort(function (a, b) { return val(b) - val(a); }).map(function (d) {
         var c = val(d);
         return '<div class="race-row"><span class="race-name">' + d.name + '</span>' +
