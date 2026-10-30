@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="/tema.js?v=1"></script>
   <link rel="stylesheet" href="/style.css?v=20261029b">
-  <style>.rt-tabs{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0}.rt-tabs button{margin-bottom:0}.rt-tabs::-webkit-scrollbar{display:none}.konut-go{align-self:center;margin-left:.4rem;white-space:nowrap;font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--on-accent);background:var(--accent);border-radius:999px;padding:.3rem .7rem;text-decoration:none}.konut-go:hover{background:var(--accent-hover)}.konut-go[hidden]{display:none}.konut-btn{display:inline-block;font-family:var(--sans);font-weight:700;font-size:.95rem;color:var(--on-accent);background:var(--accent);border-radius:.6rem;padding:.75rem 1.1rem;text-decoration:none}.konut-btn:hover{background:var(--accent-hover)}.rt-tabs button{white-space:nowrap;flex:0 0 auto;padding-left:.45rem;padding-right:.45rem;font-size:.85rem}</style>
+  <style>.rt-tabs{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0}.rt-tabs button{margin-bottom:0}.rt-tabs::-webkit-scrollbar{display:none}.konut-go{align-self:center;margin-left:.4rem;white-space:nowrap;font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--on-accent);background:var(--accent);border-radius:999px;padding:.3rem .7rem;text-decoration:none}.konut-go:hover{background:var(--accent-hover)}.konut-go[hidden]{display:none}.konut-btn{display:inline-block;font-family:var(--sans);font-weight:700;font-size:.95rem;color:var(--on-accent);background:var(--accent);border-radius:.6rem;padding:.75rem 1.1rem;text-decoration:none}.konut-btn:hover{background:var(--accent-hover)}.rt-tabs button{white-space:nowrap;flex:0 0 auto;padding-left:.45rem;padding-right:.45rem;font-size:.85rem}.race-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}.seg{display:inline-flex;border:1.5px solid var(--accent);border-radius:999px;overflow:hidden;font-family:var(--sans)}.seg button{font:inherit;font-size:.78rem;font-weight:700;color:var(--accent);background:var(--panel);border:0;padding:.3rem .8rem;cursor:pointer}.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}</style>
 </head>
 <body>
   <header class="site-head">
@@ -52,8 +52,9 @@
       <p>2018 başından 28 Ekim 2026'ya kadar, Türk lirası bazında. Bir aracı seçin; her yılın getirisini ve dönem başından itibaren biriken toplam getiriyi görün.</p>
     </article>
 
-    <section class="race" aria-label="2018'den bu yana">
-      <div class="race-head">2018'den bu yana</div>
+    <section class="race" aria-label="Toplam getiri sıralaması">
+      <div class="race-head"><span id="race-cap">2018'den bu yana</span>
+        <span class="seg" role="group" aria-label="Dönem"><button type="button" data-p="all" aria-pressed="true">2018'den bu yana</button><button type="button" data-p="ytd" aria-pressed="false">2026</button></span></div>
       <div id="race"></div>
     </section>
 
@@ -133,15 +134,23 @@
     }
 
     // Toplam getiri yarışı
-    var maxCum = Math.max.apply(null, DATA.map(function (d) { return d.rows[d.rows.length - 1][2]; }));
-    document.getElementById('race').innerHTML = DATA.slice().sort(function (a, b) {
-      return b.rows[b.rows.length - 1][2] - a.rows[a.rows.length - 1][2];
-    }).map(function (d) {
-      var c = d.rows[d.rows.length - 1][2];
-      return '<div class="race-row"><span class="race-name">' + d.name + '</span>' +
-        '<span class="race-track"><i style="width:' + (c / maxCum * 100) + '%;background:' + (d.bench ? BENCH : c < 0 ? 'var(--down)' : 'var(--up)') + '"></i></span>' +
-        '<span class="race-val">' + pct(c, true) + '</span></div>';
-    }).join('');
+    var raceP = 'all';
+    function race() {
+      var k = raceP === 'all' ? 2 : 1;
+      var val = function (d) { return d.rows[d.rows.length - 1][k]; };
+      var maxAbs = Math.max.apply(null, DATA.map(function (d) { return Math.abs(val(d)); }));
+      document.getElementById('race-cap').textContent = raceP === 'all' ? "2018'den bu yana" : '2026, yılbaşından bu yana';
+      document.getElementById('race').innerHTML = DATA.slice().sort(function (a, b) { return val(b) - val(a); }).map(function (d) {
+        var c = val(d);
+        return '<div class="race-row"><span class="race-name">' + d.name + '</span>' +
+          '<span class="race-track"><i style="width:' + (Math.abs(c) / maxAbs * 100) + '%;background:' + (d.bench ? BENCH : c < 0 ? 'var(--down)' : 'var(--up)') + '"></i></span>' +
+          '<span class="race-val"' + (c < 0 ? ' style="color:var(--down)"' : '') + '>' + pct(c, true) + '</span></div>';
+      }).join('');
+    }
+    document.querySelectorAll('.race .seg button').forEach(function (b) {
+      b.addEventListener('click', function () { raceP = b.dataset.p; document.querySelectorAll('.race .seg button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); race(); });
+    });
+    race();
 
     // Sekmeler
     var tabs = document.getElementById('tabs');
