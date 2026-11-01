@@ -42,6 +42,15 @@
     @media (max-width:860px){.tools.solo{width:auto}}
     main .tools{background:none;border:none;border-radius:0;overflow:visible;gap:1rem}
     main .tools .tool{border:1px solid var(--rule);border-top:3px solid var(--sky);border-radius:10px}
+    .desk-tabs{display:flex;gap:.4rem;background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:.3rem;width:max-content;max-width:100%;margin:0 0 .9rem;font-family:var(--sans)}
+    .desk-tabs button{all:unset;cursor:pointer;padding:.55rem 1.5rem;border-radius:999px;font-weight:800;font-size:1rem;color:var(--muted)}
+    .desk-tabs button[aria-selected="true"]{background:var(--accent);color:#fff}
+    .desk-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .desk-sub{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .5rem;font-family:var(--sans)}
+    .desk-sub a{font-size:.82rem;font-weight:700;color:var(--accent);text-decoration:none;border:1.5px solid var(--rule);border-radius:999px;padding:.3rem .8rem;background:var(--panel)}
+    .desk-sub a:hover{border-color:var(--accent)}
+    .desk-sub[hidden],#grp-spl[hidden],#grp-masak[hidden]{display:none}
+    #grp-spl>.desk-h:first-child,#grp-masak>.desk-h:first-child{margin-top:.75rem}
     .desk-lede{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin:-.4rem 0 .9rem;max-width:46rem;line-height:1.55}
     .desk-h{font-family:var(--sans);font-size:1.05rem;font-weight:800;color:var(--ink);margin:2rem 0 .75rem}
   </style>
@@ -81,6 +90,13 @@
       </div>
     </div>
 
+    <div class="desk-tabs" role="tablist" aria-label="Çalışma alanı">
+      <button type="button" role="tab" data-g="spl" aria-selected="true">SPL</button>
+      <button type="button" role="tab" data-g="masak" aria-selected="false">MASAK</button>
+    </div>
+    <div class="desk-sub" id="spl-sub"><a href="#spl-1">Düzey 1</a><a href="#spl-2">Düzey 2</a><a href="#spl-3">Düzey 3</a><a href="#spl-diger">Diğer lisanslar</a></div>
+
+    <section id="grp-spl">
     <h2 class="desk-h" id="spl-1">SPL Düzey 1</h2>
     <p class="desk-lede">Düzey 1 lisansı dört dersten oluşur: Dar Kapsamlı Sermaye Piyasası Mevzuatı ve Meslek Kuralları, Sermaye Piyasası Araçları 1, Yatırım Kuruluşları ile Takas, Saklama ve Operasyon İşlemleri.<br>* Geniş Kapsamlı Sermaye Piyasası Mevzuatı ve Meslek Kuralları dersinden geçenler, Dar Kapsamlı Sermaye Piyasası Mevzuatı ve Meslek Kuralları dersinden de geçmiş sayılır.</p>
     <div class="tools">
@@ -171,6 +187,9 @@
       </article>
     </div>
 
+    </section>
+
+    <section id="grp-masak">
     <h2 class="desk-h">MASAK</h2>
     <div class="tools">
       <article class="tool is-live">
@@ -185,6 +204,7 @@
       </article>
     </div>
     <p class="calc-note">MASAK sınavında geçme kuralı: iki modülün ortalaması en az 65, her modülden en az 50 puan. Güvenli hedef her modülde 65 ve üzeri.</p>
+    </section>
 
     <p class="calc-note">Bu notlar SPL ve MASAK'ın resmi çalışma kaynaklarının yerini tutmaz; resmi kaynaklarla birlikte kullanın. Sesli anlatımlar yapay seslendirmedir, rakam ve formüllerde yazılı notları esas alın.</p>
   </main>
@@ -196,6 +216,17 @@
       <p>© 2026 İbrahim Ethem Afacan</p>
     </div>
   </footer>
+<script>
+(function(){var KEY='masa-grup',tabs=document.querySelectorAll('.desk-tabs button');
+function sec(g,save){document.getElementById('grp-spl').hidden=g!=='spl';document.getElementById('grp-masak').hidden=g!=='masak';document.getElementById('spl-sub').hidden=g!=='spl';
+  tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.g===g);});if(save){try{localStorage.setItem(KEY,g);}catch(e){}}}
+function fromHash(){var h=location.hash;if(h==='#masak')return 'masak';if(/^#spl/.test(h))return 'spl';return null;}
+var g=fromHash();if(!g){try{g=localStorage.getItem(KEY);}catch(e){}}sec(g==='masak'?'masak':'spl',false);
+if(/^#spl-/.test(location.hash)){var el=document.querySelector(location.hash);if(el)setTimeout(function(){el.scrollIntoView();},0);}
+tabs.forEach(function(b){b.addEventListener('click',function(){sec(b.dataset.g,true);history.replaceState(null,'',b.dataset.g==='masak'?'#masak':location.pathname);window.scrollTo({top:document.querySelector('.desk-tabs').offsetTop-12,behavior:'smooth'});});});
+window.addEventListener('hashchange',function(){var g=fromHash();if(g)sec(g,true);});
+})();
+</script>
 <script data-goatcounter="https://ibrahimethemafacan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
