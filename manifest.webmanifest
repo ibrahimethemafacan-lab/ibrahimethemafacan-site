@@ -1,0 +1,27 @@
+{
+  "name": "İbrahim Ethem Afacan",
+  "short_name": "İEA",
+  "description": "Finansal piyasaları anlamak için notlar, veriler ve araçlar: piyasa gündemi, getiriler, makro göstergeler, fon tarama ve SPL/MASAK çalışma masası.",
+  "id": "/",
+  "start_url": "/?kaynak=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "tr",
+  "dir": "ltr",
+  "background_color": "#F5F8FC",
+  "theme_color": "#F5F8FC",
+  "categories": ["finance", "education", "news"],
+  "icons": [
+    { "src": "/img/pwa-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/img/pwa-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/img/pwa-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/img/pwa-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Gündem", "url": "/?kaynak=pwa#gundem", "icons": [{ "src": "/img/pwa-192.png", "sizes": "192x192" }] },
+    { "name": "Çalışma Masası", "url": "/calisma-masasi/?kaynak=pwa", "icons": [{ "src": "/img/pwa-192.png", "sizes": "192x192" }] },
+    { "name": "Fon Tarama", "url": "/araclar/fon-tarama.html?kaynak=pwa", "icons": [{ "src": "/img/pwa-192.png", "sizes": "192x192" }] },
+    { "name": "Getiriler", "url": "/araclar/getiriler.html?kaynak=pwa", "icons": [{ "src": "/img/pwa-192.png", "sizes": "192x192" }] }
+  ]
+}
