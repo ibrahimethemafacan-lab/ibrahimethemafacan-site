@@ -3,7 +3,7 @@
    - Stil, betik, görsel, yazı tipi: önbellek öncelikli, arka planda tazele.
    - Podcast mp3: dinlenince önbelleğe alınır, sonra çevrimdışı da çalar.
    Sürüm değişince eski önbellekler silinir. */
-var SURUM = 'iea-v2';
+var SURUM = 'iea-v3';
 var SAYFA = SURUM + '-sayfa', VARLIK = SURUM + '-varlik', SES = SURUM + '-ses';
 var ONYUKLE = ['/', '/index.html', '/style.css', '/tema.js', '/pwa.js', '/cevrimdisi.html',
   '/img/logo.png', '/img/logo-dark.png', '/img/pwa-192.png', '/calisma-masasi/'];

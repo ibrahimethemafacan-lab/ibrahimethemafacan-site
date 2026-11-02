@@ -4,7 +4,37 @@
   window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
 
   var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-  if (standalone) { document.documentElement.classList.add('pwa'); return; }
+  if (standalone) { document.documentElement.classList.add('pwa'); kaldiginYer(); return; }
+
+  /* iOS arka plandaki uygulamayı bellekten atınca yeniden açılışta başlangıç sayfası gelir.
+     Son sayfayı ve kaydırma konumunu saklayıp açılışta oraya geri dönüyoruz. */
+  function kaldiginYer() {
+    var K = 'pwa-son', GERI = 'pwa-geri', GUN = 7 * 864e5;
+    function oku() { try { return JSON.parse(localStorage.getItem(K) || 'null'); } catch (e) { return null; } }
+    function adres() { var u = new URL(location.href); u.searchParams.delete('kaynak'); return u.pathname + u.search + u.hash; }
+    function kaydet() {
+      try { localStorage.setItem(K, JSON.stringify({ u: adres(), y: Math.round(window.scrollY || 0), t: Date.now() })); } catch (e) {}
+    }
+    var son = oku();
+    var q = new URLSearchParams(location.search);
+    // Simgeden soğuk açılış: ana sayfa, ?kaynak=pwa, hash yok
+    if (q.get('kaynak') === 'pwa' && location.pathname === '/' && !location.hash && son && son.u && son.u !== '/' && Date.now() - son.t < GUN) {
+      try { sessionStorage.setItem(GERI, '1'); } catch (e) {}
+      location.replace(son.u); return;
+    }
+    // Geri dönülen sayfada kaydırma konumunu geri yükle (içerik JS ile çizildiği için birkaç kez dene)
+    var geri = false; try { geri = sessionStorage.getItem(GERI) === '1'; sessionStorage.removeItem(GERI); } catch (e) {}
+    if (geri && son && son.u === adres() && son.y > 0) {
+      var n = 0; (function dene() {
+        window.scrollTo(0, son.y);
+        if (Math.abs(window.scrollY - son.y) > 4 && ++n < 15) setTimeout(dene, 150);
+      })();
+    }
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') kaydet(); });
+    window.addEventListener('pagehide', kaydet);
+    window.addEventListener('hashchange', kaydet);
+    var zt; window.addEventListener('scroll', function () { clearTimeout(zt); zt = setTimeout(kaydet, 400); }, { passive: true });
+  }
   var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
   var mobil = ios || /android/i.test(navigator.userAgent);
   var KEY = 'pwa-kur-kapat';
