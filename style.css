@@ -253,10 +253,11 @@ a:hover { text-decoration-color: var(--accent); }
 .btn.primary:hover { background: var(--accent-hover); }
 .btn.ghost { border: 1px solid var(--ghost-border); color: var(--ink); background: var(--ghost-bg); }
 .btn.ghost:hover { border-color: var(--ink); background: var(--panel); }
-.btn.navy { background: var(--navy); color: #FFFFFF; }
-.btn.navy:hover { filter: brightness(1.12); }
-:root[data-theme="dark"] .btn.navy { color: #0B1220; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.navy { color: #0B1220; } }
+.btn.navy { background: #0E8F7E; color: #FFFFFF; }
+.btn.navy:hover { background: #0B7869; }
+:root[data-theme="dark"] .btn.navy { background: #3CC9B0; color: #0B1220; }
+:root[data-theme="dark"] .btn.navy:hover { background: #5FD6C0; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.navy { background: #3CC9B0; color: #0B1220; } }
 .hero { padding-bottom: 5rem; }
 
 /* Logo */
