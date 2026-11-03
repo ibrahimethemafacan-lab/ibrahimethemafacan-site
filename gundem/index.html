@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="/tema.js?v=1"></script>
-  <link rel="stylesheet" href="/style.css?v=20261104a">
+  <link rel="stylesheet" href="/style.css?v=20261104b">
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#F5F8FC" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0B1424" media="(prefers-color-scheme: dark)">
@@ -38,27 +38,6 @@
 <style>
     .gd-wrap{display:grid;grid-template-columns:19rem minmax(0,1fr);gap:2.5rem;align-items:start;margin-top:1.5rem}
     @media (max-width:860px){.gd-wrap{grid-template-columns:1fr;gap:1.25rem}}
-    .cal{position:sticky;top:1rem;background:var(--panel);border:1px solid var(--rule);border-radius:.9rem;padding:1rem;font-family:var(--sans)}
-    @media (max-width:860px){.cal{position:static}}
-    .cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
-    .cal-h b{font-size:1rem;color:var(--ink)}
-    .cal-h button{all:unset;cursor:pointer;width:2rem;height:2rem;display:grid;place-items:center;border-radius:50%;color:var(--accent);font-size:1.15rem;font-weight:700}
-    .cal-h button:hover{background:var(--accent-soft)}
-    .cal-h button[disabled]{opacity:.25;cursor:default;background:none}
-    .cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:.2rem;text-align:center}
-    .cal-g .dw{font-size:.68rem;font-weight:700;color:var(--muted);padding:.2rem 0}
-    .cal-g button{all:unset;box-sizing:border-box;position:relative;aspect-ratio:1;display:grid;place-items:center;border-radius:.55rem;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
-    .cal-g button.var{cursor:pointer;color:var(--ink);font-weight:800;background:var(--accent-soft)}
-    .cal-g button.var:hover{outline:2px solid var(--accent)}
-    .cal-g button.var i{position:absolute;bottom:.22rem;left:50%;transform:translateX(-50%);display:flex;gap:2px}
-    .cal-g button.var i span{width:5px;height:5px;border-radius:50%;background:#D64545}
-    .cal-g button.var i span.y{background:var(--accent)}
-    .cal-g button.bugun{box-shadow:inset 0 0 0 1.5px var(--rule)}
-    .cal-g button.sec{background:var(--accent);color:#fff}
-    .cal-g button.sec i span{background:#fff}
-    .cal-lg{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.7rem;font-size:.72rem;color:var(--muted)}
-    .cal-lg span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#D64545;margin-right:.35rem;vertical-align:1px}
-    .cal-lg span.y::before{background:var(--accent)}
     .gd-bar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-bottom:.4rem;font-family:var(--sans)}
     .gd-bar button{all:unset;cursor:pointer;font-size:.8rem;font-weight:700;padding:.35rem .85rem;border-radius:999px;border:1.5px solid var(--rule);color:var(--ink);background:var(--panel)}
     .gd-bar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
