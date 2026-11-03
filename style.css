@@ -453,3 +453,6 @@ body { background: linear-gradient(180deg, var(--hero-a) 0, var(--hero-b) 220px,
 /* Metin seçimini kapat (form alanları hariç) */
 body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 input, textarea, select, [contenteditable] { -webkit-user-select: text; user-select: text; }
+.gundem-all { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: 1rem; font-family: var(--sans); font-weight: 800; font-size: .95rem; color: var(--accent); text-decoration: none; border: 1.5px solid var(--accent); border-radius: .7rem; padding: .8rem 1rem; background: var(--panel); }
+.gundem-all span { font-weight: 600; font-size: .8rem; color: var(--muted); }
+.gundem-all:hover { background: var(--accent-soft); }

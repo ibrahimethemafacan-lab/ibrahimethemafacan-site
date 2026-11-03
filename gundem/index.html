@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Piyasa Gündemi — İbrahim Ethem Afacan</title>
+  <meta name="description" content="Piyasaları, fonları ve sermaye piyasası mevzuatını etkileyen gelişmeler: kısa haberler ve yazılar, takvim üzerinde gün gün.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="İbrahim Ethem Afacan">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Piyasa Gündemi — İbrahim Ethem Afacan">
+  <meta property="og:description" content="Piyasaları, fonları ve sermaye piyasası mevzuatını etkileyen gelişmeler: kısa haberler ve yazılar, takvim üzerinde gün gün.">
+  <meta property="og:url" content="https://ibrahimethemafacan.com/gundem/">
+  <meta property="og:image" content="https://ibrahimethemafacan.com/img/og-home.png?v=2">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ibrahim___ethem">
+  <meta name="twitter:title" content="Piyasa Gündemi — İbrahim Ethem Afacan">
+  <meta name="twitter:description" content="Piyasaları, fonları ve sermaye piyasası mevzuatını etkileyen gelişmeler: kısa haberler ve yazılar, takvim üzerinde gün gün.">
+  <meta name="twitter:image" content="https://ibrahimethemafacan.com/img/og-home.png?v=2">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="/tema.js?v=1"></script>
+  <link rel="stylesheet" href="/style.css?v=20261104a">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#F5F8FC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B1424" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="İEA">
+  <script src="/pwa.js" defer></script>
+<style>
+    .gd-wrap{display:grid;grid-template-columns:19rem minmax(0,1fr);gap:2.5rem;align-items:start;margin-top:1.5rem}
+    @media (max-width:860px){.gd-wrap{grid-template-columns:1fr;gap:1.25rem}}
+    .cal{position:sticky;top:1rem;background:var(--panel);border:1px solid var(--rule);border-radius:.9rem;padding:1rem;font-family:var(--sans)}
+    @media (max-width:860px){.cal{position:static}}
+    .cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
+    .cal-h b{font-size:1rem;color:var(--ink)}
+    .cal-h button{all:unset;cursor:pointer;width:2rem;height:2rem;display:grid;place-items:center;border-radius:50%;color:var(--accent);font-size:1.15rem;font-weight:700}
+    .cal-h button:hover{background:var(--accent-soft)}
+    .cal-h button[disabled]{opacity:.25;cursor:default;background:none}
+    .cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:.2rem;text-align:center}
+    .cal-g .dw{font-size:.68rem;font-weight:700;color:var(--muted);padding:.2rem 0}
+    .cal-g button{all:unset;box-sizing:border-box;position:relative;aspect-ratio:1;display:grid;place-items:center;border-radius:.55rem;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+    .cal-g button.var{cursor:pointer;color:var(--ink);font-weight:800;background:var(--accent-soft)}
+    .cal-g button.var:hover{outline:2px solid var(--accent)}
+    .cal-g button.var i{position:absolute;bottom:.22rem;left:50%;transform:translateX(-50%);display:flex;gap:2px}
+    .cal-g button.var i span{width:5px;height:5px;border-radius:50%;background:#D64545}
+    .cal-g button.var i span.y{background:var(--accent)}
+    .cal-g button.bugun{box-shadow:inset 0 0 0 1.5px var(--rule)}
+    .cal-g button.sec{background:var(--accent);color:#fff}
+    .cal-g button.sec i span{background:#fff}
+    .cal-lg{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.7rem;font-size:.72rem;color:var(--muted)}
+    .cal-lg span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#D64545;margin-right:.35rem;vertical-align:1px}
+    .cal-lg span.y::before{background:var(--accent)}
+    .gd-bar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-bottom:.4rem;font-family:var(--sans)}
+    .gd-bar button{all:unset;cursor:pointer;font-size:.8rem;font-weight:700;padding:.35rem .85rem;border-radius:999px;border:1.5px solid var(--rule);color:var(--ink);background:var(--panel)}
+    .gd-bar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+    .gd-bar .gd-sec{margin-left:auto;font-size:.8rem;color:var(--muted)}
+    .gd-bar .gd-sec a{color:var(--accent);font-weight:700;cursor:pointer;margin-left:.4rem}
+    .gd-day{font-family:var(--sans);font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 0;padding-bottom:.35rem;border-bottom:1px solid var(--rule)}
+    .gd-day:first-child{margin-top:.6rem}
+    .gd-list .notes{margin:0}
+    .gd-bos{font-family:var(--sans);color:var(--muted);padding:1rem 0}
+  </style>
+</head>
+<body>
+  <header class="site-head">
+      <div class="wrap">
+        <a class="brand" href="/"><img class="logo-light" src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"><img class="logo-dark" src="/img/logo-dark.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
+        <div class="head-end">
+          <nav class="nav" aria-label="Ana menü">
+            <a href="/#gundem" aria-current="page">Gündem</a>
+            <a href="/#veriler">Veriler</a>
+            <a href="/#araclar">Araçlar</a>
+            <a href="/hakkinda.html">Hakkımda</a>
+          </nav>
+          <button class="theme-toggle" type="button" aria-label="Karanlık moda geç" title="Karanlık moda geç"></button>
+        </div>
+      </div>
+    </header>
+
+  <main class="wrap">
+    <article class="prose wide" style="margin-bottom:0">
+      <h1>Piyasa Gündemi</h1>
+      <p>Piyasaları, fonları ve sermaye piyasası mevzuatını etkileyen gelişmeler. Takvimden bir güne dokunarak o günün haberlerini görebilirsin.</p>
+    </article>
+    <div class="gd-wrap">
+      <aside class="cal" aria-label="Gündem takvimi">
+        <div class="cal-h"><button type="button" id="cal-p" aria-label="Önceki ay">‹</button><b id="cal-t"></b><button type="button" id="cal-n" aria-label="Sonraki ay">›</button></div>
+        <div class="cal-g" id="cal-g"></div>
+        <div class="cal-lg"><span>Kısa haber</span><span class="y">Yazı</span></div>
+      </aside>
+      <section>
+        <div class="gd-bar" role="group" aria-label="Tür">
+          <button type="button" data-t="" aria-pressed="true">Tümü</button>
+          <button type="button" data-t="yazi" aria-pressed="false">Yazılar</button>
+          <button type="button" data-t="kisa" aria-pressed="false">Kısa haberler</button>
+          <span class="gd-sec" id="gd-sec" hidden></span>
+        </div>
+        <div class="gd-list" id="gd-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>Bu sitedeki içerikler yatırım tavsiyesi değildir. Yatırım danışmanlığı hizmeti, aracı kurumlar, portföy yönetim şirketleri ve mevduat kabul etmeyen bankalar ile müşteri arasında imzalanacak yatırım danışmanlığı sözleşmesi çerçevesinde sunulmaktadır.</p>
+      <nav class="social" aria-label="Sosyal medya"><a href="https://www.linkedin.com/in/ibrahim-ethem-afacan-563142a1/" rel="me noopener" target="_blank">LinkedIn</a><a href="https://x.com/ibrahim___ethem" rel="me noopener" target="_blank">X</a><a href="https://www.instagram.com/ibrahimethemafacan" rel="me noopener" target="_blank">Instagram</a></nav>
+      <p>© 2026 İbrahim Ethem Afacan</p>
+    </div>
+  </footer>
+<script>
+(function(){
+var A=[{"tarih": "2026-11-03", "tur": "kisa", "etiket": "Makro", "metin": "Enflasyon, Ekim'de beklentilerin üzerinde aylık %2,58 arttı."}, {"tarih": "2026-11-03", "tur": "kisa", "etiket": "Piyasa", "metin": "Fon soruşturması kapsamında gözaltına alınan Korkmaz Enes Ergun, \"rüşvet almak\" suçundan tutuklanarak cezaevine gönderildi.<br>*Korkmaz Enes Ergun, 26 Mart 2021 - 30 Ekim 2026 arasında Borsa İstanbul A.Ş. Genel Müdürü olarak görev yapmıştı."}, {"tarih": "2026-11-02", "tur": "kisa", "etiket": "Piyasa", "metin": "Borsa İstanbul Genel Müdür Yardımcısı Atila Türeli'nin vekaleten Borsa İstanbul Genel Müdürü olarak görevlendirilmesine karar verildi."}, {"tarih": "2026-11-01", "tur": "kisa", "etiket": "Mevzuat", "metin": "3 yıldır Vergi Denetim Kurulu (VDK) Başkanı olarak görev yapan Muhsin Atcı, Sermaye Piyasası Kurulu (SPK) Başkanı olarak atandı. 4 yıllık görev süresi dolanların yerine Başkan Vekili Ersin Başar Ekmekci, Kurul Üyesi Yasemin Girici oldu."}, {"tarih": "2026-10-31", "tur": "kisa", "etiket": "Piyasa", "metin": "2021 yılının Mart ayından bu yana Borsa İstanbul Genel Müdürü olarak görev yapan Korkmaz Enes Ergun, fon soruşturması kapsamında gözaltına alındı."}, {"tarih": "2026-10-30", "tur": "kisa", "etiket": "Fonlar", "metin": "Olağanüstü tasfiye kapsamındaki ara ödemelerle bugün 29,3 milyar lira fon sahiplerinin hesaplarına yatırılıyor. Atlas, Pusula ve Tera Portföy'ün 7 fonunu kapsayan ödemeler 235 bin 705 yatırımcıya ulaşacak."}, {"tarih": "2026-10-29", "tur": "kisa", "etiket": "Piyasa", "metin": "AA Finans, CNBC-e ve Matriks Haber anketlerine katılan ekonomistlerin ekim ayı aylık enflasyon beklentilerinin ortalaması sırasıyla %2,20, %2,26 ve %2,33 olurken (Bloomberg HT anketinde medyan %2,42), bu beklentiler eylülde %29,73 olan yıllık enflasyonun ekimde %29,28–29,45 aralığına gerilemesine işaret ediyor."}, {"tarih": "2026-10-28", "tur": "yazi", "etiket": "Mevzuat", "url": "/gundem/profesyonel-musteri-nitelikli-yatirimci.html", "baslik": "Profesyonel müşteri ve nitelikli yatırımcı arasındaki fark", "ozet": "SPK eşikleri 50 milyon TL'ye çıkardı. Her profesyonel müşteri nitelikli yatırımcıdır, ama her nitelikli yatırımcı profesyonel müşteri değildir."}, {"tarih": "2026-10-27", "tur": "kisa", "etiket": "Fonlar", "metin": "Olağanüstü tasfiyeyle ilgili 1 milyon TL'ye kadar olan ara ödemeler 30 Ekim Cuma günü itibarıyla İş Bankası ve Ziraat Bankası kanalıyla başlayacak."}];
+var AY=["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],GUN=["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+var IC='<svg class="brief-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a5 5 0 0 0-5 5v3h10v-3a5 5 0 0 0-5-5Z" fill="#D64545"/><rect x="5" y="16.4" width="14" height="2.6" rx="1.3" fill="#A33A2E"/><path d="M12 5V2.8M5.6 7.2 4 5.6M18.4 7.2 20 5.6" stroke="#D64545" stroke-width="1.8" stroke-linecap="round"/></svg>';
+var tur='',gun=null,by={};A.forEach(function(x){(by[x.tarih]=by[x.tarih]||[]).push(x);});
+var aylar=Object.keys(by).map(function(d){return d.slice(0,7);}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort();
+var ay=aylar[aylar.length-1];
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function trT(d){var p=d.split('-');return (+p[2])+' '+AY[+p[1]-1]+' '+p[0];}
+function li(x){
+  if(x.tur==='kisa')return '<li class="brief"><div class="meta">'+IC+trT(x.tarih)+' · '+esc(x.etiket)+' · Kısa haber</div><p class="note-text">'+x.metin+'</p></li>';
+  return '<li class="post"><div class="meta">'+trT(x.tarih)+' · '+esc(x.etiket)+'</div><a href="'+x.url+'">'+x.baslik+'</a><p class="note-summary">'+x.ozet+'</p><a class="more" href="'+x.url+'" aria-hidden="true" tabindex="-1">Yazıyı oku →</a></li>';
+}
+function liste(){
+  var L=A.filter(function(x){return (!tur||x.tur===tur)&&(!gun||x.tarih===gun);}),h='',son='';
+  L.forEach(function(x){
+    if(x.tarih!==son){if(son)h+='</ul>';var dt=new Date(x.tarih+'T12:00:00');h+='<h2 class="gd-day">'+trT(x.tarih)+', '+GUN[dt.getDay()]+'</h2><ul class="notes">';son=x.tarih;}
+    h+=li(x);
+  });
+  if(son)h+='</ul>';
+  document.getElementById('gd-list').innerHTML=h||'<p class="gd-bos">Bu seçimde kayıt yok.</p>';
+  var s=document.getElementById('gd-sec');
+  if(gun){s.hidden=false;s.innerHTML=trT(gun)+'<a id="gd-x">Tümünü göster</a>';document.getElementById('gd-x').onclick=function(){gun=null;takvim();liste();};}else s.hidden=true;
+}
+function takvim(){
+  var y=+ay.slice(0,4),m=+ay.slice(5,7);document.getElementById('cal-t').textContent=AY[m-1]+' '+y;
+  var i=aylar.indexOf(ay);document.getElementById('cal-p').disabled=i<=0;document.getElementById('cal-n').disabled=i>=aylar.length-1;
+  var ilk=(new Date(y,m-1,1).getDay()+6)%7,n=new Date(y,m,0).getDate(),h=['Pt','Sa','Ça','Pe','Cu','Ct','Pz'].map(function(d){return '<span class="dw">'+d+'</span>';}).join('');
+  for(var k=0;k<ilk;k++)h+='<span></span>';
+  var bg=new Date(),bs=bg.getFullYear()+'-'+String(bg.getMonth()+1).padStart(2,'0')+'-'+String(bg.getDate()).padStart(2,'0');
+  for(var g=1;g<=n;g++){
+    var d=ay+'-'+String(g).padStart(2,'0'),x=by[d],c=(x?'var':'')+(d===bs?' bugun':'')+(d===gun?' sec':'');
+    var dots=x?'<i>'+(x.some(function(z){return z.tur==='kisa';})?'<span></span>':'')+(x.some(function(z){return z.tur==='yazi';})?'<span class="y"></span>':'')+'</i>':'';
+    h+='<button type="button" class="'+c+'" data-d="'+d+'"'+(x?' aria-label="'+trT(d)+', '+x.length+' kayıt"':' tabindex="-1" disabled')+'>'+g+dots+'</button>';
+  }
+  var G=document.getElementById('cal-g');G.innerHTML=h;
+  G.querySelectorAll('button.var').forEach(function(b){b.onclick=function(){gun=gun===b.dataset.d?null:b.dataset.d;takvim();liste();
+    if(window.innerWidth<860)document.getElementById('gd-list').scrollIntoView({behavior:'smooth',block:'start'});};});
+}
+document.getElementById('cal-p').onclick=function(){var i=aylar.indexOf(ay);if(i>0){ay=aylar[i-1];takvim();}};
+document.getElementById('cal-n').onclick=function(){var i=aylar.indexOf(ay);if(i<aylar.length-1){ay=aylar[i+1];takvim();}};
+document.querySelectorAll('.gd-bar button').forEach(function(b){b.onclick=function(){tur=b.dataset.t;document.querySelectorAll('.gd-bar button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});liste();};});
+var q=location.hash.slice(1);if(by[q]){gun=q;ay=q.slice(0,7);}
+takvim();liste();
+})();
+</script>
+<script data-goatcounter="https://ibrahimethemafacan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
