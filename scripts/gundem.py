@@ -29,7 +29,7 @@ def tr_tarih(d):
 def li(it, ind='          '):
     if it['tur'] == 'kisa':
         return (f'{ind}<li class="brief">\n{ind}  <div class="meta">{IKON}{tr_tarih(it["tarih"])} · {html.escape(it["etiket"])} · Kısa haber</div>\n'
-                f'{ind}  <p class="note-text">{it["metin"]}</p>\n{ind}</li>\n')
+                f'{ind}  <p class="note-text">{it["metin"]}</p>\n' + (f'{ind}  {it["ek"]}\n' if it.get('ek') else '') + f'{ind}</li>\n')
     return (f'{ind}<li class="post">\n{ind}  <div class="meta">{tr_tarih(it["tarih"])} · {html.escape(it["etiket"])}</div>\n'
             f'{ind}  <a href="{it["url"]}">{it["baslik"]}</a>\n'
             f'{ind}  <p class="note-summary">{it["ozet"]}</p>\n'
@@ -161,7 +161,7 @@ var ay=aylar[aylar.length-1];
 function esc(t){{return String(t).replace(/[&<>"]/g,function(c){{return {{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}}[c];}});}}
 function trT(d){{var p=d.split('-');return (+p[2])+' '+AY[+p[1]-1]+' '+p[0];}}
 function li(x){{
-  if(x.tur==='kisa')return '<li class="brief"><div class="meta">'+IC+trT(x.tarih)+' · '+esc(x.etiket)+' · Kısa haber</div><p class="note-text">'+x.metin+'</p></li>';
+  if(x.tur==='kisa')return '<li class="brief"><div class="meta">'+IC+trT(x.tarih)+' · '+esc(x.etiket)+' · Kısa haber</div><p class="note-text">'+x.metin+'</p>'+(x.ek||'')+'</li>';
   return '<li class="post"><div class="meta">'+trT(x.tarih)+' · '+esc(x.etiket)+'</div><a href="'+x.url+'">'+x.baslik+'</a><p class="note-summary">'+x.ozet+'</p><a class="more" href="'+x.url+'" aria-hidden="true" tabindex="-1">Yazıyı oku →</a></li>';
 }}
 function liste(){{

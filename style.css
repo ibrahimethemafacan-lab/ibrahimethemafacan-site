@@ -489,3 +489,14 @@ input, textarea, select, [contenteditable] { -webkit-user-select: text; user-sel
 .gd-son-yazi small { display: block; font-family: var(--sans); font-size: .72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
 .gd-son-yazi b { display: block; margin-top: .2rem; font-weight: 500; font-size: 1.05rem; color: var(--ink); }
 .gd-son-yazi:hover b { color: var(--accent); }
+
+.brief-ek { margin-top: .6rem; font-family: var(--sans); }
+.brief-ek summary { cursor: pointer; font-size: .85rem; font-weight: 700; color: var(--accent); }
+.brief-tbl { overflow-x: auto; margin-top: .5rem; border: 1px solid var(--rule); border-radius: .5rem; max-height: 22rem; overflow-y: auto; }
+.brief-tbl table { width: 100%; border-collapse: collapse; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.brief-tbl th, .brief-tbl td { padding: .35rem .6rem; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.brief-tbl th:first-child, .brief-tbl td:first-child { text-align: left; font-weight: 700; }
+.brief-tbl thead th { position: sticky; top: 0; background: var(--panel); color: var(--muted); font-size: .72rem; }
+.brief-tbl tfoot td { font-weight: 800; background: var(--accent-soft); }
+.gd-home > *, .gd-wrap > * { min-width: 0; }
+.brief-ek, .brief-tbl { max-width: 100%; }
