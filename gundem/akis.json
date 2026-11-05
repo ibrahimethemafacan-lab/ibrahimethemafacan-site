@@ -1,5 +1,12 @@
 [
  {
+  "tarih": "2026-11-05",
+  "tur": "kisa",
+  "etiket": "Dünya",
+  "metin": "ABD ara seçimlerinde Demokratlar, Temsilciler Meclisi'nde ve Senato'da çoğunluğu elde etti. The Guardian'ın verilerine göre, sonuçlanan yarışlarda Demokratlar Temsilciler Meclisi'nde 240 sandalye (+30), Senato'da bağımsızlarla birlikte 54 sandalye (+7) kazandı. Cumhuriyetçilerin sandalye sayısı Temsilciler Meclisi'nde 147'ye, Senato'da 44'e geriledi.<br>*Temsilciler Meclisi'nde 435 yarışın 387'si, Senato'da 35 yarışın 33'ü sonuçlandı; sayım sürüyor.",
+  "ek": "<figure class=\"seat-chart\"><div class=\"sc-row\"><div class=\"sc-h\"><b>Senato</b><span>33/35 yarış sonuçlandı</span></div><div class=\"sc-n\"><span class=\"sc-d\">Demokrat 54 <small>+7</small></span><span class=\"sc-r\"><small>−7</small> 44 Cumhuriyetçi</span></div><div class=\"sc-bar\"><i class=\"d\" style=\"width:54.00%\"></i><i class=\"b\" style=\"width:2.00%\"></i><i class=\"r\" style=\"width:44.00%\"></i><em style=\"left:50.00%\"><span>50</span></em></div></div><div class=\"sc-row\"><div class=\"sc-h\"><b>Temsilciler Meclisi</b><span>387/435 yarış sonuçlandı</span></div><div class=\"sc-n\"><span class=\"sc-d\">Demokrat 240 <small>+30</small></span><span class=\"sc-r\"><small>−30</small> 147 Cumhuriyetçi</span></div><div class=\"sc-bar\"><i class=\"d\" style=\"width:55.17%\"></i><i class=\"b\" style=\"width:11.03%\"></i><i class=\"r\" style=\"width:33.79%\"></i><em style=\"left:50.11%\"><span>218</span></em></div></div><figcaption>Demokrat sayısına bağımsızlar dahildir (Senato). Gri: sonuçlanmamış yarışlar. Çizgi: çoğunluk eşiği. Kaynak: The Guardian, 5 Kasım 2026.</figcaption></figure>"
+ },
+ {
   "tarih": "2026-11-03",
   "tur": "kisa",
   "etiket": "Fonlar",
