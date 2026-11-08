@@ -95,6 +95,9 @@
     .chips{display:flex;flex-wrap:wrap;gap:.4rem}
     .chips label{display:inline-flex;align-items:center;gap:.35rem;border:1.5px solid var(--rule);border-radius:999px;padding:.3rem .75rem;font-size:.8rem;cursor:pointer;user-select:none;background:var(--panel);color:var(--ink)}
     .chips input{display:none}
+    .chips label small{opacity:.65;font-weight:700;margin-left:.1rem}
+    .sem-detail{margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--rule)}
+    #sem-tog{margin-top:.45rem}
     .chips label:has(input:checked){border-color:var(--accent);background:var(--accent);color:var(--on-accent,#fff)}
     .frow{display:flex;flex-wrap:wrap;gap:.6rem .9rem;align-items:center}
     .frow label{font-size:.8rem;color:var(--muted)}
@@ -154,7 +157,9 @@
         <label><input type="checkbox" value="e" checked>Emeklilik fonu (BEFAS)</label>
         <label><input type="checkbox" value="b" checked>BYF</label>
       </div></div>
-      <div class="flt-grp"><h3>Şemsiye türü</h3><div class="chips" id="c-sem"></div></div>
+      <div class="flt-grp"><h3>Ne yatırıyor? <span class="mini">(şemsiye türleri ailelere toplandı)</span></h3><div class="chips" id="c-fam"></div>
+        <button type="button" class="fadd" id="sem-tog" aria-expanded="false">Ayrıntılı şemsiye türlerini göster ▾</button>
+        <div class="chips sem-detail" id="c-sem" hidden></div></div>
       <div class="flt-grp"><h3>Varlık dağılımı koşulları <span class="mini">(son bildirilen portföy dağılımı, %)</span></h3>
         <div id="c-al"></div><button type="button" class="fadd" id="al-add">+ Koşul ekle</button></div>
       <div class="flt-grp"><h3>Performans ve risk</h3><div class="frow">
@@ -204,11 +209,31 @@ var n2=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:2,maximumFractionDig
 var $=function(s){return document.querySelector(s);};
 var SEMS={};F.forEach(function(r){if(r[3])SEMS[r[2]]=SEMS[r[2]]||{},SEMS[r[2]][r[3]]=(SEMS[r[2]][r[3]]||0)+1;});
 var sortK=6,sortD=-1,conds=[];
-function semChips(){var tips=tipSel(),box=$('#c-sem'),keep={};box.querySelectorAll('input:checked').forEach(function(i){keep[i.value]=1;});
-  var list=[];tips.forEach(function(t){Object.keys(SEMS[t]||{}).forEach(function(s){if(list.indexOf(s)<0)list.push(s);});});
+var FAMS=[['hisse','Hisse senedi'],['borc','Borçlanma araçları'],['pp','Para piyasası'],['kat','Katılım'],['km','Kıymetli maden'],['sepet','Fon sepeti'],['degisken','Değişken & karma'],['serbest','Serbest'],['bes','Emeklilik standart & katkı'],['diger','Diğer']];
+function famOf(s){var f=[],t=(s||'').toLocaleLowerCase('tr');
+  if(/hisse|endeks/.test(t))f.push('hisse');
+  if(/borçlanma|kira sertifika/.test(t))f.push('borc');
+  if(/para piyasası/.test(t))f.push('pp');
+  if(/katılım|kira sertifika/.test(t))f.push('kat');
+  if(/altın|gümüş|kıymetli maden/.test(t))f.push('km');
+  if(/fon sepeti/.test(t))f.push('sepet');
+  if(/değişken|karma/.test(t))f.push('degisken');
+  if(/serbest/.test(t))f.push('serbest');
+  if(/standart|başlangıç|katkı|yaşam döngüsü/.test(t))f.push('bes');
+  if(!f.length)f.push('diger');return f;}
+var FAMOF={};F.forEach(function(r){var k=r[3]||'';if(!(k in FAMOF))FAMOF[k]=famOf(k);});
+function famSel(){var v={};document.querySelectorAll('#c-fam input:checked').forEach(function(i){v[i.value]=1;});return v;}
+function semChips(){var tips=tipSel(),fsel=famSel(),box=$('#c-sem'),fbox=$('#c-fam'),keep={},fkeep={};
+  box.querySelectorAll('input:checked').forEach(function(i){keep[i.value]=1;});
+  var cnt={},list=[];F.forEach(function(r){if(tips.indexOf(r[2])<0)return;var k=r[3]||'';FAMOF[k].forEach(function(f){cnt[f]=(cnt[f]||0)+1;});if(k&&list.indexOf(k)<0)list.push(k);});
+  fbox.innerHTML=FAMS.filter(function(f){return cnt[f[0]];}).map(function(f){return '<label><input type="checkbox" value="'+f[0]+'"'+(fsel[f[0]]?' checked':'')+'>'+f[1]+' <small>'+cnt[f[0]]+'</small></label>';}).join('');
+  fbox.querySelectorAll('input').forEach(function(i){i.addEventListener('change',function(){semChips();apply();});});
+  var anyF=Object.keys(famSel()).length;
+  list=list.filter(function(k){return !anyF||FAMOF[k].some(function(f){return famSel()[f];});});
   list.sort(function(a,b){return a.localeCompare(b,'tr');});
-  box.innerHTML=list.map(function(s){return '<label><input type="checkbox" value="'+s.replace(/"/g,'&quot;')+'"'+(keep[s]?' checked':'')+'>'+s+'</label>';}).join('');
+  box.innerHTML=list.map(function(k){return '<label><input type="checkbox" value="'+k.replace(/"/g,'&quot;')+'"'+(keep[k]?' checked':'')+'>'+k+'</label>';}).join('');
   box.querySelectorAll('input').forEach(function(i){i.addEventListener('change',apply);});}
+$('#sem-tog').addEventListener('click',function(){var b=$('#c-sem'),o=b.hidden;b.hidden=!o;this.setAttribute('aria-expanded',o?'true':'false');this.textContent=o?'Ayrıntılı şemsiye türlerini gizle ▴':'Ayrıntılı şemsiye türlerini göster ▾';});
 function tipSel(){var v=[];document.querySelectorAll('#c-tip input:checked').forEach(function(i){v.push(i.value);});return v;}
 function addCond(k,mn,mx){var d=document.createElement('div');d.className='fcond';
   d.innerHTML='<select class="fsel">'+AL.map(function(a){return '<option value="'+a[0]+'"'+(a[0]===k?' selected':'')+'>'+a[1]+'</option>';}).join('')+'</select> en az <input class="fnum mn" inputmode="numeric" value="'+(mn||'')+'"> en fazla <input class="fnum mx" inputmode="numeric" value="'+(mx||'')+'"> % <button type="button" class="fx" title="Kaldır">×</button>';
@@ -218,7 +243,7 @@ function addCond(k,mn,mx){var d=document.createElement('div');d.className='fcond
 var dt;function deb(){clearTimeout(dt);dt=setTimeout(apply,350);}
 function num(id){var v=document.getElementById(id).value.replace(',','.').trim();if(v==='')return null;var f=parseFloat(v);return isNaN(f)?null:f;}
 function apply(){
-  var tips=tipSel(),sems={},anySem=false;
+  var tips=tipSel(),sems={},anySem=false,fsel=famSel(),anyFam=Object.keys(fsel).length>0;
   document.querySelectorAll('#c-sem input:checked').forEach(function(i){sems[i.value]=1;anySem=true;});
   var cs=[];document.querySelectorAll('#c-al .fcond').forEach(function(d){var k=d.querySelector('select').value,mn=d.querySelector('.mn').value,mx=d.querySelector('.mx').value;
     mn=mn===''?null:parseFloat(mn.replace(',','.'));mx=mx===''?null:parseFloat(mx.replace(',','.'));
@@ -229,6 +254,7 @@ function apply(){
   var out=F.filter(function(r){
     if(tips.indexOf(r[2])<0)return false;
     if(anySem&&!sems[r[3]])return false;
+    if(!anySem&&anyFam&&!FAMOF[r[3]||''].some(function(f){return fsel[f];}))return false;
     for(var i=0;i<cs.length;i++){var a=r[17];if(!a)return false;var w=a[cs[i][0]];
       if(cs[i][1]!=null&&w<cs[i][1])return false;if(cs[i][2]!=null&&w>cs[i][2])return false;}
     if(gmin!=null&&(r[gd]==null||r[gd]<gmin))return false;
@@ -256,7 +282,7 @@ document.querySelectorAll('#c-tip input').forEach(function(i){i.addEventListener
 ['f-gd','f-sh','f-dd','f-ad','f-ay','f-aval','f-sz','f-gmin','f-q'].forEach(function(id){var e=document.getElementById(id);e.addEventListener('change',apply);e.addEventListener('input',deb);});
 document.querySelectorAll('#tbl th').forEach(function(h){h.addEventListener('click',function(){var k=+h.dataset.k;if(sortK===k)sortD=-sortD;else{sortK=k;sortD=(k<=3)?1:-1;}apply();});});
 $('#al-add').onclick=function(){addCond('hs');};
-$('#reset').onclick=function(){document.querySelectorAll('#c-tip input').forEach(function(i){i.checked=true;});
+$('#reset').onclick=function(){document.querySelectorAll('#c-tip input').forEach(function(i){i.checked=true;});document.querySelectorAll('#c-fam input,#c-sem input').forEach(function(i){i.checked=false;});
   $('#c-al').innerHTML='';['f-gmin','f-sh','f-dd','f-aval','f-sz','f-q'].forEach(function(id){document.getElementById(id).value='';});
   sortK=6;sortD=-1;semChips();apply();};
 semChips();apply();
