@@ -222,16 +222,27 @@ function famOf(s){var f=[],t=(s||'').toLocaleLowerCase('tr');
   if(/standart|başlangıç|katkı|yaşam döngüsü/.test(t))f.push('bes');
   if(!f.length)f.push('diger');return f;}
 var FAMOF={};F.forEach(function(r){var k=r[3]||'';if(!(k in FAMOF))FAMOF[k]=famOf(k);});
+var SERB='Serbest Şemsiye Fonu',SUBN={hisse:'Hisse senedi serbest',kat:'Katılım serbest',doviz:'Döviz serbest',pp:'Para piyasası / kısa vadeli serbest',km:'Kıymetli maden & emtia serbest',borc:'Borçlanma araçları serbest',diger:'Çoklu varlık / diğer serbest'};
+function subOf(r){var a=(r[1]||'').toLocaleLowerCase('tr'),al=r[17]||[];
+  if(/hisse/.test(a)||(al[0]||0)>=80)return 'hisse';
+  if(/katılım/.test(a))return 'kat';
+  if(/döviz|eurobond|dolar|yabancı/.test(a))return 'doviz';
+  if(/para piyasası|kısa vadeli|nakit/.test(a)||((al[7]||0)+(al[9]||0))>=80)return 'pp';
+  if(/altın|gümüş|kıymetli|emtia/.test(a)||(al[8]||0)>=50)return 'km';
+  if(/borçlanma|tahvil|bono|sabit getiri/.test(a)||((al[2]||0)+(al[3]||0))>=60)return 'borc';
+  return 'diger';}
+var SUB={};F.forEach(function(r){if(r[3]===SERB)SUB[r[0]]=subOf(r);});
+function semKey(r){return r[3]===SERB?'serbest:'+SUB[r[0]]:(r[3]||'');}
+function semName(k){return k.indexOf('serbest:')===0?SUBN[k.slice(8)]:k;}
 function famSel(){var v={};document.querySelectorAll('#c-fam input:checked').forEach(function(i){v[i.value]=1;});return v;}
-function semChips(){var tips=tipSel(),fsel=famSel(),box=$('#c-sem'),fbox=$('#c-fam'),keep={},fkeep={};
+function semChips(){var tips=tipSel(),fsel=famSel(),box=$('#c-sem'),fbox=$('#c-fam'),keep={};
   box.querySelectorAll('input:checked').forEach(function(i){keep[i.value]=1;});
-  var cnt={},list=[];F.forEach(function(r){if(tips.indexOf(r[2])<0)return;var k=r[3]||'';FAMOF[k].forEach(function(f){cnt[f]=(cnt[f]||0)+1;});if(k&&list.indexOf(k)<0)list.push(k);});
+  var cnt={},scnt={};F.forEach(function(r){if(tips.indexOf(r[2])<0)return;var k=r[3]||'';FAMOF[k].forEach(function(f){cnt[f]=(cnt[f]||0)+1;});if(k){var sk=semKey(r);scnt[sk]=(scnt[sk]||0)+1;}});
   fbox.innerHTML=FAMS.filter(function(f){return cnt[f[0]];}).map(function(f){return '<label><input type="checkbox" value="'+f[0]+'"'+(fsel[f[0]]?' checked':'')+'>'+f[1]+' <small>'+cnt[f[0]]+'</small></label>';}).join('');
   fbox.querySelectorAll('input').forEach(function(i){i.addEventListener('change',function(){semChips();apply();});});
-  var anyF=Object.keys(famSel()).length;
-  list=list.filter(function(k){return !anyF||FAMOF[k].some(function(f){return famSel()[f];});});
-  list.sort(function(a,b){return a.localeCompare(b,'tr');});
-  box.innerHTML=list.map(function(k){return '<label><input type="checkbox" value="'+k.replace(/"/g,'&quot;')+'"'+(keep[k]?' checked':'')+'>'+k+'</label>';}).join('');
+  var anyF=Object.keys(fsel).length,list=Object.keys(scnt).filter(function(k){var base=k.indexOf('serbest:')===0?SERB:k;return !anyF||FAMOF[base].some(function(f){return fsel[f];});});
+  list.sort(function(a,b){return semName(a).localeCompare(semName(b),'tr');});
+  box.innerHTML=list.map(function(k){return '<label><input type="checkbox" value="'+k.replace(/"/g,'&quot;')+'"'+(keep[k]?' checked':'')+'>'+semName(k)+' <small>'+scnt[k]+'</small></label>';}).join('');
   box.querySelectorAll('input').forEach(function(i){i.addEventListener('change',apply);});}
 $('#sem-tog').addEventListener('click',function(){var b=$('#c-sem'),o=b.hidden;b.hidden=!o;this.setAttribute('aria-expanded',o?'true':'false');this.textContent=o?'Ayrıntılı şemsiye türlerini gizle ▴':'Ayrıntılı şemsiye türlerini göster ▾';});
 function tipSel(){var v=[];document.querySelectorAll('#c-tip input:checked').forEach(function(i){v.push(i.value);});return v;}
@@ -253,7 +264,7 @@ function apply(){
   var q=$('#f-q').value.trim().toLocaleLowerCase('tr');
   var out=F.filter(function(r){
     if(tips.indexOf(r[2])<0)return false;
-    if(anySem&&!sems[r[3]])return false;
+    if(anySem&&!sems[semKey(r)])return false;
     if(!anySem&&anyFam&&!FAMOF[r[3]||''].some(function(f){return fsel[f];}))return false;
     for(var i=0;i<cs.length;i++){var a=r[17];if(!a)return false;var w=a[cs[i][0]];
       if(cs[i][1]!=null&&w<cs[i][1])return false;if(cs[i][2]!=null&&w>cs[i][2])return false;}
