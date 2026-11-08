@@ -14,8 +14,8 @@
     var p = document.createElement('p');
     p.className = 'gc-sayac';
     p.style.cssText = 'font-family:var(--sans,system-ui,sans-serif);font-size:.78rem;color:var(--muted,#6b7280);margin:' + (h1.closest('header.top') ? '-.2rem 0 .8rem' : '-.6rem 0 1.2rem') + ';font-variant-numeric:tabular-nums;letter-spacing:.01em';
-    p.setAttribute('title', 'Bu sayfanın yayına girdiği günden bu yana toplam görüntülenme');
-    p.textContent = n.toLocaleString('tr-TR') + ' görüntülenme';
+    p.setAttribute('title', 'Bu sayfanın yayına girdiği günden bu yana toplam ziyaret (aynı kişinin aynı gün içindeki tekrar açmaları tek sayılır)');
+    p.textContent = n.toLocaleString('tr-TR') + ' ziyaret';
     h1.insertAdjacentElement('afterend', p);
   }).catch(function () {});
 
@@ -30,7 +30,7 @@
       var p = document.createElement('p');
       p.className = 'gc-toplam';
       p.style.cssText = 'font-size:.8rem;color:var(--muted,#6b7280);margin:.2rem 0 .6rem;font-variant-numeric:tabular-nums';
-      p.innerHTML = '24 Ekim 2026\'da yayına girdiğinden bu yana <b style="color:var(--ink,#111);font-weight:700">' + n.toLocaleString('tr-TR') + '</b> sayfa görüntülenmesi.';
+      p.innerHTML = '24 Ekim 2026\'da yayına girdiğinden bu yana <b style="color:var(--ink,#111);font-weight:700">' + n.toLocaleString('tr-TR') + '</b> ziyaret.';
       var son = tel.querySelector('p:last-of-type');
       if (son) tel.insertBefore(p, son); else tel.appendChild(p);
     }).catch(function () {});
