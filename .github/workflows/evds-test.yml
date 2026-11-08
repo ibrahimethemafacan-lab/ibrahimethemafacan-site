@@ -12,11 +12,8 @@ jobs:
           EVDS_KEY: ${{ secrets.EVDS_KEY }}
         run: |
           if [ -z "$EVDS_KEY" ]; then echo "EVDS_KEY boş"; exit 1; fi
-          code=$(curl -s -o out.json -w '%{http_code}' -H "key: $EVDS_KEY" "https://evds2.tcmb.gov.tr/service/evds/series=TP.AB.TOPLAM&startDate=01-10-2026&endDate=08-11-2026&type=json")
-          echo "HTTP $code"
-          echo "anahtar uzunluğu: ${#EVDS_KEY}"
-          curl -s -D - -o /dev/null -H "key: $EVDS_KEY" "https://evds2.tcmb.gov.tr/service/evds/series=TP.AB.TOPLAM&startDate=01-10-2026&endDate=08-11-2026&type=json" | grep -i "^HTTP\|^location\|^content-type" || true
-          echo "--- -L ile:"
-          curl -s -L -o out2.json -w 'son HTTP %{http_code} url %{url_effective}\n' -H "key: $EVDS_KEY" "https://evds2.tcmb.gov.tr/service/evds/series=TP.AB.TOPLAM&startDate=01-10-2026&endDate=08-11-2026&type=json"
-          head -c 400 out2.json; echo
-          python3 -c "import json;d=json.load(open('out2.json'));print('satır:',d.get('totalCount'));print(d['items'][-1])"
+          for host in evds3.tcmb.gov.tr evds2.tcmb.gov.tr; do
+            code=$(curl -s -o out.json -w '%{http_code}' -H "key: $EVDS_KEY" "https://$host/service/evds/series=TP.AB.TOPLAM&startDate=01-10-2026&endDate=08-11-2026&type=json")
+            echo "$host HTTP $code"; head -c 300 out.json; echo
+            python3 -c "import json;d=json.load(open('out.json'));print('satır:',d.get('totalCount'));print(d['items'][-1])" && break
+          done
