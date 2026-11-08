@@ -74,7 +74,8 @@ main=f'''  <main class="wrap narrow">
     <section class="grp" id="bes">
       <div class="gh-row">{ICON_BES}<h2 class="gh">Emeklilik fonları ve BES</h2></div>
       <article class="prose wide"><p>Bireysel emeklilik sisteminde katılımcıların birikimleri emeklilik yatırım fonlarında değerlendirilir. Gönüllü BES'te katılımcı sözleşmeyi kendisi açar; otomatik katılımda (OKS) işveren çalışanı sisteme dahil eder ve çalışan iki ay içinde cayabilir. Devlet, gönüllü BES'te ödenen katkı payının yüzde 20'si oranında devlet katkısı verir.</p></article>
-      <h3 class="bd-h">Gönüllü BES (31 Ekim 2026) ve OKS (26 Ekim 2026) özet verileri</h3>
+      <h3 class="bd-h">Gönüllü BES ve OKS özet verileri</h3>
+      <p class="calc-note" style="margin-top:0">EGM'nin 5 Kasım 2026 özetine göre sistemde 18,37 milyon katılımcı ve 2,57 trilyon TL fon var: gönüllü BES 10,40 milyon kişi ve 2,41 trilyon TL, otomatik katılım 7,97 milyon kişi ve 0,16 trilyon TL. Aşağıdaki kartlardaki ayrıntılı dağılım gönüllü BES için 31 Ekim, OKS için 26 Ekim tarihli ayrıntılı verilerdir.</p>
       <div class="oz-grid">
         <article class="oz-card" id="oz-bes"></article>
         <article class="oz-card" id="oz-oks"></article>
@@ -115,7 +116,7 @@ script=f'''  <script>
     document.getElementById('kpi').innerHTML=[
       ['Yatırım fonlarının büyüklüğü, trilyon TL',n2.format(last[1]/1000)],
       ['Emeklilik fonlarının büyüklüğü, trilyon TL',n2.format(last[3]/1000)],
-      ['BES ve OKS katılımcı sayısı, milyon (EGM, 26–31 Ekim)','18,33'],
+      ['BES ve OKS katılımcı sayısı, milyon (EGM, 5 Kasım)','18,37'],
       ['Yatırım fonlarına 2026\\'da net akım, milyar TL',sg({ytd_m},n0)],
       ['Yatırım fonu büyüklüğü, Ağustos zirvesinden değişim',pc((last[1]/peak[1]-1)*100)],
       ['Emeklilik fonlarına 2026\\'da net akım, milyar TL',sg({ytd_p},n0)]
