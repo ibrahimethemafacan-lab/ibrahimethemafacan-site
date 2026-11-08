@@ -88,6 +88,12 @@
     .rk-row .vl{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
     .rk-row .vl.pos{color:var(--up)} .rk-row .vl.neg{color:var(--down)}
     @media (max-width:600px){.rk-row{grid-template-columns:6.6rem 1fr 3.7rem;font-size:.78rem;gap:.4rem}.rk-row .nm small{display:none}}
+    .zv .rk-row{grid-template-columns:12.5rem 1fr 3.9rem}
+    .zv .rk-row .tr .b{right:0;border-radius:3px 0 0 3px}
+    .zv .rk-row .tr .b.dash{background:repeating-linear-gradient(90deg,#1A5FFF 0 6px,transparent 6px 10px)!important}
+    .zv .rk-row.tr-row .nm{color:#A33A2E}
+    .zv .rk-row.em-row .nm{font-weight:700}
+    @media (max-width:600px){.zv .rk-row{grid-template-columns:7.6rem 1fr 3.4rem}.zv .rk-row .nm{white-space:normal;line-height:1.15}}
     @media (max-width:600px){.kt{font-size:.8rem}.kt th,.kt td{padding:.5rem .35rem}}
   </style>
   <link rel="manifest" href="/manifest.webmanifest">
@@ -218,17 +224,21 @@
       <figure class="chart" id="c-rk"><figcaption id="rk-cap"></figcaption>
         <div class="seg" role="group" aria-label="Dönem"><button type="button" data-p="y" aria-pressed="true">2026</button><button type="button" data-p="m" aria-pressed="false">Kasım ayı</button></div>
         <div class="lg"></div><div class="rk"></div></figure>
+      <article class="prose wide"><p>Gelişen piyasalar son bir yılın zirvesinden ne kadar uzakta? Her ülke için ABD'de işlem gören ülke borsa yatırım fonunun (ETF) dolar fiyatı, son 52 haftadaki en yüksek değeriyle karşılaştırılmıştır; sıfır çizgisi zirveyi gösterir. Türkiye kırmızı, MSCI'ın gelişen piyasalar sınıfı dışında tuttuğu Arjantin kesikli çizgiyle işaretlidir.</p></article>
+      <figure class="chart" id="c-zv"><figcaption id="zv-cap"></figcaption><div class="lg"></div><div class="rk zv"></div></figure>
       <figure class="chart" id="c-us10"><figcaption>ABD 10 yıllık tahvil faizi, ay sonu (Kasım: 6 Kasım), %</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <article class="prose wide"><p>ABD 10 yıllık tahvil faizi, dünyadaki varlıkların fiyatlamasında temel alınan “risksiz” getiridir; yükseldiğinde hisse senetleri, altın ve gelişmekte olan ülke varlıkları genellikle baskı altına girer.</p></article>
       <figure class="chart" id="c-etf"><figcaption>Altın ETF'lerine net para girişi, 2026, milyar dolar</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <article class="prose wide"><p>Dünya genelinde fiziki altına dayalı borsa yatırım fonlarına (ETF) giren ve çıkan para. Artı değer net girişi, eksi değer net çıkışı gösterir. Bu fonların toplam altın varlığı Eylül sonunda 4.256 ton ile rekor kırdı.</p></article>
       <details class="tbl"><summary>Tablo olarak göster</summary>
       <div class="twrap"><table class="kt" id="t-dn"><thead><tr><th>Varlık</th><th>Son değer*</th><th>Kasım ($)</th><th>2026 ($)</th></tr></thead><tbody></tbody></table></div>
+      <article class="prose wide"><h3>52 haftalık zirveden uzaklık</h3></article>
+      <div class="twrap"><table class="kt" id="t-zv"><thead><tr><th>Piyasa</th><th>ETF / endeks</th><th>Son fiyat ($)</th><th>52 hafta zirvesi ($)</th><th>Uzaklık</th></tr></thead><tbody></tbody></table></div>
       <article class="prose wide"><h3>Altın ETF akımları</h3></article>
       <p class="unit">Milyar dolar</p>
       <div class="twrap"><table class="kt" id="t-etf"><thead><tr><th>Ay</th><th>Net akım</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
       </details>
-      <p class="calc-note">Değerler 6 Kasım 2026 itibarıyladır; ABD endeksleri, emtialar ve dolar endeksi o günün akşam fiyatlarıdır ve gün sonu kapanışından farklı olabilir. Kasım değişimi Ekim sonu kapanışına (Dow Jones için 29 Ekim), 2026 değişimi 2025 son kapanışına göredir. Dolara çevirmede EUR/USD, GBP/USD, USD/JPY, USD/KRW, USD/CNY ve USD/TRY kurlarının aynı tarihlerdeki değerleri kullanılmıştır. * Son değer, endeksin kendi para birimindeki puanıdır.</p>
+      <p class="calc-note">Değerler 6 Kasım 2026 itibarıyladır; ABD endeksleri, emtialar ve dolar endeksi o günün akşam fiyatlarıdır ve gün sonu kapanışından farklı olabilir. Kasım değişimi Ekim sonu kapanışına (Dow Jones için 29 Ekim), 2026 değişimi 2025 son kapanışına göredir. Dolara çevirmede EUR/USD, GBP/USD, USD/JPY, USD/KRW, USD/CNY ve USD/TRY kurlarının aynı tarihlerdeki değerleri kullanılmıştır. * Son değer, endeksin kendi para birimindeki puanıdır. Zirveden uzaklık grafiğinde iShares ülke ETF'leri (Çin için büyük ölçekli şirketleri izleyen FXI, gelişen piyasalar için EEM ve Çin hariç EMXC) kullanılmış; ABD'de ETF'i bulunmayan Mısır için FTSE Mısır endeksinin dolar değeri alınmıştır. Fiyatlar 6 Kasım 2026 ABD kapanışı, zirve son 52 haftada görülen en yüksek fiyattır.</p>
     </section>
 
     <article class="prose">
@@ -372,6 +382,17 @@
     var lgR=document.querySelector('#c-rk .lg');Object.keys(KAT).forEach(function(c){var sp=document.createElement('span'),i=document.createElement('i');i.style.background=KAT[c][1];sp.appendChild(i);sp.appendChild(document.createTextNode(KAT[c][0]));lgR.appendChild(sp);});
     document.querySelectorAll('#c-rk .seg button').forEach(function(b){b.addEventListener('click',function(){rkP=b.dataset.p;document.querySelectorAll('#c-rk .seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});rank();});});
     rank();
+    /* ---- 52 haftalık zirveden uzaklık ---- */
+    var ZV={"d":"6 Kasım 2026","r":[["Endonezya","EIDO",10.07,19.29,""],["Güney Kore","EWY",137.01,220.89,""],["Arjantin","ARGT",73.67,103.97,"s"],["Türkiye","TUR",31.24,43.98,"t"],["Brezilya","EWZ",31.98,43.9,""],["Şili","ECH",35.75,47.85,""],["Tayvan","EWT",89.24,118.47,""],["MSCI Gelişen (Çin hariç)","EMXC",85.27,107.12,"e"],["Filipinler","EPHE",22.9,28.4,""],["Güney Afrika","EZA",67.06,81.76,""],["MSCI Gelişen Piyasalar","EEM",59.33,71.57,"e"],["Peru","EPU",80.41,95.28,""],["Çin (büyük ölçek)","FXI",34.95,41.22,""],["Suudi Arabistan","KSA",35.03,40.83,""],["Katar","QAT",17.6,20.17,""],["Mısır","FTSE Mısır",19429.48,22112.61,""],["Malezya","EWM",26.99,30.64,""],["Tayland","THD",66.3,75.17,""]]};
+    (function(){var rows=ZV.r.map(function(r){return {n:r[0],k:r[1],p:r[2],h:r[3],t:r[4],v:(r[2]/r[3]-1)*100};}).sort(function(a,b){return a.v-b.v;});
+      document.getElementById('zv-cap').textContent='52 haftalık zirveden uzaklık, dolar bazında, % ('+ZV.d+')';
+      var mx=Math.max.apply(null,rows.map(function(r){return Math.abs(r.v);}))||1,box=document.querySelector('#c-zv .rk');
+      rows.forEach(function(r){var d=document.createElement('div');d.className='rk-row'+(r.t==='t'?' tr-row':r.t==='e'?' em-row':'');
+        var nm=document.createElement('span');nm.className='nm';nm.title=r.n+' ('+r.k+')';nm.appendChild(document.createTextNode((r.t==='t'?'🇹🇷 ':'')+r.n+' '));var sm=document.createElement('small');sm.textContent=r.k;nm.appendChild(sm);
+        var tr=document.createElement('span');tr.className='tr';var b=document.createElement('i');b.className='b'+(r.t==='s'?' dash':'');b.style.cssText='left:auto;right:0;width:'+Math.max(.6,Math.abs(r.v)/mx*100)+'%;background:'+(r.t==='t'?DN:r.t==='e'?'#0E3A8C':C1);var z=document.createElement('i');z.className='z';z.style.left='100%';tr.appendChild(z);tr.appendChild(b);
+        var vl=document.createElement('span');vl.className='vl neg';vl.textContent='−%'+n1.format(Math.abs(r.v));d.appendChild(nm);d.appendChild(tr);d.appendChild(vl);box.appendChild(d);});
+      var lg=document.querySelector('#c-zv .lg');[['Ülke ETF\'i',C1,''],['Türkiye',DN,''],['MSCI endeks ETF\'i','#0E3A8C',''],['Arjantin (MSCI gelişen dışı)','','repeating-linear-gradient(90deg,#1A5FFF 0 4px,transparent 4px 7px)']].forEach(function(l){var sp=document.createElement('span'),i=document.createElement('i');i.style.background=l[2]||l[1];sp.appendChild(i);sp.appendChild(document.createTextNode(l[0]));lg.appendChild(sp);});
+      fill('t-zv',rows.map(function(r){return '<tr><td>'+r.n+'</td><td>'+r.k+'</td><td>'+n2.format(r.p)+'</td><td>'+n2.format(r.h)+'</td><td>'+pc(Math.round(r.v*10)/10)+'</td></tr>';}).join(''));})();
     chart('c-us10',{type:'line',labels:us10m,short:ayk,tipLabel:ay,fmt:function(v){return '%'+n2.format(v);},fmtAxis:fPa,lw:46,min:0,series:[{name:'ABD 10 yıllık',color:C1,values:US10.v}]});
     chart('c-etf',{type:'bar',sign:true,labels:ETF.map(function(v,i){return '2026-'+(i+1);}),short:function(m){return AYK[+m.split('-')[1]-1];},tipLabel:ay,fmt:function(v){return fB(v)+' milyar $';},fmtAxis:function(v){return (v<0?'−':'')+n0.format(Math.abs(v));},series:[{name:'Net akım',color:UP,values:ETF}]});
     var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){CH.forEach(function(c){var f=document.getElementById(c[0]);if(f.offsetParent)draw(c[0],c[1]);});},150);});

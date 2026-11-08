@@ -26,6 +26,10 @@ ana sayfa yarış kartı, `araclar/makro.html` Dünya sekmesi (DN_, US10, notlar
    USTBOND10Y, EURUSD, GBPUSD, USDJPY, USDKRW, USDCNY (USDCNY günlük bazen boş → son dolu günü al).
    BTC: Fintables `SELECT zaman_utc,kapanis FROM mumlar_gunluk_gh WHERE kod='BTCUSDT' AND zaman_utc>=TIMESTAMP '<tarih-3gün>' ORDER BY zaman_utc`;
    İstanbul günü D'nin kapanışı = zaman_utc (D-1) 21:00 satırı.
+   52 hafta zirvesi grafiği (`"zirve"` anahtarı): Matriks `foreignMarkets` marketType=snapshot, symbols 10'ar
+   [EIDO,EWY,ARGT,TUR,EWZ,ECH,EWT,EMXC,EPHE,EZA] ve [EEM,EPU,FXI,KSA,QAT,EWM,THD] → her kod için `[price, yearHigh]`
+   (lastUpdate cuma gününün ABD kapanışı olmalı; cumartesi çalıştırılırsa snapshot zaten cuma kapanışıdır).
+   Mısır: `historicalData` symbol WIEGY, interval weekly, startDate 1 yıl önce → `"FTSE Mısır": [summary.lastPrice, summary.highestPrice]`.
 2. `scripts/data/piyasa_bazlar.json` içindeki `mevduat_ytd`'yi gerekirse yenile (bkz. §3), TÜFE değiştiyse `tufe_ratio` ve `tufe_ay` (bkz. §4).
 3. JSON yaz (örnek üstbilgide, dosyadaki docstring) ve `python3 scripts/piyasa_guncelle.py kapanis.json` çalıştır.
    Çıktıdaki ytd değerlerini sağduyuyla kontrol et (bir haftada %20'den fazla sıçrama varsa veri hatasıdır).

@@ -14,7 +14,10 @@ kapanis.json örneği (hepsi gün sonu kapanışı; Matriks kodları):
   "EURUSD": 1.11369, "GBPUSD": 1.33501, "USDJPY": 158.534, "USDKRW": 1364.03, "USDCNY": 6.6765,
   "mevduat_ytd": 45.3,                 # isteğe bağlı: TCMB faiz verisiyle yeniden hesaplanan yılbaşından getiri
   "mevduat_not": "faiz verisi ... haftasına kadar",   # isteğe bağlı
-  "tufe_ratio": 1.27507, "tufe_ay": "Ekim 2026"       # isteğe bağlı: yeni TÜFE geldiğinde
+  "tufe_ratio": 1.27507, "tufe_ay": "Ekim 2026",      # isteğe bağlı: yeni TÜFE geldiğinde
+  "zirve": {"EIDO": [10.07, 19.29], "EWY": [137.01, 220.89], ..., "FTSE Mısır": [19429.48, 22112.61]}
+      # 52 hafta grafiği: [son fiyat, 52 haftalık zirve]; Matriks foreignMarkets(marketType=snapshot) price/yearHigh;
+      # kodlar: EIDO EWY ARGT TUR EWZ ECH EWT EMXC EPHE EZA EEM EPU FXI KSA QAT EWM THD + "FTSE Mısır" (WIEGY haftalık historicalData lastPrice/highestPrice)
 }
 Ay değişimi otomatiktir: tarihin ayı bir önceki çalıştırmadan farklıysa, önceki çalıştırmanın kapanışları
 (bazlar dosyasındaki son_kapanis) yeni ayın bazı (m0) olur; "X ayı" etiketleri de değişir.
@@ -166,6 +169,20 @@ def main():
     else:
         m = re.sub(r'(US10=\{v:\[[^\]]*)\]\};', lambda mm: mm.group(1) + ',%s]};' % K['USTBOND10Y'], m, count=1)
         W['us10_son_ay'] = ay_key
+    # 52 haftalık zirveden uzaklık: K['zirve'] = {"EIDO":[son_fiyat, 52h_zirve], ...} (Matriks foreignMarkets snapshot: price, yearHigh;
+    # Mısır için anahtar "FTSE Mısır": WIEGY haftalık historicalData lastPrice/highestPrice). Eksik kodlar eski değerini korur.
+    if K.get('zirve'):
+        zm = re.search(r'var ZV=(\{.*?\});\n', m)
+        ZV = json.loads(zm.group(1)); guncel = 0
+        for r in ZV['r']:
+            z = K['zirve'].get(r[1])
+            if z: r[2], r[3] = round(float(z[0]), 2), round(float(z[1]), 2); guncel += 1
+        ZV['d'] = tarih
+        m = m[:zm.start(1)] + json.dumps(ZV, ensure_ascii=False, separators=(',', ':')) + m[zm.end(1):]
+        m = re.sub(r'Fiyatlar \d+ \S+ 20\d\d ABD kapanışı', 'Fiyatlar %s ABD kapanışı' % tarih, m, count=1)
+        print('zirve: %d/%d seri güncellendi' % (guncel, len(ZV['r'])))
+    else:
+        print('UYARI: kapanis.json içinde "zirve" yok; 52 hafta grafiği eski tarihte kaldı')
     m = re.sub(r'Değerler \d+ \S+ 2026 itibarıyladır;', 'Değerler %s itibarıyladır;' % tarih, m, count=1)
     m = re.sub(r"ayında \(\d+ \S+'[ae] kadar\)", "ayında (%s %s'%s kadar)" % (gun, ay, EK_A[ay]), m, count=1)
     m = re.sub(r"\(\S+: \d+ \S+\), %", "(%s: %s %s), %%" % (W['ay'], gun, ay), m, count=1)
