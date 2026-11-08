@@ -500,6 +500,12 @@ input, textarea, select, [contenteditable] { -webkit-user-select: text; user-sel
 .brief-tbl tfoot td { font-weight: 800; background: var(--accent-soft); }
 .gd-home > *, .gd-wrap > * { min-width: 0; }
 .brief-ek, .brief-tbl { max-width: 100%; }
+.brief-tbl-w td:first-child, .brief-tbl-w th:first-child { white-space: normal; min-width: 9rem; }
+.brief-tbl tr.sub td { font-style: italic; color: var(--muted); background: var(--panel); }
+.brief-tbl-l td:nth-child(3), .brief-tbl-l td:nth-child(6), .brief-tbl-l th:nth-child(3), .brief-tbl-l th:nth-child(6) { text-align: left; font-weight: 400; }
+.brief-tbl-l td:nth-child(6) { white-space: normal; min-width: 14rem; }
+.brief-note { font-size: .75rem; color: var(--muted); margin: .4rem 0 0; }
+
 
 .seat-chart { margin: .8rem 0 0; font-family: var(--sans); max-width: 34rem; }
 .sc-row { margin-bottom: .9rem; }
