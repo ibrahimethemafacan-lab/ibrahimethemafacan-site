@@ -49,7 +49,7 @@ a:hover { text-decoration-color: var(--accent); }
 
 /* Hero */
 .hero { padding: 3rem 0 4.5rem; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 3.5rem; align-items: end; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
 .hero h1 {
   font-weight: 500;
   font-size: clamp(2.25rem, 5.6vw, 4rem);
@@ -528,3 +528,23 @@ input, textarea, select, [contenteditable] { -webkit-user-select: text; user-sel
 .gc-sayac { font-size: .78rem; color: var(--muted); margin: -.6rem 0 1.2rem; font-variant-numeric: tabular-nums; letter-spacing: .01em; }
 header.top .gc-sayac { margin: -.2rem 0 .8rem; }
 .about-head .gc-sayac { margin: .3rem 0 0; }
+
+/* Açılış: 2026 getiri yarışı kartı */
+.hero-race { display: block; text-decoration: none; color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 14px; padding: 1.25rem 1.35rem 1.1rem; font-family: var(--sans); box-shadow: 0 10px 30px rgba(0,56,148,.08); transition: transform .15s, box-shadow .15s; }
+.hero-race:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,56,148,.12); }
+.hr-head { display: flex; flex-direction: column; gap: .15rem; margin-bottom: .9rem; }
+.hr-eyebrow { font-family: var(--serif); font-size: 1.25rem; color: var(--navy); font-weight: 500; }
+.hr-sub { font-size: .78rem; color: var(--muted); }
+.hr-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.hr-bars li { display: grid; grid-template-columns: 6.2rem 1fr 3.4rem; align-items: center; gap: .6rem; font-size: .84rem; }
+.hr-n { color: var(--ink-2); white-space: nowrap; }
+.hr-t { height: .62rem; background: var(--accent-soft); border-radius: 999px; overflow: hidden; }
+.hr-t i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-bright)); border-radius: 999px; }
+.hr-v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--ink); }
+.hr-bars li.ref .hr-t i { background: repeating-linear-gradient(135deg, #9AA7BD 0 4px, transparent 4px 8px); }
+.hr-bars li.ref .hr-n, .hr-bars li.ref .hr-v { color: var(--muted); }
+.hr-bars li.neg .hr-t i { background: var(--down); opacity: .85; }
+.hr-bars li.neg .hr-v { color: var(--down); }
+.hr-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--rule); font-size: .78rem; color: var(--muted); }
+.hr-more { color: var(--accent); font-weight: 700; white-space: nowrap; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-race { display: none; } }

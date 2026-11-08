@@ -30,7 +30,7 @@
       var p = document.createElement('p');
       p.className = 'gc-toplam';
       p.style.cssText = 'font-size:.8rem;color:var(--muted,#6b7280);margin:.2rem 0 .6rem;font-variant-numeric:tabular-nums';
-      p.innerHTML = 'Yayına girdiği günden bu yana <b style="color:var(--ink,#111);font-weight:700">' + n.toLocaleString('tr-TR') + '</b> sayfa görüntülenmesi.';
+      p.innerHTML = '24 Ekim 2026\'da yayına girdiğinden bu yana <b style="color:var(--ink,#111);font-weight:700">' + n.toLocaleString('tr-TR') + '</b> sayfa görüntülenmesi.';
       var son = tel.querySelector('p:last-of-type');
       if (son) tel.insertBefore(p, son); else tel.appendChild(p);
     }).catch(function () {});
