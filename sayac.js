@@ -6,7 +6,8 @@
   if (!yol) { toplam(); return; }
   var h1 = document.querySelector('main h1, header.top h1, h1');
   if (!h1) return;
-  var url = 'https://ibrahimethemafacan.goatcounter.com/counter/' + encodeURIComponent(yol).replace(/%2F/g, '/') + '.json';
+  var ts = '?start=2026-10-24&_=' + Math.floor(Date.now() / 600000);
+  var url = 'https://ibrahimethemafacan.goatcounter.com/counter/' + encodeURIComponent(yol).replace(/%2F/g, '/') + '.json' + ts;
   fetch(url, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
     if (!d || !d.count) return;
     var n = parseInt(String(d.count).replace(/\D/g, ''), 10);
@@ -23,7 +24,7 @@
   function toplam() {
     var tel = document.querySelector('.site-foot .wrap');
     if (!tel) return;
-    fetch('https://ibrahimethemafacan.goatcounter.com/counter/TOTAL.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+    fetch('https://ibrahimethemafacan.goatcounter.com/counter/TOTAL.json?start=2026-10-24&_=' + Math.floor(Date.now() / 600000), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
       if (!d || !d.count) return;
       var n = parseInt(String(d.count).replace(/\D/g, ''), 10);
       if (!(n > 0)) return;
