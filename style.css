@@ -548,3 +548,5 @@ header.top .gc-sayac { margin: -.2rem 0 .8rem; }
 .hr-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: .9rem; padding-top: .7rem; border-top: 1px solid var(--rule); font-size: .78rem; color: var(--muted); }
 .hr-more { color: var(--accent); font-weight: 700; white-space: nowrap; }
 @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-race { display: none; } }
+
+.oz-facts dd .oz-dlt { display: block; font-size: .7rem; font-weight: 600; color: var(--up); margin-top: .1rem; }

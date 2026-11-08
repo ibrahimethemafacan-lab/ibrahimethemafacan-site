@@ -1,0 +1,12 @@
+{
+ "_not": "EGM BES ve OKS özet verileri (haftalık ekran görüntülerinden). Tutarlar milyon TL, sayılar kişi/adet. Kesin olmayan (yuvarlak) değerler 'yaklasik': true ile işaretlidir; fark hesabında kullanılmaz.",
+ "bes": [
+  {"tarih": "2026-10-26", "katilimci": 10390000, "sozlesme": 13040000, "fon": 2089694.3, "fon_faizli": 1345700.5, "fon_faizsiz": 743993.8, "dk": 273467.7, "dk_faizli": 239932.7, "dk_faizsiz": 33535.0, "yaklasik": true},
+  {"tarih": "2026-10-31", "katilimci": 10392803, "fon": 2075159.2, "fon_faizli": 1339506.1, "fon_faizsiz": 735653.1, "dk": 268896.1, "dk_faizli": 235777.2, "dk_faizsiz": 33118.8},
+  {"tarih": "2026-11-05", "katilimci": 10399362, "sozlesme": 13055720, "fon": 2128908.6, "fon_faizli": 1369318.4, "fon_faizsiz": 759590.2, "dk": 280609.1, "dk_faizli": 246245.5, "dk_faizsiz": 34363.7}
+ ],
+ "oks": [
+  {"tarih": "2026-10-26", "calisan": 7940000, "sertifika": 12220000, "fon": 151079.1, "fon_faizli": 60158.0, "fon_faizsiz": 90921.1, "dk": 10060.3, "dk_faizli": 3917.9, "dk_faizsiz": 6142.4, "yaklasik": true},
+  {"tarih": "2026-11-05", "calisan": 7970608, "sertifika": 12266736, "fon": 153010.5, "fon_faizli": 61152.3, "fon_faizsiz": 91858.2, "dk": 10353.1, "dk_faizli": 4044.1, "dk_faizsiz": 6309.0}
+ ]
+}

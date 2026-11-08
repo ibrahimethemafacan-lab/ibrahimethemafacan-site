@@ -1,6 +1,38 @@
 import json
 import os
 SITE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+'/'
+import json as _json
+_EGM=_json.load(open(SITE+'scripts/data/egm_ozet.json'))
+_AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık']
+def _trh(t): y,m,d=t.split('-'); return '%d %s'%(int(d),_AY[int(m)-1])
+def _tl(x,nd=1): return ('{:,.%df}'%nd).format(x).replace(',','X').replace('.',',').replace('X','.')
+def _mn(x): return _tl(x/1e6,2)+' mn'
+def _fark(seri,anah):
+    """Son kesin veri ile bir önceki kesin veri arasındaki fark metni."""
+    kesin=[r for r in seri if not r.get('yaklasik') and anah in r]
+    if len(kesin)<2: return ''
+    a,b=kesin[-2],kesin[-1]; d=b[anah]-a[anah]
+    if abs(d)>=1e6: txt=('+' if d>=0 else '−')+_tl(abs(d)/1e6,2)+' mn'
+    elif abs(d)>=1000: txt=('+' if d>=0 else '−')+_tl(abs(d)/1000,1)+' bin'
+    else: txt=('+' if d>=0 else '−')+str(int(abs(d)))
+    return txt+' ('+_trh(a['tarih'])+' → '+_trh(b['tarih'])+')'
+def _kart(k):
+    L=_EGM[k][-1]; kisi='katilimci' if k=='bes' else 'calisan'; belge='sozlesme' if k=='bes' else 'sertifika'
+    top=(L['fon']+L['dk'])/1e6
+    d={'t':'Gönüllü BES' if k=='bes' else 'Otomatik katılım (OKS)',
+       'big':_tl(top,2) if top>=1 else _tl(top*1000,1),'unit':'trilyon TL' if top>=1 else 'milyar TL',
+       'facts':[['Katılımcı' if k=='bes' else 'Çalışan',_mn(L[kisi]),_fark(_EGM[k],kisi)],
+                ['Sözleşme' if k=='bes' else 'Sertifika',_mn(L[belge]),_fark(_EGM[k],belge)],
+                ['Devlet katkısı',_tl(L['dk']/1000,1)+' mlr TL','']],
+       'rows':[{'n':'Katılımcıların fonu' if k=='bes' else 'Çalışanların fonu','a':round(L['fon_faizli']/1000,4),'b':round(L['fon_faizsiz']/1000,4)},
+               {'n':'Devlet katkısı fonu','a':round(L['dk_faizli']/1000,4),'b':round(L['dk_faizsiz']/1000,4)}]}
+    return _json.dumps(d,ensure_ascii=False)
+EGM_BES=_kart('bes'); EGM_OKS=_kart('oks')
+_b,_o=_EGM['bes'][-1],_EGM['oks'][-1]
+EGM_OZET=("EGM'nin %s özetine göre sistemde %s milyon katılımcı ve %s trilyon TL fon var: gönüllü BES %s milyon kişi ve %s trilyon TL, otomatik katılım %s milyon kişi ve %s milyar TL." % (
+    _trh(_b['tarih'])+' '+_b['tarih'][:4], _tl((_b['katilimci']+_o['calisan'])/1e6,2), _tl((_b['fon']+_b['dk']+_o['fon']+_o['dk'])/1e6,2),
+    _tl(_b['katilimci']/1e6,2), _tl((_b['fon']+_b['dk'])/1e6,2), _tl(_o['calisan']/1e6,2), _tl((_o['fon']+_o['dk'])/1e3,1))); EGM_TARIH=_trh(_EGM['bes'][-1]['tarih'])+' '+_EGM['bes'][-1]['tarih'][:4]
+
 L=open(SITE+'araclar/makro.html').read().split('\n')
 def lines(a,b): return '\n'.join(L[a-1:b])
 def find(m,start=0):
@@ -74,8 +106,8 @@ main=f'''  <main class="wrap narrow">
     <section class="grp" id="bes">
       <div class="gh-row">{ICON_BES}<h2 class="gh">Emeklilik fonları ve BES</h2></div>
       <article class="prose wide"><p>Bireysel emeklilik sisteminde katılımcıların birikimleri emeklilik yatırım fonlarında değerlendirilir. Gönüllü BES'te katılımcı sözleşmeyi kendisi açar; otomatik katılımda (OKS) işveren çalışanı sisteme dahil eder ve çalışan iki ay içinde cayabilir. Devlet, gönüllü BES'te ödenen katkı payının yüzde 20'si oranında devlet katkısı verir.</p></article>
-      <h3 class="bd-h">Gönüllü BES ve OKS özet verileri, 5 Kasım 2026</h3>
-      <p class="calc-note" style="margin-top:0">EGM'nin 5 Kasım 2026 özetine göre sistemde 18,37 milyon katılımcı ve 2,57 trilyon TL fon var: gönüllü BES 10,40 milyon kişi ve 2,41 trilyon TL, otomatik katılım 7,97 milyon kişi ve 0,16 trilyon TL.</p>
+      <h3 class="bd-h">Gönüllü BES ve OKS özet verileri, {EGM_TARIH}</h3>
+      <p class="calc-note" style="margin-top:0">{EGM_OZET}</p>
       <div class="oz-grid">
         <article class="oz-card" id="oz-bes"></article>
         <article class="oz-card" id="oz-oks"></article>
@@ -86,7 +118,7 @@ main=f'''  <main class="wrap narrow">
       <article class="prose wide"><h3>Otomatik katılım (OKS)</h3></article>
       <div class="twrap"><table class="kt" id="t-oks"><thead><tr><th>Kalem</th><th>Milyar TL</th><th>Pay</th></tr></thead><tbody></tbody></table></div>
       </details>
-      <p class="calc-note">Kaynak: EGM, BES ve OKS Özet Verileri, 05.11.2026. Bir katılımcının birden fazla sözleşmesi, bir çalışanın birden fazla işveren üzerinden sertifikası olabilir; bu yüzden sözleşme ve sertifika sayıları kişi sayısından yüksektir. Faizsiz tutarlar, katılım esaslı (faizsiz) emeklilik fonlarındaki birikimdir. Devlet katkısı, katılımcının kendi birikiminden ayrı hesapta tutulur. Gönüllü BES'te birikimin yaklaşık üçte ikisi faizli fonlardayken, OKS'te birikimin yüzde 60'ı faizsiz fonlardadır.</p>
+      <p class="calc-note">Kaynak: EGM, BES ve OKS Özet Verileri, {EGM_TARIH}. Bir katılımcının birden fazla sözleşmesi, bir çalışanın birden fazla işveren üzerinden sertifikası olabilir; bu yüzden sözleşme ve sertifika sayıları kişi sayısından yüksektir. Faizsiz tutarlar, katılım esaslı (faizsiz) emeklilik fonlarındaki birikimdir. Devlet katkısı, katılımcının kendi birikiminden ayrı hesapta tutulur. Gönüllü BES'te birikimin yaklaşık üçte ikisi faizli fonlardayken, OKS'te birikimin yüzde 60'ı faizsiz fonlardadır.</p>
       <h3 class="bd-h">Birikim büyüklüğüne göre katılımcılar</h3>
       <article class="prose wide"><p>Gönüllü BES'te katılımcıların çoğunun birikimi küçük; fonların büyük kısmı ise az sayıda katılımcıda toplanıyor. EGM'nin 30 Eylül 2026 verileri.</p></article>
       <div class="kpi" id="kpi-bd"></div>
@@ -99,7 +131,7 @@ main=f'''  <main class="wrap narrow">
       <h3 class="bd-h">Fon büyüklüğü ve para girişleri</h3>
       <figure class="chart" id="c-pb"><figcaption>Emeklilik fonlarının toplam büyüklüğü, ay sonu, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <figure class="chart" id="c-pa"><figcaption>Emeklilik fonlarına aylık net para girişi, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
-      <p class="calc-note">Katılımcı ve çalışan sayıları ile fon tutarları EGM'nin 5 Kasım 2026 tarihli BES ve OKS özet verileridir. Emeklilik fonlarının büyüklüğü ve para girişleri TEFAS fon verilerinden hesaplanmıştır; devlet katkısı fonları dahildir.</p>
+      <p class="calc-note">Katılımcı ve çalışan sayıları ile fon tutarları EGM'nin {EGM_TARIH} tarihli BES ve OKS özet verileridir. Emeklilik fonlarının büyüklüğü ve para girişleri TEFAS fon verilerinden hesaplanmıştır; devlet katkısı fonları dahildir.</p>
     </section>
 
     <article class="prose">
@@ -147,9 +179,9 @@ script=f'''  <script>
         '<div class="oz-bar"><i style="width:'+p1.toFixed(1)+'%;background:'+C1+'"></i><i style="width:'+p2.toFixed(1)+'%;background:'+C3+'"></i></div>'+
         '<div class="oz-pct"><span><i class="d" style="background:'+C1+'"></i>%'+n1.format(p1)+' faizli</span><span>%'+n1.format(p2)+' faizsiz (katılım)<i class="d" style="background:'+C3+'"></i></span></div></div>';}}).join('');
         document.getElementById(el).innerHTML='<h4>'+d.t+'</h4><p class="oz-big">'+d.big+' <small>'+d.unit+'</small></p><p class="oz-sub">toplam birikim, devlet katkısı dahil</p>'+
-        '<dl class="oz-facts">'+d.facts.map(function(f){{return '<div><dt>'+f[0]+'</dt><dd>'+f[1]+'</dd></div>';}}).join('')+'</dl>'+rows;}}
-      card('oz-bes',{{t:'Gönüllü BES',big:'2,41',unit:'trilyon TL',facts:[['Katılımcı','10,40 mn'],['Sözleşme','13,06 mn'],['Devlet katkısı','280,6 mlr TL']],rows:[{{n:'Katılımcıların fonu',a:1369.3184,b:759.5902}},{{n:'Devlet katkısı fonu',a:246.2455,b:34.3637}}]}});
-      card('oz-oks',{{t:'Otomatik katılım (OKS)',big:'163,4',unit:'milyar TL',facts:[['Çalışan','7,97 mn'],['Sertifika','12,27 mn'],['Devlet katkısı','10,4 mlr TL']],rows:[{{n:'Çalışanların fonu',a:61.1523,b:91.8582}},{{n:'Devlet katkısı fonu',a:4.0441,b:6.3090}}]}});
+        '<dl class="oz-facts">'+d.facts.map(function(f){{return '<div><dt>'+f[0]+'</dt><dd>'+f[1]+(f[2]?'<small class="oz-dlt">'+f[2]+'</small>':'')+'</dd></div>';}}).join('')+'</dl>'+rows;}}
+      card('oz-bes',{EGM_BES});
+      card('oz-oks',{EGM_OKS});
       function tbl(id,OZ,T){{var base=0;fill(id,OZ.map(function(r){{if(r[2]===1)base=r[1];var sh=r[2]===1?r[1]/T*100:r[1]/base*100;return '<tr><td'+(r[2]===2?' style="padding-left:1.6rem;color:var(--muted)"':'')+'>'+(r[2]===1?'<b>'+r[0]+'</b>':r[0])+'</td><td>'+n1.format(r[1])+'</td><td>%'+n1.format(sh)+'</td></tr>';}}).join(''));}}
       tbl('t-oz',[['Katılımcıların fon tutarı',2089.6943,1],['Faizli',1345.7005,2],['Faizsiz (katılım)',743.9938,2],['Devlet katkısı fon tutarı',273.4677,1],['Faizli',239.9327,2],['Faizsiz (katılım)',33.5350,2]],2089.6943+273.4677);
       tbl('t-oks',[['Çalışanların fon tutarı',151.0791,1],['Faizli',60.1580,2],['Faizsiz (katılım)',90.9211,2],['Devlet katkısı fon tutarı',10.0603,1],['Faizli',3.9179,2],['Faizsiz (katılım)',6.1424,2]],151.0791+10.0603);
