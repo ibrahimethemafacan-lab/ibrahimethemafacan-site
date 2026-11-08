@@ -74,8 +74,8 @@ main=f'''  <main class="wrap narrow">
     <section class="grp" id="bes">
       <div class="gh-row">{ICON_BES}<h2 class="gh">Emeklilik fonları ve BES</h2></div>
       <article class="prose wide"><p>Bireysel emeklilik sisteminde katılımcıların birikimleri emeklilik yatırım fonlarında değerlendirilir. Gönüllü BES'te katılımcı sözleşmeyi kendisi açar; otomatik katılımda (OKS) işveren çalışanı sisteme dahil eder ve çalışan iki ay içinde cayabilir. Devlet, gönüllü BES'te ödenen katkı payının yüzde 20'si oranında devlet katkısı verir.</p></article>
-      <h3 class="bd-h">Gönüllü BES ve OKS özet verileri</h3>
-      <p class="calc-note" style="margin-top:0">EGM'nin 5 Kasım 2026 özetine göre sistemde 18,37 milyon katılımcı ve 2,57 trilyon TL fon var: gönüllü BES 10,40 milyon kişi ve 2,41 trilyon TL, otomatik katılım 7,97 milyon kişi ve 0,16 trilyon TL. Gönüllü BES kartındaki ayrıntılı dağılım 5 Kasım, OKS kartındaki 26 Ekim tarihli verilerdir.</p>
+      <h3 class="bd-h">Gönüllü BES ve OKS özet verileri, 5 Kasım 2026</h3>
+      <p class="calc-note" style="margin-top:0">EGM'nin 5 Kasım 2026 özetine göre sistemde 18,37 milyon katılımcı ve 2,57 trilyon TL fon var: gönüllü BES 10,40 milyon kişi ve 2,41 trilyon TL, otomatik katılım 7,97 milyon kişi ve 0,16 trilyon TL.</p>
       <div class="oz-grid">
         <article class="oz-card" id="oz-bes"></article>
         <article class="oz-card" id="oz-oks"></article>
@@ -86,7 +86,7 @@ main=f'''  <main class="wrap narrow">
       <article class="prose wide"><h3>Otomatik katılım (OKS)</h3></article>
       <div class="twrap"><table class="kt" id="t-oks"><thead><tr><th>Kalem</th><th>Milyar TL</th><th>Pay</th></tr></thead><tbody></tbody></table></div>
       </details>
-      <p class="calc-note">Kaynak: EGM, BES ve OKS Özet Verileri, 26.10.2026. Bir katılımcının birden fazla sözleşmesi, bir çalışanın birden fazla işveren üzerinden sertifikası olabilir; bu yüzden sözleşme ve sertifika sayıları kişi sayısından yüksektir. Faizsiz tutarlar, katılım esaslı (faizsiz) emeklilik fonlarındaki birikimdir. Devlet katkısı, katılımcının kendi birikiminden ayrı hesapta tutulur. Gönüllü BES'te birikimin yaklaşık üçte ikisi faizli fonlardayken, OKS'te birikimin yüzde 60'ı faizsiz fonlardadır.</p>
+      <p class="calc-note">Kaynak: EGM, BES ve OKS Özet Verileri, 05.11.2026. Bir katılımcının birden fazla sözleşmesi, bir çalışanın birden fazla işveren üzerinden sertifikası olabilir; bu yüzden sözleşme ve sertifika sayıları kişi sayısından yüksektir. Faizsiz tutarlar, katılım esaslı (faizsiz) emeklilik fonlarındaki birikimdir. Devlet katkısı, katılımcının kendi birikiminden ayrı hesapta tutulur. Gönüllü BES'te birikimin yaklaşık üçte ikisi faizli fonlardayken, OKS'te birikimin yüzde 60'ı faizsiz fonlardadır.</p>
       <h3 class="bd-h">Birikim büyüklüğüne göre katılımcılar</h3>
       <article class="prose wide"><p>Gönüllü BES'te katılımcıların çoğunun birikimi küçük; fonların büyük kısmı ise az sayıda katılımcıda toplanıyor. EGM'nin 30 Eylül 2026 verileri.</p></article>
       <div class="kpi" id="kpi-bd"></div>
@@ -99,7 +99,7 @@ main=f'''  <main class="wrap narrow">
       <h3 class="bd-h">Fon büyüklüğü ve para girişleri</h3>
       <figure class="chart" id="c-pb"><figcaption>Emeklilik fonlarının toplam büyüklüğü, ay sonu, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <figure class="chart" id="c-pa"><figcaption>Emeklilik fonlarına aylık net para girişi, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
-      <p class="calc-note">Gönüllü BES katılımcı sayısı ve fon tutarları EGM'nin 5 Kasım 2026, OKS verileri 26 Ekim 2026 tarihli özet verileridir. Emeklilik fonlarının büyüklüğü ve para girişleri TEFAS fon verilerinden hesaplanmıştır; devlet katkısı fonları dahildir.</p>
+      <p class="calc-note">Katılımcı ve çalışan sayıları ile fon tutarları EGM'nin 5 Kasım 2026 tarihli BES ve OKS özet verileridir. Emeklilik fonlarının büyüklüğü ve para girişleri TEFAS fon verilerinden hesaplanmıştır; devlet katkısı fonları dahildir.</p>
     </section>
 
     <article class="prose">
@@ -149,7 +149,7 @@ script=f'''  <script>
         document.getElementById(el).innerHTML='<h4>'+d.t+'</h4><p class="oz-big">'+d.big+' <small>'+d.unit+'</small></p><p class="oz-sub">toplam birikim, devlet katkısı dahil</p>'+
         '<dl class="oz-facts">'+d.facts.map(function(f){{return '<div><dt>'+f[0]+'</dt><dd>'+f[1]+'</dd></div>';}}).join('')+'</dl>'+rows;}}
       card('oz-bes',{{t:'Gönüllü BES',big:'2,41',unit:'trilyon TL',facts:[['Katılımcı','10,40 mn'],['Sözleşme','13,06 mn'],['Devlet katkısı','280,6 mlr TL']],rows:[{{n:'Katılımcıların fonu',a:1369.3184,b:759.5902}},{{n:'Devlet katkısı fonu',a:246.2455,b:34.3637}}]}});
-      card('oz-oks',{{t:'Otomatik katılım (OKS)',big:'161,1',unit:'milyar TL',facts:[['Çalışan','7,94 mn'],['Sertifika','12,22 mn'],['Devlet katkısı','10,1 mlr TL']],rows:[{{n:'Çalışanların fonu',a:60.1580,b:90.9211}},{{n:'Devlet katkısı fonu',a:3.9179,b:6.1424}}]}});
+      card('oz-oks',{{t:'Otomatik katılım (OKS)',big:'163,4',unit:'milyar TL',facts:[['Çalışan','7,97 mn'],['Sertifika','12,27 mn'],['Devlet katkısı','10,4 mlr TL']],rows:[{{n:'Çalışanların fonu',a:61.1523,b:91.8582}},{{n:'Devlet katkısı fonu',a:4.0441,b:6.3090}}]}});
       function tbl(id,OZ,T){{var base=0;fill(id,OZ.map(function(r){{if(r[2]===1)base=r[1];var sh=r[2]===1?r[1]/T*100:r[1]/base*100;return '<tr><td'+(r[2]===2?' style="padding-left:1.6rem;color:var(--muted)"':'')+'>'+(r[2]===1?'<b>'+r[0]+'</b>':r[0])+'</td><td>'+n1.format(r[1])+'</td><td>%'+n1.format(sh)+'</td></tr>';}}).join(''));}}
       tbl('t-oz',[['Katılımcıların fon tutarı',2089.6943,1],['Faizli',1345.7005,2],['Faizsiz (katılım)',743.9938,2],['Devlet katkısı fon tutarı',273.4677,1],['Faizli',239.9327,2],['Faizsiz (katılım)',33.5350,2]],2089.6943+273.4677);
       tbl('t-oks',[['Çalışanların fon tutarı',151.0791,1],['Faizli',60.1580,2],['Faizsiz (katılım)',90.9211,2],['Devlet katkısı fon tutarı',10.0603,1],['Faizli',3.9179,2],['Faizsiz (katılım)',6.1424,2]],151.0791+10.0603);
