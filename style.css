@@ -523,3 +523,8 @@ input, textarea, select, [contenteditable] { -webkit-user-select: text; user-sel
 .seat-chart figcaption { font-size: .72rem; color: var(--muted); line-height: 1.45; }
 :root[data-theme="dark"] .sc-d { color: #6E95F0; } :root[data-theme="dark"] .sc-r { color: #F07068; }
 .seat-chart { padding-right: .6rem; box-sizing: border-box; }
+
+/* Sayfa görüntülenme sayacı */
+.gc-sayac { font-size: .78rem; color: var(--muted); margin: -.6rem 0 1.2rem; font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+header.top .gc-sayac { margin: -.2rem 0 .8rem; }
+.about-head .gc-sayac { margin: .3rem 0 0; }
