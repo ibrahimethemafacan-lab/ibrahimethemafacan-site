@@ -1,0 +1,30 @@
+name: TCMB haftalık veri güncellemesi
+on:
+  schedule:
+    - cron: "50 11 * * 4"   # Perşembe 14:50 TR (TCMB 14:30'da açıklar)
+    - cron: "40 12 * * 4"   # Perşembe 15:40 TR, veri geç gelirse ikinci deneme
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: tcmb-haftalik
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: EVDS'den çek ve makro.html'i güncelle
+        id: run
+        env:
+          EVDS_KEY: ${{ secrets.EVDS_KEY }}
+        run: |
+          python3 scripts/tcmb_guncelle.py | tee sonuc.txt
+          grep -q '^DEGISTI' sonuc.txt && echo "degisti=1" >> "$GITHUB_OUTPUT" || echo "degisti=0" >> "$GITHUB_OUTPUT"
+      - name: Yayınla
+        if: steps.run.outputs.degisti == '1'
+        run: |
+          git config user.name "tcmb-bot"
+          git config user.email "noreply@ibrahimethemafacan.com"
+          git add araclar/makro.html
+          git commit -m "Makro: TCMB haftalık veriler (otomatik) — $(head -1 sonuc.txt)"
+          git pull --rebase origin main
+          git push origin main

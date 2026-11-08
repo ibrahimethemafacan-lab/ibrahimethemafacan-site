@@ -340,7 +340,7 @@
     chart('c-para',{type:'line',labels:D.para.map(function(r){return r.y;}),fmt:fP,fmtAxis:fPa,min:0,series:[{name:'Politika faizi',color:C1,values:D.para.map(function(r){return r.pf;})},{name:'Para arzı (M3) büyümesi',color:C2,values:D.para.map(function(r){return r.m3;})},{name:'Kredi büyümesi',color:C3,values:D.para.map(function(r){return r.kr;})}]});
     chart('c-reel',{type:'bar',sign:true,labels:D.para.map(function(r){return r.y;}),fmt:function(v){return (v<0?'−':v>0?'+':'')+'%'+n1.format(Math.abs(v));},fmtAxis:fPa,series:[{name:'Reel politika faizi',color:UP,values:D.para.map(function(r){return r.rf;})}]});
     chart('c-res',{type:'bar',vals:true,fmtVal:function(v){return n0.format(v);},labels:D.para.map(function(r){return r.y;}),fmt:function(v){return n1.format(v)+' milyar $';},fmtAxis:function(v){return (v<0?'−':'')+n0.format(Math.abs(v));},series:[{name:'Brüt rezerv',color:C1,values:D.para.map(function(r){return r.res;})}]});
-    (function(){var r=D.nres;if(!r)return;document.getElementById('nres-cap').textContent='Rezervlerin yapısı, '+r.d+' haftası, milyar dolar';
+    (function(){var r=D.nres;if(!r)return;document.getElementById('nres-cap').textContent='Rezervlerin yapısı, '+r.d+' haftası, milyar dolar'+(r.nd&&r.nd!==r.d?' (net ve swap hariç net rezerv: '+r.nd+' haftası)':'');
       var sg=function(v){return (v<0?'−':'+')+n1.format(Math.abs(v));};
       document.getElementById('kpi-nres').innerHTML=[['Brüt rezerv',r.b],['Net rezerv',r.n],['Swap hariç net rezerv',r.s]].map(function(x){var d=x[1][0]-x[1][1];
         return '<div><b>'+n1.format(x[1][0])+'</b><span>'+x[0]+' · haftalık <span class="'+(d<0?'neg':'pos')+'">'+sg(d)+'</span> (önceki '+n1.format(x[1][1])+')</span></div>';}).join('');})();
