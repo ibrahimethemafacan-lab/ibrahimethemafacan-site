@@ -2,7 +2,8 @@
 (function () {
   var ESIK = 300;
   var yol = location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '');
-  if (!yol || yol === '/cevrimdisi.html') return;
+  if (yol === '/cevrimdisi.html') return;
+  if (!yol) { toplam(); return; }
   var h1 = document.querySelector('main h1, header.top h1, h1');
   if (!h1) return;
   var url = 'https://ibrahimethemafacan.goatcounter.com/counter/' + encodeURIComponent(yol).replace(/%2F/g, '/') + '.json';
@@ -17,4 +18,21 @@
     p.textContent = n.toLocaleString('tr-TR') + ' görüntülenme';
     h1.insertAdjacentElement('afterend', p);
   }).catch(function () {});
+
+  /* Ana sayfa: altbilgide sitenin toplam görüntülenmesi */
+  function toplam() {
+    var tel = document.querySelector('.site-foot .wrap');
+    if (!tel) return;
+    fetch('https://ibrahimethemafacan.goatcounter.com/counter/TOTAL.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      if (!d || !d.count) return;
+      var n = parseInt(String(d.count).replace(/\D/g, ''), 10);
+      if (!(n > 0)) return;
+      var p = document.createElement('p');
+      p.className = 'gc-toplam';
+      p.style.cssText = 'font-size:.8rem;color:var(--muted,#6b7280);margin:.2rem 0 .6rem;font-variant-numeric:tabular-nums';
+      p.innerHTML = 'Yayına girdiği günden bu yana <b style="color:var(--ink,#111);font-weight:700">' + n.toLocaleString('tr-TR') + '</b> sayfa görüntülenmesi.';
+      var son = tel.querySelector('p:last-of-type');
+      if (son) tel.insertBefore(p, son); else tel.appendChild(p);
+    }).catch(function () {});
+  }
 })();
