@@ -74,7 +74,7 @@ main=f'''  <main class="wrap narrow">
     <section class="grp" id="bes">
       <div class="gh-row">{ICON_BES}<h2 class="gh">Emeklilik fonları ve BES</h2></div>
       <article class="prose wide"><p>Bireysel emeklilik sisteminde katılımcıların birikimleri emeklilik yatırım fonlarında değerlendirilir. Gönüllü BES'te katılımcı sözleşmeyi kendisi açar; otomatik katılımda (OKS) işveren çalışanı sisteme dahil eder ve çalışan iki ay içinde cayabilir. Devlet, gönüllü BES'te ödenen katkı payının yüzde 20'si oranında devlet katkısı verir.</p></article>
-      <h3 class="bd-h">Gönüllü BES ve OKS özet verileri, 26 Ekim 2026</h3>
+      <h3 class="bd-h">Gönüllü BES (31 Ekim 2026) ve OKS (26 Ekim 2026) özet verileri</h3>
       <div class="oz-grid">
         <article class="oz-card" id="oz-bes"></article>
         <article class="oz-card" id="oz-oks"></article>
@@ -98,7 +98,7 @@ main=f'''  <main class="wrap narrow">
       <h3 class="bd-h">Fon büyüklüğü ve para girişleri</h3>
       <figure class="chart" id="c-pb"><figcaption>Emeklilik fonlarının toplam büyüklüğü, ay sonu, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
       <figure class="chart" id="c-pa"><figcaption>Emeklilik fonlarına aylık net para girişi, milyar TL</figcaption><div class="lg"></div><div class="plot"></div></figure>
-      <p class="calc-note">Katılımcı sayıları ve fon tutarları EGM'nin 26 Ekim 2026 tarihli özet verileridir. Emeklilik fonlarının büyüklüğü ve para girişleri TEFAS fon verilerinden hesaplanmıştır; devlet katkısı fonları dahildir.</p>
+      <p class="calc-note">Gönüllü BES katılımcı sayısı ve fon tutarları EGM'nin 31 Ekim 2026, OKS verileri 26 Ekim 2026 tarihli özet verileridir; * sözleşme sayısı 26 Ekim değeridir. Emeklilik fonlarının büyüklüğü ve para girişleri TEFAS fon verilerinden hesaplanmıştır; devlet katkısı fonları dahildir.</p>
     </section>
 
     <article class="prose">
@@ -115,7 +115,7 @@ script=f'''  <script>
     document.getElementById('kpi').innerHTML=[
       ['Yatırım fonlarının büyüklüğü, trilyon TL',n2.format(last[1]/1000)],
       ['Emeklilik fonlarının büyüklüğü, trilyon TL',n2.format(last[3]/1000)],
-      ['BES ve OKS katılımcı sayısı, milyon (EGM, 26 Ekim)','18,33'],
+      ['BES ve OKS katılımcı sayısı, milyon (EGM, 26–31 Ekim)','18,33'],
       ['Yatırım fonlarına 2026\\'da net akım, milyar TL',sg({ytd_m},n0)],
       ['Yatırım fonu büyüklüğü, Ağustos zirvesinden değişim',pc((last[1]/peak[1]-1)*100)],
       ['Emeklilik fonlarına 2026\\'da net akım, milyar TL',sg({ytd_p},n0)]
@@ -147,7 +147,7 @@ script=f'''  <script>
         '<div class="oz-pct"><span><i class="d" style="background:'+C1+'"></i>%'+n1.format(p1)+' faizli</span><span>%'+n1.format(p2)+' faizsiz (katılım)<i class="d" style="background:'+C3+'"></i></span></div></div>';}}).join('');
         document.getElementById(el).innerHTML='<h4>'+d.t+'</h4><p class="oz-big">'+d.big+' <small>'+d.unit+'</small></p><p class="oz-sub">toplam birikim, devlet katkısı dahil</p>'+
         '<dl class="oz-facts">'+d.facts.map(function(f){{return '<div><dt>'+f[0]+'</dt><dd>'+f[1]+'</dd></div>';}}).join('')+'</dl>'+rows;}}
-      card('oz-bes',{{t:'Gönüllü BES',big:'2,36',unit:'trilyon TL',facts:[['Katılımcı','10,39 mn'],['Sözleşme','13,04 mn'],['Devlet katkısı','273,5 mlr TL']],rows:[{{n:'Katılımcıların fonu',a:1345.7005,b:743.9938}},{{n:'Devlet katkısı fonu',a:239.9327,b:33.5350}}]}});
+      card('oz-bes',{{t:'Gönüllü BES',big:'2,34',unit:'trilyon TL',facts:[['Katılımcı','10,39 mn'],['Sözleşme','13,04 mn*'],['Devlet katkısı','268,9 mlr TL']],rows:[{{n:'Katılımcıların fonu',a:1339.5061,b:735.6531}},{{n:'Devlet katkısı fonu',a:235.7772,b:33.1188}}]}});
       card('oz-oks',{{t:'Otomatik katılım (OKS)',big:'161,1',unit:'milyar TL',facts:[['Çalışan','7,94 mn'],['Sertifika','12,22 mn'],['Devlet katkısı','10,1 mlr TL']],rows:[{{n:'Çalışanların fonu',a:60.1580,b:90.9211}},{{n:'Devlet katkısı fonu',a:3.9179,b:6.1424}}]}});
       function tbl(id,OZ,T){{var base=0;fill(id,OZ.map(function(r){{if(r[2]===1)base=r[1];var sh=r[2]===1?r[1]/T*100:r[1]/base*100;return '<tr><td'+(r[2]===2?' style="padding-left:1.6rem;color:var(--muted)"':'')+'>'+(r[2]===1?'<b>'+r[0]+'</b>':r[0])+'</td><td>'+n1.format(r[1])+'</td><td>%'+n1.format(sh)+'</td></tr>';}}).join(''));}}
       tbl('t-oz',[['Katılımcıların fon tutarı',2089.6943,1],['Faizli',1345.7005,2],['Faizsiz (katılım)',743.9938,2],['Devlet katkısı fon tutarı',273.4677,1],['Faizli',239.9327,2],['Faizsiz (katılım)',33.5350,2]],2089.6943+273.4677);
