@@ -1,0 +1,8 @@
+*{margin:0;box-sizing:border-box}
+body{width:1200px;height:630px;font-family:Inter,sans-serif;background:linear-gradient(160deg,#DCEBFB 0%,#F5F8FC 60%);color:#0B1F3A;position:relative;overflow:hidden}
+.wrap{padding:64px 72px;height:100%;display:flex;flex-direction:column}
+.logo{height:64px;width:auto;align-self:flex-start}
+h1{font-family:Inter Display,Inter,sans-serif;font-weight:800;font-size:64px;line-height:1.08;color:#003894;letter-spacing:-1px}
+.sub{font-size:28px;color:#3B4A63;margin-top:18px;line-height:1.35}
+.url{position:absolute;right:72px;bottom:52px;font-size:22px;font-weight:600;color:#1A5FFF}
+.bar{position:absolute;left:0;bottom:0;height:10px;width:100%;background:linear-gradient(90deg,#003894,#1A5FFF,#05A0F5)}

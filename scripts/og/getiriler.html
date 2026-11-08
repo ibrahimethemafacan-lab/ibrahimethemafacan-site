@@ -1,0 +1,15 @@
+<html><head><link rel="stylesheet" href="base.css"><style>
+.rows{margin-top:22px;display:flex;flex-direction:column;gap:6px}
+.r{display:flex;align-items:center;font-size:21px}
+.n{width:330px;font-weight:600}
+.t{flex:1;height:22px;background:#E3ECF6;border-radius:6px;overflow:hidden;margin-right:22px}
+.t i{display:block;height:100%;background:#12805C;border-radius:6px}
+.v{width:130px;text-align:right;font-weight:800}
+h1{font-size:46px}
+</style></head><body><div class="wrap">
+<div style="display:flex;align-items:center;justify-content:space-between"><h1>2018'den bu yana TL bazında<br>ne kazandırdı?</h1><img class="logo" src="logo.png" style="align-self:flex-start"></div>
+<div class="rows" id="rows"></div></div><div class="url">ibrahimethemafacan.com/araclar/getiriler.html</div><div class="bar"></div>
+<script>
+var d=[['Bitcoin',7032],['NASDAQ-100 (TL)',5478],['Gram altın',4033],['Gram gümüş',3955],['Konut (İstanbul, kira dahil)',2773],['Enflasyon (TÜFE)',1268,1],['TL mevduat (brüt)',1227,1],['Dolar/TL',1223],['BIST 30 (temettü dahil)',1177],['BIST 100 (temettü dahil)',1161]];
+document.getElementById('rows').innerHTML=d.map(function(x){return '<div class="r"><span class="n">'+x[0]+'</span><span class="t"><i style="width:'+(x[1]/7161*100)+'%;'+(x[2]?'background:#5A6478':'')+'"></i></span><span class="v">+%'+x[1].toLocaleString('tr-TR')+'</span></div>'}).join('');
+</script></body></html>

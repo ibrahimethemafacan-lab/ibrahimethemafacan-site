@@ -1,0 +1,209 @@
+{
+ "_not": "Getiriler ve Dünya piyasaları hesaplarının sabitleri. piyasa_guncelle.py okur ve günceller.",
+ "son_tarih": "6 Kasım 2026",
+ "og_v": 13,
+ "getiriler": {
+  "_not": "2025 sonu kapanışları (ytd tabanı) ve 2018 başından 2025 sonuna kümülatif getiri (%). bist/bist30: 2026 temettü düzeltme çarpanı ayrıca.",
+  "y0": {
+   "GLDGR": 5951.91895,
+   "XAGTRY": 3050.12573,
+   "USDTRY": 42.9557,
+   "NDX": 25249.84961,
+   "BTC": 88258.12,
+   "XU100": 11165.44043,
+   "XU030": 13960.88965
+  },
+  "c25": {
+   "altin": 3648,
+   "gumus": 4648,
+   "ndx": 4370,
+   "usd": 1033,
+   "btc": 7005,
+   "mevduat": 812.4,
+   "bist": 1119,
+   "bist30": 975.3,
+   "tufe": 973.2
+  },
+  "temettu": {
+   "bist": 1.006,
+   "bist30": 1.16
+  },
+  "mevduat_ytd": 45.4,
+  "tufe_ratio": 1.27507,
+  "tufe_ay": "Ekim 2026",
+  "konut_cum": 2773,
+  "mevduat": {
+   "_not": "3 aya kadar vadeli TL mevduat, her vade sonunda yenilenir (TP.TRY.MT02, vade başındaki haftanın faizi). ytd = baz_carpan × (1 + faiz/100 × gün/365); baz_carpan vade başındaki yılbaşından birikmiş çarpan.",
+   "vade_basi": "2026-10-02",
+   "faiz": 43.79,
+   "baz_carpan": 1.39514
+  },
+  "mevduat_not": "3 aya kadar vadeli mevduat; son vade 2 Ekim'de %43,79 faizle başladı"
+ },
+ "dunya": {
+  "_not": "y0: 2025-12 ay sonu; m0: içinde bulunulan ayın bir önceki ay sonu kapanışı; ay: m0'ın temsil ettiği ay etiketi. fx: para birimi başına [y0, m0]; tip m = USD başına (çarp), d = yabancı birim/USD (böl).",
+  "ay": "Kasım",
+  "onceki_ay": "Ekim",
+  "dow_notu": "Dow Jones için 29 Ekim",
+  "varliklar": [
+   [
+    "S&P 500|ABD",
+    "b",
+    6905.4103,
+    7596.27519,
+    null
+   ],
+   [
+    "Dow Jones|ABD",
+    "b",
+    48063.28906,
+    52342.55859,
+    null
+   ],
+   [
+    "Nasdaq-100|ABD",
+    "b",
+    25249.84961,
+    28509.24023,
+    null
+   ],
+   [
+    "DAX|Almanya",
+    "b",
+    24490.41016,
+    25822.10938,
+    "EUR"
+   ],
+   [
+    "FTSE 100|İngiltere",
+    "b",
+    9931.37988,
+    10723.79004,
+    "GBP"
+   ],
+   [
+    "CAC 40|Fransa",
+    "b",
+    8149.5,
+    7959.24023,
+    "EUR"
+   ],
+   [
+    "Nikkei 225|Japonya",
+    "b",
+    50339.48047,
+    63290.10938,
+    "JPY"
+   ],
+   [
+    "KOSPI|Güney Kore",
+    "b",
+    4214.16992,
+    5730.74023,
+    "KRW"
+   ],
+   [
+    "Şanghay|Çin",
+    "b",
+    3968.84009,
+    3599.02002,
+    "CNY"
+   ],
+   [
+    "BIST 100|Türkiye",
+    "b",
+    11261.51953,
+    10759.55957,
+    "TRY"
+   ],
+   [
+    "Altın|ons",
+    "e",
+    4313.39063,
+    3900.68994,
+    null
+   ],
+   [
+    "Gümüş|ons",
+    "e",
+    71.08026,
+    49.2637,
+    null
+   ],
+   [
+    "Brent petrol|varil",
+    "e",
+    60.882,
+    113.14,
+    null
+   ],
+   [
+    "Dolar endeksi|DXY",
+    "d",
+    98.322,
+    101.917,
+    null
+   ]
+  ],
+  "fx": {
+   "EUR": [
+    1.17521,
+    1.11697,
+    "m"
+   ],
+   "GBP": [
+    1.34476,
+    1.34007,
+    "m"
+   ],
+   "JPY": [
+    156.87601,
+    157.3985,
+    "d"
+   ],
+   "KRW": [
+    1444.64001,
+    1333.34998,
+    "d"
+   ],
+   "CNY": [
+    6.9964,
+    6.66605,
+    "d"
+   ],
+   "TRY": [
+    42.9557,
+    49.94753,
+    "d"
+   ]
+  },
+  "us10_son_ay": "2026-11"
+ },
+ "son_kapanis": {
+  "GLDGR": 6563.2666,
+  "XAGTRY": 2605.1145,
+  "USDTRY": 50.14883,
+  "XU100": 11482.59961,
+  "XU030": 14290.20996,
+  "NDX": 26989.99023,
+  "BTC": 75882,
+  "SPX500": 7381.27322,
+  "DJIC": 51285.73047,
+  "DAX": 25820.35938,
+  "UKX": 10673.94043,
+  "PX1": 8139.0,
+  "NIKX": 57434.76953,
+  "KOSPI": 5059.68994,
+  "SHCOMP": 3649.17993,
+  "XAUUSD": 4070.72998,
+  "XAGUSD": 51.94765,
+  "BRENT": 96.7675,
+  "DXY": 102.298,
+  "USTBOND10Y": 4.87,
+  "EURUSD": 1.11369,
+  "GBPUSD": 1.33501,
+  "USDJPY": 158.534,
+  "USDKRW": 1364.03491,
+  "USDCNY": 6.6765
+ }
+}
