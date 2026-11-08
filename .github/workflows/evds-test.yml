@@ -1,0 +1,17 @@
+name: EVDS anahtar testi
+on:
+  workflow_dispatch:
+  push:
+    paths: [".github/workflows/evds-test.yml"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: EVDS'den TP.AB.TOPLAM son değer
+        env:
+          EVDS_KEY: ${{ secrets.EVDS_KEY }}
+        run: |
+          if [ -z "$EVDS_KEY" ]; then echo "EVDS_KEY boş"; exit 1; fi
+          code=$(curl -s -o out.json -w '%{http_code}' -H "key: $EVDS_KEY" "https://evds2.tcmb.gov.tr/service/evds/series=TP.AB.TOPLAM&startDate=01-10-2026&endDate=08-11-2026&type=json")
+          echo "HTTP $code"
+          python3 -c "import json;d=json.load(open('out.json'));print('satır:',d.get('totalCount'));print(d['items'][-1])"
