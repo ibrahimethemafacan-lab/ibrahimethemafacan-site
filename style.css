@@ -492,6 +492,7 @@ input, textarea, select, [contenteditable] { -webkit-user-select: text; user-sel
 
 .brief-ek { margin-top: .6rem; font-family: var(--sans); }
 .brief-ek summary { cursor: pointer; font-size: .85rem; font-weight: 700; color: var(--accent); }
+.brief-link { margin: .6rem 0 0; } .brief-link a { font-size: .85rem; font-weight: 700; color: var(--accent); text-decoration: none; } .brief-link a:hover { text-decoration: underline; }
 .brief-tbl { overflow-x: auto; margin-top: .5rem; border: 1px solid var(--rule); border-radius: .5rem; max-height: 22rem; overflow-y: auto; }
 .brief-tbl table { width: 100%; border-collapse: collapse; font-size: .8rem; font-variant-numeric: tabular-nums; }
 .brief-tbl th, .brief-tbl td { padding: .35rem .6rem; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
