@@ -46,7 +46,7 @@ import re
 DESC="TEFAS ve EGM verileriyle Türkiye'de yatırım fonları ve bireysel emeklilik: fon büyüklükleri, yatırımcı ve katılımcı sayıları, fon türlerine göre dağılım ve aylık para girişleri."
 for old,new in [("Makro Göstergeler — İbrahim Ethem Afacan","Yatırım ve Emeklilik Fonları — İbrahim Ethem Afacan"),
                  ('content="Makro Göstergeler"','content="Yatırım ve Emeklilik Fonları"'),
-                 ("araclar/makro.html","araclar/fonlar.html"),("og-makro.png?v=1","og-fonlar.png?v=1")]:
+                 ("araclar/makro.html","araclar/fonlar.html"),("og-makro.png?v=1","og-fonlar.png?v=2")]:
     assert old in head,old; head=head.replace(old,new)
 head=re.sub(r'(name="description" content=")[^"]*"',r'\g<1>'+DESC+'"',head)
 head=re.sub(r'(property="og:description" content=")[^"]*"',r'\g<1>'+DESC+'"',head)
@@ -63,11 +63,11 @@ M=[("2021-12",260.3,4278979,239.3),("2022-01",267.4,4316722,251.2),("2022-02",28
 ("2023-01",716.6,5435906,436.3),("2023-02",756.1,5440605,437.0),("2023-03",813.0,5504767,455.0),("2023-04",846.8,5637480,465.1),("2023-05",808.3,5643224,472.0),("2023-06",967.0,5754521,561.7),("2023-07",1163.2,6027460,628.5),("2023-08",1268.3,6400282,649.4),("2023-09",1300.1,6689080,666.1),("2023-10",1377.6,6844167,683.6),("2023-11",1459.6,6984472,721.7),("2023-12",1498.6,7065517,743.2),
 ("2024-01",1745.7,7332959,798.9),("2024-02",2013.5,7859765,835.2),("2024-03",2241.9,8313422,898.0),("2024-04",2415.8,8714673,963.3),("2024-05",2534.6,9145688,991.9),("2024-06",2707.3,9318860,1026.4),("2024-07",2947.6,9704767,1056.5),("2024-08",3230.8,9809727,1078.1),("2024-09",3551.1,9917716,1136.7),("2024-10",3713.5,9955117,1147.5),("2024-11",3951.5,10008508,1185.7),("2024-12",4131.1,10059766,1222.2),
 ("2025-01",4600.1,10219101,1283.9),("2025-02",4757.4,10289023,1335.2),("2025-03",4492.4,10106423,1380.0),("2025-04",4745.0,10062684,1442.6),("2025-05",5125.3,9999211,1481.9),("2025-06",5462.7,10022320,1535.3),("2025-07",5934.5,10108059,1629.4),("2025-08",6314.8,10207423,1703.8),("2025-09",6712.5,10247777,1825.0),("2025-10",7054.9,10281001,1931.2),("2025-11",7331.6,10278945,1994.3),("2025-12",7570.8,10312675,2148.2),
-("2026-01",8182.8,10558718,2556.9),("2026-02",8245.8,10711676,2498.8),("2026-03",7799.2,10629167,2335.7),("2026-04",8407.4,10714673,2424.7),("2026-05",8403.5,10824194,2462.6),("2026-06",8958.4,10839489,2402.6),("2026-07",9351.2,10941505,2418.6),("2026-08",9949.5,11132752,2659.0),("2026-09",8183.6,10167753,2558.5),("2026-10",7875.1,10093955,2522.1),("2026-11",7929.1,10101506,2570.5)]
-FM=[334.0,32.8,-416.3,139.9,187.3,138.2,244.1,173.8,170.0,153.6,177.5,-39.8,158.5,-7.1,-484.6,265.0,-148.6,214.0,126.5,223.7,-1423.8,-288.0,-4.9]
-FP=[12.7,13.7,16.4,12.3,7.9,11.6,13.7,15.7,31.2,24.3,31.8,37.4,25.8,23.6,19.0,15.5,11.9,11.2,8.9,14.3,16.2,3.9,8.3]
+("2026-01",8182.8,10558718,2556.9),("2026-02",8245.8,10711676,2498.8),("2026-03",7799.2,10629167,2335.7),("2026-04",8407.4,10714673,2424.7),("2026-05",8403.5,10824194,2462.6),("2026-06",8958.4,10839489,2402.6),("2026-07",9351.2,10941505,2418.6),("2026-08",9949.5,11132752,2659.0),("2026-09",8183.6,10167753,2558.5),("2026-10",7875.1,10093955,2522.1),("2026-11",7891.4,10097134,2584.9)]
+FM=[334.0,32.8,-416.3,139.9,187.3,138.2,244.1,173.8,170.0,153.6,177.5,-39.8,158.5,-7.1,-484.6,265.0,-148.6,214.0,126.5,223.7,-1423.8,-288.0,32.2]
+FP=[12.7,13.7,16.4,12.3,7.9,11.6,13.7,15.7,31.2,24.3,31.8,37.4,25.8,23.6,19.0,15.5,11.9,11.2,8.9,14.3,16.2,3.9,8.2]
 FMm=[f"{2025+i//12}-{i%12+1}" for i in range(len(FM))]
-SEM=[("Serbest",1220,5259.7,893995,5047.6,-1102.0),("Para piyasası",82,1523.1,3824874,1466.5,-233.2),("Katılım",110,401.5,991849,331.4,-9.2),("Borçlanma araçları",85,222.4,1222571,174.1,-3.4),("Kıymetli madenler",28,181.3,594963,180.6,-6.9),("Hisse senedi",190,142.3,1260661,169.3,17.1),("Fon sepeti",95,100.9,620929,111.0,-11.4),("Değişken",173,87.3,508853,84.6,-20.3),("Karma",8,5.0,167695,4.6,-0.6),("Diğer",13,5.5,15116,1.3,0.6)]
+SEM=[("Serbest",1217,5177.1,888178,5047.6,-1097.1),("Para piyasası",82,1569.7,3828987,1466.5,-193.7),("Katılım",111,395.6,993493,331.4,-16.8),("Borçlanma araçları",85,224.6,1221706,174.1,-2.3),("Kıymetli madenler",28,181.0,595316,180.6,-7.3),("Hisse senedi",190,144.7,1260603,169.3,17.3),("Fon sepeti",95,100.1,618391,111.0,-12.2),("Değişken",173,88.1,507656,84.6,-20.2),("Karma",8,5.0,167687,4.6,-0.6),("Diğer",13,5.5,15117,1.3,0.6)]
 BD=[('0–50 bin',6500000,76),('50–100 bin',1200000,85),('100–250 bin',1200000,183),('250–500 bin',624000,222),('500 bin–1 mn',406000,287),('1–2,5 mn',290000,445),('2,5–5 mn',94000,322),('5–10 mn',35000,236),('10 mn+',13000,268)]
 D=dict(bd=[list(x) for x in BD],m=[[a,b,c,d] for a,b,c,d in M],fm=FM,fp=FP,fmm=FMm,sem=[list(x) for x in SEM])
 ytd_m=round(sum(FM[12:]),1); ytd_p=round(sum(FP[12:]),1)
@@ -79,7 +79,7 @@ ICON_BES=ART.format('<path d="M10 54 H54" stroke="#A9C6FF" stroke-width="2"/><re
 main=f'''  <main class="wrap narrow">
     <article class="prose wide">
       <h1>Yatırım ve emeklilik fonları</h1>
-      <p>Türkiye'de yatırım fonlarına ve bireysel emeklilik sistemine (BES) ne kadar para girdi, kaç kişi yatırım yapıyor, para hangi tür fonlarda? TEFAS'ta işlem gören fonların büyüklükleri, yatırımcı sayıları ve aylık para girişleri ile Emeklilik Gözetim Merkezi'nin (EGM) katılımcı verileri. Veriler 6 Kasım 2026 itibarıyladır.</p>
+      <p>Türkiye'de yatırım fonlarına ve bireysel emeklilik sistemine (BES) ne kadar para girdi, kaç kişi yatırım yapıyor, para hangi tür fonlarda? TEFAS'ta işlem gören fonların büyüklükleri, yatırımcı sayıları ve aylık para girişleri ile Emeklilik Gözetim Merkezi'nin (EGM) katılımcı verileri. Veriler 11 Kasım 2026 itibarıyladır.</p>
     </article>
 
     <div class="kpi" id="kpi"></div>
@@ -136,7 +136,7 @@ main=f'''  <main class="wrap narrow">
 
     <article class="prose">
       <h2>Notlar</h2>
-      <p>Kaynak: Yatırım ve emeklilik fonlarının günlük büyüklük, yatırımcı sayısı ve para akımı verileri TEFAS'tan, Fintables üzerinden alınmıştır; BES katılımcı ve fon tutarları Emeklilik Gözetim Merkezi'nin (egm.org.tr) özet verileridir. Ay sonu değeri, ayın son işlem günündeki değerdir; Kasım 2026 için 6 Kasım değeri ve 1–6 Kasım akımları kullanılmıştır. 2024 Temmuz sonunda emeklilik fonu verisinde eksik gün olduğu için o ay 29 Temmuz değeri kullanılmıştır. Aylık net akım, günlük net akımların toplamıdır. Tablolar ve hesaplamalar yapay zekâ destekli araçlarla hazırlanmıştır; yatırım kararı vermeden önce verileri kaynağından teyit edin.</p>
+      <p>Kaynak: Yatırım ve emeklilik fonlarının günlük büyüklük, yatırımcı sayısı ve para akımı verileri TEFAS'tan, Fintables üzerinden alınmıştır; BES katılımcı ve fon tutarları Emeklilik Gözetim Merkezi'nin (egm.org.tr) özet verileridir. Ay sonu değeri, ayın son işlem günündeki değerdir; Kasım 2026 için 11 Kasım değeri ve 1–11 Kasım akımları kullanılmıştır. 2024 Temmuz sonunda emeklilik fonu verisinde eksik gün olduğu için o ay 29 Temmuz değeri kullanılmıştır. Aylık net akım, günlük net akımların toplamıdır. Tablolar ve hesaplamalar yapay zekâ destekli araçlarla hazırlanmıştır; yatırım kararı vermeden önce verileri kaynağından teyit edin.</p>
     </article>
   </main>'''
 
@@ -160,8 +160,8 @@ script=f'''  <script>
       var rows=D.sem.map(function(r){{return {{n:r[0],b:r[2],d:r[4]>2?(r[2]/r[4]-1)*100:null,t:r[2]-r[4],a:r[5]}};}});
       if(ytP==='d')rows=rows.filter(function(r){{return r.d!=null;}});
       var k=ytP;rows.sort(function(a,b){{return b[k]-a[k];}});
-      var C={{b:'Fon türüne göre büyüklük, 6 Kasım 2026, milyar TL',d:'Fon türüne göre büyüklüğün 2026 başından bu yana değişimi',a:'Fon türüne göre 2026 net para girişi ve çıkışı, milyar TL'}};
-      var N={{b:'',d:'Büyüklükteki değişim; yatırımcıların yatırdığı ve çektiği paranın yanında fonların getirisini ve yeni kurulan ya da kapanan fonları da içerir. Yüzdenin altında tutar (milyar TL) yazar.',a:'Net akım: yatırımcıların fonlara yatırdığı paradan çektikleri paranın düşülmesi. Fiyat değişimini içermez. 1 Ocak – 6 Kasım 2026.'}};
+      var C={{b:'Fon türüne göre büyüklük, 11 Kasım 2026, milyar TL',d:'Fon türüne göre büyüklüğün 2026 başından bu yana değişimi',a:'Fon türüne göre 2026 net para girişi ve çıkışı, milyar TL'}};
+      var N={{b:'',d:'Büyüklükteki değişim; yatırımcıların yatırdığı ve çektiği paranın yanında fonların getirisini ve yeni kurulan ya da kapanan fonları da içerir. Yüzdenin altında tutar (milyar TL) yazar.',a:'Net akım: yatırımcıların fonlara yatırdığı paradan çektikleri paranın düşülmesi. Fiyat değişimini içermez. 1 Ocak – 11 Kasım 2026.'}};
       document.getElementById('yt-cap').textContent=C[ytP];var nt=document.getElementById('yt-not');nt.textContent=N[ytP];nt.hidden=!N[ytP];
       var vs=rows.map(function(r){{return r[k];}}),lo=Math.min(0,Math.min.apply(null,vs)),hi=Math.max(0,Math.max.apply(null,vs)),span=hi-lo||1,z=(0-lo)/span*100,sgn=ytP!=='b';
       var sb=function(v,f){{return (v<0?'−':'+')+f(Math.abs(v));}};
