@@ -6,7 +6,7 @@ import os
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
 SC = SITE + 'scripts/data/'
 D = json.load(open(SC + 'fontar_funds.json'))
-ASOF = '6 Kasım 2026'
+ASOF = '11 Kasım 2026'
 
 
 KEEP = {'BES','OKS','TL','ABD','FTSE','S&P','MSCI','ESG','BIST','ETF','BYF','GYF','GSYF','USD','EUR','AI','IT','A.Ş','T.C'}
@@ -49,7 +49,7 @@ for r in D['rows']:
     def rt(b):
         return round((p1 / b - 1) * 100, 1) if p1 and b else None
     r1m, r3m, ry = rt(m1), rt(m3), rt(py)
-    r1y = rt(p0) if p0 and d0 and d0 <= '2025-11-17' else None
+    r1y = rt(p0) if p0 and d0 and d0 <= '2025-11-22' else None
     vol = sh = ann = None
     if n and n >= 60 and s1 is not None and s2 is not None and p1 and p0:
         var = (s2 - s1 * s1 / n) / (n - 1)
@@ -184,7 +184,7 @@ body = r'''
 
     <article class="prose wide" style="margin-top:1.5rem">
       <h2>Yöntem</h2>
-      <p>Getiriler birim pay değerinden hesaplanmıştır; 1 ay ve 3 ay getirileri sırasıyla 6 Ekim ve 6 Ağustos'tan önceki son fiyattan bu yana, 2026 getirisi yılbaşından bu yana olan değişimdir. <b>Sharpe oranı</b>, son bir yılın günlük getirilerinden yıllıklandırılmış volatilite ve bileşik getiriyle hesaplanır; risksiz getiri olarak para piyasası fonlarının medyan yıllık getirisi (%__RF__) kullanılmıştır. <b>Maksimum değer kaybı (MDK)</b>, son bir yılda zirveden dibe en derin düşüştür. <b>Net akım</b>, yatırımcıların fona yatırdığı paradan çektiklerinin farkıdır; fiyat değişimini içermez. Varlık dağılımı, fonların TEFAS'a bildirdiği son günlük dağılımdır ve benzer sınıflar gruplanmıştır (ör. kamu borçlanma = tahvil + bono + eurobond). Bir yaşını doldurmamış fonlarda 1 yıl getirisi ve Sharpe gösterilmez.</p>
+      <p>Getiriler birim pay değerinden hesaplanmıştır; 1 ay ve 3 ay getirileri sırasıyla 10 Ekim ve 10 Ağustos'tan önceki son fiyattan bu yana, 2026 getirisi yılbaşından bu yana olan değişimdir. <b>Sharpe oranı</b>, son bir yılın günlük getirilerinden yıllıklandırılmış volatilite ve bileşik getiriyle hesaplanır; risksiz getiri olarak para piyasası fonlarının medyan yıllık getirisi (%__RF__) kullanılmıştır. <b>Maksimum değer kaybı (MDK)</b>, son bir yılda zirveden dibe en derin düşüştür. <b>Net akım</b>, yatırımcıların fona yatırdığı paradan çektiklerinin farkıdır; fiyat değişimini içermez. Varlık dağılımı, fonların TEFAS'a bildirdiği son günlük dağılımdır ve benzer sınıflar gruplanmıştır (ör. kamu borçlanma = tahvil + bono + eurobond). Bir yaşını doldurmamış fonlarda 1 yıl getirisi ve Sharpe gösterilmez.</p>
       <p>Kapsam: TEFAS'ta işlem gören yatırım fonları, BEFAS'ta işlem gören emeklilik fonları ve borsa yatırım fonları — toplam __NFON__ fon. TEFAS'a açık olmayan (çoğu kurumsal ve özel) serbest fonlar ile BEFAS'ta işlem görmeyen emeklilik fonları (devlet katkısı, başlangıç ve emeklilik para piyasası fonları gibi) kapsamda değildir. Kaynak: Fintables, TEFAS fon verileri. Bu sayfa yatırım tavsiyesi değildir.</p>
     </article>
   </main>

@@ -80,6 +80,7 @@ Planlı Claude görevi (perşembe 15:50) şunları yapar:
    km=KM,KMBYF,KMKBA,KMKKS; pp=TR,TPP,BPP,R; fonp=YYF,BYF,YBYF; gsyf=GSYKB,GSYY; gyf=GYKB,GYY; vint=VİNT; dgr=D,BTAS,BTAA,GAS.
    Kısıtlar: yanıt ≤300 satır (fon_kodu aralıklarına böl), yasak: stddev_samp, ln, string_agg, CASE, ARRAY_AGG, FILTER, LEFT, SUBSTRING, SUBSTR, window frame.
    n/s1/s2: günlük getiri sayısı, toplamı, kareler toplamı (LAG ile); dd: pencere içi tepe noktasından en büyük düşüş.
+   İpucu: Fintables yanıtı ~55K karakteri aşınca diske kaydedilir ve bağlama girmez; `unvan` gibi dolgu sütunlarıyla yanıtı büyütüp dosyadan ayrıştırmak en ucuz yol (üst sınır ~125K karakter; 3 dolgu sütunu güvenli). Harf aralığı için `(fon_kodu < 'B')::int` türü boolean sütunlar kullan (SUBSTRING yasak).
 2. `scripts/fontar_build.py` içinde `ASOF = '<gün Ay 2026>'`, r1y koşulundaki `d0 <= '<D-1yıl +11gün>'`, "1 ay ve 3 ay getirileri sırasıyla <gün Ay> ve <gün Ay>'tan" metni; sonra çalıştır.
 
 ## 7. Konut sayfası (`araclar/konut.html`) — ayın 19'u ve 27'si kontrol
