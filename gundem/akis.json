@@ -1,5 +1,12 @@
 [
  {
+  "tarih": "2026-11-12",
+  "tur": "kisa",
+  "etiket": "Hisse",
+  "metin": "MSCI, Kasım 2026 dönemi Türkiye endeks değişikliklerini açıkladı.<br>*Standard'dan çıkarılanlar (Small Cap'e ekleniyor): #ASTOR #SAHOL<br>*Small Cap'ten çıkarılanlar: #AHGAZ #ALKLC #BTCIM #BSOKE #ECILC #GENIL #HEKTS #IEYHO #LIDER #LYDHO #MAGEN #ODINE #PASEU #PEKGY #RALYH #SELEC #TEHOL #TTRAK<br>*Endekslere yeni giren hisse yok. Değişiklikler 30 Kasım 2026 seans kapanışında yürürlüğe girecek.",
+  "ek": "<p class=\"brief-ek brief-link\"><a href=\"https://www.msci.com/indexes/index-resources/index-review\" target=\"_blank\" rel=\"noopener\">MSCI endeks gözden geçirme sayfası →</a></p>"
+ },
+ {
   "tarih": "2026-11-11",
   "tur": "kisa",
   "etiket": "Makro",
