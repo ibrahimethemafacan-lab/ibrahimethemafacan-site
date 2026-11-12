@@ -4,7 +4,7 @@
   "tur": "kisa",
   "etiket": "Dünya",
   "metin": "Nvidia ($NVDA) CEO'su Jensen Huang istifasını sundu.<br>*Jensen Huang'ın hissede %3,58 oranında payı bulunuyor.",
-  "ek": "<p class=\"brief-ek brief-link\"><a href=\"https://www.tomshardware.com/tech-industry/nvidia-confirms-jensen-huang-has-resigned-as-ceo-colette-kress-executive-vice-president-and-chief-financial-officer-appointed-interim-ceo\" target=\"_blank\" rel=\"noopener\">Haberin ayrıntısı (Tom's Hardware) →</a></p>"
+  "ek": "<figure class=\"brief-ek brief-fig\"><a href=\"/gundem/img/nvda-yonetim-kurulu.jpg\" target=\"_blank\" rel=\"noopener\"><img src=\"/gundem/img/nvda-yonetim-kurulu.jpg\" width=\"1600\" height=\"1000\" loading=\"lazy\" alt=\"NVIDIA yönetim kurulu üyelerinin sahip olduğu pay adetleri, 23 Mart 2026\"></a></figure>"
  },
  {
   "tarih": "2026-11-12",
