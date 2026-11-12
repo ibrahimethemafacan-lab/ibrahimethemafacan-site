@@ -1393,10 +1393,10 @@ function renderSection(si){
     h+=`<div class="notes">${s.notlar.replace(/<table/g,'<div class="tbl"><table').replace(/<\/table>/g,"</table></div>")}</div>
     <div class="row"><button class="btn pri" data-tab="sorular">Bu bölümün sorularına geç →</button></div>`;
   }else{
-    const all=s.sorular.map((q,qi)=>[si,qi]);
+    const all=s.sorular.map((q,qi)=>[si,qi]);{const r=rng("sira"+si);for(let i=all.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[all[i],all[j]]=[all[j],all[i]]}}const no=new Map(all.map((x,i)=>[x[1],i+1]));
     const fl=all.filter(([a,qi])=>{const q=S[a].sorular[qi],v=st.ans[id(a,qi)];if(f==="yanlis")return v!==undefined&&v!==q.a;if(f==="bos")return v===undefined;return true});
     const chips=`<div class="filters">${[["tum","Tümü"],["bos","Yanıtlanmamış"],["yanlis","Yanlışlarım"]].map(([k,t])=>`<button class="chip ${f===k?"on":""}" data-f="${k}">${t}</button>`).join("")}</div><button class="btn" data-reset="${si}">Sıfırla</button>`;
-    h+=bar(statsOf(all,st.ans),chips)+`<div class="qlist">`+(fl.length?fl.map(([a,qi])=>qCard(a,qi,qi+1,false)).join(""):`<div class="empty">Bu filtrede soru yok.</div>`)+`</div>`;
+    h+=bar(statsOf(all,st.ans),chips)+`<div class="qlist">`+(fl.length?fl.map(([a,qi])=>qCard(a,qi,no.get(qi),false)).join(""):`<div class="empty">Bu filtrede soru yok.</div>`)+`</div>`;
   }
   return h+`</div>`;
 }
