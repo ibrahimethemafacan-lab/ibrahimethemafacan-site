@@ -2,6 +2,13 @@
  {
   "tarih": "2026-11-12",
   "tur": "kisa",
+  "etiket": "Hisse",
+  "metin": "Nvidia ($NVDA) CEO'su Jensen Huang istifasını sundu.<br>*Jensen Huang'ın hissede %3,58 oranında payı bulunuyor.",
+  "ek": "<p class=\"brief-ek brief-link\"><a href=\"https://www.tomshardware.com/tech-industry/nvidia-confirms-jensen-huang-has-resigned-as-ceo-colette-kress-executive-vice-president-and-chief-financial-officer-appointed-interim-ceo\" target=\"_blank\" rel=\"noopener\">Haberin ayrıntısı (Tom's Hardware) →</a></p>"
+ },
+ {
+  "tarih": "2026-11-12",
+  "tur": "kisa",
   "etiket": "Makro",
   "metin": "TCMB, enflasyon tahminlerini yukarı yönlü güncelledi:<br>*2026 yıl sonu %28'den %29,5'e yükseltildi.<br>*2027 yıl sonu %15'ten %21'e yükseltildi.<br>*2028 yıl sonu %9'dan %13,5'e yükseltildi."
  },
