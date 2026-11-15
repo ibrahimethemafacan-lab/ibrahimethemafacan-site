@@ -97,8 +97,8 @@ iH = next(i for i, x in enumerate(L) if '</head>' in x)
 head = '\n'.join(L[:iH])
 header = '\n'.join(L[iB:iM])
 footer = '\n'.join(L[iMe + 1:iSc])
-header = header.replace('<a href="/#veriler" aria-current="page">Veriler</a>', '<a href="/#veriler">Veriler</a>')
-header = header.replace('<a href="/#araclar">Araçlar</a>', '<a href="/#araclar" aria-current="page">Araçlar</a>')
+header = header.replace('<a href="/veriler/" aria-current="page">Veriler</a>', '<a href="/veriler/">Veriler</a>')
+header = header.replace('<a href="/araclar/">Araçlar</a>', '<a href="/araclar/" aria-current="page">Araçlar</a>')
 DESC = "TEFAS'taki yatırım fonlarını, BEFAS'taki emeklilik fonlarını ve BYF'leri şemsiye türüne, varlık dağılımına (hisse, kira sertifikası, kıymetli maden...), getiriye, Sharpe oranına, maksimum değer kaybına ve net para girişine göre tarayın."
 for old, new in [("Makro Göstergeler — İbrahim Ethem Afacan", "Fon Tarama — İbrahim Ethem Afacan"),
                  ('content="Makro Göstergeler"', 'content="Fon Tarama"'),
