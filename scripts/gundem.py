@@ -103,7 +103,7 @@ def arsiv(akis):
     head = head.replace('content="https://ibrahimethemafacan.com/"', 'content="https://ibrahimethemafacan.com/gundem/"')
     head = re.sub(r'<link rel="canonical" href="[^"]*">', '<link rel="canonical" href="https://ibrahimethemafacan.com/gundem/">', head)
     hs = s.index('<header class="site-head">'); he = s.index('</header>', hs) + len('</header>')
-    header = s[hs:he].replace('href="#', 'href="/#').replace('<a href="/#gundem">', '<a href="/#gundem" aria-current="page">')
+    header = s[hs:he].replace('href="#', 'href="/#').replace('<a href="/gundem/">', '<a href="/gundem/" aria-current="page">')
     fs = s.index('<footer class="site-foot">'); fe = s.index('</footer>', fs) + len('</footer>')
     footer = s[fs:fe]
     tail = s[fe:]
