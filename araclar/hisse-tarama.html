@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hisse Tarama — İbrahim Ethem Afacan</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Borsa İstanbul, ABD ve Çin hisselerinde hızlı taramalar ve sektör haritası.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="/tema.js?v=1"></script>
+  <link rel="stylesheet" href="/style.css?v=20261116b">
+  <style>
+  .ht{--bg:var(--paper);--surface:var(--panel);--fg:var(--ink);--line:var(--rule);--tile:color-mix(in srgb,var(--rule) 60%,var(--panel));--chip:var(--accent-soft);--sig:#d9822b;--f-mono:var(--sans);--f-body:var(--sans);--f-display:var(--sans);font-family:var(--sans);color:var(--ink);font-variant-numeric:tabular-nums}
+  .ht *{box-sizing:border-box}
+  .ht h1{font-family:var(--serif);font-weight:500;color:var(--navy);font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.1;margin:0 0 .3rem}
+  .ht .lead{font-size:.9rem;color:var(--muted);margin:0 0 1rem;max-width:60ch}
+  .ht .dev{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);border-radius:6px;padding:.2rem .5rem;margin-bottom:.6rem}
+  .ht .mseg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--accent-soft);border-radius:12px;padding:3px;margin-bottom:.7rem;max-width:34rem}
+  .ht .mseg button{font:700 .86rem var(--sans);border:0;background:transparent;color:var(--muted);padding:.45rem 0;border-radius:10px;cursor:pointer;line-height:1.25}
+  .ht .mseg button small{display:block;font-size:.64rem;font-weight:600}
+  .ht .mseg button[aria-selected="true"]{background:var(--panel);color:var(--navy);box-shadow:0 1px 4px rgba(0,56,148,.15)}
+  .ht .strip{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-size:.78rem;color:var(--muted);margin-bottom:1rem}
+  .ht .strip b{color:var(--ink);font-weight:700}
+  .ht .sh{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;margin:0 0 .45rem}
+  .ht .sh h2{font:800 .72rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+  .ht .sh span{font-size:.72rem;color:var(--muted);text-align:right}
+  .ht .sh a,.ht .lnk{font:700 .78rem var(--sans);color:var(--accent);text-decoration:none;white-space:nowrap;background:none;border:0;padding:0;cursor:pointer}
+  .ht .qs{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-bottom:1.2rem}
+  @media (min-width:900px){.ht .qs{grid-template-columns:repeat(6,1fr)}}
+  .ht .q{font-family:var(--sans);text-align:left;background:var(--panel);border:1px solid var(--rule);border-radius:11px;padding:.5rem .5rem .45rem;cursor:pointer;color:var(--ink);display:block}
+  .ht .q[aria-pressed="true"]{border:2px solid var(--c);padding:calc(.5rem - 1px) calc(.5rem - 1px) calc(.45rem - 1px);background:color-mix(in srgb,var(--c) 7%,var(--panel))}
+  .ht .q i{display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:8px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c);margin-bottom:.3rem}
+  .ht .q i svg{width:.95rem;height:.95rem}
+  .ht .q b{display:block;font-size:.77rem;line-height:1.15;font-weight:700}
+  .ht .q small{display:block;font-size:.66rem;line-height:1.25;color:var(--muted);margin:.12rem 0 .15rem}
+  .ht .q em{font-style:normal;font-size:.68rem;font-weight:800;color:var(--c)}
+  .ht .tm{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:4px;margin-bottom:.4rem}
+  .ht .tm.wide{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .ht .tl{font-family:var(--sans);text-align:left;border:0;border-radius:8px;padding:.4rem .5rem;cursor:pointer;color:var(--ink);min-height:3.6rem;display:grid;align-content:space-between;gap:.1rem;outline:2px solid transparent;outline-offset:-2px}
+  .ht .tl[aria-pressed="true"]{outline-color:var(--ink)}
+  .ht .tl.z{opacity:.42}
+  .ht .tl span{font-size:.7rem;font-weight:700;line-height:1.15}
+  .ht .tl b{font-size:.86rem;font-weight:800}
+  .ht .tl small{font-size:.64rem;color:var(--muted);font-weight:600}
+  .ht .lgd{display:flex;align-items:center;gap:.5rem;font-size:.68rem;color:var(--muted);margin-bottom:1.2rem}
+  .ht .lgd i{height:6px;width:120px;border-radius:3px;background:linear-gradient(90deg,color-mix(in oklab,var(--down) 58%,var(--tile)),var(--tile),color-mix(in oklab,var(--up) 58%,var(--tile)))}
+  .ht .lh{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem .8rem;margin-bottom:.5rem}
+  .ht .lh h3{font:800 .98rem var(--sans);margin:0}
+  .ht .lh span{font-size:.76rem;color:var(--muted)}
+  .ht .lh .lnk{margin-left:auto}
+  .ht .srch{width:100%;font:500 .86rem var(--sans);padding:.55rem .8rem;border:1px solid var(--rule);border-radius:11px;background:var(--panel);color:var(--ink);margin-bottom:.5rem}
+  .ht .srch:focus-visible,.ht .search:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .ht .rows{display:grid;gap:.4rem}
+  @media (min-width:760px){.ht .rows{grid-template-columns:1fr 1fr}}
+  .ht .rw{font-family:var(--sans);text-align:left;display:grid;grid-template-columns:1fr 64px auto;align-items:center;gap:.6rem;background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:.5rem .75rem;cursor:pointer;color:var(--ink);min-width:0}
+  .ht .rw:hover{border-color:var(--accent)}
+  .ht .rw .a{min-width:0}
+  .ht .rw .a b{font-size:.9rem;font-weight:800}
+  .ht .rw .a small{display:block;color:var(--muted);font-size:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ht .rw .z{text-align:right;font-size:.84rem;font-weight:800;white-space:nowrap}
+  .ht .rw .z small{display:block;color:var(--muted);font-size:.68rem;font-weight:600}
+  .ht .empty{font-size:.86rem;color:var(--muted);background:var(--panel);border:1px dashed var(--rule);border-radius:12px;padding:1rem}
+  .ht .pos{color:var(--up)}.ht .neg{color:var(--down)}
+  .ht .pct{font-weight:700}
+  .ht .hsub{color:var(--muted);font-size:.82rem}
+  .ht .hnote{font-size:.76rem;color:var(--muted);max-width:75ch;margin:1rem 0 0;line-height:1.5}
+  .ht .hmore{display:block;margin:.7rem auto .4rem;font:700 .82rem var(--sans);border:1px solid var(--rule);background:var(--panel);color:var(--ink);padding:.45rem 1rem;border-radius:999px;cursor:pointer}
+  /* Detaylı tarama */
+  .ht .scr-head h2{font:800 1.1rem var(--sans);margin:.2rem 0 .3rem}
+  .ht .scr-head p{margin:0 0 .8rem;color:var(--muted);font-size:.86rem;max-width:80ch}
+  .ht .kpis{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem}
+  .ht .kpi{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:.5rem .8rem;display:grid;gap:.1rem;min-width:118px;flex:1}
+  .ht .kpi b{font-size:1.2rem;font-weight:800}
+  .ht .kpi span{font-size:.7rem;color:var(--muted)}
+  .ht .panel{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:.9rem 0 .4rem}
+  .ht .filters{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;align-items:center;padding-inline:.9rem}
+  .ht .filters label{font-size:.68rem;color:var(--muted);font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+  .ht .fgrp{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+  .ht .seg{display:flex;gap:4px;flex-wrap:wrap}
+  .ht .seg button{font:600 .76rem var(--sans);border:1px solid var(--rule);background:var(--panel);color:var(--muted);padding:.3rem .6rem;border-radius:999px;cursor:pointer}
+  .ht .seg button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
+  .ht .sel,.ht .search{font:500 .84rem var(--sans);padding:.4rem .6rem;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);max-width:220px}
+  .ht .filters .search{margin-left:auto;width:min(240px,100%)}
+  .ht .head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;padding-inline:.9rem}
+  .ht .tablewrap{overflow-x:auto;margin-top:.6rem}
+  .ht table{width:100%;border-collapse:collapse;min-width:480px;font-size:.84rem}
+  .ht th,.ht td{padding:.6rem .9rem;text-align:right;white-space:nowrap;border-top:1px solid var(--rule)}
+  .ht th{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:800;border-top:0}
+  .ht th button{all:unset;cursor:pointer}
+  .ht th:first-child,.ht td:first-child{text-align:left}
+  .ht td.sym{font-weight:800}
+  .ht td.sym button{all:unset;cursor:pointer;display:block}
+  .ht td.sym small{display:block;font-weight:500;font-size:.72rem;color:var(--muted);max-width:22ch;overflow:hidden;text-overflow:ellipsis}
+  .ht tbody tr{cursor:pointer}
+  .ht tbody tr:hover td{background:color-mix(in oklab,var(--tile) 55%,transparent)}
+  .ht td.sec{text-align:left;color:var(--muted);font-size:.8rem;max-width:18ch;overflow:hidden;text-overflow:ellipsis}
+  .ht .tag{display:inline-block;white-space:nowrap;font:700 .68rem var(--sans);padding:2px 7px;border-radius:999px;background:color-mix(in oklab,var(--accent) 14%,transparent);color:var(--accent)}
+  .ht .chip{display:inline-block;font-size:.72rem;background:var(--chip);color:var(--muted);border-radius:999px;padding:3px 9px}
+  .ht .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .ht .prof{display:inline-flex;align-items:flex-end;gap:2px;height:16px;vertical-align:middle;margin-right:8px}
+  .ht .prof i{width:6px;background:var(--up);border-radius:1px;opacity:.85}
+  .ht table.scr-t{min-width:980px}
+  .ht .scr-t td.dist{white-space:normal;min-width:110px}
+  .ht .scr-t td.dist .chip{display:inline-block;margin-top:4px}
+  @media (max-width:600px){.ht table.scr-t{min-width:0}.ht .scr-t .c-sec,.ht .scr-t .c-md,.ht .scr-t .c-nc,.ht .scr-t .c-mc,.ht .scr-t .c-ni,.ht .scr-t .c-ma{display:none}.ht .scr-t th,.ht .scr-t td{padding:.55rem .4rem}.ht .scr-t th:first-child,.ht .scr-t td:first-child{padding-left:.9rem}.ht .scr-t td.sym small{max-width:14ch}.ht .scr-t td.dist .chip,.ht .scr-t .lg2{display:none}.ht .scr-t td.dist{min-width:0}.ht .filters .search{margin-left:0;width:100%;max-width:none}}
+  /* Hisse sayfası */
+  .ht dialog.sp{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;background:var(--paper);color:var(--ink)}
+  .ht dialog.sp::backdrop{background:rgba(0,0,0,.35)}
+  @media (min-width:900px){.ht dialog.sp{margin:auto;width:min(980px,94vw);height:auto;max-height:92vh;border-radius:14px;border:1px solid var(--rule)}}
+  .ht .sp-top{position:sticky;top:0;z-index:2;background:var(--panel);border-bottom:1px solid var(--rule);padding:.7rem 1rem;display:flex;align-items:center;gap:.75rem}
+  .ht .sp-x{white-space:nowrap;flex:none;font:700 .82rem var(--sans);border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:999px;padding:.35rem .75rem;cursor:pointer}
+  .ht .sp-t{display:grid;line-height:1.2;min-width:0}
+  .ht .sp-t b{font-size:1.05rem;font-weight:800}
+  .ht .sp-t span{color:var(--muted);font-size:.8rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ht .sp-body{padding:1rem 1rem 2rem;display:grid;gap:1.1rem}
+  .ht .sp-body>*{min-width:0}
+  .ht .sp-px{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem}
+  .ht .sp-px .big{font-size:1.7rem;font-weight:800}
+  .ht .sp-px .meta{color:var(--muted);font-size:.84rem}
+  .ht .card{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:.9rem 1rem;min-width:0}
+  .ht .card h3{font:800 .95rem var(--sans);margin:0 0 .6rem}
+  .ht .chart-h{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.5rem}
+  .ht .chart-h h3{margin:0}
+  .ht .chart-h .seg{margin-left:auto}
+  .ht .hchart{position:relative}
+  .ht .hchart svg{display:block;width:100%;height:240px;overflow:visible}
+  .ht .hchart .tip{position:absolute;top:0;pointer-events:none;background:var(--ink);color:var(--paper);font:700 .72rem var(--sans);padding:3px 7px;border-radius:6px;white-space:nowrap;transform:translateX(-50%);display:none}
+  .ht .desc{margin:0;max-width:75ch;line-height:1.6;font-size:.9rem}
+  .ht .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem}
+  .ht .rc{border:1px solid var(--rule);border-radius:10px;padding:.7rem .8rem;display:grid;gap:.2rem;background:var(--panel)}
+  .ht .rc .l{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .ht .rc .v{font-size:1.35rem;font-weight:800}
+  .ht .rc .r{font-size:.72rem;color:var(--muted)}
+  .ht .rc svg{display:block;width:100%;height:38px;margin-top:4px}
+  .ht .htab table{min-width:420px}
+  .ht .htab td,.ht .htab th{padding:.45rem .7rem}
+  .ht .htab tbody tr{cursor:default}
+  .ht .htab tbody tr:hover td{background:none}
+  .ht .fin{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.8rem;color:var(--muted);margin-top:.6rem}
+  .ht .fin b{color:var(--ink);font-weight:700}
+  .ht .na{color:var(--muted)}
+  .ht .pbchart svg{display:block;width:100%;height:220px}
+  .ht .mcchart svg{display:block;width:100%;height:210px}
+  .ht .mc-blk+.mc-blk{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
+  .ht .mc-h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:4px 0 6px;font-size:.86rem}
+  .ht .mc-lg{margin-left:auto;display:flex;align-items:center;gap:5px 6px;flex-wrap:wrap;color:var(--muted);font-size:.76rem}
+  .ht .mc-lg i{display:inline-block;width:10px;height:3px;border-radius:2px;margin-left:6px}
+  </style>
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap narrow">
+      <a class="brand" href="/"><img class="logo-light" src="/img/logo.png" alt="İbrahim Ethem Afacan" width="338" height="112"><img class="logo-dark" src="/img/logo-dark.png" alt="İbrahim Ethem Afacan" width="338" height="112"></a>
+      <div class="head-end">
+        <nav class="nav" aria-label="Ana menü">
+          <a href="/gundem/">Gündem</a>
+          <a href="/veriler/">Veriler</a>
+          <a href="/araclar/" aria-current="page">Araçlar</a>
+          <a href="/hakkinda.html">Hakkımda</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Karanlık moda geç" title="Karanlık moda geç"></button>
+      </div>
+    </div>
+  </header>
+
+  
+  <main class="wrap narrow">
+  <div class="ht">
+    <span class="dev">Geliştirme sürümü · yayında değil</span>
+    <h1>Hisse Tarama</h1>
+    <p class="lead" id="lead"></p>
+    <div class="mseg" role="tablist" aria-label="Piyasa">
+      <button role="tab" data-m="bist">BIST<small>Borsa İstanbul</small></button>
+      <button role="tab" data-m="us">ABD<small>NYSE · Nasdaq</small></button>
+      <button role="tab" data-m="cn">Çin<small>Hong Kong</small></button>
+    </div>
+    <div class="strip" id="strip"></div>
+
+    <section id="v-ozet">
+      <div class="sh"><h2>Hızlı taramalar</h2><a href="#detay" id="go-detay">Detaylı taramaya git →</a></div>
+      <div class="qs" id="qs"></div>
+      <div class="sh"><h2 id="h-sec">Sektörler</h2><span id="secsub"></span></div>
+      <div class="tm" id="tm"></div>
+      <div class="lgd"><span id="lmin"></span><i></i><span id="lmax"></span><span>· renk: günlük değişim</span></div>
+      <div class="lh"><h3 id="l-t"></h3><span id="l-s"></span><button class="lnk" id="l-clr" type="button" hidden>Seçimi temizle</button></div>
+      <input class="srch" id="q" type="search" placeholder="Hisse ara (ör. THYAO, Apple)" aria-label="Hisse ara" autocomplete="off">
+      <div class="rows" id="rows"></div>
+      <p class="hnote" id="note"></p>
+    </section>
+
+    <section id="scrv" hidden>
+      <div class="sh"><a href="#" id="go-ozet">← Hızlı taramalar ve sektörler</a><span></span></div>
+      <div class="scr-head"><h2 id="h-scr">Detaylı tarama</h2>
+      <p>Yıldız, Ana ve Alt pazardaki tüm Borsa İstanbul hisseleri (Yakın İzleme Pazarı hariç). Pazar, kârlılık, PD/DD'nin kendi tarihsel dibine yakınlığı, dolar bazlı FAVÖK artışı ve günlük / haftalık MACD kesişimiyle süzün.</p></div>
+      <div class="kpis" id="scr-kpi"></div>
+      <section class="panel">
+        <div class="filters">
+          <div class="fgrp"><label>Pazar</label><div class="seg" id="scr-pz"></div></div>
+          <div class="fgrp"><label>Son 3 çeyrek kâr</label><div class="seg" id="scr-k3"></div></div>
+          <div class="fgrp"><label>Dibe yakınlık</label><div class="seg" id="scr-band"></div></div>
+          <div class="fgrp"><label>Piy. değeri</label><div class="seg" id="scr-mc"></div></div>
+          <div class="fgrp"><label>$ FAVÖK artışı</label><div class="seg" id="scr-rv"></div></div>
+          <div class="fgrp"><label>Net nakit / PD</label><div class="seg" id="scr-nc"></div></div>
+          <div class="fgrp"><label>MACD günlük</label><div class="seg" id="scr-md"></div></div>
+          <div class="fgrp"><label>MACD haftalık</label><div class="seg" id="scr-mw"></div></div>
+          <div class="fgrp"><label for="scr-sec">Sektör</label><select class="sel" id="scr-sec"></select></div>
+          <input class="search" id="scr-q" type="search" placeholder="Hisse ara" aria-label="Taramada hisse ara" autocomplete="off">
+        </div>
+        <div class="head" style="margin-top:12px"><span class="hsub" id="scr-sub"></span></div>
+        <div class="tablewrap"><table id="scr-tbl" class="scr-t"></table></div>
+      </section>
+      <p class="hnote" id="scr-note"></p>
+    </section>
+
+    <dialog class="sp" id="sp" aria-labelledby="sp-sym">
+      <div class="sp-top"><button class="sp-x" id="sp-x" type="button">← Geri</button><div class="sp-t"><b id="sp-sym"></b><span id="sp-name"></span></div></div>
+      <div class="sp-body" id="sp-body"></div>
+    </dialog>
+  </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap narrow">
+      <p>Bu sitedeki içerikler yatırım tavsiyesi değildir. Yatırım danışmanlığı hizmeti, aracı kurumlar, portföy yönetim şirketleri ve mevduat kabul etmeyen bankalar ile müşteri arasında imzalanacak yatırım danışmanlığı sözleşmesi çerçevesinde sunulmaktadır.</p>
+      <nav class="social" aria-label="Sosyal medya"><a href="https://www.linkedin.com/in/ibrahim-ethem-afacan-563142a1/" rel="me noopener" target="_blank">LinkedIn</a><a href="https://x.com/ibrahim___ethem" rel="me noopener" target="_blank">X</a><a href="https://www.instagram.com/ibrahimethemafacan" rel="me noopener" target="_blank">Instagram</a></nav>
+      <p>© 2026 İbrahim Ethem Afacan</p>
+    </div>
+  </footer>
+
+<script src="/araclar/hisse-tarama-veri.js?v=1"></script>
+<script>
+const $=id=>document.getElementById(id);
+const st={m:"bist",v:"ozet",scan:{},sec:{},q:"",lim:40};
+
+const fmtN=(v,d=2)=>v.toLocaleString("tr-TR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtP=v=>(v>0?"+":v<0?"−":"")+fmtN(Math.abs(v))+"%";
+const cls=v=>v>0?"pos":v<0?"neg":"";
+const dec=v=>v>=1000?1:v<1?4:2;
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>s.toLocaleLowerCase("tr-TR").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/ı/g,"i");
+function heat(p,scale){const t=Math.min(Math.abs(p)/scale,1);return `color-mix(in oklab, var(${p>=0?"--up":"--down"}) ${Math.round(10+t*48)}%, var(--tile))`}
+const sc={nc:"",pz:"ZNT",k3:"",band:99,mc:0,rv:"",md:"",mw:"",sec:"",q:"",sort:{k:"r",dir:1},lim:150};
+const PZS=[["Z","Yıldız"],["ZN","Yıldız + Ana"],["ZNT","Yıldız + Ana + Alt"]];
+const PZL={Z:"Yıldız",N:"Ana",T:"Alt"};
+const K3S=[["","Fark etmez"],["1","Şart"]];
+const MDS=[["","Fark etmez"],["0","Son gün kesti"],["4","Son 5 günde kesti"],["p","Sinyal üstünde"]];
+const MWS=[["","Fark etmez"],["0","Bu hafta kesti"],["1","Son 2 haftada kesti"],["p","Sinyal üstünde"]];
+const mAge=h=>{if(!h||!h.length||h[h.length-1]<=0)return -1;for(let i=h.length-1;i>0;i--)if(h[i-1]<=0&&h[i]>0)return h.length-1-i;return 99};
+function mI(s,t){const e=(typeof MACD!=="undefined"&&MACD.s[s])||{};const x=e[t];if(!x||x.x)return null;
+  if(t==="W"&&x.p){const h=[...x.h,x.p.h];return {m:x.p.m,s:x.p.s,h,a:mAge(h),live:1}}
+  return {m:x.m,s:x.s,h:x.h,a:mAge(x.h),live:0}}
+const mOk=(sel,i)=>!sel||(i&&i.a>=0&&(sel==="p"||i.a<=+sel));
+const fM=v=>v==null?"–":fmtN(v,Math.abs(v)<1?4:Math.abs(v)<10?3:2);
+function mTag(i,l,u){if(!i)return `<span class="hsub" style="font-size:.75rem">${l} –</span>`;
+  if(i.a>=0&&i.a<=4)return `<span class="tag" title="MACD sinyali ${i.a===0?"son "+(u==="g"?"gün":"hafta"):i.a+" "+(u==="g"?"gün":"hafta")+" önce"} yukarı kesti">${l} ↑${i.a===0?(u==="g"?"bugün":"bu hf"):i.a+u}</span>`;
+  return i.a>=0?`<span class="pct pos" style="font-size:.78rem">${l} üstte</span>`:`<span class="hsub" style="font-size:.78rem">${l} altta</span>`}
+const NCS=[["","Fark etmez"],["0","Net nakitli"],["0.2","PD'nin %20'si+"],["0.5","PD'nin %50'si+"]];
+const ncR=r=>r.nc==null||!r.mc?null:r.nc/r.mc;
+const RVS=[["","Fark etmez"],["gy","Yıllık, 2 çeyrek"],["gq","Çeyreklik, 2 çeyrek"]];
+const BANDS=[[1,"Dipte"],[1.10,"%10 içinde"],[1.25,"%25 içinde"],[99,"Tümü"]];
+const MCS=[[0,"Tümü"],[1,"1 mr ₺+"],[10,"10 mr ₺+"],[50,"50 mr ₺+"]];
+const fMr=v=>Math.abs(v)>=1000?fmtN(v/1000,1)+" mr":fmtN(v,Math.abs(v)<10?1:0)+" mn";
+const egTag=r=>r.eg!=null&&(r.eg>=2||r.eg<=0.5)?` <span class="chip" title="Ana ortaklığa ait özkaynak son 4 çeyrekte ${fmtN(r.eg,1)} katına çıktı; PD/DD düşüşü fiyattan çok özkaynak artışından kaynaklanıyor olabilir">özkaynak ×${fmtN(r.eg,1)}</span>`:"";
+function distCell(r){if(r.r==null)return `<span class="hsub" title="${r.pb==null?"Özkaynak negatif ya da yok":"En az 5 çeyreklik PD/DD geçmişi yok"}">–</span>`;const d=(r.r-1)*100;if(d<=0.05)return `<span class="tag">${d<-0.5?`<span class="lg2">Yeni dip </span>`+fmtP(d):"Dipte"}</span>${egTag(r)}`;return `<span class="pct">+${fmtN(d,1)}%</span>${egTag(r)}`}
+function renderScr(){
+  const all=SCR.rows.filter(r=>sc.pz.includes(r.pz));
+  const k1=all.filter(r=>r.r!=null&&r.r<=1).length,k2=all.filter(r=>r.r!=null&&r.r<=1.1).length;
+  $("scr-pz").innerHTML=PZS.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.pz===v}">${l}</button>`).join("");
+  $("scr-k3").innerHTML=K3S.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.k3===v}">${l}</button>`).join("");
+  $("scr-kpi").innerHTML=`<div class="kpi"><b>${all.length}</b><span>hisse taranıyor</span></div><div class="kpi"><b>${all.filter(r=>r.k3).length}</b><span>son 3 çeyrek kârlı</span></div><div class="kpi"><b>${k1}</b><span>PD/DD tarihi dipte</span></div><div class="kpi"><b>${k2}</b><span>dibe %10 mesafede</span></div><div class="kpi"><b>${all.filter(r=>r.nc>0).length}</b><span>net nakitli</span></div><div class="kpi"><b>${all.filter(r=>r.gy).length}</b><span>$ FAVÖK'ü 2 çeyrektir yıllık artan</span></div>`;
+  $("scr-band").innerHTML=BANDS.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.band===v}">${l}</button>`).join("");
+  $("scr-rv").innerHTML=RVS.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.rv===v}">${l}</button>`).join("");
+  $("scr-nc").innerHTML=NCS.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.nc===v}">${l}</button>`).join("");
+  $("scr-md").innerHTML=MDS.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.md===v}">${l}</button>`).join("");
+  $("scr-mw").innerHTML=MWS.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.mw===v}">${l}</button>`).join("");
+  $("scr-mc").innerHTML=MCS.map(([v,l])=>`<button data-v="${v}" aria-pressed="${sc.mc===v}">${l}</button>`).join("");
+  const secs=[...new Set(all.map(r=>r.sec).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"tr"));
+  if(sc.sec&&!secs.includes(sc.sec))sc.sec="";
+  $("scr-sec").innerHTML=`<option value="">Tümü</option>`+secs.map(x=>`<option${x===sc.sec?" selected":""}>${esc(x)}</option>`).join("");
+  renderScrTable();
+}
+function ncCell(r){const x=ncR(r);if(x==null)return `<span class="hsub" title="${r.ncd?"":"Banka, sigorta, aracı kurum gibi finansal şirketlerde ya da veri yoksa hesaplanmaz"}">–</span>`;
+  return `<span class="pct ${cls(x)}" title="Net nakit ${fmtN(r.nc,Math.abs(r.nc)<10?2:1)} mr ₺ (${r.ncp}) = nakit ${fmtN(r.ncd[0],2)} + kısa vadeli fin. yatırım ${fmtN(r.ncd[1],2)} − finansal borç ${fmtN(r.ncd[2],2)}">${x>0?"+":x<0?"−":""}${fmtN(Math.abs(x)*100,Math.abs(x)<0.1?1:0)}%</span>`}
+function renderScrTable(){
+  const q=norm(sc.q);
+  let rows=SCR.rows.filter(r=>sc.pz.includes(r.pz)&&(!sc.k3||r.k3)&&(sc.band>=99||(r.r!=null&&r.r<=sc.band+1e-9))&&r.mc>=sc.mc&&(!sc.rv||r[sc.rv])&&(!sc.nc||(r.nc!=null&&r.nc>0&&ncR(r)>=+sc.nc-1e-9))&&mOk(sc.md,mI(r.s,"D"))&&mOk(sc.mw,mI(r.s,"W"))&&(!sc.sec||r.sec===sc.sec)&&(!q||norm(r.s).includes(q)||norm(r.n).includes(q)));
+  const {k,dir}=sc.sort;
+  const val=r=>{if(k==="nc")return ncR(r);if(k==="ni")return r.ni[2]?.[1];if(k==="ry")return r.fv[1]?.[2];if(k==="ma"){const i=mI(r.s,"D");return i&&i.a>=0?-i.a:-999}return r[k]};
+  rows.sort((a,b)=>k==="s"||k==="sec"||k==="pz"?dir*String(a[k]).localeCompare(String(b[k]),"tr"):dir*((val(a)??Infinity)-(val(b)??Infinity)));
+  const total=rows.length;rows=rows.slice(0,sc.lim);
+  $("scr-sub").textContent=`${total} hisse${total>rows.length?` · ilk ${rows.length} gösteriliyor`:""} · satıra dokunun: PD/DD geçmişi, kâr ve MACD detayı`;
+  const oldMore=$("scr-more");if(oldMore)oldMore.remove();
+  const H=[["Hisse","s"],["Sektör","sec","c-sec"],["PD/DD","pb"],[`<span class="lg2">Tarihsel </span>dip`,"mn"],["Medyan","md","c-md"],[`<span class="lg2">Dibe </span>uzaklık`,"r"],["MACD G / H","ma","c-ma"],["Son 3 çeyrek kâr (₺)","ni","c-ni"],["$ FAVÖK, yıllık","ry","c-ni"],["Net nakit / PD","nc","c-nc"],["Piy. değeri (mr ₺)","mc","c-mc"]];
+  const ar=x=>x===k?(dir>0?" ↑":" ↓"):"";
+  if(!rows.length){$("scr-tbl").innerHTML=`<tbody><tr><td style="text-align:left;color:var(--muted);white-space:normal">Bu filtrelerle eşleşen hisse yok. Dibe yakınlık ya da piyasa değeri filtresini genişletin.</td></tr></tbody>`;return}
+  $("scr-tbl").innerHTML=`<thead><tr>${H.map(([l,x,c])=>`<th scope="col"${c?` class="${c}"`:""}><button data-k="${x}">${l}${ar(x)}</button></th>`).join("")}</tr></thead><tbody>${rows.map(r=>{
+    const mxn=Math.max(1e-9,...r.ni.map(x=>Math.abs(x[1]||0)));
+    const prof=r.ni.length?`<span class="prof" aria-hidden="true">${r.ni.map(x=>`<i style="height:${Math.max(3,Math.abs(x[1]||0)/mxn*16)}px${(x[1]??0)<=0?";background:var(--down)":""}"></i>`).join("")}</span>`:"";
+    const nl=r.ni[2]?.[1];
+    return `<tr data-s="${r.s}"><td class="sym"><button type="button" aria-label="${r.s} tarama ayrıntısı">${r.s}<small>${esc(r.n)}</small></button></td><td class="sec c-sec" title="${esc(r.sec||"")}">${esc(r.sec||"–")}<small class="hsub" style="display:block;font-size:.72rem">${PZL[r.pz]||""} Pazar</small></td><td class="num"><b style="font-weight:600">${r.pb==null?"–":fmtN(r.pb,2)}</b></td><td class="num">${r.mn==null?"–":fmtN(r.mn,2)+`<small class="hsub" style="display:block;font-size:.72rem">${r.mnp}</small>`}</td><td class="num c-md">${r.md==null?"–":fmtN(r.md,2)}</td><td class="dist">${distCell(r)}</td><td class="c-ma" style="white-space:nowrap">${mTag(mI(r.s,"D"),"G","g")} ${mTag(mI(r.s,"W"),"H","h")}</td><td class="num c-ni" title="${r.ni.map(x=>x[0]+": "+(x[1]==null?"a.d.":fMr(x[1]))).join(" · ")}">${prof}<span class="${nl!=null&&nl<0?"pct neg":""}">${nl==null?"–":fMr(nl)}</span></td><td class="num c-ni" title="${r.fv.map(x=>x[0]+": "+(x[2]==null?"a.d.":fmtP(x[2]))).join(" · ")}">${r.gy?`<span class="tag" style="margin-right:6px">2/2</span>`:""}<span class="pct ${cls(r.fv[1]?.[2]??0)}">${r.fv[1]?.[2]==null?"–":fmtP(r.fv[1][2])}</span></td><td class="num c-nc">${ncCell(r)}</td><td class="num c-mc">${fmtN(r.mc,r.mc<10?2:1)}</td></tr>`}).join("")}</tbody>`;
+  if(total>rows.length){const b=document.createElement("button");b.className="hmore";b.id="scr-more";b.textContent=`Tümünü göster (${total-rows.length} hisse daha)`;b.onclick=()=>{sc.lim=1e9;renderScrTable()};$("scr-tbl").parentNode.after(b)}
+  $("scr-note").textContent="Yöntem: Her çeyrek sonundaki piyasa değeri (bölünme ve bedelsizlere göre düzeltilmiş fiyat × güncel pay sayısı), o çeyreğin ana ortaklığa ait özkaynağına bölünür; seri, enflasyon muhasebesine (TMS 29) geçilen 2023/12 döneminden başlar ki tarihsel değerler karşılaştırılabilir olsun. Güncel PD/DD son kapanış piyasa değeri ile son açıklanan özkaynaktan hesaplanır. “Dibe uzaklık”, güncel PD/DD'nin tarihsel en düşük çeyrek değerinin ne kadar üstünde olduğunu gösterir. Evren: Yıldız, Ana ve Alt pazardaki tüm hisseler; Yakın İzleme Pazarı ve Piyasa Öncesi İşlem Platformu dahil değildir. “Son 3 çeyrek kâr: Şart” seçilirse yalnızca açıklanan son üç çeyreğin her birinde ana ortaklık net kârı pozitif olanlar kalır. $ FAVÖK filtresi: çeyreklik FAVÖK'ün dolar karşılığı, son iki çeyreğin her birinde geçen yılın aynı çeyreğinden (yıllık) ya da bir önceki çeyrekten (çeyreklik) yüksek ve pozitif. Bankalar ve sigortacılarda FAVÖK olmadığı için bu filtre açıkken listede yer almazlar. MACD filtresi: MACD(12, 26, 9), düzeltilmemiş kapanışlarla; histogram (MACD − sinyal) önceki barda sıfır ya da altındayken son barda sıfırın üstüne çıktıysa “kesti” sayılır ve MACD hâlâ sinyalin üstünde olmalıdır. Haftalık değer, içinde bulunulan hafta kapanana kadar son günlük kapanışla anlık hesaplanır. Özkaynağı negatif olan ya da en az 5 çeyreklik PD/DD geçmişi bulunmayan hisselerde dibe uzaklık hesaplanmaz; bunlar yalnızca “Dibe yakınlık: Tümü” seçiliyken listelenir. 60 işlem gününden (haftalıkta 35 haftadan) kısa geçmişi olan yeni halka arzlarda MACD gösterilmez. Net nakit / PD: son bilançodaki nakit ve nakit benzerleri ile kısa vadeli finansal yatırımların toplamından toplam finansal borçlar (kiralama yükümlülükleri dahil) düşülür ve güncel piyasa değerine bölünür; eksi değer net borcu gösterir. Banka, sigorta, faktoring, leasing, aracı kurum, menkul kıymet ve girişim sermayesi yatırım ortaklıklarında, ayrıca banka ya da sigorta konsolide eden holdinglerde (Koç, Sabancı) hesaplanmaz. Yatırım tavsiyesi değildir.";
+}
+$("scr-pz").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.pz=b.dataset.v;sc.lim=150;renderScr()});
+$("scr-k3").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.k3=b.dataset.v;sc.lim=150;renderScr()});
+$("scr-band").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.band=+b.dataset.v;renderScr()});
+$("scr-rv").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.rv=b.dataset.v;renderScr()});
+$("scr-nc").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.nc=b.dataset.v;renderScr()});
+$("scr-md").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.md=b.dataset.v;renderScr()});
+$("scr-mw").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.mw=b.dataset.v;renderScr()});
+$("scr-mc").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sc.mc=+b.dataset.v;renderScr()});
+$("scr-sec").addEventListener("change",e=>{sc.sec=e.target.value;renderScrTable()});
+$("scr-q").addEventListener("input",e=>{sc.q=e.target.value.trim();renderScrTable()});
+$("scr-tbl").addEventListener("click",e=>{const b=e.target.closest("th button");if(b){const k=b.dataset.k;sc.sort=sc.sort.k===k?{k,dir:-sc.sort.dir}:{k,dir:(k==="s"||k==="sec"||k==="pz"||k==="r"||k==="pb"||k==="mn"||k==="md")?1:-1};renderScrTable();return}const tr=e.target.closest("tbody tr[data-s]");if(tr)openScr(tr.dataset.s)});
+function pbChart(r){
+  const pts=[...r.h,["Güncel",r.pb]];const W=Math.max(300,$("sp-pb").clientWidth||600),H=220,pl=4,pr=78,pt=12,pb=26;
+  const mx=Math.max(...pts.map(p=>p[1]),r.md)*1.08,n=pts.length,bw=(W-pl-pr)/n;
+  const Y=v=>pt+(1-v/mx)*(H-pt-pb);
+  const lines=[[r.mn,"Dip"],[r.md,"Medyan"]];
+  $("sp-pb").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${r.s} PD/DD geçmişi">
+  ${pts.map((p,i)=>{const x=pl+i*bw+bw*.18,w=bw*.64,y=Y(p[1]);const cur=i===n-1,isMin=!cur&&p[1]===r.mn;
+    return `<rect x="${x}" y="${y}" width="${w}" height="${H-pb-y}" rx="2" fill="var(${cur?"--accent":isMin?"--up":"--line"})"><title>${p[0]}: ${fmtN(p[1],2)}</title></rect>${(i%(W<520?3:2)===0||cur)?`<text x="${x+w/2}" y="${H-8}" font-size="10.5" text-anchor="middle" fill="var(--muted)">${cur?"Güncel":p[0].replace(/^20/,"")}</text>`:""}`}).join("")}
+  ${lines.map(([v,l])=>`<line x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--muted)" stroke-dasharray="3 4"/><text x="${W-pr+6}" y="${Y(v)+4}" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${l} ${fmtN(v,2)}</text>`).join("")}
+  <text x="${pl+(n-1)*bw+bw/2}" y="${Y(r.pb)-6}" font-size="11.5" text-anchor="middle" fill="var(--accent)" font-family="var(--f-mono)" font-weight="600">${fmtN(r.pb,2)}</text></svg>`;
+}
+const TRM=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
+const fDm=d=>{const x=new Date(d+"T12:00:00");return x.getDate()+" "+TRM[x.getMonth()]};
+const addD=(d,n)=>{const x=new Date(d+"T12:00:00");x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+function mSer(s,T){const e=(typeof MACD!=="undefined"&&MACD.s[s])||{};const x=e[T];if(!x||x.x||!x.sm||x.sm.length<3)return null;
+  const m=[...x.sm],q=[...x.ss];let d;
+  if(T==="D"){const dd=MACD.dd||[];d=dd.slice(-m.length);while(d.length<m.length)d.unshift("")}
+  else{d=m.map((_,i)=>addD(x.w,-7*(m.length-1-i)))}
+  let live=0;if(T==="W"&&x.p){m.push(x.p.m);q.push(x.p.s);d.push(x.p.w);live=1}
+  const h=m.map((v,i)=>v-q[i]);let ci=-1;for(let i=h.length-1;i>0;i--)if(h[i-1]<=0&&h[i]>0){ci=i;break}
+  if(h[h.length-1]<=0)ci=-1;
+  return {m,q,h,d,ci,live}}
+const mCrossed=(i,T)=>i&&i.a>=0&&i.a<=(T==="D"?4:1);
+function mStat(i,u){if(!i)return "Veri yok";return i.a<0?"Sinyalin altında":i.a===99?"Sinyalin üstünde (kesişim daha eski)":i.a===0?`Son ${u} yukarı kesti`:`${i.a} ${u} önce yukarı kesti`}
+function macdCard(s){
+  const D=mI(s,"D"),W=mI(s,"W");
+  let show=[];if(mCrossed(D,"D"))show.push("D");if(mCrossed(W,"W"))show.push("W");
+  const any=show.length>0;if(!any)show=[D?"D":W?"W":null].filter(Boolean);
+  if(!show.length)return `<section class="card"><h3>MACD (12, 26, 9)</h3><p class="hnote">Yeterli fiyat geçmişi yok (yeni halka arz).</p></section>`;
+  const lab={D:"Günlük",W:"Haftalık"},u={D:"gün",W:"hafta"},inf={D,W};
+  const other=["D","W"].filter(t=>!show.includes(t)&&inf[t]).map(t=>`${lab[t]}: ${mStat(inf[t],u[t]).toLowerCase()}`).join(" · ");
+  return `<section class="card"><div class="chart-h"><h3>MACD (12, 26, 9)</h3><span class="hsub">${any?"Sinyali yukarı kestiği periyot":"Son dönemde yukarı kesişim yok"}</span></div>
+  ${show.map(t=>{const i=inf[t];return `<div class="mc-blk"><div class="mc-h"><b>${lab[t]}</b><span class="${i&&i.a>=0&&i.a<=4?"tag":"hsub"}">${mStat(i,u[t])}${t==="W"&&i&&i.live?" · hafta kapanmadı, anlık":""}</span><span class="mc-lg"><i style="background:var(--accent)"></i>MACD ${fM(i?.m)}<i style="background:var(--sig)"></i>Sinyal ${fM(i?.s)}<i style="background:var(--up);opacity:.55"></i>Histogram</span></div><div class="mcchart" id="mc-${t}"></div></div>`}).join("")}
+  ${other?`<p class="hnote" style="margin-top:6px">${other}.</p>`:""}</section>`}
+function macdDraw(s){
+  ["D","W"].forEach(T=>{const el=document.getElementById("mc-"+T);if(!el)return;const z=mSer(s,T);
+    if(!z){el.innerHTML=`<p class="hnote">Grafik için yeterli seri yok.</p>`;return}
+    const Wd=Math.max(300,el.clientWidth||600),H=210,pl=6,pr=8,pt=16,pb=24,n=z.m.length,bw=(Wd-pl-pr)/n;
+    const all=[...z.m,...z.q,...z.h,0];let lo=Math.min(...all),hi=Math.max(...all);const pad=(hi-lo)*.08||1;lo-=pad;hi+=pad;
+    const Y=v=>pt+(hi-v)/(hi-lo)*(H-pt-pb),X=i=>pl+i*bw+bw/2;
+    const path=a=>a.map((v,i)=>(i?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1)).join(" ");
+    const step=Math.max(1,Math.ceil(n/(Wd<520?4:7)));
+    let g=`<line x1="${pl}" x2="${Wd-pr}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--line)"/>`;
+    g+=z.h.map((v,i)=>{const y=Math.min(Y(v),Y(0)),h=Math.abs(Y(v)-Y(0));return `<rect x="${X(i)-bw*.32}" y="${y}" width="${bw*.64}" height="${Math.max(h,.5)}" fill="var(${v>0?"--up":"--down"})" opacity="${z.live&&i===n-1?.3:.55}"><title>${z.d[i]?fDm(z.d[i]):""} · histogram ${fM(v)}</title></rect>`}).join("");
+    g+=`<path d="${path(z.q)}" fill="none" stroke="var(--sig)" stroke-width="1.8"/><path d="${path(z.m)}" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
+    if(z.ci>=0){const x=X(z.ci),y=Y(z.m[z.ci]);const lx=Math.min(Math.max(x,60),Wd-70);
+      g+=`<line x1="${x}" x2="${x}" y1="${pt-4}" y2="${H-pb}" stroke="var(--fg)" stroke-dasharray="3 3" opacity=".5"/><circle cx="${x}" cy="${y}" r="5" fill="var(--surface)" stroke="var(--up)" stroke-width="2.5"/><text x="${lx}" y="${pt-5}" font-size="11" text-anchor="middle" fill="var(--fg)" font-weight="600">Kesişim${z.d[z.ci]?" · "+(T==="W"?"hf. ":"")+fDm(z.d[z.ci]):""}</text>`}
+    g+=z.d.map((d,i)=>d&&((n-1-i)%step===0)?`<text x="${X(i)}" y="${H-7}" font-size="10.5" text-anchor="middle" fill="var(--muted)">${fDm(d)}</text>`:"").join("");
+    el.innerHTML=`<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="${s} ${T==="D"?"günlük":"haftalık"} MACD grafiği">${g}</svg>`})}
+function openScr(s,push=true){
+  const r=SCR.rows.find(x=>x.s===s);if(!r)return;
+  sp.m="scr";sp.s=s;$("sp-sym").textContent=s;$("sp-name").textContent=r.n;
+  const hasR=r.r!=null;const d=hasR?(r.r-1)*100:0;const full=DET.bist&&DET.bist[s]&&findRow("bist",s);
+  let html=`<div class="sp-px"><span class="big">PD/DD ${r.pb==null?"–":fmtN(r.pb,2)}</span><span class="meta">Piy. değeri ${fmtN(r.mc,r.mc<10?2:1)} mr ₺ · Özkaynak ${r.eq==null?"–":fmtN(r.eq,Math.abs(r.eq)<10?2:1)+" mr ₺"}${r.per?" · Son finansal dönem "+r.per:""}</span></div>
+  <div class="chips"><span class="chip">${PZL[r.pz]||""} Pazar</span>${r.sec?`<span class="chip">${esc(r.sec)}</span>`:""}<span class="chip">${r.k3?"Son 3 çeyrek kârlı":(!r.ni.length||r.ni.some(x=>x[1]==null))?"3 çeyreklik kâr verisi eksik":"Son 3 çeyrekte zarar var"}</span>${hasR?`<span class="chip">${d<=0.05?(d<-0.5?"Tarihi dibin altında":"Tarihi dipte"):"Dibe +"+fmtN(d,1)+"%"}</span><span class="chip">${r.pc===0?"Tüm geçmiş çeyreklerden düşük":`Geçmiş çeyreklerin %${Math.round(r.pc*100)}'inde daha düşüktü`}</span>`:`<span class="chip">${r.pb==null?"Özkaynak negatif":"PD/DD geçmişi yetersiz"}</span>`}${r.eg!=null&&(r.eg>=2||r.eg<=0.5)?`<span class="chip">Özkaynak 1 yılda ×${fmtN(r.eg,1)}</span>`:""}</div>
+  ${hasR?`<section class="card"><div class="chart-h"><h3>PD/DD geçmişi</h3><span class="hsub">Çeyrek sonları, 2023/12'den bu yana</span></div><div class="pbchart" id="sp-pb"></div></section>`:""}
+  ${r.nc!=null?`<section class="card"><h3>Net nakit</h3><div class="rgrid"><div class="rc"><span class="l">Net nakit / PD</span><span class="v ${cls(ncR(r))}">${ncCell(r).replace(/<[^>]+>/g,"")}</span><span class="r">${r.ncp} bilançosu, güncel piyasa değeri</span></div><div class="rc"><span class="l">Net nakit</span><span class="v">${fmtN(r.nc,Math.abs(r.nc)<10?2:1)}</span><span class="r">mr ₺</span></div><div class="rc"><span class="l">Nakit + KV fin. yatırım</span><span class="v">${fmtN(r.ncd[0]+r.ncd[1],Math.abs(r.ncd[0]+r.ncd[1])<10?2:1)}</span><span class="r">mr ₺ (nakit ${fmtN(r.ncd[0],2)} · fin. yatırım ${fmtN(r.ncd[1],2)})</span></div><div class="rc"><span class="l">Finansal borç</span><span class="v">${fmtN(r.ncd[2],Math.abs(r.ncd[2])<10?2:1)}</span><span class="r">mr ₺, kiralama dahil</span></div></div></section>`:""}
+  ${macdCard(s)}
+  <section class="card"><h3>FAVÖK ($)</h3><div class="tablewrap htab"><table><thead><tr><th>Çeyrek</th><th>FAVÖK (mn $)</th><th>Yıllık</th><th>Çeyreklik</th></tr></thead><tbody>${r.fv.map(x=>`<tr><td>${x[0]}</td><td class="num">${x[1]==null?"–":fmtN(x[1],Math.abs(x[1])<10?2:1)}</td><td class="num"><span class="pct ${cls(x[2]??0)}">${x[2]==null?"a.d.":fmtP(x[2])}</span></td><td class="num"><span class="pct ${cls(x[3]??0)}">${x[3]==null?"a.d.":fmtP(x[3])}</span></td></tr>`).join("")}</tbody></table></div><p class="hnote" style="margin-top:8px">${!r.fv.length?"FAVÖK verisi yok.":r.gy?"Son 2 çeyreğin her birinde dolar bazlı FAVÖK geçen yılın aynı çeyreğinin üstünde.":r.fv.every(x=>x[1]==null)?"Bu şirket için FAVÖK verisi yok (bankalar ve sigortacılarda FAVÖK hesaplanmaz).":"Son 2 çeyreğin her birinde yıllık dolar FAVÖK artışı yok."}${r.gq?" Çeyrekten çeyreğe de 2 çeyrektir artıyor.":""}</p></section>
+  ${r.ni.length?`<section class="card"><h3>Son 3 çeyrek net kâr</h3><div class="rgrid">${r.ni.map(x=>`<div class="rc"><span class="l">${x[0]}</span><span class="v ${x[1]==null?"":x[1]>0?"pos":"neg"}" style="font-size:1.25rem">${x[1]==null?"a.d.":fMr(x[1])+" ₺"}</span><span class="r">Ana ortaklık payı, çeyreklik</span></div>`).join("")}</div></section>`:""}
+  ${hasR||full?`<section class="card">`:""}${hasR?`<h3>Karşılaştırma</h3><div class="rgrid"><div class="rc"><span class="l">Güncel</span><span class="v">${fmtN(r.pb,2)}</span></div><div class="rc"><span class="l">Tarihsel dip</span><span class="v">${fmtN(r.mn,2)}</span><span class="r">${r.mnp}</span></div><div class="rc"><span class="l">Medyan</span><span class="v">${fmtN(r.md,2)}</span><span class="r">${r.h.length} çeyrek</span></div><div class="rc"><span class="l">Medyana dönerse</span><span class="v ${r.md>r.pb?"pos":"neg"}">${fmtP((r.md/r.pb-1)*100)}</span><span class="r">özkaynak sabitken ima edilen fark</span></div></div>`:""}
+  ${full?`<p style="margin:14px 0 0"><button class="hmore" style="margin:0" type="button" id="sp-full">Hisse sayfasını aç: grafik, F/K, FD/FAVÖK →</button></p>`:""}${hasR||full?`</section>`:""}
+  <p class="hnote">PD/DD = piyasa değeri / ana ortaklığa ait özkaynak. Düşük PD/DD tek başına ucuzluk göstermez; özkaynak kârlılığı, sektör ve bilanço kalitesiyle birlikte değerlendirilmelidir. Yatırım tavsiyesi değildir.</p>`;
+  $("sp-body").innerHTML=html;
+  const dlg=$("sp"); if(!dlg.open)dlg.showModal(); dlg.scrollTop=0;
+  if(hasR)pbChart(r);
+  macdDraw(s);
+  if(full)$("sp-full").onclick=()=>{openStock("bist",s)};
+  if(push){try{if(sp.pushed)history.replaceState({sp:1},"",`#scr/${s}`);else{history.pushState({sp:1},"",`#scr/${s}`);sp.pushed=true}}catch(_){}}
+}
+/* ---------- Stock page ---------- */
+const RL={bist:["F/K","PD/DD","FD/FAVÖK","Net borç/FAVÖK"],us:["F/K","PD/DD","FD/FAVÖK","Borç/FAVÖK"],cn:["F/K","PD/DD","FD/FAVÖK","Borç/FAVÖK"]};
+const RH={bist:["Fiyat / yıllık net kâr","Piyasa değeri / özkaynak","Firma değeri / yıllık FAVÖK","Net borç / yıllık FAVÖK"],us:["Fiyat / yıllık net kâr","Piyasa değeri / özkaynak","Firma değeri / yıllık FAVÖK","Toplam borç / yıllık FAVÖK"]};
+RH.cn=RH.us;
+const sp={m:null,s:null,range:52};
+function findRow(m,s){for(const sec of RAW[m]){const r=sec.r.find(x=>x[0]===s);if(r)return r}return null}
+function themesOf(m,s){return RAW[m].filter(sec=>sec.r.some(x=>x[0]===s)).map(sec=>sec.n)}
+const fR=(v,d=1)=>v==null?'<span class="na">a.d.</span>':fmtN(v,Math.abs(v)>=100?0:d);
+function wkDate(i,w0){const d=new Date(w0+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+7*i);return d}
+const fD=d=>d.toLocaleDateString("tr-TR",{day:"numeric",month:"short",year:"numeric"});
+function openStock(m,s,push=true){
+  const D=(DET[m]||{})[s]; const r=findRow(m,s); if(!r)return;
+  sp.m=m;sp.s=s;const M=META[m];
+  $("sp-sym").textContent=s;$("sp-name").textContent=r[1]||"";
+  const th=themesOf(m,s);
+  let html=`<div class="sp-px"><span class="big">${fmtN(r[2],dec(r[2]))} ${M.ccy}</span><span class="pct ${cls(r[3])}" style="font-size:1.05rem">${fmtP(r[3])}</span><span class="meta">${M.mcLbl?`Piy. değeri ${r[5]==null?"–":fmtN(r[5],1)} mr ${M.ccy}`:`${M.volLbl.replace(/\s*\(.*\)/,"")} ${fmtN(r[4],1)} ${M.volLbl.match(/\((.*)\)/)?.[1]||""}`}</span></div>
+  <div class="chips">${th.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div>`;
+  if(D&&D.q){
+    html+=`<section class="card"><div class="chart-h"><h3>${D.q.mc?"Piyasa değeri grafiği":"Fiyat grafiği"}</h3><span class="hsub" id="sp-chg"></span></div><div class="hchart" id="sp-chart"></div><p class="hnote" style="margin-top:6px">${D.q.mc?"Dönem sonu piyasa değerleri (milyar, raporlama para birimi)":"Dönem sonu kapanış fiyatları"}; son nokta güncel değerdir. Dönemler şirketin mali takvimine göredir.</p></section>`;
+  }
+  if(D&&D.s&&D.s.some(v=>v!=null)){
+    html+=`<section class="card"><div class="chart-h"><h3>Fiyat grafiği</h3><span class="hsub" id="sp-chg"></span><div class="seg" id="sp-rng">${[[13,"3A"],[26,"6A"],[52,"1Y"],[104,"2Y"]].map(([n,l])=>`<button data-n="${n}" aria-pressed="${sp.range===n}">${l}</button>`).join("")}</div></div><div class="hchart" id="sp-chart"></div><p class="hnote" style="margin-top:6px">Haftalık kapanışlar${m==="bist"?"; bedelsiz ve bölünmelere göre düzeltilmiştir":""}.</p></section>`;
+  }
+  if(D&&D.d)html+=`<section class="card"><h3>Ne iş yapar?</h3><p class="desc">${esc(D.d)}</p></section>`;
+  if(D&&(D.c||(D.h&&D.h.length))){
+    const L=RL[m],H=D.h||[];const cur=D.c;
+    html+=`<section class="card"><h3>Temel rasyolar</h3><div class="rgrid">${L.map((l,i)=>{
+      const vals=H.map(x=>x[i+1]).filter(v=>v!=null&&isFinite(v));
+      const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null;
+      const cv=cur?cur[i+1]:(H.length?H[H.length-1][i+1]:null);
+      return `<div class="rc" title="${RH[m][i]}"><span class="l">${l}</span><span class="v">${fR(cv,i===1||i===3?2:1)}</span><span class="r">${RH[m][i]}${avg!=null?` · ${vals.length} dönem ort. ${fmtN(avg,i===1||i===3?2:1)}`:""}</span>${spark(H.map(x=>x[i+1]),cv)}</div>`}).join("")}</div>
+      <div class="tablewrap htab"><table><thead><tr><th>Dönem</th>${L.map(l=>`<th>${l}</th>`).join("")}</tr></thead><tbody>${[...H].reverse().map(x=>`<tr><td>${x[0]}</td>${x.slice(1,5).map((v,i)=>`<td class="num">${fR(v,i===1||i===3?2:1)}</td>`).join("")}</tr>`).join("")}${cur?`<tr class="cur"><td>Güncel</td>${cur.slice(1,5).map((v,i)=>`<td class="num">${fR(v,i===1||i===3?2:1)}</td>`).join("")}</tr>`:""}</tbody></table></div>
+      ${D.x?`<div class="fin"><span>Son finansal dönem <b>${D.x.per}</b></span>${D.x.nk!=null?`<span>Net kâr (yıllık) <b>${fmtN(D.x.nk,1)} mr ${M.ccy}</b></span>`:""}${D.x.fv!=null?`<span>FAVÖK (yıllık) <b>${fmtN(D.x.fv,1)} mr ${M.ccy}</b></span>`:""}${D.x.ok!=null?`<span>Özkaynak <b>${fmtN(D.x.ok,1)} mr ${M.ccy}</b></span>`:""}${D.x.nb!=null?`<span>Net borç <b>${fmtN(D.x.nb,1)} mr ${M.ccy}</b></span>`:""}</div>`:""}
+      <p class="hnote" style="margin-top:10px">${m==="bist"?"Tarihsel değerler her çeyrek sonundaki fiyat ve o çeyreğin yıllıklandırılmış (son 12 ay) finansallarıyla hesaplanır; “Güncel” satırı son kapanış ile son açıklanan finansalları kullanır. Zarar eden ya da özkaynağı/FAVÖK'ü negatif dönemlerde rasyo gösterilmez (a.d.). Holdinglerde, özellikle banka konsolide edenlerde, FD/FAVÖK ve net borç anlamlı karşılaştırma vermez.":"Rasyolar dönem sonu (çeyrek, yarıyıl ya da yıl) değerleridir ve dönemler şirketin mali takvimine göredir; “Güncel” satırı son kapanış fiyatıyla hesaplanır. Zarar, negatif özkaynak ya da negatif FAVÖK olan dönemlerde rasyo gösterilmez (a.d.). Borç/FAVÖK brüt finansal borç üzerinden hesaplanır."}</p></section>`;
+  }
+  if(!D)html+=`<section class="card"><p class="desc na">Bu hisse için ayrıntılı veri henüz eklenmedi.</p></section>`;
+  else if(!D.h&&!D.c)html+=`<section class="card"><h3>Temel rasyolar</h3><p class="desc na">Bu şirket için tarihsel rasyo verisine ulaşılamadı (yakın zamanda halka arz olmuş ya da veri kaynağında kapsanmıyor olabilir).</p></section>`;
+  $("sp-body").innerHTML=html;
+  const dlg=$("sp"); if(!dlg.open)dlg.showModal(); dlg.scrollTop=0; $("sp-body").scrollTop=0;
+  if(D&&(D.s||D.q))drawChart();
+  if(push){try{if(sp.pushed)history.replaceState({sp:1},"",`#${m}/${s}`);else{history.pushState({sp:1},"",`#${m}/${s}`);sp.pushed=true}}catch(_){}}
+}
+function spark(arr,cur){
+  const v=[...arr,cur].map(x=>x==null||!isFinite(x)?null:x);const ok=v.filter(x=>x!=null);if(ok.length<2)return"";
+  const mn=Math.min(...ok,0),mx=Math.max(...ok);const W=200,Hh=38,n=v.length,bw=W/n;
+  return `<svg viewBox="0 0 ${W} ${Hh}" preserveAspectRatio="none" aria-hidden="true">${v.map((x,i)=>{if(x==null)return"";const h=Math.max(1.5,(x-mn)/(mx-mn||1)*(Hh-2));return `<rect x="${i*bw+1}" y="${Hh-h}" width="${bw-2}" height="${h}" rx="1.5" fill="var(${i===n-1?"--accent":"--line"})"/>`}).join("")}</svg>`;
+}
+function drawChart(){
+  const D=DET[sp.m][sp.s]; let pts=[],labOf,tipLab;
+  if(D.s){const all=D.s,n=all.length,k=Math.min(sp.range+1,n),st0=n-k,w0=DET[sp.m]._w0;
+    for(let i=st0;i<n;i++)if(all[i]!=null)pts.push([i-st0,all[i],wkDate(i,w0)]);
+    labOf=p=>p[2].toLocaleDateString("tr-TR",{month:"short",year:"2-digit"});tipLab=p=>fD(p[2]);
+  }else if(D.q){D.q.v.forEach((v,i)=>pts.push([i,D.q.mc?v/1000:v,D.q.l[i]]));labOf=p=>p[2].replace(/^(Ç\d|\d\.Y|Yıl|Ara|Oca) (\d{2})?(\d{2})$/,"$1 '$3");tipLab=p=>p[2];}
+  const el=$("sp-chart"); if(pts.length<2){el.innerHTML='<p class="hnote">Bu aralıkta yeterli veri yok.</p>';$("sp-chg").textContent="";return}
+  const W=el.clientWidth||600,H=240,pl=8,pr=60,pt=10,pb=24, N=pts[pts.length-1][0]||1;
+  const ys=pts.map(p=>p[1]);let mn=Math.min(...ys),mx=Math.max(...ys);const pad=(mx-mn)*.08||mx*.05;mn-=pad;mx+=pad;
+  const X=i=>pl+i/N*(W-pl-pr),Y=v=>pt+(1-(v-mn)/(mx-mn))*(H-pt-pb);
+  const first=pts[0][1],last=pts[pts.length-1][1],ch=(last/first-1)*100,col=ch>=0?"--up":"--down";
+  $("sp-chg").innerHTML=`<span class="pct ${cls(ch)}">${fmtP(ch)}</span> · ${tipLab(pts[0])} – ${tipLab(pts[pts.length-1])}`;
+  const line=pts.map((p,j)=>`${j?"L":"M"}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join("");
+  const area=line+`L${X(pts[pts.length-1][0]).toFixed(1)},${H-pb}L${X(pts[0][0]).toFixed(1)},${H-pb}Z`;
+  const ticks=[0,1,2,3].map(t=>mn+(mx-mn)*(t+.5)/4);
+  const dd=v=>fmtN(v,v>=1000?0:v<10?2:1);
+  const xt=[];const step=Math.max(1,Math.round(pts.length/(W<500?3:5)));for(let j=0;j<pts.length;j+=step)xt.push(pts[j]);
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${sp.s} fiyat grafiği">
+  <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(${col})" stop-opacity=".22"/><stop offset="1" stop-color="var(${col})" stop-opacity="0"/></linearGradient></defs>
+  ${ticks.map(t=>`<line x1="${pl}" x2="${W-pr}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)" stroke-dasharray="2 4"/><text x="${W-pr+6}" y="${Y(t)+4}" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${dd(t)}</text>`).join("")}
+  ${xt.map((p,j)=>`<text x="${X(p[0])}" y="${H-6}" font-size="11" fill="var(--muted)" text-anchor="${j===0?"start":"middle"}">${labOf(p)}</text>`).join("")}
+  <path d="${area}" fill="url(#g)"/><path d="${line}" fill="none" stroke="var(${col})" stroke-width="2" stroke-linejoin="round"/>
+  ${D.q?pts.map(p=>`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="2.5" fill="var(${col})"/>`).join(""):""}
+  <line id="sp-cx" y1="${pt}" y2="${H-pb}" stroke="var(--muted)" stroke-width="1" visibility="hidden"/><circle id="sp-cd" r="4" fill="var(${col})" stroke="var(--surface)" stroke-width="2" visibility="hidden"/>
+  <rect x="${pl}" y="0" width="${W-pl-pr}" height="${H}" fill="transparent" id="sp-hit"/></svg><div class="tip" id="sp-tip"></div>`;
+  const hit=$("sp-hit"),tip=$("sp-tip"),cx=$("sp-cx"),cd=$("sp-cd");
+  const mv=e=>{const b=el.getBoundingClientRect();const x=(e.touches?e.touches[0].clientX:e.clientX)-b.left;let best=pts[0];for(const p of pts)if(Math.abs(X(p[0])-x)<Math.abs(X(best[0])-x))best=p;
+    const px=X(best[0]),py=Y(best[1]);cx.setAttribute("x1",px);cx.setAttribute("x2",px);cx.setAttribute("visibility","visible");cd.setAttribute("cx",px);cd.setAttribute("cy",py);cd.setAttribute("visibility","visible");
+    tip.style.display="block";tip.style.left=Math.min(Math.max(px,60),W-60)+"px";tip.textContent=`${tipLab(best)} · ${dd(best[1])}`};
+  const out=()=>{tip.style.display="none";cx.setAttribute("visibility","hidden");cd.setAttribute("visibility","hidden")};
+  hit.addEventListener("mousemove",mv);hit.addEventListener("touchmove",mv,{passive:true});hit.addEventListener("mouseleave",out);hit.addEventListener("touchend",out);
+}
+function closeStock(fromPop){const d=$("sp");if(d.open)d.close();sp.s=null;if(fromPop){sp.pushed=false;return}try{if(sp.pushed){sp.pushed=false;history.back()}else if(location.hash)history.replaceState(null,"",location.pathname+location.search)}catch(_){}}
+$("sp-x").addEventListener("click",()=>closeStock(false));
+$("sp").addEventListener("cancel",e=>{e.preventDefault();closeStock(false)});
+$("sp").addEventListener("click",e=>{const b=e.target.closest("#sp-rng button");if(!b)return;sp.range=+b.dataset.n;document.querySelectorAll("#sp-rng button").forEach(x=>x.setAttribute("aria-pressed",x===b));drawChart()});
+window.addEventListener("resize",()=>{if(sp.m==="scr"&&sp.s&&$("sp").open){const r=SCR.rows.find(x=>x.s===sp.s);if(r&&r.r!=null)pbChart(r);macdDraw(sp.s);return}const D=DET[sp.m]?.[sp.s];if(sp.s&&$("sp").open&&D&&(D.s||D.q))drawChart()});
+
+/* ---------- Özet: hızlı taramalar + sektör haritası ---------- */
+const SR={};SCR.rows.forEach(r=>SR[r.s]=r);
+const RW={};for(const m in RAW){RW[m]={};RAW[m].forEach(t=>t.r.forEach(r=>{if(!RW[m][r[0]])RW[m][r[0]]=r}))}
+const IC={ihr:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',macd:'<path d="M3 16c4 0 5-8 9-8s5 8 9 8"/><path d="M3 9c4 0 6 6 9 6s5-6 9-6"/>',zirve:'<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',dip:'<path d="M4 6v12h16"/><path d="M7 9l4 5 3-3 5 5"/>',nakit:'<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/>',favok:'<path d="M5 20V12M12 20V7M19 20V3"/>',yuk:'<path d="M12 19V5M5 12l7-7 7 7"/>',dus:'<path d="M12 5v14M5 12l7 7 7-7"/>',fk:'<circle cx="12" cy="12" r="9"/><path d="M8 12h8"/>',pddd:'<path d="M4 20h16M6 20V9l6-5 6 5v11"/>',fdf:'<path d="M4 18h16M6 18V8h4v10M14 18V5h4v13"/>',dev:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 15V9l3 3 3-3v6"/>'};
+const fx=(v,d=1)=>fmtN(Math.abs(v),d);
+function hi52(s){const D=DET.bist[s];if(!D||!D.s)return null;const a=D.s.slice(-52).filter(v=>v!=null);if(a.length<20)return null;
+  const c=(MACD.s[s]&&MACD.s[s].D&&MACD.s[s].D.c)||(RW.bist[s]&&RW.bist[s][2]);if(!c)return null;const k=c/a[a.length-1];if(k<.6||k>1.6)return null;
+  return (c/Math.max(...a,c)-1)*100}
+const QS={
+ bist:[
+  {k:"ihr",t:"İhracatçılar",d:"Satışların yarısından fazlası yurt dışı",c:"#1A5FFF",f:s=>IHR[s]&&IHR[s][0]>=50?IHR[s][0]:null,o:-1,l:v=>[`%${v}`,"yurt dışı satış"]},
+  {k:"macd",t:"MACD kesişimi",d:"Son 5 günde sinyali yukarı kesti",c:"#7A3FD1",f:s=>{const i=mI(s,"D");return i&&i.a>=0&&i.a<=4?i.a:null},o:1,l:(v,s)=>{const w=mI(s,"W");return [v===0?"Son gün":v+" gün önce",w&&w.a>=0?"haftalıkta sinyal üstünde":"haftalıkta sinyal altında"]}},
+  {k:"zirve",t:"Zirveye yakın",d:"52 haftalık zirvesine %5 kala",c:"#12805C",f:s=>{const v=hi52(s);return v!=null&&v>=-5?v:null},o:-1,l:v=>[v>-0.05?"Zirvede":"−%"+fx(v),"zirveye uzaklık"]},
+  {k:"dip",t:"Dibe yakın, kârlı",d:"PD/DD dibine %10 kala, 3 çeyrektir kârlı",c:"#B4691F",f:s=>{const r=SR[s];return r&&r.k3&&r.r!=null&&r.r<=1.10+1e-9?(r.r-1)*100:null},o:1,l:(v,s)=>[v<=.05?"Dipte":"+%"+fx(v),"PD/DD "+fmtN(SR[s].pb,2)]},
+  {k:"nakit",t:"Net nakitli",d:"Net nakdi piyasa değerinin %20'si+",c:"#0B8FA8",f:s=>{const r=SR[s];if(!r)return null;const x=ncR(r);return x!=null&&r.nc>0&&x>=.2?x*100:null},o:-1,l:v=>["%"+fx(v,0),"net nakit / PD"]},
+  {k:"favok",t:"FAVÖK'ü büyüyen",d:"$ FAVÖK 2 çeyrektir yıllık artıyor",c:"#C0392B",f:s=>{const r=SR[s];return r&&r.gy?(r.fv[1]&&r.fv[1][2]!=null?r.fv[1][2]:0):null},o:-1,l:v=>[fmtP(v),"$ FAVÖK, yıllık"]}],
+ us:null,cn:null};
+const dc=(m,s)=>{const D=DET[m][s];return D&&D.c?D.c:null};
+QS.us=QS.cn=[
+  {k:"yuk",t:"Günün yükselenleri",d:"Günlük %2 ve üzeri artış",c:"#12805C",f:(s,m)=>RW[m][s][3]>=2?RW[m][s][3]:null,o:-1,l:v=>[fmtP(v),"günlük"]},
+  {k:"dus",t:"Günün düşenleri",d:"Günlük %2 ve üzeri düşüş",c:"#C0392B",f:(s,m)=>RW[m][s][3]<=-2?RW[m][s][3]:null,o:1,l:v=>[fmtP(v),"günlük"]},
+  {k:"fk",t:"Düşük F/K",d:"F/K 15'in altında",c:"#1A5FFF",f:(s,m)=>{const c=dc(m,s);return c&&c[1]>0&&c[1]<15?c[1]:null},o:1,l:v=>[fmtN(v,1),"F/K"]},
+  {k:"pddd",t:"Düşük PD/DD",d:"PD/DD 2'nin altında",c:"#B4691F",f:(s,m)=>{const c=dc(m,s);return c&&c[2]>0&&c[2]<2?c[2]:null},o:1,l:v=>[fmtN(v,2),"PD/DD"]},
+  {k:"fdf",t:"Düşük FD/FAVÖK",d:"FD/FAVÖK 10'un altında",c:"#0B8FA8",f:(s,m)=>{const c=dc(m,s);return c&&c[3]>0&&c[3]<10?c[3]:null},o:1,l:v=>[fmtN(v,1),"FD/FAVÖK"]},
+  {k:"dev",t:"Dev şirketler",d:"En büyük piyasa değerliler",c:"#7A3FD1",f:(s,m)=>RW[m][s][4]>=(m==="us"?200:500)?RW[m][s][4]:null,o:-1,l:(v,s,m)=>[fmtN(v,0),"mr "+META[m].ccy]}];
+const SHORT={XGMYO:"GYO",XFINK:"Fin. Kiralama, Faktoring",XKMYA:"Kimya, Petrol, Plastik",XMESY:"Metal Eşya, Makine",XKAGT:"Orman, Kâğıt, Basım",XHOLD:"Holding",DEF:"Savunma",REN:"Yenilenebilir Enerji",XAKUR:"Aracı Kurumlar"};
+const uni=m=>m==="bist"?[...new Set([...Object.keys(SR),...Object.keys(RW.bist)])]:Object.keys(RW[m]);
+const scanOf=m=>QS[m].find(x=>x.k===st.scan[m])||null;
+const nameOf=(m,s)=>(RW[m][s]&&RW[m][s][1])||(SR[s]&&SR[s].n)||"";
+function spk(s){const D=DET.bist[s];if(!D||!D.s)return "<span></span>";const a=D.s.slice(-26).filter(v=>v!=null);if(a.length<6)return "<span></span>";
+  const mn=Math.min(...a),mx=Math.max(...a),up=a[a.length-1]>=a[0];
+  return `<svg viewBox="0 0 64 24" width="64" height="24" aria-hidden="true"><polyline fill="none" stroke="var(${up?"--up":"--down"})" stroke-width="1.7" stroke-linejoin="round" points="${a.map((v,i)=>(i*63/(a.length-1)).toFixed(1)+","+(22-(v-mn)/(mx-mn||1)*20).toFixed(1)).join(" ")}"/></svg>`}
+function render(){
+  const m=st.m,M=META[m],S=RAW[m],Q=scanOf(m);
+  document.querySelectorAll(".mseg button").forEach(b=>b.setAttribute("aria-selected",b.dataset.m===m));
+  const det=st.v==="detay"&&m==="bist";
+  $("v-ozet").hidden=det;$("scrv").hidden=!det;$("strip").hidden=det;
+  $("lead").textContent=det?"Borsa İstanbul hisselerinde ölçütleri kendiniz seçin.":"Bir hızlı tarama seçin, sektöre dokunun; liste ikisine göre daralır.";
+  if(det){renderScr();return}
+  $("strip").innerHTML=M.idx.map(([l,v,p])=>`<span>${l} <b>${typeof v==="number"?fmtN(v):v}</b>${p!=null?` <span class="pct ${cls(p)}">${fmtP(p)}</span>`:""}</span>`).join("")+`<span>${fDm(MACD.d)} kapanışı</span>`;
+  $("go-detay").hidden=m!=="bist";
+  const U=uni(m);
+  $("qs").innerHTML=QS[m].map(x=>{const n=U.filter(s=>x.f(s,m)!=null).length;
+    return `<button class="q" type="button" data-k="${x.k}" aria-pressed="${!!Q&&Q.k===x.k}" style="--c:${x.c}"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IC[x.k]}</svg></i><b>${x.t}</b><small>${x.d}</small><em>${n} hisse</em></button>`}).join("");
+  const secs=S.filter(s=>s.d!=null).sort((a,b)=>b.d-a.d),scale=Math.max(...secs.map(s=>Math.abs(s.d)),1);
+  $("h-sec").textContent=m==="bist"?"Sektörler":"Temalar";
+  $("secsub").textContent=Q?"sayı: taramaya giren hisse":`${secs.filter(s=>s.d>0).length} yükselişte, ${secs.filter(s=>s.d<=0).length} düşüşte`;
+  $("tm").className="tm"+(m==="bist"?"":" wide");
+  $("tm").innerHTML=secs.map(s=>{const n=Q?s.r.filter(r=>Q.f(r[0],m)!=null).length:s.r.length;
+    return `<button class="tl${Q&&!n?" z":""}" type="button" data-c="${s.c}" aria-pressed="${st.sec[m]===s.c}" style="background:${heat(s.d,scale)}"><span>${esc(SHORT[s.c]||s.n)}</span><b class="${cls(s.d)}">${fmtP(s.d)}</b><small>${Q?(n?n+" hisse":"–"):s.r.length+" hisse"}</small></button>`}).join("");
+  $("lmin").textContent=fmtP(-scale);$("lmax").textContent=fmtP(scale);
+  $("note").textContent=(m==="bist"?"İhracat oranı, gelir tablosunda yurt dışı satışını ayrı raporlayan şirketler için son 12 aylık yurt dışı satışın toplam satışa oranıdır; bu kalemi ayrı vermeyen şirketler listede yer almaz. Zirve, 52 haftalık haftalık kapanış zirvesidir. ":"")+M.note+" Yatırım tavsiyesi değildir.";
+  renderRows();
+}
+function renderRows(){
+  const m=st.m,Q=scanOf(m),sec=RAW[m].find(x=>x.c===st.sec[m])||null,q=norm(st.q);
+  let syms=sec?sec.r.map(r=>r[0]):uni(m);
+  if(q)syms=uni(m).filter(s=>norm(s).includes(q)||norm(nameOf(m,s)).includes(q));
+  let rows=syms.map(s=>({s,v:Q?Q.f(s,m):null,r:RW[m][s]})).filter(x=>!Q||x.v!=null);
+  if(Q)rows.sort((a,b)=>Q.o*(a.v-b.v));else rows.sort((a,b)=>((b.r&&b.r[3])??-99)-((a.r&&a.r[3])??-99));
+  const plain=!Q&&!sec&&!q;
+  $("l-t").textContent=q?`“${st.q}”`:[Q&&Q.t,sec&&(SHORT[sec.c]||sec.n)].filter(Boolean).join(" · ")||(m==="bist"?"Günün en çok yükselenleri":"Tüm hisseler");
+  $("l-s").textContent=`${rows.length} hisse`+(Q?" · "+Q.d.toLocaleLowerCase("tr-TR"):"");
+  $("l-clr").hidden=plain;
+  const tot=rows.length;rows=rows.slice(0,plain?12:st.lim);
+  $("rows").innerHTML=rows.length?rows.map(x=>{const r=x.r,l=Q?Q.l(x.v,x.s,m):null;
+    const z=Q?`<span class="${Q.k==="dus"?"neg":Q.k==="yuk"||Q.k==="favok"&&x.v>0?"pos":""}">${l[0]}</span><small>${l[1]}</small>`:r?`<span class="${cls(r[3])}">${fmtP(r[3])}</span><small>${fmtN(r[2],dec(r[2]))} ${META[m].ccy}</small>`:"";
+    return `<button class="rw" type="button" data-s="${x.s}"><span class="a"><b>${x.s}</b><small>${esc(nameOf(m,x.s))}</small></span>${m==="bist"?spk(x.s):"<span></span>"}<span class="z">${z}</span></button>`}).join(""):`<p class="empty">Bu seçimle eşleşen hisse yok. Başka bir sektöre dokunun ya da seçimi temizleyin.</p>`;
+  const old=$("rw-more");if(old)old.remove();
+  if(!plain&&tot>rows.length){const b=document.createElement("button");b.className="hmore";b.id="rw-more";b.type="button";b.textContent=`Tümünü göster (${tot-rows.length} hisse daha)`;b.onclick=()=>{st.lim=1e9;renderRows()};$("rows").after(b)}
+}
+document.querySelector(".mseg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.m=b.dataset.m;st.v="ozet";st.q="";$("q").value="";st.lim=40;if(location.hash==="#detay")history.replaceState(null,"",location.pathname);render()});
+$("qs").addEventListener("click",e=>{const b=e.target.closest(".q");if(!b)return;st.scan[st.m]=st.scan[st.m]===b.dataset.k?null:b.dataset.k;st.lim=40;render()});
+$("tm").addEventListener("click",e=>{const b=e.target.closest(".tl");if(!b)return;st.sec[st.m]=st.sec[st.m]===b.dataset.c?null:b.dataset.c;st.q="";$("q").value="";st.lim=40;render();$("l-t").scrollIntoView({block:"nearest",behavior:"smooth"})});
+$("l-clr").addEventListener("click",()=>{st.scan[st.m]=null;st.sec[st.m]=null;st.q="";$("q").value="";render()});
+$("q").addEventListener("input",e=>{st.q=e.target.value.trim();st.lim=40;renderRows()});
+$("rows").addEventListener("click",e=>{const b=e.target.closest(".rw");if(!b)return;const s=b.dataset.s;if(st.m==="bist"&&SR[s])openScr(s);else openStock(st.m,s)});
+$("go-detay").addEventListener("click",e=>{e.preventDefault();st.v="detay";history.pushState({d:1},"","#detay");render();window.scrollTo(0,0)});
+$("go-ozet").addEventListener("click",e=>{e.preventDefault();st.v="ozet";history.pushState(null,"",location.pathname);render();window.scrollTo(0,0)});
+window.addEventListener("popstate",()=>{const h=location.hash,m=h.match(/^#(bist|us|cn|scr)\/(.+)$/);
+  if(m){m[1]==="scr"?openScr(decodeURIComponent(m[2]),false):openStock(m[1],decodeURIComponent(m[2]),false);return}
+  if($("sp").open)closeStock(true);
+  const v=h==="#detay"?"detay":"ozet";if(v!==st.v){st.v=v;render()}});
+st.scan.bist="ihr";
+if(location.hash==="#detay")st.v="detay";
+render();
+(function(){const m=location.hash.match(/^#(bist|us|cn|scr)\/(.+)$/);if(m){if(m[1]!=="scr"&&RAW[m[1]]){st.m=m[1];render()}m[1]==="scr"?openScr(decodeURIComponent(m[2]),false):openStock(m[1],decodeURIComponent(m[2]),false)}})();
+</script>
+</body>
+</html>
