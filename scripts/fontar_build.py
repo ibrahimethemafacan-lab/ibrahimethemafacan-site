@@ -1,5 +1,11 @@
 """araclar/fon-tarama.html üretir. Veri: funds.json (ajan çıktısı).
 Türetilmiş metrikler burada hesaplanır; veri sayfaya gömülür."""
+# DURDURULDU (17 Kasım 2026): Borsa İstanbul, fon verisi paylaşımının veri dağıtım lisansına tabi olduğunu bildirdi.
+# Sayfa "yakında" durumunda; lisans alınmadan bu betik çalıştırılmaz.
+import os, sys
+if os.environ.get('FONTAR_ACIK') != '1':
+    sys.exit('Fon tarama durduruldu (lisans bekleniyor). Bkz. scripts/GUNCELLEME.md §6.')
+
 import json, math, re
 
 import os

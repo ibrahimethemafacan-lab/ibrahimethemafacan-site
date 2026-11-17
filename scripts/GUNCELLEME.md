@@ -71,6 +71,7 @@ Planlı Claude görevi (perşembe 15:50) şunları yapar:
 3. Test, commit, push, özet mesajı.
 
 ## 6. Fon Tarama — `scripts/fontar_build.py` (cuma; veri çekimi ayrı bir alt ajanla)
+**DURDURULDU (17 Kasım 2026):** Borsa İstanbul fon verisi paylaşımının dağıtım lisansına tabi olduğunu bildirdi. Sayfa "yakında" yer tutucusu; ana sayfa ve Araçlar kartları "yakında". Lisans alınana kadar bu bölümü ÇALIŞTIRMA, `scripts/data/fontar_funds.json` depoda tutulmaz. Aşağıdaki adımlar yeniden açılış için saklanıyor.
 1. Alt ajana Fintables sorgularını yaptır; çıktı `scripts/data/fontar_funds.json` (yapı: `{"asof","fields_note","rows":[{kod,ad,t,s,rs,uc,n,s1,s2,dd,p0,d0,p1,d1,py,m1,m3,sz,inv,fy,f3,al:{hs,yhs,kamu,ozelb,kkira,okira,kath,mev,km,pp,fonp,gsyf,gyf,vint,dgr}}]}`).
    Evren: `fonlar` tablosunda `((fon_tipi='mutual' AND tefasa_acik) OR fon_tipi IN ('pension','exchange'))`.
    Pencereler (İstanbul günü D için mumlar_gunluk_gh'de zaman_utc = (D-1) 21:00): 1 yıl: `zaman_utc >= '<D-1yıl -1gün> 21:00'`; p1: `<= '<D-1> 21:00'`;
