@@ -287,14 +287,14 @@ function renderRows(){
   const old=$("rw-more");if(old)old.remove();
   if(!plain&&tot>rows.length){const b=document.createElement("button");b.className="hmore";b.id="rw-more";b.type="button";b.textContent=`Tümünü göster (${tot-rows.length} hisse daha)`;b.onclick=()=>{st.lim=1e9;renderRows()};$("rows").after(b)}
 }
-document.querySelector(".mseg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.m=b.dataset.m;st.v="ozet";st.q="";$("q").value="";st.lim=40;if(location.hash==="#detay")history.replaceState(null,"",location.pathname);render()});
+document.querySelector(".mseg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.m=b.dataset.m;st.v="ozet";st.q="";$("q").value="";st.lim=40;if(location.hash==="#detay"){try{history.replaceState(null,"",location.pathname+location.search)}catch(_){}}render()});
 $("qs").addEventListener("click",e=>{const b=e.target.closest(".q");if(!b)return;st.scan[st.m]=st.scan[st.m]===b.dataset.k?null:b.dataset.k;st.lim=40;render()});
 $("tm").addEventListener("click",e=>{const b=e.target.closest(".tl");if(!b)return;st.sec[st.m]=st.sec[st.m]===b.dataset.c?null:b.dataset.c;st.q="";$("q").value="";st.lim=40;render();$("l-t").scrollIntoView({block:"nearest",behavior:"smooth"})});
 $("l-clr").addEventListener("click",()=>{st.scan[st.m]=null;st.sec[st.m]=null;st.q="";$("q").value="";render()});
 $("q").addEventListener("input",e=>{st.q=e.target.value.trim();st.lim=40;renderRows()});
 $("rows").addEventListener("click",e=>{const b=e.target.closest(".rw");if(!b)return;const s=b.dataset.s;if(st.m==="bist"&&SR[s])openScr(s);else openStock(st.m,s)});
-$("go-detay").addEventListener("click",e=>{e.preventDefault();st.v="detay";history.pushState({d:1},"","#detay");render();window.scrollTo(0,0)});
-$("go-ozet").addEventListener("click",e=>{e.preventDefault();st.v="ozet";history.pushState(null,"",location.pathname);render();window.scrollTo(0,0)});
+$("go-detay").addEventListener("click",e=>{e.preventDefault();st.v="detay";try{history.pushState({d:1},"","#detay")}catch(_){}render();window.scrollTo(0,0)});
+$("go-ozet").addEventListener("click",e=>{e.preventDefault();st.v="ozet";try{history.pushState(null,"",location.pathname+location.search)}catch(_){}render();window.scrollTo(0,0)});
 window.addEventListener("popstate",()=>{const h=location.hash,m=h.match(/^#(bist|us|cn|scr)\/(.+)$/);
   if(m){m[1]==="scr"?openScr(decodeURIComponent(m[2]),false):openStock(m[1],decodeURIComponent(m[2]),false);return}
   if($("sp").open)closeStock(true);
