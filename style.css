@@ -650,3 +650,44 @@ a.hub-i > i { color: var(--muted) !important; }
 .hero-race, a.hub-i, .gd-son-yazi, .gundem-all { transition: border-color .15s cubic-bezier(.22,1,.36,1), background-color .15s cubic-bezier(.22,1,.36,1) !important; }
 .hero-race:hover, a.hub-i:hover { transform: none !important; box-shadow: 0 1px 2px rgba(0,0,0,.05) !important; border-color: var(--navy) !important; }
 a.hub-i:hover > i { color: var(--navy) !important; }
+
+/* Cila 2 (21 Kasım 2026): gündem, veriler, araçlar, veri sayfaları, çalışma masası. */
+
+/* Yazı: büyük harfli etiket yok, en kalın 600 */
+.gd-day { text-transform: none !important; letter-spacing: 0 !important; font-weight: 600 !important; font-size: 13px !important; margin-top: 24px !important; padding-bottom: 8px !important; }
+.oz-card h4 { text-transform: none !important; letter-spacing: 0 !important; font-weight: 600 !important; font-size: 13px !important; }
+.tool .go, .tool-code, .desk-h, .bubble, .chart figcaption, details.tbl summary, .rk-row .vl, .zv .rk-row.em-row .nm,
+.oz-big, .oz-facts dd, .race-val, .konut-btn, .konut-go, .status, .brief-ek summary, .brief-link a, .notes li.post .more,
+.gd-bar .gd-sec a, .prose h2, .gh, .grp h3, .chart h3 { font-weight: 600 !important; }
+main th { font-weight: 600 !important; }
+main td { font-weight: inherit; }
+main table td:first-child b, main td b, .kt td:first-child, .brief-tbl td:first-child, .brief-tbl tfoot td,
+#t-kfe tbody tr:first-child td, #t-il tbody tr:first-child td, td.rt-cum, .rt td:first-child, span.in { font-weight: 600 !important; }
+.brief-tbl tr.sub td { font-style: normal !important; }
+
+/* Düğme, sekme, filtre: 8 köşe, ince çizgi, seçili olan lacivert */
+.gd-bar button, .jump a, .tabs button, .sortbar button, .desk-sub a, .konut-go { border-radius: 8px !important; border-width: 1px !important; font-weight: 600 !important; }
+.gd-bar button:not([aria-pressed="true"]), .jump a, .tabs button:not([aria-selected="true"]), .sortbar button:not([aria-pressed="true"]), .desk-sub a { border-color: var(--rule) !important; color: var(--ink) !important; background: var(--panel) !important; }
+.jump a:hover, .tabs button:not([aria-selected="true"]):hover, .sortbar button:not([aria-pressed="true"]):hover, .gd-bar button:not([aria-pressed="true"]):hover, .desk-sub a:hover { border-color: var(--ink) !important; background: var(--panel) !important; color: var(--ink) !important; }
+.gd-bar button[aria-pressed="true"], .tabs button[aria-selected="true"], .sortbar button[aria-pressed="true"], .seg button[aria-pressed="true"], .desk-tabs button[aria-selected="true"] { background: var(--navy) !important; border-color: var(--navy) !important; color: #fff !important; }
+.seg { border-radius: 8px !important; border: 1px solid var(--rule) !important; }
+.seg button { font-weight: 600 !important; }
+.seg button:not([aria-pressed="true"]) { color: var(--ink) !important; }
+.desk-tabs { border-radius: 10px !important; padding: 4px !important; }
+.desk-tabs button { border-radius: 8px !important; font-weight: 600 !important; padding: 8px 20px !important; }
+.status { border-radius: 6px !important; }
+
+/* Kartlar: renkli üst ve sol şerit yok, 12 köşe, nötr gölge */
+.tool, .tool.is-live, main .tools .tool, .tools .tool:not(.is-live), .tool.is-live:only-child { border-top: 1px solid var(--rule) !important; }
+main .tools .tool { border-radius: 12px !important; }
+.grp { border-top: 1px solid var(--rule) !important; margin-top: 40px !important; padding-top: 24px !important; }
+.kt tfoot tr:first-child td { border-top: 1px solid var(--ink) !important; }
+p.calc-note[style] { border: 1px solid var(--rule) !important; padding: 12px 16px !important; border-radius: 8px !important; }
+.kpi div, .chart, .oz-card { border-radius: 12px !important; }
+.chart .tip { box-shadow: 0 8px 24px rgba(0,0,0,.06) !important; border-radius: 8px !important; }
+.bubble { border: 1px solid var(--rule) !important; border-radius: 12px !important; box-shadow: none !important; }
+.bubble:hover { transform: none !important; box-shadow: none !important; border-color: var(--navy) !important; }
+.konut-btn { border-radius: 8px !important; }
+.about-photo { box-shadow: none !important; border: 1px solid var(--rule); }
+.bubble::before, .bubble::after { display: none !important; }
+:root[data-theme="dark"] :is(.gd-bar button[aria-pressed="true"], .tabs button[aria-selected="true"], .sortbar button[aria-pressed="true"], .seg button[aria-pressed="true"], .desk-tabs button[aria-selected="true"]) { color: var(--paper) !important; }
