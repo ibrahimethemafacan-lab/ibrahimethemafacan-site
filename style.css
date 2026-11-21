@@ -579,3 +579,74 @@ a.hub-i:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,56,14
 
 .hub-i.hub-m { display: none; }
 @media (max-width: 720px) { .hub-i.hub-m { display: grid; } }
+
+/* Cila (21 Kasım 2026): tek nötr zemin, tek renk simge, 8/12 köşe, 4lük boşluk, 500-600 ağırlık, zıplama yok. */
+
+/* 2. Renk: geçişli zemin yok, tek nötr yüzey */
+body { background: var(--paper) !important; }
+.dark { background: var(--paper) !important; }
+
+/* 1. Boşluk: 4'lük ızgara, ölü bant kapanır */
+.site-head { padding: 24px 0; }
+.hero { padding: 40px 0 48px !important; }
+.section { padding: 48px 0 64px; }
+#gundem { border-top: 1px solid var(--rule); }
+.hero-grid { gap: 48px; }
+.hub { gap: 24px; }
+.hub-g { gap: 8px !important; }
+.hub-t { margin: 0 0 4px !important; }
+.hub-i { padding: 12px 16px !important; gap: 0 12px !important; margin-bottom: 8px; }
+@media (min-width: 721px) { .hub-g .hub-i { margin-bottom: 0; } }
+.series { gap: 48px; }
+.gd-home { row-gap: 20px !important; }
+.notes li { padding: 20px 0; }
+.notes li.brief { padding-left: 0 !important; border-left: 0 !important; }
+
+/* 5. Yazı: cümle düzeni, 500–600 ağırlık */
+.hub-t { text-transform: none !important; letter-spacing: 0 !important; font-size: 13px !important; font-weight: 600 !important; color: var(--muted); }
+.hub-i b { font-weight: 600 !important; font-size: 15px; }
+.hub-i span { font-size: 13px; line-height: 20px; }
+.nav a { font-weight: 500; }
+.hr-v, .hr-more, .cal-h b, .gundem-all { font-weight: 600 !important; }
+.hr-v { font-variant-numeric: tabular-nums; }
+.cal-g .dw { font-weight: 500 !important; font-size: 12px; }
+.cal-g button.var { font-weight: 600 !important; }
+.gd-son-yazi small { text-transform: none !important; letter-spacing: 0 !important; font-weight: 500 !important; font-size: 13px !important; }
+.series-about p { font-family: var(--sans); font-size: 15px; line-height: 24px; }
+.site-foot .social a { font-weight: 600 !important; }
+
+/* 3. Simge: tek renk, tek kutu */
+.hub-i { --hc: var(--muted) !important; }
+.hub-ic { background: var(--accent-soft) !important; color: var(--navy) !important; border-radius: 8px !important; width: 36px !important; height: 36px !important; padding: 8px !important; }
+.hub-i.soon .hub-ic { color: var(--muted) !important; }
+a.hub-i > i { color: var(--muted) !important; }
+.nav a::before { background-color: var(--muted) !important; }
+.nav a:hover::before, .nav a[aria-current="page"]::before { background-color: var(--ink) !important; }
+.notes li.brief .brief-ic { filter: grayscale(1); opacity: .6; }
+
+/* 7. Detay: yuvarlaklık 8 / 12, hap yok, sol şerit yok */
+.hub-i, .hero-race, .cal, .gd-son-yazi { border-radius: 12px !important; }
+.cal-g button { border-radius: 8px !important; }
+.hub-i em { border: 0 !important; background: none !important; padding: 0 !important; font-size: 12px !important; color: var(--muted) !important; font-style: normal; }
+.gd-son-yazi { border-left: 1px solid var(--rule) !important; padding: 12px 16px !important; margin-top: 16px !important; }
+.gundem-all { display: inline-flex !important; width: auto !important; align-items: center; gap: 8px; margin-top: 16px !important; padding: 0 16px !important; height: 40px; border: 1px solid var(--rule) !important; border-radius: 8px !important; background: var(--panel) !important; color: var(--ink) !important; font-size: 14px !important; text-decoration: none; }
+.gundem-all span { color: var(--muted); font-weight: 400; }
+.gundem-all:hover { border-color: var(--ink) !important; }
+.theme-toggle { border-radius: 8px !important; }
+
+/* Zengin an: yalnızca getiri grafiği renk taşır, düz renkle */
+.hero-race { box-shadow: 0 1px 2px rgba(0,0,0,.05) !important; padding: 24px !important; }
+.hr-t i { background: var(--navy) !important; }
+.hr-bars li.neg .hr-t i { background: var(--down) !important; }
+.hr-bars li.ref .hr-t i { background: repeating-linear-gradient(135deg, #9AA7BD 0 4px, transparent 4px 8px) !important; }
+.hr-t, .hr-t i { border-radius: 2px !important; }
+.hr-sub { font-variant-numeric: tabular-nums; }
+
+/* Takvim: nötr hücre, anlam taşıyan nokta kalır */
+.cal-g button.var { background: var(--accent-soft); }
+.cal { padding: 16px !important; }
+
+/* 9. Hareket: zıplama yok, yalnızca renk geçişi */
+.hero-race, a.hub-i, .gd-son-yazi, .gundem-all { transition: border-color .15s cubic-bezier(.22,1,.36,1), background-color .15s cubic-bezier(.22,1,.36,1) !important; }
+.hero-race:hover, a.hub-i:hover { transform: none !important; box-shadow: 0 1px 2px rgba(0,0,0,.05) !important; border-color: var(--navy) !important; }
+a.hub-i:hover > i { color: var(--navy) !important; }
