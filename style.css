@@ -616,9 +616,7 @@ body { background: var(--paper) !important; }
 .site-foot .social a { font-weight: 600 !important; }
 
 /* 3. Simge: tek renk, tek kutu */
-.hub-i { --hc: var(--muted) !important; }
-.hub-ic { background: var(--accent-soft) !important; color: var(--navy) !important; border-radius: 8px !important; width: 36px !important; height: 36px !important; padding: 8px !important; }
-.hub-i.soon .hub-ic { color: var(--muted) !important; }
+.hub-ic { background: color-mix(in srgb, var(--hc) 12%, transparent) !important; color: var(--hc) !important; border-radius: 8px !important; width: 36px !important; height: 36px !important; padding: 8px !important; }
 a.hub-i > i { color: var(--muted) !important; }
 .nav a::before { background-color: var(--muted) !important; }
 .nav a:hover::before, .nav a[aria-current="page"]::before { background-color: var(--ink) !important; }
