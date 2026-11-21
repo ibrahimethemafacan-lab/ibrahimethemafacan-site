@@ -41,9 +41,12 @@
   try { if (localStorage.getItem(KEY)) return; } catch (e) {}
   if (!mobil) return;
 
+  /* Samsung Internet, Mi Browser, Opera vb. siteyi kendi paketleyip kurmaya çalışınca Google Play Protect
+     "eski Android sürümü için geliştirilmiş" diye engelliyor. Bu tarayıcılarda kurulumu Chrome'a yönlendiriyoruz. */
+  var digerAndroid = !ios && /SamsungBrowser|MiuiBrowser|XiaoMi|OPR\/|OPT\/|HuaweiBrowser|UCBrowser|HeyTapBrowser|VivoBrowser|YaBrowser|DuckDuckGo|Firefox/i.test(navigator.userAgent);
   var deferred = null;
-  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; goster(); });
-  if (ios) document.addEventListener('DOMContentLoaded', goster);
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); if (!digerAndroid) { deferred = e; goster(); } });
+  if (ios || digerAndroid) document.addEventListener('DOMContentLoaded', goster);
 
   function goster() {
     if (document.getElementById('pwa-bar') || !document.body) return;
@@ -57,6 +60,12 @@
     bar.querySelector('.pwa-go').onclick = function () {
       if (deferred) { deferred.prompt(); deferred.userChoice.then(function () { bar.remove(); deferred = null; }); return; }
       var sh = document.createElement('div'); sh.id = 'pwa-sheet';
+      if (digerAndroid) {
+        sh.innerHTML = '<div><h3>Chrome ile kur</h3>Bu tarayıcıda kurulum Google Play Protect tarafından engellenebiliyor. Siteyi <b>Chrome</b>\'da açıp oradan kurabilirsin.<ol><li>Aşağıdaki düğmeyle siteyi Chrome\'da aç</li><li>Çıkan <b>Kur</b> düğmesine dokun (ya da Chrome menüsünden <b>Ana ekrana ekle</b>)</li></ol><a href="intent://ibrahimethemafacan.com/?kaynak=kur#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fibrahimethemafacan.com%2F;end" style="display:block;margin:1rem auto 0;text-align:center;background:var(--accent,#1A5FFF);color:#fff;font-weight:700;border-radius:999px;padding:.6rem 1rem;text-decoration:none">Chrome\'da aç</a><button type="button">Kapat</button></div>';
+        document.body.appendChild(sh);
+        sh.onclick = function (e) { if (e.target === sh || e.target.tagName === 'BUTTON') { sh.remove(); } };
+        return;
+      }
       sh.innerHTML = '<div><h3>iPhone\'a kurmak için</h3>Safari\'de alttaki <b>Paylaş</b> düğmesine (kare ve yukarı ok) dokun, listeden <b>Ana Ekrana Ekle</b>\'yi seç, sağ üstten <b>Ekle</b>\'ye bas.<ol><li>Paylaş düğmesi</li><li>Ana Ekrana Ekle</li><li>Ekle</li></ol>Site, ana ekranda kendi simgesiyle, tam ekran bir uygulama olarak açılır.<button type="button">Tamam</button></div>';
       document.body.appendChild(sh);
       sh.onclick = function (e) { if (e.target === sh || e.target.tagName === 'BUTTON') { sh.remove(); bar.remove(); try { localStorage.setItem(KEY, '1'); } catch (e2) {} } };
