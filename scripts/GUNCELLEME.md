@@ -93,3 +93,9 @@ ticari gayrimenkul `bie_tgfe` (üç aylık), satışlar `bie_akonutsat1..4` (TÜ
 ## 8. Gündem kısa haberi
 `gundem/akis.json` en başa `{"tarih","tur":"kisa","etiket","metin"(HTML), "ek"(isteğe bağlı HTML)}` ekle, `python3 scripts/gundem.py`, commit.
 Kullanıcının metnini aynen koy; yalnızca yazım hatası düzelt.
+
+## Makro: kart harcamaları (`araclar/makro.html`, `var KK`) — cuma, haftalık TCMB güncellemesiyle birlikte
+EVDS `bie_kkhartut` (haftalık, cuma tarihli, bin TL). Seriler `TP.KKHARTUT.KT1` (toplam), `KT2`–`KT26`, `KT49` (diğer), `KT50` (internet, bilgi için).
+`get_series_data` tek çağrıda `-` ile ayrılmış 10 seriye kadar alır. Son 4 cuma ile geçen yılın aynı 4 haftasını çek, her seri için 4 haftayı topla, 1e6'ya böl (milyar TL).
+`KK.r` satırı: `[ad, son 4 hafta, geçen yıl aynı 4 hafta, bayrak]` (bayrak: `t` toplam, `i` internet). `KK.d` son veri tarihi, `KK.a` ve `KK.o` dönem metinleri.
+`KK.enf`: yıllık TÜFE, `TP.TUKFIY2025.GENEL` son ay / 12 ay önce − 1; `KK.enfAy` o ayın adı.
