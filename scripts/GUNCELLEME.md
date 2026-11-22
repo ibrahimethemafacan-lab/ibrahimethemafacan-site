@@ -94,8 +94,11 @@ ticari gayrimenkul `bie_tgfe` (üç aylık), satışlar `bie_akonutsat1..4` (TÜ
 `gundem/akis.json` en başa `{"tarih","tur":"kisa","etiket","metin"(HTML), "ek"(isteğe bağlı HTML)}` ekle, `python3 scripts/gundem.py`, commit.
 Kullanıcının metnini aynen koy; yalnızca yazım hatası düzelt.
 
-## Makro: kart harcamaları (`araclar/makro.html`, `var KK`) — cuma, haftalık TCMB güncellemesiyle birlikte
-EVDS `bie_kkhartut` (haftalık, cuma tarihli, bin TL). Seriler `TP.KKHARTUT.KT1` (toplam), `KT2`–`KT26`, `KT49` (diğer), `KT50` (internet, bilgi için).
-`get_series_data` tek çağrıda `-` ile ayrılmış 10 seriye kadar alır. Son 4 cuma ile geçen yılın aynı 4 haftasını çek, her seri için 4 haftayı topla, 1e6'ya böl (milyar TL).
-`KK.r` satırı: `[ad, son 4 hafta, geçen yıl aynı 4 hafta, bayrak]` (bayrak: `t` toplam, `i` internet). `KK.d` son veri tarihi, `KK.a` ve `KK.o` dönem metinleri.
-`KK.enf`: yıllık TÜFE, `TP.TUKFIY2025.GENEL` son ay / 12 ay önce − 1; `KK.enfAy` o ayın adı.
+## Makro: kart harcamaları (`araclar/makro.html`, `var KK` ve `var KA`) — cuma, haftalık TCMB güncellemesiyle birlikte
+`python3 scripts/kart_build.py` iki değişkeni de üretir; elle düzenleme yok.
+1. EVDS `bie_kkhartut` (haftalık, cuma tarihli, bin TL): `TP.KKHARTUT.KT1` (toplam), `KT2`–`KT26`, `KT49` (diğer), `KT50`, `KT51`.
+   `get_series_data` tek çağrıda `-` ile ayrılmış 10 seri alır. Yeni haftaları `scripts/data/kart_haftalik.json` içine ekle:
+   `dates` listesine ISO tarih, her `KTn` listesine aynı sıradaki değer (liste uzunlukları eşit kalmalı).
+2. Yeni ay TÜFE'si açıklandıysa `scripts/data/tufe.json` içine `"YYYY-AA": endeks` ekle (`TP.TUKFIY2025.GENEL`).
+3. `python3 scripts/kart_build.py` çalıştır; çıktıdaki son tarih ve aylık aralık beklenenle uyuşmalı.
+KK: son 4 hafta / 52 hafta önceki 4 hafta, nominal. KA: son 12 tam ay, haftalık tutar yedi güne eşit dağıtılıp takvim ayına toplanır, yıllık TÜFE ile arındırılır.
