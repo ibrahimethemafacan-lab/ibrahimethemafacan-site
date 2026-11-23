@@ -124,8 +124,7 @@ function scoreText(t){return `${t.ok} correct · ${t.d-t.ok} wrong · ${t.t-t.d}
 function renderWeights(){$("#weights").innerHTML=S.map(s=>`<button style="flex:${s.w};background:${s.c}" title="${s.n}: ${s.w}" data-go="${s.id}">${s.w}</button>`).join("")}
 function renderTabs(){
   const items=S.map(s=>{const t=sectionStats(s);return `<button style="--c:${s.c}" data-go="${s.id}" aria-current="${cur===s.id}"><span class="dot"></span><span>${s.n}</span><span class="cnt">${t.d}/${t.t}</span></button>`}).join("");
-  $("#tabs").innerHTML=items+`<div class="sep"></div>`+
-  `<button style="--c:var(--num)" data-go="terms" aria-current="${cur==="terms"}"><span class="dot"></span><span>Key Terms</span><span class="cnt">${N_TERM}</span></button>`+
+  $("#tabs").innerHTML=`<button style="--c:var(--num)" data-go="terms" aria-current="${cur==="terms"}"><span class="dot"></span><span>Key Terms</span><span class="cnt">${N_TERM}</span></button><div class="sep"></div>`+items+`<div class="sep"></div>`+
   `<button style="--c:var(--ink)" data-go="mock" aria-current="${cur==="mock"}"><span class="dot"></span><span>Mock Exam</span><span class="cnt">${N_EXAM}</span></button>`;
 }
 function go(id){cur=id;if(id!=="mock"){exam=null;stopTick()}render();try{history.replaceState(null,"","#"+id)}catch(e){}
