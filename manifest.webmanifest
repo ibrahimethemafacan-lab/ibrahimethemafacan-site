@@ -1,7 +1,7 @@
 {
   "name": "İbrahim Ethem Afacan",
   "short_name": "İEA",
-  "description": "Finansal piyasaları anlamak için notlar, veriler ve araçlar: piyasa gündemi, getiriler, makro göstergeler ve SPL/MASAK çalışma masası.",
+  "description": "Finansal piyasaları anlamak için notlar, veriler ve araçlar: piyasa gündemi, getiriler, makro göstergeler ve SPL, MASAK ve CFA çalışma masası.",
   "id": "/",
   "start_url": "/?kaynak=pwa",
   "scope": "/",
