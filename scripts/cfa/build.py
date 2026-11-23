@@ -99,7 +99,7 @@ HEAD = f"""<!DOCTYPE html>
   <header class="top">
     <div class="eyebrow">CFA Program · Level I</div>
     <h1>Quantitative Methods</h1>
-    <p class="lede">Eleven readings, in curriculum order. Each has concise notes, the key terms with English and Turkish explanations, and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end.</p>
+    <p class="lede">Eleven readings, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end.</p>
     <div class="tip"><b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. Quantitative Methods carries roughly <span class="n">6–9%</span> of the exam.</div>
     <div class="weights" id="weights" aria-label="Mock exam questions per reading"></div>
     <div class="wlegend"><span>Bar width = questions drawn from the reading in the mock exam</span><span>{sum(len(s["qs"]) for s in S)} practice questions · {N_TERM} key terms</span></div>
@@ -117,7 +117,7 @@ const N_EXAM=__NEXAM__,N_TERM=__NTERM__,EXAM_SEC=N_EXAM*90;
 const LS="cfa-l1-qm-v1";let st={};try{st=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){st={}}
 function save(){try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){}}
 const $=s=>document.querySelector(s);const L="ABC";
-let cur=null,mode="notes",exam=null,tick=null,tq="";
+let cur=null,mode="terms",exam=null,tick=null,tq="";
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function sectionStats(s){const a=st[s.id]||{};let d=0,ok=0;s.qs.forEach((q,i)=>{if(a[i]!==undefined){d++;if(a[i]===q[2])ok++}});return{d,ok,t:s.qs.length}}
 function scoreText(t){return `${t.ok} correct · ${t.d-t.ok} wrong · ${t.t-t.d} unanswered`}
@@ -148,11 +148,11 @@ function render(){
   const s=S.find(x=>x.id===cur);const t=sectionStats(s);
   m.innerHTML=`<div class="sec-head" style="--c:${s.c}"><div class="eyebrow">Reading ${S.indexOf(s)+1} of ${S.length}</div><h2>${s.n}</h2>
     <div class="meta"><span class="chip strong">${s.qs.length} practice questions</span><span class="chip">${s.terms.length} key terms</span></div></div>
-    <div class="switch three" role="group" aria-label="View"><button data-mode="notes" aria-pressed="${mode==="notes"}">Notes</button><button data-mode="terms" aria-pressed="${mode==="terms"}">Terms</button><button data-mode="qs" aria-pressed="${mode==="qs"}">Questions</button></div>
+    <div class="switch three" role="group" aria-label="View"><button data-mode="terms" aria-pressed="${mode==="terms"}">Terms</button><button data-mode="notes" aria-pressed="${mode==="notes"}">Notes</button><button data-mode="qs" aria-pressed="${mode==="qs"}">Questions</button></div>
     <div id="body"></div>`;
   const b=$("#body");
-  if(mode==="notes"){b.innerHTML=`<div class="notes">${s.notes}</div><div class="qbar" style="margin-top:16px"><button class="btn" data-mode="terms">Key terms</button><button class="btn primary" data-mode="qs">Practice questions</button></div>`;return}
-  if(mode==="terms"){b.innerHTML=`<div class="terms">${s.terms.map(termCard).join("")}</div><div class="qbar" style="margin-top:16px"><button class="btn primary" data-mode="qs">Practice questions</button></div>`;return}
+  if(mode==="notes"){b.innerHTML=`<div class="notes">${s.notes}</div><div class="qbar" style="margin-top:16px"><button class="btn primary" data-mode="qs">Practice questions</button></div>`;return}
+  if(mode==="terms"){b.innerHTML=`<div class="terms">${s.terms.map(termCard).join("")}</div><div class="qbar" style="margin-top:16px"><button class="btn primary" data-mode="notes">Read the notes</button></div>`;return}
   const a=st[s.id]||{};
   b.innerHTML=`<div class="qbar"><span class="score">${scoreText(t)}</span><button class="btn" data-reset="${s.id}">Reset</button>${t.d-t.ok>0?`<button class="btn" data-wrong="${s.id}">Retry wrong answers</button>`:""}</div>
     <div class="qlist">${s.qs.map((q,i)=>qCard(q,i,String(i+1).padStart(2,"0"),a[i],a[i]!==undefined,`data-sec="${s.id}"`)).join("")}</div>`;
@@ -180,7 +180,7 @@ function renderExam(m){
 }
 document.addEventListener("input",e=>{if(e.target.id==="tsearch"){tq=e.target.value;$("#tlist").innerHTML=termList()}});
 document.addEventListener("click",e=>{
-  const g=e.target.closest("[data-go]");if(g){if(g.dataset.go!==cur)mode="notes";go(g.dataset.go);return}
+  const g=e.target.closest("[data-go]");if(g){if(g.dataset.go!==cur)mode="terms";go(g.dataset.go);return}
   const md=e.target.closest("[data-mode]");if(md){mode=md.dataset.mode;render();$("#main").scrollIntoView({block:"start"});return}
   const r=e.target.closest("[data-reset]");if(r){delete st[r.dataset.reset];save();render();return}
   const w=e.target.closest("[data-wrong]");if(w){const s=S.find(x=>x.id===w.dataset.wrong),a=st[s.id]||{};s.qs.forEach((q,i)=>{if(a[i]!==undefined&&a[i]!==q[2])delete a[i]});save();render();return}
