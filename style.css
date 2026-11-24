@@ -689,3 +689,22 @@ p.calc-note[style] { border: 1px solid var(--rule) !important; padding: 12px 16p
 .about-photo { box-shadow: none !important; border: 1px solid var(--rule); }
 .bubble::before, .bubble::after { display: none !important; }
 :root[data-theme="dark"] :is(.gd-bar button[aria-pressed="true"], .tabs button[aria-selected="true"], .sortbar button[aria-pressed="true"], .seg button[aria-pressed="true"], .desk-tabs button[aria-selected="true"]) { color: var(--paper) !important; }
+
+/* Üst bölüm: veri önce yerleşimi (24 Kasım 2026). Getiri kartı solda, bağlantılar sağda çizgili liste. */
+.hub-i { background: none !important; border: 0 !important; border-bottom: 1px solid var(--rule) !important; border-radius: 0 !important; box-shadow: none !important; padding: 11px 4px !important; margin: 0 !important; transform: none !important; }
+.hub-g .hub-i:last-child { border-bottom: 0 !important; }
+.hub-ic { width: 1.5rem !important; height: 1.5rem !important; padding: 0 !important; background: none !important; }
+.hub-t { border-bottom: 2px solid var(--navy); padding-bottom: 8px !important; margin: 0 !important; color: var(--navy) !important; }
+.hub-g { display: grid; gap: 0 !important; grid-template-rows: none !important; align-content: start; }
+a.hub-i:hover b { color: var(--accent); }
+.hub { grid-template-columns: 1fr !important; gap: 20px !important; }
+@media (min-width: 721px) {
+  .hero-text { display: contents; }
+  .hero-grid { grid-template-columns: 1fr !important; grid-template-areas: "h" "r" "hub"; gap: 28px !important; align-items: start !important; }
+  .hero .hero-text h1 { grid-area: h; margin: 0 !important; max-width: none !important; }
+  .hero-race { grid-area: r; }
+  .hub { grid-area: hub; }
+}
+@media (min-width: 901px) {
+  .hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) !important; grid-template-areas: "h h" "r hub"; gap: 32px 56px !important; }
+}
