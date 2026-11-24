@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CFA Level I çalışma sayfasını üretir.
 Kullanım: python3 scripts/cfa/build.py
-İçerik: scripts/cfa/qm/r*.py (her dosyada R listesi). Görsel stil MASAK Modül 2 sayfasından alınır."""
+Kullanım: python3 scripts/cfa/build.py [qm|econ]. İçerik: scripts/cfa/<konu>/r*.py (her dosyada R listesi). Görsel stil MASAK Modül 2 sayfasından alınır."""
 import json, re, sys, pathlib, importlib.util, collections
 
 KOK = pathlib.Path(__file__).resolve().parents[2]
@@ -11,9 +11,28 @@ def yukle(yol):
     spec = importlib.util.spec_from_file_location(yol.stem, yol)
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m.R
 
+KONULAR = {
+    "qm": dict(slug="quantitative-methods", ad="Quantitative Methods", sayi="Eleven", pay="6–9%"),
+    "econ": dict(slug="economics", ad="Economics", sayi="Eight", pay="6–9%", dengele=True),
+}
+ANAHTAR = sys.argv[1] if len(sys.argv) > 1 else "qm"
+KONU = KONULAR[ANAHTAR]
+
 S = []
-for f in sorted((BURASI / "qm").glob("r*.py")):
+for f in sorted((BURASI / ANAHTAR).glob("r*.py")):
     S += yukle(f)
+
+# --- doğru şık dengesi: yalnızca sözel ve benzer uzunluktaki şıklarda B'yi A veya C ile yer değiştir ---
+def _sayisal(o): return bool(re.search(r"\d", o))
+if KONU.get("dengele"):
+    say = collections.Counter(q[2] for s in S for q in s["qs"])
+    for s in S:
+        for q in s["qs"]:
+            o = q[1]
+            if q[2] != 1 or say[1] <= len([1 for t in S for _ in t["qs"]]) / 3 + 1: continue
+            if any(_sayisal(x) for x in o) or max(map(len, o)) - min(map(len, o)) > 14: continue
+            j = 0 if say[0] <= say[2] else 2
+            o[1], o[j] = o[j], o[1]; q[2] = j; say[1] -= 1; say[j] += 1
 
 # --- denetimler ---
 def sayi(o):
@@ -57,9 +76,9 @@ EK_CSS = """
 
 N_EXAM = sum(s["w"] for s in S)
 N_TERM = sum(len(s["terms"]) for s in S)
-URL = "https://ibrahimethemafacan.com/calisma-masasi/cfa-level-1/quantitative-methods/"
-TITLE = "CFA Level I · Quantitative Methods Study Desk"
-DESC = "Study notes, key terms in English and Turkish, three-choice practice questions and a timed mock exam for CFA Level I Quantitative Methods."
+URL = f"https://ibrahimethemafacan.com/calisma-masasi/cfa-level-1/{KONU['slug']}/"
+TITLE = f"CFA Level I · {KONU['ad']} Study Desk"
+DESC = f"Study notes, key terms in English and Turkish, three-choice practice questions and a timed mock exam for CFA Level I {KONU['ad']}."
 
 HEAD = f"""<!DOCTYPE html>
 <html lang="en"><head>
@@ -98,9 +117,9 @@ HEAD = f"""<!DOCTYPE html>
 <div class="wrap">
   <header class="top">
     <div class="eyebrow">CFA Program · Level I</div>
-    <h1>Quantitative Methods</h1>
-    <p class="lede">Eleven readings, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end.</p>
-    <div class="tip"><b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. Quantitative Methods carries roughly <span class="n">6–9%</span> of the exam.</div>
+    <h1>{KONU["ad"]}</h1>
+    <p class="lede">{KONU["sayi"]} readings, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end.</p>
+    <div class="tip"><b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. {KONU["ad"]} carries roughly <span class="n">{KONU["pay"]}</span> of the exam.</div>
     <div class="weights" id="weights" aria-label="Mock exam questions per reading"></div>
     <div class="wlegend"><span>Bar width = questions drawn from the reading in the mock exam</span><span>{sum(len(s["qs"]) for s in S)} practice questions · {N_TERM} key terms</span></div>
   </header>
@@ -114,7 +133,7 @@ HEAD = f"""<!DOCTYPE html>
 
 ENGINE = r"""
 const N_EXAM=__NEXAM__,N_TERM=__NTERM__,EXAM_SEC=N_EXAM*90;
-const LS="cfa-l1-qm-v1";let st={};try{st=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){st={}}
+const LS="cfa-l1-__KEY__-v1";let st={};try{st=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){st={}}
 function save(){try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){}}
 const $=s=>document.querySelector(s);const L="ABC";
 let cur=null,mode="terms",exam=null,tick=null,tq="";
@@ -165,7 +184,7 @@ function fmt(x){x=Math.max(0,Math.round(x));return String(Math.floor(x/60)).padS
 function showTime(){if(!exam||exam.done)return;const u=(Date.now()-exam.t0)/1000;const el=$("#timer");if(el)el.textContent=u<=EXAM_SEC?fmt(EXAM_SEC-u)+" left":"over by "+fmt(u-EXAM_SEC)}
 function renderExam(m){
   if(!exam){m.innerHTML=`<div class="sec-head"><div class="eyebrow">Exam practice</div><h2>Mock Exam</h2><div class="meta"><span class="chip strong">${N_EXAM} questions</span><span class="chip">${fmt(EXAM_SEC).slice(0,2)} minutes</span><span class="chip">90 seconds per question</span></div></div>
-    <div class="notes"><p>Questions are drawn at random from all eleven readings and presented in curriculum order, as in the exam. Answers and explanations appear when you finish, together with a breakdown by reading that shows where to return.</p></div>
+    <div class="notes"><p>Questions are drawn at random from all __NREAD__ readings and presented in curriculum order, as in the exam. Answers and explanations appear when you finish, together with a breakdown by reading that shows where to return.</p></div>
     <div class="qbar" style="margin-top:16px"><button class="btn primary" data-exam="start">Start the mock exam</button></div>`;return}
   const n=Object.keys(exam.ans).length;let head="";
   if(exam.done){let ok=0;const per={};exam.qs.forEach((x,k)=>{const q=S.find(s=>s.id===x.s).qs[x.i];per[x.s]=per[x.s]||{ok:0,t:0};per[x.s].t++;if(exam.ans[k]===q[2]){ok++;per[x.s].ok++}});
@@ -202,8 +221,8 @@ const h=(location.hash||"").slice(1);cur=(S.some(s=>s.id===h)||h==="terms"||h===
 """
 
 veri = [dict(id=s["id"], n=s["n"], k=s["k"], w=s["w"], c=s["c"], terms=s["terms"], notes=s["notes"], qs=s["qs"]) for s in S]
-html = HEAD + "const S = " + json.dumps(veri, ensure_ascii=False).replace("</", "<\\/") + ";\n" + ENGINE.replace("__NEXAM__", str(N_EXAM)).replace("__NTERM__", str(N_TERM))
-hedef = KOK / "calisma-masasi/cfa-level-1/quantitative-methods/index.html"
+html = HEAD + "const S = " + json.dumps(veri, ensure_ascii=False).replace("</", "<\\/") + ";\n" + ENGINE.replace("__NEXAM__", str(N_EXAM)).replace("__NTERM__", str(N_TERM)).replace("__KEY__", ANAHTAR).replace("__NREAD__", KONU["sayi"].lower())
+hedef = KOK / f"calisma-masasi/cfa-level-1/{KONU['slug']}/index.html"
 hedef.parent.mkdir(parents=True, exist_ok=True)
 hedef.write_text(html, encoding="utf-8")
 print("yazıldı:", hedef.relative_to(KOK), f"{len(html)//1024} KB")
