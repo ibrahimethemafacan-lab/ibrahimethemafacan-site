@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CFA Level I çalışma sayfasını üretir.
 Kullanım: python3 scripts/cfa/build.py
-Kullanım: python3 scripts/cfa/build.py [qm|econ]. İçerik: scripts/cfa/<konu>/r*.py (her dosyada R listesi). Görsel stil MASAK Modül 2 sayfasından alınır."""
+Kullanım: python3 scripts/cfa/build.py [qm|econ|corp|fsa]. İçerik: scripts/cfa/<konu>/r*.py (her dosyada R listesi). Görsel stil MASAK Modül 2 sayfasından alınır."""
 import json, re, sys, pathlib, importlib.util, collections
 
 KOK = pathlib.Path(__file__).resolve().parents[2]
@@ -14,6 +14,8 @@ def yukle(yol):
 KONULAR = {
     "qm": dict(slug="quantitative-methods", ad="Quantitative Methods", sayi="Eleven", pay="6–9%"),
     "econ": dict(slug="economics", ad="Economics", sayi="Eight", pay="6–9%", dengele=True),
+    "corp": dict(slug="corporate-issuers", ad="Corporate Issuers", sayi="Seven", pay="6–9%", dengele=True),
+    "fsa": dict(slug="financial-statement-analysis", ad="Financial Statement Analysis", sayi="Twelve", pay="11–14%", dengele=True),
 }
 ANAHTAR = sys.argv[1] if len(sys.argv) > 1 else "qm"
 KONU = KONULAR[ANAHTAR]
