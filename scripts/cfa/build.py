@@ -30,6 +30,15 @@ S = []
 for f in sorted((BURASI / ANAHTAR).glob("r*.py")):
     S += yukle(f)
 
+# --- ek dosyalar (ek*.py): mevcut okumalara terim, not ve soru ekler ---
+for f in sorted((BURASI / ANAHTAR).glob("ek*.py")):
+    spec = importlib.util.spec_from_file_location(f.stem, f); m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+    for sid, e in m.EK.items():
+        s_ = next(x for x in S if x["id"] == sid)
+        s_["terms"] += e.get("terms", [])
+        s_["notes"] += e.get("notes", "")
+        s_["qs"] += e.get("qs", [])
+
 # --- doğru şık dengesi: yalnızca sözel ve benzer uzunluktaki şıklarda B'yi A veya C ile yer değiştir ---
 def _sayisal(o): return bool(re.search(r"\d", o))
 if KONU.get("dengele"):
