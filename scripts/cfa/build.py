@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CFA Level I çalışma sayfasını üretir.
 Kullanım: python3 scripts/cfa/build.py
-Kullanım: python3 scripts/cfa/build.py [qm|econ|corp|fsa|eq|fi]. İçerik: scripts/cfa/<konu>/r*.py (her dosyada R listesi). Görsel stil MASAK Modül 2 sayfasından alınır."""
+Kullanım: python3 scripts/cfa/build.py [qm|econ|corp|fsa|eq|fi|der|alt|pm|eth]. İçerik: scripts/cfa/<konu>/r*.py (her dosyada R listesi). Görsel stil MASAK Modül 2 sayfasından alınır."""
 import json, re, sys, pathlib, importlib.util, collections
 
 KOK = pathlib.Path(__file__).resolve().parents[2]
@@ -18,6 +18,10 @@ KONULAR = {
     "fsa": dict(slug="financial-statement-analysis", ad="Financial Statement Analysis", sayi="Twelve", pay="11–14%", dengele=True),
     "eq": dict(slug="equity-investments", ad="Equity Investments", sayi="Eight", pay="11–14%", dengele=True),
     "fi": dict(slug="fixed-income", ad="Fixed Income", sayi="Nineteen", pay="11–14%", dengele=True),
+    "der": dict(slug="derivatives", ad="Derivatives", sayi="Ten", pay="5–8%", dengele=True),
+    "alt": dict(slug="alternative-investments", ad="Alternative Investments", sayi="Seven", pay="7–10%", dengele=True),
+    "pm": dict(slug="portfolio-management", ad="Portfolio Management", sayi="Six", pay="8–12%", dengele=True),
+    "eth": dict(slug="ethical-and-professional-standards", ad="Ethical and Professional Standards", sayi="Ten", pay="15–20%", dengele=True, birim="sections"),
 }
 ANAHTAR = sys.argv[1] if len(sys.argv) > 1 else "qm"
 KONU = KONULAR[ANAHTAR]
@@ -122,7 +126,7 @@ HEAD = f"""<!DOCTYPE html>
   <header class="top">
     <div class="eyebrow">CFA Program · Level I</div>
     <h1>{KONU["ad"]}</h1>
-    <p class="lede">{KONU["sayi"]} readings, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end.</p>
+    <p class="lede">{KONU["sayi"]} {KONU.get("birim", "readings")}, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end.</p>
     <div class="tip"><b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. {KONU["ad"]} carries roughly <span class="n">{KONU["pay"]}</span> of the exam.</div>
     <div class="weights" id="weights" aria-label="Mock exam questions per reading"></div>
     <div class="wlegend"><span>Bar width = questions drawn from the reading in the mock exam</span><span>{sum(len(s["qs"]) for s in S)} practice questions · {N_TERM} key terms</span></div>
@@ -188,7 +192,7 @@ function fmt(x){x=Math.max(0,Math.round(x));return String(Math.floor(x/60)).padS
 function showTime(){if(!exam||exam.done)return;const u=(Date.now()-exam.t0)/1000;const el=$("#timer");if(el)el.textContent=u<=EXAM_SEC?fmt(EXAM_SEC-u)+" left":"over by "+fmt(u-EXAM_SEC)}
 function renderExam(m){
   if(!exam){m.innerHTML=`<div class="sec-head"><div class="eyebrow">Exam practice</div><h2>Mock Exam</h2><div class="meta"><span class="chip strong">${N_EXAM} questions</span><span class="chip">${fmt(EXAM_SEC).slice(0,2)} minutes</span><span class="chip">90 seconds per question</span></div></div>
-    <div class="notes"><p>Questions are drawn at random from all __NREAD__ readings and presented in curriculum order, as in the exam. Answers and explanations appear when you finish, together with a breakdown by reading that shows where to return.</p></div>
+    <div class="notes"><p>Questions are drawn at random from all __NREAD__ and presented in curriculum order, as in the exam. Answers and explanations appear when you finish, together with a breakdown by reading that shows where to return.</p></div>
     <div class="qbar" style="margin-top:16px"><button class="btn primary" data-exam="start">Start the mock exam</button></div>`;return}
   const n=Object.keys(exam.ans).length;let head="";
   if(exam.done){let ok=0;const per={};exam.qs.forEach((x,k)=>{const q=S.find(s=>s.id===x.s).qs[x.i];per[x.s]=per[x.s]||{ok:0,t:0};per[x.s].t++;if(exam.ans[k]===q[2]){ok++;per[x.s].ok++}});
@@ -225,7 +229,7 @@ const h=(location.hash||"").slice(1);cur=(S.some(s=>s.id===h)||h==="terms"||h===
 """
 
 veri = [dict(id=s["id"], n=s["n"], k=s["k"], w=s["w"], c=s["c"], terms=s["terms"], notes=s["notes"], qs=s["qs"]) for s in S]
-html = HEAD + "const S = " + json.dumps(veri, ensure_ascii=False).replace("</", "<\\/") + ";\n" + ENGINE.replace("__NEXAM__", str(N_EXAM)).replace("__NTERM__", str(N_TERM)).replace("__KEY__", ANAHTAR).replace("__NREAD__", KONU["sayi"].lower())
+html = HEAD + "const S = " + json.dumps(veri, ensure_ascii=False).replace("</", "<\\/") + ";\n" + ENGINE.replace("__NEXAM__", str(N_EXAM)).replace("__NTERM__", str(N_TERM)).replace("__KEY__", ANAHTAR).replace("__NREAD__", KONU["sayi"].lower() + " " + KONU.get("birim", "readings"))
 hedef = KOK / f"calisma-masasi/cfa-level-1/{KONU['slug']}/index.html"
 hedef.parent.mkdir(parents=True, exist_ok=True)
 hedef.write_text(html, encoding="utf-8")
