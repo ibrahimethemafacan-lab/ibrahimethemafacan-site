@@ -53,6 +53,22 @@
     #grp-spl>.desk-h:first-child,#grp-masak>.desk-h:first-child{margin-top:.75rem}
     .desk-lede{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin:-.4rem 0 .9rem;max-width:46rem;line-height:1.55}
     .desk-h{font-family:var(--sans);font-size:1.05rem;font-weight:800;color:var(--ink);margin:2rem 0 .75rem}
+    /* Ders listesi: numaralı indeks görünümü */
+    main .tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.5rem;counter-reset:ders}
+    main .tools.solo{width:auto}
+    @media (max-width:760px){main .tools{grid-template-columns:1fr}}
+    main .tools .tool{counter-increment:ders;position:relative;display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:.3rem .9rem;align-content:start;background:none;border:0;border-top:1px solid var(--rule);border-radius:0 !important;box-shadow:none !important;min-height:0;padding:1.1rem 0 1.2rem}
+    main .tools .tool::before{content:counter(ders,decimal-leading-zero);grid-row:1/span 4;font-family:var(--serif);font-size:2rem;line-height:1;color:var(--accent-bright);font-weight:500}
+    main .tools .tool:only-child{grid-template-columns:minmax(0,1fr)}
+    main .tools .tool:only-child::before{display:none}
+    main .tools .tool>*{grid-column:-2}
+    main .tools .tool h3{margin:0;font-size:1.15rem}
+    main .tools .tool:hover h3{color:var(--accent)}
+    main .tools .tool p{font-size:.86rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    main .tools .tool .meta{display:flex;gap:.6rem;flex-wrap:wrap;font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--muted)}
+    main .tools .tool .meta span+span::before{content:"·";margin-right:.6rem;color:var(--rule)}
+    main .tools .tool .go{margin:.2rem 0 0;font-size:.85rem}
+    main .tools .tool .go::after{content:"";position:absolute;inset:0}
   </style>
   <link rel="manifest" href="/manifest.webmanifest">
   <script defer src="/sayac.js?v=2"></script>
@@ -293,5 +309,16 @@ window.addEventListener('hashchange',function(){var g=fromHash();if(g)sec(g,true
 })();
 </script>
 <script data-goatcounter="https://ibrahimethemafacan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function(){var S={"bir":1,"iki":2,"üç":3,"dört":4,"beş":5,"altı":6,"yedi":7,"sekiz":8,"dokuz":9,"on":10};
+function sayi(t){t=t.toLowerCase().trim();if(/^\d+$/.test(t))return +t;var n=0;t.split(/\s+/).forEach(function(w){if(S[w])n+=S[w];});return n||null;}
+document.querySelectorAll('main .tool').forEach(function(a){var p=a.querySelector('p'),g=a.querySelector('.go');if(!p||!g)return;
+var t=p.textContent,m=[],r;
+r=t.match(/(\d+|(?:[A-Za-zçğıöşüÇĞİÖŞÜ]+ )?[A-Za-zçğıöşüÇĞİÖŞÜ]+) (bölüm|okuma|konu)/i);if(r){var n=sayi(r[1]);if(n)m.push(n+" "+r[2].toLowerCase());}
+r=t.match(/(\d[\d.]*) (?:çalışma )?soru(?!luk)/);if(r)m.push(r[1]+" soru");
+r=t.match(/(\d+) teknik terim/);if(r)m.push(r[1]+" terim");
+if(/deneme/i.test(t))m.push("Deneme");if(/podcast|sesli/i.test(t))m.push("Sesli");
+if(!m.length)return;var d=document.createElement('div');d.className='meta';m.forEach(function(x){var s=document.createElement('span');s.textContent=x;d.appendChild(s);});a.insertBefore(d,g);});})();
+</script>
 </body>
 </html>
