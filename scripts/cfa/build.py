@@ -12,7 +12,7 @@ def yukle(yol):
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m.R
 
 KONULAR = {
-    "qm": dict(slug="quantitative-methods", ad="Quantitative Methods", sayi="Eleven", pay="6–9%"),
+    "qm": dict(slug="quantitative-methods", ad="Quantitative Methods", sayi="Eleven", pay="6–9%", dengele=True),
     "econ": dict(slug="economics", ad="Economics", sayi="Eight", pay="6–9%", dengele=True),
     "corp": dict(slug="corporate-issuers", ad="Corporate Issuers", sayi="Seven", pay="6–9%", dengele=True),
     "fsa": dict(slug="financial-statement-analysis", ad="Financial Statement Analysis", sayi="Twelve", pay="11–14%", dengele=True),
