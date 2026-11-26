@@ -39,17 +39,18 @@ for f in sorted((BURASI / ANAHTAR).glob("ek*.py")):
         s_["notes"] += e.get("notes", "")
         s_["qs"] += e.get("qs", [])
 
-# --- doğru şık dengesi: yalnızca sözel ve benzer uzunluktaki şıklarda B'yi A veya C ile yer değiştir ---
+# --- doğru şık dengesi: yalnızca sözel ve benzer uzunluktaki şıklarda, en sık kullanılan doğru şıkkı en az kullanılanla yer değiştir ---
 def _sayisal(o): return bool(re.search(r"\d", o))
 if KONU.get("dengele"):
     say = collections.Counter(q[2] for s in S for q in s["qs"])
+    esik = sum(len(t["qs"]) for t in S) / 3 + 1
     for s in S:
         for q in s["qs"]:
-            o = q[1]
-            if q[2] != 1 or say[1] <= len([1 for t in S for _ in t["qs"]]) / 3 + 1: continue
+            o = q[1]; i = q[2]
+            if say[i] <= esik or say[i] != max(say[k] for k in (0, 1, 2)): continue
             if any(_sayisal(x) for x in o) or max(map(len, o)) - min(map(len, o)) > 14: continue
-            j = 0 if say[0] <= say[2] else 2
-            o[1], o[j] = o[j], o[1]; q[2] = j; say[1] -= 1; say[j] += 1
+            j = min((k for k in (0, 1, 2) if k != i), key=lambda k: say[k])
+            o[i], o[j] = o[j], o[i]; q[2] = j; say[i] -= 1; say[j] += 1
 
 # --- denetimler ---
 def sayi(o):
