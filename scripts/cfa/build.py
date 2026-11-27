@@ -22,6 +22,12 @@ KONULAR = {
     "alt": dict(slug="alternative-investments", ad="Alternative Investments", sayi="Seven", pay="7–10%", dengele=True),
     "pm": dict(slug="portfolio-management", ad="Portfolio Management", sayi="Six", pay="8–12%", dengele=True),
     "eth": dict(slug="ethical-and-professional-standards", ad="Ethical and Professional Standards", sayi="Ten", pay="15–20%", dengele=True, birim="sections"),
+    # Sınav İngilizcesi: müfredat konusu değil; anlatım Türkçe, örnekler İngilizce
+    "eng": dict(slug="english-for-the-exam", ad="English for the Exam", sayi="Twelve", pay="", dengele=True, birim="units", etiket="Unit",
+        title="CFA Level I · English for the Exam (Sınava Yönelik İngilizce)",
+        desc="CFA Level I sınav sorularını doğru okumak için İngilizce hazırlık: soru kökleri, yön ve miktar ifadeleri, bağlaçlar, olumsuzluk tuzakları, karıştırılan kelimeler; Türkçe açıklamalı.",
+        lede="İngilizcesi yeterli gelmeyenler için sınava yönelik hazırlık. Konu bilgisi değil, sınav sorularının dili: soru kökleri, yön ve miktar ifadeleri, bağlaçlar, olumsuzluk tuzakları ve en çok karıştırılan kelimeler. 12 ünite; her birinde Türkçe açıklamalı ifadeler, kısa notlar ve sınav formatında alıştırma soruları var.",
+        tip="<b>Nasıl çalışılır</b>Konulara başlamadan önce bu bölümü bir kez bitirin, sonra takıldıkça dönün. Sınavda soru başına yaklaşık <span class=\"n\">90</span> saniye var; sorunun ne istediğini ilk okuyuşta anlamak, bilgiyi bilmek kadar önemli. Açıklamalar Türkçe, örnek cümleler sınavdaki gibi İngilizce."),
 }
 ANAHTAR = sys.argv[1] if len(sys.argv) > 1 else "qm"
 KONU = KONULAR[ANAHTAR]
@@ -94,9 +100,11 @@ EK_CSS = """
 
 N_EXAM = sum(s["w"] for s in S)
 N_TERM = sum(len(s["terms"]) for s in S)
+LEDE = KONU.get("lede") or f"""{KONU["sayi"]} {KONU.get("birim", "readings")}, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end."""
+TIP = KONU.get("tip") or f"""<b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. {KONU["ad"]} carries roughly <span class="n">{KONU["pay"]}</span> of the exam."""
 URL = f"https://ibrahimethemafacan.com/calisma-masasi/cfa-level-1/{KONU['slug']}/"
-TITLE = f"CFA Level I · {KONU['ad']} Study Desk"
-DESC = f"Study notes, key terms in English and Turkish, three-choice practice questions and a timed mock exam for CFA Level I {KONU['ad']}."
+TITLE = KONU.get("title") or f"CFA Level I · {KONU['ad']} Study Desk"
+DESC = KONU.get("desc") or f"Study notes, key terms in English and Turkish, three-choice practice questions and a timed mock exam for CFA Level I {KONU['ad']}."
 
 HEAD = f"""<!DOCTYPE html>
 <html lang="en"><head>
@@ -136,8 +144,8 @@ HEAD = f"""<!DOCTYPE html>
   <header class="top">
     <div class="eyebrow">CFA Program · Level I</div>
     <h1>{KONU["ad"]}</h1>
-    <p class="lede">{KONU["sayi"]} {KONU.get("birim", "readings")}, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end.</p>
-    <div class="tip"><b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. {KONU["ad"]} carries roughly <span class="n">{KONU["pay"]}</span> of the exam.</div>
+    <p class="lede">{LEDE}</p>
+    <div class="tip">{TIP}</div>
     <div class="weights" id="weights" aria-label="Mock exam questions per reading"></div>
     <div class="wlegend"><span>Bar width = questions drawn from the reading in the mock exam</span><span>{sum(len(s["qs"]) for s in S)} practice questions · {N_TERM} key terms</span></div>
   </header>
@@ -175,7 +183,7 @@ function qCard(q,idx,label,chosen,reveal,attrs,tag){
 function termCard(t){return `<div class="term"><div class="th"><span class="en">${t[0]}</span><span class="tr">${t[1]}</span></div><p><span class="lg">EN</span>${t[2]}</p><p lang="tr"><span class="lg">TR</span>${t[3]}</p></div>`}
 function termList(){const f=tq.trim().toLocaleLowerCase("tr");let h="",n=0;
   S.forEach((s,i)=>{const ts=s.terms.filter(t=>!f||t.join(" ").toLocaleLowerCase("tr").includes(f));if(!ts.length)return;n+=ts.length;
-    h+=`<div class="tgroup">Reading ${i+1} · ${s.n}</div><div class="terms">${ts.map(termCard).join("")}</div>`});
+    h+=`<div class="tgroup">__ETIKET__ ${i+1} · ${s.n}</div><div class="terms">${ts.map(termCard).join("")}</div>`});
   return h||`<p style="color:var(--muted)">No term matches “${esc(tq)}”.</p>`}
 function render(){
   renderTabs();const m=$("#main");
@@ -183,7 +191,7 @@ function render(){
     <input class="tsearch" id="tsearch" type="search" placeholder="Search a term in English or Turkish" value="${esc(tq)}" aria-label="Search terms"><div id="tlist">${termList()}</div>`;return}
   if(cur==="mock"){renderExam(m);return}
   const s=S.find(x=>x.id===cur);const t=sectionStats(s);
-  m.innerHTML=`<div class="sec-head" style="--c:${s.c}"><div class="eyebrow">Reading ${S.indexOf(s)+1} of ${S.length}</div><h2>${s.n}</h2>
+  m.innerHTML=`<div class="sec-head" style="--c:${s.c}"><div class="eyebrow">__ETIKET__ ${S.indexOf(s)+1} of ${S.length}</div><h2>${s.n}</h2>
     <div class="meta"><span class="chip strong">${s.qs.length} practice questions</span><span class="chip">${s.terms.length} key terms</span></div></div>
     <div class="switch three" role="group" aria-label="View"><button data-mode="terms" aria-pressed="${mode==="terms"}">Terms</button><button data-mode="notes" aria-pressed="${mode==="notes"}">Notes</button><button data-mode="qs" aria-pressed="${mode==="qs"}">Questions</button></div>
     <div id="body"></div>`;
@@ -239,7 +247,7 @@ const h=(location.hash||"").slice(1);cur=(S.some(s=>s.id===h)||h==="terms"||h===
 """
 
 veri = [dict(id=s["id"], n=s["n"], k=s["k"], w=s["w"], c=s["c"], terms=s["terms"], notes=s["notes"], qs=s["qs"]) for s in S]
-html = HEAD + "const S = " + json.dumps(veri, ensure_ascii=False).replace("</", "<\\/") + ";\n" + ENGINE.replace("__NEXAM__", str(N_EXAM)).replace("__NTERM__", str(N_TERM)).replace("__KEY__", ANAHTAR).replace("__NREAD__", KONU["sayi"].lower() + " " + KONU.get("birim", "readings"))
+html = HEAD + "const S = " + json.dumps(veri, ensure_ascii=False).replace("</", "<\\/") + ";\n" + ENGINE.replace("__ETIKET__", KONU.get("etiket", "Reading")).replace("__NEXAM__", str(N_EXAM)).replace("__NTERM__", str(N_TERM)).replace("__KEY__", ANAHTAR).replace("__NREAD__", KONU["sayi"].lower() + " " + KONU.get("birim", "readings"))
 hedef = KOK / f"calisma-masasi/cfa-level-1/{KONU['slug']}/index.html"
 hedef.parent.mkdir(parents=True, exist_ok=True)
 hedef.write_text(html, encoding="utf-8")
