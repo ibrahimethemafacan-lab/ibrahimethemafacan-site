@@ -12,16 +12,16 @@ def yukle(yol):
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m.R
 
 KONULAR = {
-    "qm": dict(slug="quantitative-methods", ad="Quantitative Methods", sayi="Eleven", pay="6–9%", dengele=True),
+    "qm": dict(slug="quantitative-methods", ad="Quantitative Methods", sayi="Eleven", pay="11–14%", dengele=True),
     "econ": dict(slug="economics", ad="Economics", sayi="Eight", pay="6–9%", dengele=True),
-    "corp": dict(slug="corporate-issuers", ad="Corporate Issuers", sayi="Seven", pay="6–9%", dengele=True),
+    "corp": dict(slug="corporate-issuers", ad="Corporate Finance", sayi="Seven", pay="6–9%", dengele=True),
     "fsa": dict(slug="financial-statement-analysis", ad="Financial Statement Analysis", sayi="Twelve", pay="11–14%", dengele=True),
-    "eq": dict(slug="equity-investments", ad="Equity Investments", sayi="Eight", pay="11–14%", dengele=True),
+    "eq": dict(slug="equity-investments", ad="Equities", sayi="Eight", pay="11–14%", dengele=True),
     "fi": dict(slug="fixed-income", ad="Fixed Income", sayi="Nineteen", pay="11–14%", dengele=True),
-    "der": dict(slug="derivatives", ad="Derivatives", sayi="Ten", pay="5–8%", dengele=True),
-    "alt": dict(slug="alternative-investments", ad="Alternative Investments", sayi="Seven", pay="7–10%", dengele=True),
-    "pm": dict(slug="portfolio-management", ad="Portfolio Management", sayi="Six", pay="8–12%", dengele=True),
-    "eth": dict(slug="ethical-and-professional-standards", ad="Ethical and Professional Standards", sayi="Ten", pay="15–20%", dengele=True, birim="sections"),
+    "der": dict(slug="derivatives", ad="Derivatives and Risk Management", sayi="Ten", pay="6–9%", dengele=True),
+    "alt": dict(slug="alternative-investments", ad="Alternative Investments", sayi="Seven", pay="6–9%", dengele=True),
+    "pm": dict(slug="portfolio-management", ad="Portfolio Construction", sayi="Six", pay="8–12%", dengele=True),
+    "eth": dict(slug="ethical-and-professional-standards", ad="Ethical and Professional Standards", sayi="Ten", pay="10–15%", dengele=True, birim="sections"),
     # Sınav İngilizcesi: müfredat konusu değil; anlatım Türkçe, örnekler İngilizce
     "eng": dict(slug="english-for-the-exam", ad="English for the Exam", sayi="Twelve", pay="", dengele=True, birim="units", etiket="Unit",
         title="CFA Level I · English for the Exam (Sınava Yönelik İngilizce)",
@@ -101,7 +101,7 @@ EK_CSS = """
 N_EXAM = sum(s["w"] for s in S)
 N_TERM = sum(len(s["terms"]) for s in S)
 LEDE = KONU.get("lede") or f"""{KONU["sayi"]} {KONU.get("birim", "readings")}, in curriculum order. Each opens with its key terms, explained in English and Turkish, followed by concise notes and three-choice practice questions. A {N_EXAM}-question timed mock exam is at the end."""
-TIP = KONU.get("tip") or f"""<b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. {KONU["ad"]} carries roughly <span class="n">{KONU["pay"]}</span> of the exam."""
+TIP = KONU.get("tip") or f"""<b>Exam format</b>Level I has <span class="n">180</span> multiple-choice questions in two sessions of <span class="n">135</span> minutes, about <span class="n">90</span> seconds per question. Every question has three choices, A, B and C, and there is no penalty for a wrong answer. {KONU["ad"]} carries roughly <span class="n">{KONU["pay"]}</span> of the exam (weights in effect from February 2027)."""
 URL = f"https://ibrahimethemafacan.com/calisma-masasi/cfa-level-1/{KONU['slug']}/"
 TITLE = KONU.get("title") or f"CFA Level I · {KONU['ad']} Study Desk"
 DESC = KONU.get("desc") or f"Study notes, key terms in English and Turkish, three-choice practice questions and a timed mock exam for CFA Level I {KONU['ad']}."

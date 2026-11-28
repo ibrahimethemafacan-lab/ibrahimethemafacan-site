@@ -9,17 +9,17 @@ KOK = pathlib.Path(__file__).resolve().parents[2]
 CFA = KOK / "calisma-masasi/cfa-level-1"
 
 # (anahtar, slug, ad, oturum, soru sayısı, renk, resmi ağırlık)
-KONULAR = [
-    ("eth", "ethical-and-professional-standards", "Ethical and Professional Standards", 1, 34, "#003894", "15–20%"),
-    ("qm", "quantitative-methods", "Quantitative Methods", 1, 16, "#0E7C86", "6–9%"),
-    ("econ", "economics", "Economics", 1, 16, "#B45309", "6–9%"),
-    ("fsa", "financial-statement-analysis", "Financial Statement Analysis", 1, 24, "#6D28D9", "11–14%"),
-    ("corp", "corporate-issuers", "Corporate Issuers", 2, 12, "#BE185D", "6–9%"),
-    ("eq", "equity-investments", "Equity Investments", 2, 20, "#15803D", "11–14%"),
-    ("fi", "fixed-income", "Fixed Income", 2, 20, "#1D4ED8", "11–14%"),
-    ("der", "derivatives", "Derivatives", 2, 10, "#C2410C", "5–8%"),
-    ("alt", "alternative-investments", "Alternative Investments", 2, 13, "#0F766E", "7–10%"),
-    ("pm", "portfolio-management", "Portfolio Management", 2, 15, "#7C3AED", "8–12%"),
+KONULAR = [  # Şubat 2027'den itibaren geçerli adlar, oturumlar ve ağırlıklar (CFA Institute)
+    ("eth", "ethical-and-professional-standards", "Ethical and Professional Standards", 1, 23, "#003894", "10–15%"),
+    ("qm", "quantitative-methods", "Quantitative Methods", 1, 22, "#0E7C86", "11–14%"),
+    ("econ", "economics", "Economics", 1, 12, "#B45309", "6–9%"),
+    ("fsa", "financial-statement-analysis", "Financial Statement Analysis", 1, 21, "#6D28D9", "11–14%"),
+    ("corp", "corporate-issuers", "Corporate Finance", 1, 12, "#BE185D", "6–9%"),
+    ("eq", "equity-investments", "Equities", 2, 22, "#15803D", "11–14%"),
+    ("fi", "fixed-income", "Fixed Income", 2, 22, "#1D4ED8", "11–14%"),
+    ("der", "derivatives", "Derivatives and Risk Management", 2, 13, "#C2410C", "6–9%"),
+    ("alt", "alternative-investments", "Alternative Investments", 2, 14, "#0F766E", "6–9%"),
+    ("pm", "portfolio-management", "Portfolio Construction", 2, 19, "#7C3AED", "8–12%"),
 ]
 for o in (1, 2):
     assert sum(k[4] for k in KONULAR if k[3] == o) == 90
@@ -70,7 +70,7 @@ GOVDE = f"""<div class="wrap">
     <div class="eyebrow">CFA Program · Level I</div>
     <h1>Full Mock Exam</h1>
     <p class="lede">A full-length practice exam in the format of the real one: 180 three-choice questions in two sessions of 135 minutes. Each attempt draws a fresh set from a pool of {TOPLAM:,} questions, weighted by topic as in the exam.</p>
-    <div class="tip"><b>How it works</b>Session 1 covers Ethics, Quantitative Methods, Economics and Financial Statement Analysis. Session 2 covers the other six topics. Answers and explanations appear when you finish a session, with a breakdown by topic. An unfinished session is kept on this device, so you can leave and come back; the clock keeps running.</div>
+    <div class="tip"><b>How it works</b>Session 1 covers Ethics, Quantitative Methods, Economics, Financial Statement Analysis and Corporate Finance. Session 2 covers Equities, Fixed Income, Derivatives and Risk Management, Alternative Investments and Portfolio Construction. Topic weights are those in effect from February 2027. Answers and explanations appear when you finish a session, with a breakdown by topic. An unfinished session is kept on this device, so you can leave and come back; the clock keeps running.</div>
   </header>
   <main id="main"></main>
 </div>
